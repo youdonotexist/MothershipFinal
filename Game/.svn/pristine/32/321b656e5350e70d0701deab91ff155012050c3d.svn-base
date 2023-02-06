@@ -1,0 +1,314 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System;
+using System.Text.RegularExpressions;
+
+public class StoryManager : MonoBehaviour
+{
+	public UILabel _tutorialStoryLabel;
+
+	UILabel _dialogLabel;
+	UILabel _heroLabel;
+	UILabel _continueLabel;
+
+	//TODO: Set portrait
+	UISprite _leaderPortrait;
+	UISprite _mothershipPortrait;
+	UISprite _thisSprite;
+
+	UIPanel _thisPanel;
+
+	CurtainHelper _curtainHelper;
+
+	bool readyToContinue = false;
+	bool continuePressed = false;
+
+	Vector3 showPosition;
+	Vector3 hidePosition;
+	bool widthGotten = false;
+
+	public delegate void OnContinueDelegate();
+	public OnContinueDelegate onContinue;
+
+	struct StoryMessage {
+		public UILabel label;
+		public string message;
+		public bool repeat;
+		public string bleepEffectName;
+
+		public StoryMessage(UILabel l, string m, bool r, string effectName) {
+			label = l;
+			message = m;
+			repeat = r;
+			bleepEffectName = effectName;
+		}
+	}
+
+	private static StoryManager _Instance;
+	public static StoryManager Instance() {
+		if (_Instance == null) {
+			_Instance = GameObject.Find("InGameStory").GetComponent<StoryManager>();	
+		}
+		
+		return _Instance;
+	}
+
+	public void ReturnToMenu() {
+		_curtainHelper.AnimateCurtain(false, Color.clear, Color.black, 0.5f, LoadMainMenu);
+	}
+
+	public void LoadMainMenu() {
+		Application.LoadLevel("MainMenu");
+	}
+
+	void Awake() {
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		UISprite[] sprites = GetComponentsInChildren<UISprite>();
+		for (int i = 0; i < labels.Length; i++) {
+			UILabel label = labels[i];
+			if (label.name == "HeroNameLabel") {
+				_heroLabel = label;
+			}
+			else if (label.name == "DialogLabel") {
+				_dialogLabel = label;
+			}
+			else if (label.name == "ContinueLabel") {
+				_continueLabel = label;
+			}
+		}
+
+		for (int i = 0; i < sprites.Length; i++) {
+			UISprite sprite = sprites[i];
+			if (sprite.name == "HeroPortraitSprite") {
+				_leaderPortrait = sprite;
+			}
+			else if (sprite.name == "MothershipPortraitSprite") {
+				_mothershipPortrait = sprite;
+			}
+			else if (sprite.name == "InGameStory") {
+				_thisSprite = sprite;
+			}
+		}
+
+		_thisPanel = GetComponent<UIPanel>();
+		_curtainHelper = GameObject.Find("UI Root").GetComponentInChildren<CurtainHelper>();
+	}
+
+	void Start() {
+		showPosition = transform.position;
+		hidePosition = showPosition.SetPositionX(showPosition.x - (_thisSprite.width * transform.lossyScale.x));
+		StartCoroutine(FadeOutStory(false, 0.0f, null));
+	}
+
+	public void SetReadyToContinue(bool cont) {
+		readyToContinue = cont;
+	}
+
+	public void OnContinueTapped() {
+		continuePressed = true;
+	}
+
+	public void SetStoryTeller(string name) {
+		_heroLabel.text = name;
+	}
+
+	public void SetHeroMessage(string message, bool typewriter, Action finishAction) {
+		StopCoroutine("TypewriterMulti");
+		gameObject.SetActive(true);
+
+		if (showPosition != transform.position) {
+			StartCoroutine(FadeOutStory(true, 1.0f, () => {
+				StartCoroutine(TypewriterMulti(new StoryMessage(_dialogLabel, message, typewriter, null), () => {
+					StartCoroutine(FadeOutStory(false, 1.0f, finishAction));
+				}));
+			}));
+		}
+		else {
+			StartCoroutine(TypewriterMulti(new StoryMessage(_dialogLabel, message, typewriter, null), () => {
+				StartCoroutine(FadeOutStory(false, 1.0f, finishAction));
+			}));
+		}
+	}
+
+	public void SetForwardMessage(string message, bool typewriter, bool repeat) {
+		StopCoroutine("TypewriterRepeat");
+		StartCoroutine("TypewriterRepeat", new StoryMessage(_continueLabel, message, repeat, null));
+	}
+
+	public void SetTutorialStory(string message, bool typewriter, Action action) {
+		StartCoroutine(TypewriterMulti(new StoryMessage(_tutorialStoryLabel, message, typewriter, "text_bleep"), () => {
+			_tutorialStoryLabel.collider.enabled = false;
+			if (action != null) {
+				action();
+			}
+		}));
+	}
+
+	public void SetStorytellerSprite(string spriteName) {
+		_leaderPortrait.spriteName = spriteName;
+	}
+
+	IEnumerator TypewriterRepeat(StoryMessage messageStruct) {
+		float elapsed = 0.0f, duration = 0.1f;
+		int index = 0;
+		bool repeat = true;
+
+		if (!messageStruct.repeat) {
+			messageStruct.label.text = messageStruct.message;
+		}
+		else {
+			while (repeat) {
+				if (elapsed >= duration) {
+					messageStruct.label.text = messageStruct.message.Substring(0, index++);
+					elapsed = 0.0f;
+				}
+				else {
+					elapsed += Time.deltaTime;
+				}
+
+				if (index > messageStruct.message.Length) {
+					index = 0;
+					elapsed = 0.0f;
+				}
+
+				yield return null;
+			}
+		}
+	}
+
+	string[] extractTags(string message) {
+		MatchCollection matches = Regex.Matches(message, "{.*?}");
+		List<string> tags = new List<string>();
+		foreach (Match match in matches) {
+			tags.Add (match.Value);
+		}
+		return tags.ToArray();
+	}
+
+	IEnumerator TypewriterMulti(StoryMessage messageStruct, Action callback) {
+		string[] splitMessages = messageStruct.message.Split('|');
+		for (int i = 0; i < splitMessages.Length; i++) {
+			string message = splitMessages[i];
+			string[] tags = extractTags(message);
+			string audio = "text_bleep";
+
+			for (int j = 0; j < tags.Length; j++) {
+				string tag = tags[j];
+				string[] split = tag.Split('=');
+				if (split[0].Replace("{", "") == "M") {
+					_leaderPortrait.spriteName = "";
+					_mothershipPortrait.spriteName = split[1].Replace("}", "");
+					messageStruct.label.text = "";
+					messageStruct.label.alignment = NGUIText.Alignment.Right;
+					audio = "mothershiptalk";
+				}
+				else {
+					_leaderPortrait.spriteName = split[1].Replace("}", "");
+					_mothershipPortrait.spriteName = "";
+					messageStruct.label.text = "";
+					messageStruct.label.alignment = NGUIText.Alignment.Left;
+					audio = "herotalk";
+				}
+
+				message = message.Replace(tag, "");
+			}
+
+			yield return StartCoroutine("TypewriterSingle", new StoryMessage(messageStruct.label, message, false, audio)); 
+			yield return StartCoroutine(WaitForInput());
+		}
+
+		_tutorialStoryLabel.text = "";
+		if (callback != null) {
+			callback();
+		}
+	}
+
+	IEnumerator TypewriterSingle(StoryMessage messageStruct) {
+		float elapsed = 0.0f, duration = 0.05f;
+		int index = 0;
+		continuePressed = false;
+		int[] pauses = messageStruct.message.AllIndexesOf("%");
+		messageStruct.message = messageStruct.message.Replace("%", "");
+
+		if (messageStruct.message != null) {
+			while (index <= messageStruct.message.Length) {
+				if (elapsed >= duration) {
+					messageStruct.label.text = messageStruct.message.Substring(0, index++);
+					MasterAudio.PlaySoundAndForget(messageStruct.bleepEffectName);
+					elapsed = 0.0f;
+
+					if (pauseIndex(pauses, index)) {
+						yield return new WaitForSeconds(0.5f);
+					}
+
+				}
+				else {
+					elapsed += Time.deltaTime;
+				}
+
+				if (continuePressed) {
+					messageStruct.label.text = messageStruct.message;
+					continuePressed = false;
+					index = messageStruct.message.Length + 1;
+				}
+				else {
+					yield return null;
+				}
+			}
+		}
+	}
+
+	IEnumerator FadeOutStory(bool show, float duration, Action action) {
+		float t = 0.0f;
+
+		if (_thisPanel != null) {
+			while (t < duration) {
+				_thisPanel.alpha = 1.0f - t/duration;
+				t += Time.deltaTime;
+
+				yield return null;
+			}
+
+			_thisPanel.alpha = 0.0f;
+			_thisPanel.enabled = false;
+		}
+		else { //Move away
+			duration = duration * 0.5f;
+			Vector3 startPos = show ? hidePosition : showPosition;
+			Vector3 endPos = show ? showPosition : hidePosition;
+			while (t <= 1.0f) {
+				t += Time.deltaTime/duration;
+				transform.position = Vector3.Lerp (startPos, endPos, Mathf.SmoothStep(0.0f, 1.0f, t));
+				yield return null;
+			}
+
+			transform.position = endPos;
+		}
+
+		if (!show) { 
+			_dialogLabel.text = "";
+			_leaderPortrait.spriteName = "";
+			_mothershipPortrait.spriteName = "";
+		}
+
+		if (action != null) action();
+	}
+
+	IEnumerator WaitForInput () {
+		while (!continuePressed) {
+			yield return null;
+		}
+	}
+
+	bool pauseIndex (int[] idxs, int idx) {
+		for (int i = 0; i < idxs.Length; i++) {
+			if (idxs[i] == idx) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+}
+

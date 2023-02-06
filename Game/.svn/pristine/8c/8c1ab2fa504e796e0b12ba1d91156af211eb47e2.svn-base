@@ -1,0 +1,28 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Default" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State selected="True" />
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>this.points</Value>
+          <Value>sprite</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../_Core/_Scripts/_Projectile/HeroMissile.cs" line="93" offsetX="453" offsetY="1380" expression="_damagable" liveUpdate="False" />
+    <Watch file="../_Core/_Scripts/Editor/SwitchQuality.cs" line="34" offsetX="653" offsetY="495" expression="dam" liveUpdate="False" />
+    <Watch file="../_Core/_Scripts/Editor/SwitchQuality.cs" line="49" offsetX="487" offsetY="720" expression="sprite" liveUpdate="False" />
+    <Watch file="../_Core/_Scripts/_UI/DottedLine.cs" line="52" offsetX="310" offsetY="765" expression="spline" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>

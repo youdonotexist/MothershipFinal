@@ -1,0 +1,30 @@
+using UnityEngine;
+using System.Collections;
+
+public class EncounterDoubleClick : MonoBehaviour {
+	
+	bool flipping = false;
+	
+	void OnClick() {
+		if (!flipping)
+			StartCoroutine(Flip ());
+	}
+	
+	IEnumerator Flip () {
+		flipping = true;
+		float duration = 1.0f, elapsed = 0.0f;
+		Transform t = transform;
+		Vector3 startRot = t.localRotation.eulerAngles;
+		Vector3 endRot = new Vector3(startRot.x, startRot.y + 180.0f, startRot.z);
+		
+		while (elapsed < duration) {
+			t.eulerAngles = Vector3.Lerp(startRot, endRot, elapsed/duration);
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+		
+		t.eulerAngles = endRot;
+		
+		flipping = false;
+	}
+}

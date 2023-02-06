@@ -1,0 +1,10 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class SpeedMinion : MinionTypeBase {
+
+	public override void SetLevelDetails(Port.MinionTypeLevelDetail levelDets) {
+		base.SetLevelDetails(levelDets);
+		_vehicle.maxSpeed *= levelDetails.speed;
+	}
+}

@@ -1,0 +1,290 @@
+using UnityEngine;
+using System.Collections;
+
+public class IKTest : MonoBehaviour
+{
+	public Transform target;
+	
+	public Transform m_UpperArm;
+	public Transform m_MiddleArm;
+	public Transform m_LowerArm;
+	public Transform m_Effector;
+	
+	public Transform idleTarget = null;
+	public Transform idleTargetHolder = null;
+	
+	public bool UpperArm = true;
+	Magnet _magnet = null;
+	
+	Bone[] _bones = null;
+	
+	//float tickUpdate = 0.0f;
+	//float tickElapsed = 0.0f;
+	
+	
+	void Start() {
+		if (UpperArm) {
+			GameObject goArm = GameObject.Find("UpperGrabSpot");
+			ArmGrabber uArm = goArm.GetComponent<ArmGrabber>();
+			uArm._arm = this;
+		}
+		else {
+			GameObject goArm = GameObject.Find("LowerGrabSpot");
+			ArmGrabber uArm = goArm.GetComponent<ArmGrabber>();
+			uArm._arm = this;
+		}
+		
+		_magnet = gameObject.GetComponentInChildren<Magnet>();
+		_magnet._ikTest = this;
+		
+		_bones = GetComponentsInChildren<Bone>();
+	}
+	
+	bool IsReadyToIK() {
+		for (int i = _bones.Length - 1; i >= 0; i--) {
+			Bone b = _bones[i];
+			if (!b.IsFinished() || b.IsCollapsed()) {
+				return false; 
+			}
+		}
+		
+		return true;
+	}
+	
+	public bool IsRetracting() {
+		for (int i = _bones.Length - 1; i >= 0; i--) {
+			Bone b = _bones[i];
+			if (!b.IsFinished() || !b.IsCollapsed()) {
+				return true; 
+			}
+		}
+		
+		return false;
+	}
+	
+	public bool IsRetracted() {
+		for (int i = _bones.Length - 1; i >= 0; i--) {
+			Bone b = _bones[i];
+			if (!b.IsFinished() || !b.IsCollapsed()) {
+				return false; 
+			}
+		}
+		
+		return false;
+	}
+	
+	// Update is called once per frame
+	void Update ()
+	{
+		//Debug.Log (ComputeIK (target.position));
+		if (IsReadyToIK()) {
+			if (target != null) {
+				//if (tickElapsed > tickUpdate) {
+					ComputeIK2(target.position);
+				//	tickElapsed = 0.0f;
+				//}
+				//else {
+				//	tickElapsed += Time.deltaTime;
+				//}
+			}
+			else {
+				ComputeIK2(idleTarget.position);
+			}
+		}
+		
+		//idleTargetHolder.position = _magnet.transform.position;
+	}
+	
+	bool ComputeIK2(Vector3 end) {
+		CCD_Ik(	m_LowerArm,  0.0f, new Vector2(m_Effector.position.x, m_Effector.position.y), new Vector2(end.x, end.y), new Vector2(-70.0f, 0.0f));
+		CCD_Ik(	m_MiddleArm, 0.0f, new Vector2(m_Effector.position.x, m_Effector.position.y), new Vector2(end.x, end.y), new Vector2(-360.0f, 360.0f));
+		CCD_Ik(	m_UpperArm,  0.0f, new Vector2(m_Effector.position.x, m_Effector.position.y), new Vector2(end.x, end.y), new Vector2(-360.0f, 360.0f));
+		
+		return true;
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////
+	// Procedure:	ComputeIK
+	// Purpose:		Compute an IK Solution to an end effector position
+	// Arguments:	End Target (x,y)
+	// Returns:		TRUE if a solution exists, FALSE if the position isn't in reach
+	// Notes:		There was a bug in this in the Sept Game Developer source
+	//				for this in the final angle calculation
+	///////////////////////////////////////////////////////////////////////////////		
+	bool ComputeIK(Vector3 end)
+	{
+	/// Local Variables ///////////////////////////////////////////////////////////
+		float l1,l2;		// BONE LENGTH FOR BONE 1 AND 2
+		float ex,ey;		// ADJUSTED TARGET POSITION
+		float sin2,cos2;	// SINE AND COSINE OF ANGLE 2
+		float angle1,angle2;// ANGLE 1 AND 2 IN RADIANS
+		float tan1;			// TAN OF ANGLE 1
+		Vector2 endPos = new Vector2(end.z, end.y);
+	///////////////////////////////////////////////////////////////////////////////
+	
+		// SUBTRACT THE INITIAL OFFSET FROM THE TARGET POS
+		ex = endPos.x - (m_UpperArm.position.z);
+		ey = endPos.y - (m_UpperArm.position.y);
+	
+		// MULTIPLY THE BONE LENGTHS BY THE WINDOW SCALE
+		l1 = Vector3.Distance(m_UpperArm.position, m_Effector.position);
+		l2 = Vector3.Distance(m_LowerArm.position, m_Effector.position);
+		
+		// CALCULATE THE COSINE OF ANGLE 2
+		cos2 = ((ex * ex) + (ey * ey) - (l1 * l1) - (l2 * l2)) / (2 * l1 * l2);
+	
+		// IF IT IS NOT IN THIS RANGE, IT IS UNREACHABLE
+		if (cos2 >= -1.0 && cos2 <= 1.0)
+		{
+			angle2 = Mathf.Acos(cos2);	// GET THE ANGLE WITH AN ARCCOSINE
+			float lowAng = Mathf.Rad2Deg * (angle2);
+			m_LowerArm.rotation = Quaternion.identity;
+			m_LowerArm.Rotate(lowAng, 0.0f, 0.0f, Space.Self);
+			
+	
+			sin2 = (float)Mathf.Sin(angle2);		// CALC THE SINE OF ANGLE 2
+	
+			// COMPUTE ANGLE 1
+			// HERE IS WHERE THE BUG WAS SEE THE README.TXT FOR MORE INFO
+			// CALCULATE THE TAN OF ANGLE 1
+			tan1 = (-(l2 * sin2 * ex) + ((l1 + (l2 * cos2)) * ey)) / 
+					  ((l2 * sin2 * ey) + ((l1 + (l2 * cos2)) * ex));
+			// GET THE ACTUAL ANGLE
+			//angle1 = Mathf.Atan(tan1);
+			angle1 = Mathf.Atan(tan1);
+			
+			float upAng = Mathf.Rad2Deg * (angle1);
+			//upAng = upAng < 0.0f ? 360.0f - upAng : upAng;
+			//upAng = upAng > 360.0f ? upAng - 360.0f : upAng;
+			Debug.Log("High: " + upAng);
+			m_UpperArm.rotation = Quaternion.identity;
+			m_UpperArm.Rotate(upAng, 0.0f, 0.0f, Space.Self);
+			//m_UpperArm.transform.eulerAngles = upperarm_eular;
+			//upQuat.eulerAngles = upperarm_eular;
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	void ComputeIk2() {
+		
+        
+	}
+	
+	void CCD_Ik(Transform jointTrans, float length, Vector2 effector, Vector2 target, Vector2 minMaxAngle) {
+		Vector2 joint = new Vector3(jointTrans.position.x, jointTrans.position.y);
+		// Get the vector from the current bone to the end effector position.
+        float curToEndX = effector.x - joint.x;
+        float curToEndY = effector.y - joint.y;
+        float curToEndMag = Mathf.Sqrt( curToEndX*curToEndX + curToEndY*curToEndY );
+ 
+        // Get the vector from the current bone to the target position.
+        float curToTargetX = target.x - joint.x;
+        float curToTargetY = target.y - joint.y;
+        float curToTargetMag = Mathf.Sqrt(   curToTargetX*curToTargetX
+                                           + curToTargetY*curToTargetY );
+ 
+        // Get rotation to place the end effector on the line from the current
+        // joint position to the target postion.
+        float cosRotAng;
+        float sinRotAng;
+        float endTargetMag = (curToEndMag*curToTargetMag);
+        if( endTargetMag <= Mathf.Epsilon )
+        {
+            cosRotAng = 1.0f;
+            sinRotAng = 0.0f;
+        }
+        else
+        {
+            cosRotAng = (curToEndX*curToTargetX + curToEndY*curToTargetY) / endTargetMag;
+            sinRotAng = (curToEndX*curToTargetY - curToEndY*curToTargetX) / endTargetMag;
+        }
+ 
+        // Clamp the cosine into range when computing the angle (might be out of range
+        // due to floating point error).
+        float rotAng = Mathf.Acos( Mathf.Max(-1.0f, Mathf.Min(1.0f,cosRotAng) ) );
+        if( sinRotAng < 0.0f )
+            rotAng = -rotAng;
+ 
+        // Rotate the end effector position.
+        effector.x = joint.x + cosRotAng*curToEndX - sinRotAng*curToEndY;
+        effector.y = joint.y + sinRotAng*curToEndX + cosRotAng*curToEndY;
+ 
+        // Rotate the current bone in local space (this value is output to the user)
+		
+		Vector3 euler = jointTrans.localEulerAngles;
+		float angle = Mathf.Rad2Deg * SimplifyAngle( (Mathf.Deg2Rad * euler.z) + rotAng );
+		angle = Mathf.Max (minMaxAngle.x, Mathf.Min (angle, minMaxAngle.y));
+		euler.z = angle;
+	
+        jointTrans.localEulerAngles = euler;
+	}
+	
+	private float SimplifyAngle(float angle)
+	{
+	    float ang = angle % (2.0f * Mathf.PI);
+	    if( ang < -Mathf.PI )
+	        ang += (2.0f * Mathf.PI);
+	    else if( ang > Mathf.PI )
+	        ang -= (2.0f * Mathf.PI);
+	    return ang;
+	}
+	
+	public void CalculateIK(Transform end) {
+		Vector3 dir = (end.position - target.position).normalized;
+		float dot = Vector3.Dot(transform.up, dir);// * 0.01f;
+		
+		Debug.Log (gameObject.name + " " + dot);
+		
+		Vector3 euler = transform.eulerAngles;
+		euler.x += dot * Time.fixedDeltaTime * 500.0f;
+		transform.eulerAngles = euler;
+	}
+	
+	public void DeployArms() {
+		StartCoroutine(DeployArmsCoroutine());
+	}
+	
+	public void RetractArm() {
+		if (!IsRetracted()) {
+			StartCoroutine(RetractArmsCoroutine());
+		}
+	}
+	
+	public Magnet GetMagnet() {
+		return _magnet;	
+	}
+	
+	IEnumerator RetractArmsCoroutine() {
+		_magnet.collider.enabled = false;
+		_bones = GetComponentsInChildren<Bone>();
+		for (int i = _bones.Length - 1; i >= 0; i--) {
+			Bone b = _bones[i];
+			b.CollapseBone();
+			
+			while (!b.IsFinished()) {
+				yield return null;	
+			}
+			
+			yield return null;
+		}	
+	}
+	
+	IEnumerator DeployArmsCoroutine() {
+		_bones = GetComponentsInChildren<Bone>();
+		for (int i = _bones.Length - 1; i >= 0; i--) {
+			Bone b = _bones[i];
+			b.InflateBone();
+			
+			while (!b.IsFinished()) {
+				yield return null;	
+			}
+			
+			yield return null;
+		}	
+		
+		_magnet.collider.enabled = true;
+	}
+}
+

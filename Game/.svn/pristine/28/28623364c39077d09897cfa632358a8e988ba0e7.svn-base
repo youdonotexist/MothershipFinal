@@ -1,0 +1,96 @@
+using UnityEngine;
+using System.Collections;
+
+public class HeroVehicle : Vehicle {
+	
+	public GameObject missileProjectile = null;
+	public GameObject muzzlePoint = null;
+	
+	public AudioClip _spawnClip;
+	
+	public float moveSpeed = 200.0f;
+	public string[] directives;
+	public int concurrentMines = 3;
+	public int concurrentShields = 0;
+	
+	UISlider _slider = null;
+	UILabel _label = null;
+	
+	HeroAIManager _aiManager;
+	public DirectivePack[] _directivePacks;
+	
+	public bool HasMissiles = false;
+	public bool AttackMissiles = false;
+	
+	public SpatialNode _currentNode;
+	
+	Damagable _damagable = null;
+	
+	void Awake() {
+		_slider = GameObject.Find("HeroProgress").GetComponent<UISlider>();
+		_label = GameObject.Find("HeroName").GetComponent<UILabel>();
+		
+		_aiManager = GameObject.Find("_MinesAndShields").GetComponent<HeroAIManager>();
+		_damagable = GetComponent<Damagable>();
+		
+		_currentNode = _aiManager.MiddleHeroNode();
+	}
+	
+	void Start() {
+		_slider.sliderValue = _damagable.Health/_damagable.MaxHealth;
+		_label.text = gameObject.name;
+		
+		_directivePacks = GetComponentsInChildren<DirectivePack>();
+		foreach (DirectivePack pack in _directivePacks) {
+			pack.SetHero(this);	
+		}
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+		//Health
+		_slider.sliderValue = _damagable.Health/_damagable.MaxHealth;
+		if (_damagable.Health <= 0.0f) {
+			_aiManager.SetVehicle(null);
+		
+			if (GameState.Instance.ApplicationQuit == false) {
+				GameObject go = GameObject.Find("_MissionManager");
+				if (go != null) {
+					MissionManager mm = go.GetComponent<MissionManager>();
+					mm.OnHeroDie();
+				}
+			}
+			
+			Destroy (gameObject);	
+		}
+	}
+	
+	public void OnHeroReady() {
+		foreach (DirectivePack pack in _directivePacks) {
+			pack.OnHeroReady();
+		}
+		
+		_aiManager.PushAIDirective();
+	}
+	public void OnHeroWin() {
+		foreach (DirectivePack pack in _directivePacks) {
+			pack.OnHeroWin();
+		}	
+	}
+	
+	public void ClearDirectives() {
+		directives = new string[] {};
+	}
+	
+	public HeroAIManager.DirectiveState HandleDirective(AIDirective directive) {
+		foreach (DirectivePack pack in _directivePacks) {
+			HeroAIManager.DirectiveState state = pack.handleDirective(directive);
+			if (state != HeroAIManager.DirectiveState.UNHANDLED) {
+				return state;		
+			}
+		}
+		
+		return HeroAIManager.DirectiveState.UNHANDLED;
+	}
+}

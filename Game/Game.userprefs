@@ -1,0 +1,60 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_Core/_Scripts/_UI/StoryManager.cs">
+    <Files>
+      <File FileName="Assets/_Core/_Scripts/_Utils/MissionManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/_Core/_Scripts/_Vehicles/MothershipVehicle.cs" Line="1" Column="1" />
+      <File FileName="Assets/_Core/_Scripts/_AI/Damagable.cs" Line="1" Column="1" />
+      <File FileName="Assets/_Core/_Scripts/_Vehicles/HeroVehicle.cs" Line="1" Column="1" />
+      <File FileName="Assets/_Core/_Scripts/_UI/MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets/_Core/_Scripts/_UI/MainMenuEncounterSelect.cs" Line="1" Column="1" />
+      <File FileName="Assets/NGUI/Scripts/Interaction/UIGrid.cs" Line="1" Column="1" />
+      <File FileName="Assets/NGUI/Scripts/Interaction/UIWidgetContainer.cs" Line="1" Column="1" />
+      <File FileName="Assets/NGUI/Scripts/UI/UIPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets/NGUI/Scripts/Internal/NGUITools.cs" Line="1" Column="1" />
+      <File FileName="Assets/_Core/_Scripts/_Bundles/BundleManager.cs" Line="103" Column="93" />
+      <File FileName="Assets/_Core/_Scripts/_UI/StoryManager.cs" Line="17" Column="27" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="_Core" expanded="True">
+              <Node name="_Scripts" expanded="True">
+                <Node name="_Bundles" expanded="True" />
+                <Node name="_UI" expanded="True">
+                  <Node name="StoryManager.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>this.points</Value>
+          <Value>sprite</Value>
+          <Value>ht</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/mdaly/Desktop/GameDev/Mothership/Game/Assets/_Core/_Scripts/_Projectile/Laser/TargetedEnergyShot.cs" line="26" />
+      <Breakpoint file="/Users/mdaly/Desktop/GameDev/Mothership/Game/Assets/_Core/_Scripts/_Vehicles/MinionPhysicsVehicle.cs" line="214" />
+      <Breakpoint file="/Users/mdaly/Desktop/GameDev/Mothership/Game/Assets/_Core/_Scripts/_Vehicles/MinionPhysicsVehicle.cs" line="221" />
+      <Breakpoint file="/Users/mdaly/Desktop/GameDev/Mothership/Game/Assets/_Core/_Scripts/_Vehicles/MinionPhysicsVehicle.cs" line="193" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Assets/_Core/_Scripts/_Projectile/HeroMissile.cs" line="93" offsetX="453" offsetY="1380" expression="_damagable" liveUpdate="False" />
+    <Watch file="Assets/_Core/_Scripts/Editor/SwitchQuality.cs" line="34" offsetX="653" offsetY="495" expression="dam" liveUpdate="False" />
+    <Watch file="Assets/_Core/_Scripts/Editor/SwitchQuality.cs" line="49" offsetX="487" offsetY="720" expression="sprite" liveUpdate="False" />
+    <Watch file="Assets/_Core/_Scripts/_UI/DottedLine.cs" line="52" offsetX="310" offsetY="765" expression="spline" liveUpdate="False" />
+    <Watch file="Assets/_Core/_Scripts/_Utils/CamCapture.cs" line="59" offsetX="527" offsetY="870" expression="imageData" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>

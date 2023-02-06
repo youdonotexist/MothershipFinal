@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 49051723, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: JuggernautMoveUp
+  m_EditorClassIdentifier: 
+  wrapMode: 2
+  stopAction: 0
+  length: .5
+  sampleRate_: 60
+  frameInfos:
+  - textureGUID: a98ca660c5a174a0fb22061b174fdbcc
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 24
+  - textureGUID: ef714e2f9e92841fcaa7388767ce6520
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 25
+  - textureGUID: 02ad1f79e0e1e4e2282f6defeb77ffaf
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 26
+  eventInfos: []
+  speed: 1
+  editorPreviewSize: 256
+  editorScale: 1
+  editorOffset: 0
+  editorSpeed: 1
+  editorNeedRebuild: 0

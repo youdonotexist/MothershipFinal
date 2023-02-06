@@ -1,0 +1,130 @@
+using UnityEngine;
+using System.Collections;
+using Vectrosity;
+
+public class LaserMissile : MonoBehaviour
+{
+	public float chargeDuration = 1.0f;
+	float timeCharging = 0.0f;
+	
+	bool firing = false;
+	public float fireDuration = 2.0f;
+	float timeFiring = 0.0f;
+	
+	public float damagePerSecond = 50.0f;
+	
+	bool isCoolingDown = false;
+	float cooldownDuration;
+	float timeCoolingDown;
+	GameObject _minionBlocker = null;
+	
+	VectorLine currentLine = null;
+	public Material lineMaterial;
+	
+	GameObject _mothership;
+	
+	void Start() {
+		_mothership = GameObject.Find("Mothership");
+	}
+	
+	void Update ()
+	{
+		if (firing) {
+			if (timeCharging > chargeDuration) {
+				Fire();		
+			}
+		
+			timeCharging += Time.deltaTime;
+		}
+		else if (isCoolingDown) {
+			if (timeCoolingDown > cooldownDuration) {
+				isCoolingDown = false;	
+			}
+			timeCoolingDown += Time.deltaTime;
+		}
+	}
+	
+	public bool IsBusy() {
+		return firing || isCoolingDown;	
+	}
+	
+	public void StartFiring(float cd) {
+		firing = true;
+		timeCharging = 0.0f;
+		timeFiring = 0.0f;
+		
+		cooldownDuration = cd;
+	}
+	
+	public void StopFiring() {
+		firing = false;	
+		if (currentLine != null) {
+			currentLine.points3 = new Vector3[] {transform.position, transform.position};
+			currentLine.Draw3D();
+		}
+		
+		isCoolingDown = true;
+		timeCoolingDown = 0.0f;
+	}
+	
+	void Fire() {
+		if (currentLine == null) {
+			currentLine = new VectorLine("LaserMissile", new Vector3[] {transform.position, transform.position}, lineMaterial, 40.0f);	
+		}
+		
+		if (_mothership == null) {
+			StopFiring();
+			return;
+		}
+		Vector3 direction = Vector3.Normalize(_mothership.transform.position - transform.position);
+		float distance = Vector3.Distance(_mothership.transform.position, transform.position);
+			
+		RaycastHit hit;
+		bool didHit = Physics.Raycast(transform.position, direction, out hit, distance, LayerMaskHelper.OnlyIncluding(LayerMask.NameToLayer("Mothership"), LayerMask.NameToLayer("Minion")));
+		
+		if (didHit) {
+			Damagable dam = hit.collider.GetComponent<Damagable>();
+			if (dam != null) {
+				MinionBaseVehicle minion = dam.GetComponent<MinionBaseVehicle>();
+				if (minion != null) {
+					//New Minion
+					if (minion.gameObject != _minionBlocker) {
+						//Destroy the old one
+						if (_minionBlocker != null) { 
+							Damagable d =_minionBlocker.GetComponent<Damagable>();
+							d.OnDamage(100.0f, LayerMask.NameToLayer("HeroProjectile"));
+						}
+					
+						minion.StopFollowPath();
+						if (timeFiring > fireDuration) {
+							dam.OnDamage(100.0f, LayerMask.NameToLayer("HeroProjectile"));
+						}
+						
+						_minionBlocker = minion.gameObject;
+					}
+				}
+				else {
+					if (_minionBlocker != null) {
+						Damagable d =_minionBlocker.GetComponent<Damagable>();
+						d.OnDamage(100.0f, LayerMask.NameToLayer("HeroProjectile"));	
+					}
+					dam.OnDamage(damagePerSecond * Time.deltaTime, LayerMask.NameToLayer("HeroProjectile"));
+				}
+			}
+				
+			currentLine.points3 = new Vector3[] {transform.position, hit.point};
+			currentLine.Draw3D();
+		}
+		
+		if (timeFiring > fireDuration) {
+			StopFiring();
+		}
+		
+		timeFiring += Time.deltaTime;
+	}
+	
+	void OnDestroy() {
+		VectorLine.Destroy(ref currentLine);
+	}
+}
+

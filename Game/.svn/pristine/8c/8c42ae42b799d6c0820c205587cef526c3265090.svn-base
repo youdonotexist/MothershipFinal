@@ -1,0 +1,52 @@
+using UnityEngine;
+using System.Collections;
+
+public class MainMenu : MonoBehaviour
+{
+	GameObject heroShip = null;
+	UIImageButton loadingIcon = null;
+	UISprite loadingSprite = null;
+	
+	void OnClick() {
+		Application.LoadLevel("Scene01-4_3");	
+	}
+	
+	void Awake() {
+		Application.targetFrameRate = 60;
+		heroShip = GameObject.Find("HeroNew");	
+		loadingIcon = GameObject.Find("LoadingIcon").GetComponent<UIImageButton>();
+		loadingSprite = GameObject.Find("LoadingIcon").GetComponentInChildren<UISprite>();
+	}
+	
+	void Update() {
+		if (heroShip == null) {
+			Application.LoadLevel("Scene01-4_3");	
+		}
+		
+		if (loadingSprite.spriteName == "loading") {
+			Vector3 ang = loadingIcon.transform.eulerAngles;
+			ang.z -= 200.0f * Time.deltaTime;
+			loadingIcon.transform.eulerAngles = ang;
+		}
+		else {
+			Vector3 ang = loadingIcon.transform.eulerAngles;
+			ang.z = 0.0f;
+			loadingIcon.transform.eulerAngles = ang;	
+		}
+	}
+	
+	public void SetLoading() {
+		loadingIcon.normalSprite = "loading";
+		loadingIcon.hoverSprite = "loading";
+		loadingIcon.pressedSprite = "loading";
+		loadingSprite.spriteName = "loading";
+	}
+	
+	public void FinishLoading() {
+		loadingIcon.normalSprite = "refresh";
+		loadingIcon.hoverSprite = "refresh";
+		loadingIcon.pressedSprite = "refresh";
+		loadingSprite.spriteName = "refresh";
+	}
+}
+

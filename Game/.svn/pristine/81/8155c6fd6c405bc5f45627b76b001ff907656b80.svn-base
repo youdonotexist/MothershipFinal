@@ -1,0 +1,171 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System;
+using System.IO;
+using MiniJSON;
+public class MainMenuEncounterSelect : MonoBehaviour
+{
+	string[] names;
+	IList encounters;
+
+	CurtainHelper _curtainHelper;
+	GameObject loadingIcon;
+	
+	public UIGrid _encounterGrid;
+	public GameObject[] encounterPrefabs;
+
+	private EncounterItem _currentEncounter;
+	private UICenterOnChild _centerOnChild;
+	
+	PoolingSystem<GameObject>[] encounterPool;
+	
+	void Start ()
+	{
+		_curtainHelper = GameObject.Find ("UI Root").GetComponentInChildren<CurtainHelper> ();
+		_centerOnChild = GetComponentInChildren<UICenterOnChild>();
+
+		loadingIcon = GameObject.Find ("LoadingIcon");
+
+		encounterPool = new PoolingSystem<GameObject>[encounterPrefabs.Length];
+		for (int i = 0; i < encounterPrefabs.Length; i++) {
+			encounterPool[i] = new PoolingSystem<GameObject>(encounterPrefabs[i], 5, _encounterGrid.transform.parent);
+		}
+
+		_centerOnChild.onCenterChange += onChangeValue;
+	}
+	
+	public void DownloadEncounters(bool story) {
+		Download (story);
+	}
+	
+	void Update() {
+		if (loadingIcon != null && loadingIcon.activeSelf) {
+			Vector3 rot = loadingIcon.transform.eulerAngles;
+			rot.z -= (200.0f * Time.deltaTime);
+			loadingIcon.transform.eulerAngles = rot;
+		}
+	}
+	
+	void Download(bool story) {
+		StartLoading();
+		ReleaseMenuItems();
+
+		encounters = BundleManager.Instance.GetBattles (story);
+		ArrayList saveState = GameSaver.GetSaveState();
+
+		GameObject first = null;
+		for (int i = 0; i < encounters.Count; i++) {
+			IDictionary dict = (IDictionary) encounters[i];
+			string name = (string) dict["name"];
+			string type = (string) dict["hero_type_id"];
+			string backstory = (string) dict["backstory"];
+			string encid = (string) dict["_id"];
+			IList heroes = (IList) dict["heroes"];
+
+			GameObject encounter = encounterPool[TypeToIndex(type)].GetElement();
+			encounter.name = "encounter" + i;
+			EncounterItem item = encounter.GetComponent<EncounterItem>();
+			
+			encounter.transform.parent = _encounterGrid.transform;
+			item.transform.localPosition = Vector3.zero;
+
+			encounter.SetActive(false);
+			encounter.SetActive(true);
+
+			item.UpdateData(encid, name, type, backstory, heroes, (Hashtable) saveState[TypeToIndex(type)]);
+			item.LoadHighScore(encid);
+
+			if (i == 0)
+				first = encounter;
+		}
+
+		_encounterGrid.Reposition();
+		_centerOnChild.CenterOn(first.transform, false);
+		onChangeValue(first);
+		FinishLoading();
+	}
+
+	int TypeToIndex(string type) {
+		if (type.ToLower () == "basic") {
+			return 0;
+		}
+		else if (type.ToLower () == "juggernaut") {
+			return 1;
+		} 
+		else if (type.ToLower () == "scientist") {
+			return 2;
+		} 
+		else {
+			return 3;
+		}
+	}
+	
+	void onChangeValue(GameObject center) {
+		EncounterItem ei = center.GetComponent<EncounterItem>();
+		if (ei != _currentEncounter) {
+			if (_currentEncounter != null) {
+				_currentEncounter.HideAdditionalPanel();
+			}
+			ei.ShowAdditionalPanel();
+		}
+		_currentEncounter = ei;
+	}
+	
+	IDictionary GetEncounterByName(string name) {
+		foreach (IDictionary enc in encounters) {
+			string n = (string) enc["name"];
+			if (n.ToLower() == name.ToLower()) {
+				return enc;	
+			}
+		}
+		
+		return null;
+	}
+	
+	public void Play() {
+		_curtainHelper.AnimateCurtain(false, Color.clear, Color.black, 0.5f, PlayCallback);
+	}
+	
+	void PlayCallback() {
+		GameObject centeredObject = _centerOnChild.centeredObject;
+		EncounterItem encounterItem = centeredObject.GetComponent<EncounterItem>();
+
+		IDictionary enc = GetEncounterByName(encounterItem._title.text);
+		if (enc != null) {
+			MissionDetails.Instance.SetEncounterId((string)enc["_id"]);
+			MissionDetails.Instance.encounterIndex = enc["index"] == null ? -1 : (long) enc["index"];
+			MissionDetails.Instance.encounterType = (string) enc["hero_type_id"];
+			MissionDetails.Instance.encounterStoryTeller = (string) enc["storyTeller"];
+			MissionDetails.Instance.encounterOneLiner = (string) enc["storyLine"];
+			
+			Application.LoadLevel(LevelManager.Instance.EncounterLevelName());
+		}
+	}
+	
+	public void OnBackButtonTapped() {
+		ReleaseMenuItems();	
+	}
+	
+	private void ReleaseMenuItems() {
+		EncounterItem[] oldItems = _encounterGrid.GetComponentsInChildren<EncounterItem>();
+		for (int i = 0; i < oldItems.Length; i++) {
+			EncounterItem child = oldItems[i];
+			child.PrepareForReuse();
+			encounterPool[TypeToIndex(child.type)].ReleaseElement(child.gameObject, true);
+		}	
+	}
+	
+	public void StartLoading() {
+		if (loadingIcon != null) {
+			loadingIcon.SetActive(true);
+		}
+	}
+	
+	public void FinishLoading() {
+		if (loadingIcon != null) {
+			loadingIcon.SetActive(false);
+		}
+	}
+}
+

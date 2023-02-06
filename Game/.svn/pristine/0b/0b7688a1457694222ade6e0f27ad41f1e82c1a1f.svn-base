@@ -1,0 +1,42 @@
+using UnityEngine;
+using System.Collections;
+
+public class InGameMenu : MonoBehaviour
+{
+	bool paused = false;
+	MissionManager _missionManager;
+	
+	void Start() {
+		GameObject go = (GameObject) GameObject.Find("_MissionManager");
+		_missionManager = go.GetComponent<MissionManager>();
+	}
+	
+	void OnClick() {
+		GameObject current = UICamera.currentTouch.current;
+		
+		if (current.name == "Menu") {
+			Time.timeScale = 1.0f;
+			Application.LoadLevel("MainMenu");
+		}
+		else if (current.name == "RetryButton") {
+			_missionManager.RetryBattle();
+		}
+		else if (current.name == "MenuButton") {
+			if (!GameState.Instance.DidWin() && !GameState.Instance.DidLose()) {
+				if (!paused) {
+					_missionManager.PauseMenu(true);
+					paused = true;
+				}
+				else {
+					_missionManager.PauseMenu(false);	
+					paused = false;
+				}
+			}
+		}
+	}
+	
+	void FadeIn (float duration) {
+			
+	}
+}	
+

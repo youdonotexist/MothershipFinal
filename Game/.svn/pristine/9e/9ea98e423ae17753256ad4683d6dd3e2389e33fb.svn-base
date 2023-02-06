@@ -1,0 +1,70 @@
+using UnityEngine;
+using System.Collections;
+
+public class InGameMenu : MonoBehaviour
+{
+	bool paused = false;
+	CurtainHelper _curtainHelper;
+
+	public GameObject musicVolumeGO;
+	public GameObject soundVolumeGO;
+	
+	void Awake() {
+		float musicVolume = PlayerPrefs.GetFloat ("music_volume");
+		float sfxVolume = PlayerPrefs.GetFloat ("sfx_volume");
+		
+		musicVolumeGO.GetComponent<UISlider> ().value = musicVolume;
+		soundVolumeGO.GetComponent<UISlider> ().value = sfxVolume;
+		
+		PlaylistController.MasterVolume = musicVolume;
+		MasterAudio.MasterVolumeLevel = sfxVolume;
+
+		_curtainHelper = GameObject.Find("UI Root").GetComponentInChildren<CurtainHelper>();
+	}
+
+	public void OnClick() {
+		GameObject current = UICamera.currentTouch.current;
+		
+		if (current.name == "Menu") {
+			_curtainHelper.AnimateCurtain(false, Color.clear, Color.black, 0.5f, LoadMainMenu);
+		}
+		else if (current.name == "RetryButton") {
+			_curtainHelper.AnimateCurtain(false, Color.clear, Color.black, 0.5f, Retry);
+		}
+		else if (current.name == "MenuButton") {
+			if (!GameState.Instance.DidWin() && !GameState.Instance.DidLose()) {
+				if (!paused) {
+					Messenger.Broadcast("OnPauseMenu", true);
+					paused = true;
+				}
+				else {
+					Messenger.Broadcast("OnPauseMenu", false);
+					paused = false;
+				}
+			}
+		}
+	}
+
+	public void OnValueChange() {
+		UIProgressBar current = UISlider.current;
+
+		if (current.name == "MusicVolume") {
+			PlaylistController.MasterVolume = current.value;
+			PlayerPrefs.SetFloat("music_volume", current.value);
+		} 
+		else if (current.name == "SfxVolume") {
+			MasterAudio.MasterVolumeLevel = current.value;
+			PlayerPrefs.SetFloat("sfx_volume", current.value);
+		}
+	}
+	
+	void LoadMainMenu() {
+		Time.timeScale = 1.0f;
+		Application.LoadLevel(LevelManager.Instance.MainMenuLevelName());
+	}
+	
+	void Retry() {
+		Messenger.Broadcast("OnBattleRetry");
+	}
+}	
+

@@ -1,0 +1,55 @@
+using UnityEngine;
+using System.Collections;
+
+public class SpatialNode : MonoBehaviour
+{
+	public int slot;
+	public Object _object;
+	protected HeroAIManager _aiManager;
+	
+	protected SpatialNode[] _forward;
+	protected SpatialNode[] _backward;
+	
+	
+	void Awake() {
+		_aiManager = GameObject.Find("_MinesAndShields").GetComponent<HeroAIManager>();	
+	}
+	
+	public enum SpatialNodeZone {
+		HERO, MID, FAR	
+	}
+	
+	public SpatialNodeZone _zone;
+	
+	public SpatialNodeZone GetZone() {
+		return _zone;	
+	}
+	
+	public virtual SpatialNode[] ForwardNodes() {
+		return _forward;
+	}
+	
+	public virtual SpatialNode[] BackwardNodes() {
+		return _backward;
+	}
+	
+	public virtual SpatialNode ForwardNode() {
+		if (_forward != null && _forward.Length % 2 != 0) {
+			return _forward[_forward.Length / 2];	
+		}
+		return null;
+	}
+
+	void OnDrawGizmos() {
+		if (_object == null) {
+			Gizmos.color = Color.green;
+			Gizmos.DrawWireSphere(transform.position, 30.0f);
+		}
+		else {
+			Gizmos.color = Color.red;
+			Gizmos.DrawWireSphere(transform.position, 30.0f);
+		}
+	}
+		
+}
+

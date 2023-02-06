@@ -1,0 +1,31 @@
+using UnityEngine;
+using System.Collections;
+
+public class EncounterItem : MonoBehaviour
+{
+	public UILabel _title;
+	public UILabel _details;
+	public UISprite _shipSprite;
+	// Use this for initialization
+	void Awake ()
+	{
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		foreach (UILabel label in labels) {
+			if (label.name == "Title") {
+				_title = label;	
+			}
+			else if (label.name == "Details") {
+				_details = label;	
+			}
+		}
+		
+		_shipSprite = GetComponentInChildren<UISprite>();
+	}
+	
+	// Update is called once per frame
+	void Update ()
+	{
+	
+	}
+}
+

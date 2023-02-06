@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 49051723, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: BasicHeroBullethellMoveUp
+  m_EditorClassIdentifier: 
+  wrapMode: 4
+  stopAction: 0
+  length: .5
+  sampleRate_: 60
+  frameInfos:
+  - textureGUID: cd69f7462e75c4d0da07f8e269328a0d
+    length: .166666672
+    atlas: {fileID: 11400000, guid: 2b6e24108db474ec7a7ae176be220a75, type: 2}
+    index: 7
+  - textureGUID: 4912a8ac2305e4ce6b518337163a9d44
+    length: .166666672
+    atlas: {fileID: 11400000, guid: 2b6e24108db474ec7a7ae176be220a75, type: 2}
+    index: 8
+  - textureGUID: f1f83f036cee5496695e1d9e78fcfa66
+    length: .166666672
+    atlas: {fileID: 11400000, guid: 2b6e24108db474ec7a7ae176be220a75, type: 2}
+    index: 9
+  eventInfos: []
+  speed: 3
+  editorPreviewSize: 256
+  editorScale: .740160286
+  editorOffset: 0
+  editorSpeed: 3
+  editorNeedRebuild: 0

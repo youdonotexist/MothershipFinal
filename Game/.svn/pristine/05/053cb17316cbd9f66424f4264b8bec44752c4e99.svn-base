@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: LaserMissile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 105.699219, z: 0}
+  m_LocalScale: {x: 1, y: .759553611, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dc17f0a37e14443c9585291df6d3bc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeDuration: 1
+  fireDuration: 40
+  damagePerSecond: 10
+  lineMaterial: {fileID: 2100000, guid: 1d230daa92d754850828f36f8fc95809, type: 2}
+  chargeAnimationPrefab: {fileID: 100000, guid: 449d289abb43a41169ed6cbde3d91ae3,
+    type: 2}
+  chargeExplosionPrefab: {fileID: 100000, guid: a9047ac9f9e75469c89b8bbdd3966649,
+    type: 2}
+  msAnimationTextures:
+  - {fileID: 2800000, guid: 9b5e30d6195a24d9ebad2c7a07cfce76, type: 3}
+  - {fileID: 2800000, guid: f10c6a69785364255bd31d96fd7d97ee, type: 3}
+  - {fileID: 2800000, guid: d785c73d453754f7593e047a76d53781, type: 3}
+  - {fileID: 2800000, guid: a67edd6b4afb143ef8e95f75066f96f4, type: 3}
+  - {fileID: 2800000, guid: e07ba38251edb43da89bb16c79b76170, type: 3}
+  - {fileID: 2800000, guid: 666513a5de8304d45a3eb09533403860, type: 3}
+  - {fileID: 2800000, guid: 1f5eb25ea3857423a98aaf508c68af1d, type: 3}
+  latestAnimationTextures:
+  - {fileID: 2800000, guid: 714c399d5902544aaa9e1c324cb0fe3e, type: 3}
+  - {fileID: 2800000, guid: 2f6a27bb8ee644e249477c5bb43ee913, type: 3}
+  - {fileID: 2800000, guid: 6a3821f27a8f74a5fb68d5f686b67c1c, type: 3}
+  - {fileID: 2800000, guid: dde65e8262dec4a5b9ecc40d81e76701, type: 3}
+  - {fileID: 2800000, guid: 545ab52597e7c4de7b21e5892d3e37ef, type: 3}
+  - {fileID: 2800000, guid: a48527e26cbdb4d9db687f118324a493, type: 3}
+  - {fileID: 2800000, guid: 152cbb29659f0449c9f948ae7a1252f9, type: 3}
+  chargeLaserBuildup: {fileID: 0}
+  chargeLaserHitMothership: {fileID: 0}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

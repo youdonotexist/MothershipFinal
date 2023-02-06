@@ -1,0 +1,4032 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1155214310, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: ModernAtlas
+  m_EditorClassIdentifier: 
+  elements:
+  - name: grappler-5-1-f1
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .804199219
+      y: .254394531
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: grappler-5-1-f2
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 0
+      width: 60
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .0595703125
+      y: .21484375
+      width: .029296875
+      height: .0317382812
+    rotated: 0
+  - name: grappler-5-1-f3
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 0
+      width: 50
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .21484375
+      width: .0244140625
+      height: .0317382812
+    rotated: 0
+  - name: Hero6-5-1-f1
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 20
+      y: 20
+      width: 150
+      height: 125
+    coords:
+      serializedVersion: 2
+      x: .645996094
+      y: .493652344
+      width: .0732421875
+      height: .0610351562
+    rotated: 0
+  - name: Hero6-5-1-f2
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 20
+      y: 20
+      width: 150
+      height: 125
+    coords:
+      serializedVersion: 2
+      x: .336425781
+      y: .493652344
+      width: .0732421875
+      height: .0610351562
+    rotated: 0
+  - name: Hero6-5-1-f3
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 20
+      y: 20
+      width: 150
+      height: 125
+    coords:
+      serializedVersion: 2
+      x: .41015625
+      y: .493652344
+      width: .0732421875
+      height: .0610351562
+    rotated: 0
+  - name: Hero6-dn-5-1-f1
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 20
+      y: 20
+      width: 150
+      height: 110
+    coords:
+      serializedVersion: 2
+      x: .692871094
+      y: .437011719
+      width: .0732421875
+      height: .0537109375
+    rotated: 0
+  - name: Hero6-dn-5-1-f2
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 20
+      y: 20
+      width: 150
+      height: 110
+    coords:
+      serializedVersion: 2
+      x: .904296875
+      y: .437011719
+      width: .0732421875
+      height: .0537109375
+    rotated: 0
+  - name: Hero6-dn-5-1-f3
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 20
+      y: 20
+      width: 150
+      height: 110
+    coords:
+      serializedVersion: 2
+      x: .545410156
+      y: .437011719
+      width: .0732421875
+      height: .0537109375
+    rotated: 0
+  - name: hero6-explode-f1
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 55
+      width: 170
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .7265625
+      y: .625488281
+      width: .0830078125
+      height: .0317382812
+    rotated: 0
+  - name: hero6-explode-f2
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 50
+      width: 170
+      height: 75
+    coords:
+      serializedVersion: 2
+      x: .407714844
+      y: .249511719
+      width: .0830078125
+      height: .0366210938
+    rotated: 0
+  - name: hero6-explode-f3
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 20
+      width: 170
+      height: 115
+    coords:
+      serializedVersion: 2
+      x: .290039062
+      y: .434570312
+      width: .0830078125
+      height: .0561523438
+    rotated: 0
+  - name: hero6-explode-f4
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 10
+      width: 160
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .569824219
+      y: .555175781
+      width: .078125
+      height: .0659179688
+    rotated: 0
+  - name: hero6-explode-f5
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 30
+      y: 10
+      width: 125
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .923339844
+      y: .662597656
+      width: .0610351562
+      height: .0659179688
+    rotated: 0
+  - name: hero6-explode-f6
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 30
+      y: 10
+      width: 125
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .441894531
+      y: .662597656
+      width: .0610351562
+      height: .0659179688
+    rotated: 0
+  - name: Hero6-up-5-1-f1
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 20
+      y: 30
+      width: 150
+      height: 110
+    coords:
+      serializedVersion: 2
+      x: .619140625
+      y: .437011719
+      width: .0732421875
+      height: .0537109375
+    rotated: 0
+  - name: Hero6-up-5-1-f2
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 20
+      y: 30
+      width: 150
+      height: 110
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .377929688
+      width: .0732421875
+      height: .0537109375
+    rotated: 0
+  - name: Hero6-up-5-1-f3
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 20
+      y: 30
+      width: 150
+      height: 110
+    coords:
+      serializedVersion: 2
+      x: .766601562
+      y: .437011719
+      width: .0732421875
+      height: .0537109375
+    rotated: 0
+  - name: jugg04-5-1-f1
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 185
+      height: 155
+    coords:
+      serializedVersion: 2
+      x: .43359375
+      y: .745605469
+      width: .0903320312
+      height: .0756835938
+    rotated: 0
+  - name: jugg04-5-1-f2
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 185
+      height: 155
+    coords:
+      serializedVersion: 2
+      x: .524414062
+      y: .745605469
+      width: .0903320312
+      height: .0756835938
+    rotated: 0
+  - name: jugg04-5-1-f3
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 185
+      height: 155
+    coords:
+      serializedVersion: 2
+      x: .342773438
+      y: .745605469
+      width: .0903320312
+      height: .0756835938
+    rotated: 0
+  - name: jugg04-dn-5-1-f1
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 15
+      width: 185
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .417480469
+      y: .555175781
+      width: .0903320312
+      height: .0659179688
+    rotated: 0
+  - name: jugg04-dn-5-1-f2
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 15
+      width: 185
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .0859375
+      y: .555175781
+      width: .0903320312
+      height: .0659179688
+    rotated: 0
+  - name: jugg04-dn-5-1-f3
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 15
+      width: 185
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .682617188
+      y: .662597656
+      width: .0903320312
+      height: .0659179688
+    rotated: 0
+  - name: jugg04-up-5-1-f1
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 15
+      width: 185
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .591796875
+      y: .662597656
+      width: .0903320312
+      height: .0659179688
+    rotated: 0
+  - name: jugg04-up-5-1-f2
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 15
+      width: 185
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .262695312
+      y: .662597656
+      width: .0903320312
+      height: .0659179688
+    rotated: 0
+  - name: jugg04-up-5-1-f3
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 15
+      width: 185
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .857421875
+      y: .555175781
+      width: .0903320312
+      height: .0659179688
+    rotated: 0
+  - name: jugg3-5-1-f1
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 185
+      height: 155
+    coords:
+      serializedVersion: 2
+      x: .615234375
+      y: .745605469
+      width: .0903320312
+      height: .0756835938
+    rotated: 0
+  - name: Laser2
+    originalWidth: 30
+    originalHeight: 27
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 30
+      height: 23
+    coords:
+      serializedVersion: 2
+      x: .5390625
+      y: .824707031
+      width: .0146484375
+      height: .0112304688
+    rotated: 0
+  - name: lasercannon1-charge-f1
+    originalWidth: 75
+    originalHeight: 75
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 15
+      width: 60
+      height: 55
+    coords:
+      serializedVersion: 2
+      x: .629882812
+      y: .838378906
+      width: .029296875
+      height: .0268554688
+    rotated: 0
+  - name: lasercannon1-charge-f2
+    originalWidth: 75
+    originalHeight: 75
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 10
+      width: 55
+      height: 60
+    coords:
+      serializedVersion: 2
+      x: .151367188
+      y: .217285156
+      width: .0268554688
+      height: .029296875
+    rotated: 0
+  - name: lasercannon1-charge-f3
+    originalWidth: 75
+    originalHeight: 75
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 15
+      width: 60
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .819335938
+      y: .840820312
+      width: .029296875
+      height: .0244140625
+    rotated: 0
+  - name: lasercannon1-fire-starpoint1
+    originalWidth: 50
+    originalHeight: 5
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 5
+    coords:
+      serializedVersion: 2
+      x: .704101562
+      y: .833496094
+      width: .0244140625
+      height: .00244140625
+    rotated: 0
+  - name: lasercannon1-fire-starpoint2
+    originalWidth: 50
+    originalHeight: 10
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 10
+    coords:
+      serializedVersion: 2
+      x: .679199219
+      y: .831054688
+      width: .0244140625
+      height: .0048828125
+    rotated: 0
+  - name: lasercannon1-fire-starpoint3
+    originalWidth: 50
+    originalHeight: 15
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 15
+    coords:
+      serializedVersion: 2
+      x: .654296875
+      y: .828613281
+      width: .0244140625
+      height: .00732421875
+    rotated: 0
+  - name: lasercannon1-fire-starpoint4
+    originalWidth: 50
+    originalHeight: 20
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 20
+    coords:
+      serializedVersion: 2
+      x: .554199219
+      y: .826171875
+      width: .0244140625
+      height: .009765625
+    rotated: 0
+  - name: lasercannon1-fire-starpoint5
+    originalWidth: 50
+    originalHeight: 25
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 25
+    coords:
+      serializedVersion: 2
+      x: .514160156
+      y: .823730469
+      width: .0244140625
+      height: .0122070312
+    rotated: 0
+  - name: lasercannon1-fire-starpoint6
+    originalWidth: 50
+    originalHeight: 30
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 30
+    coords:
+      serializedVersion: 2
+      x: .777832031
+      y: .231933594
+      width: .0244140625
+      height: .0146484375
+    rotated: 0
+  - name: lasercannon1-fire-starpoint7
+    originalWidth: 50
+    originalHeight: 35
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 35
+    coords:
+      serializedVersion: 2
+      x: .703125
+      y: .229492188
+      width: .0244140625
+      height: .0170898438
+    rotated: 0
+  - name: lasercannon1-starpoint
+    originalWidth: 50
+    originalHeight: 40
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 40
+    coords:
+      serializedVersion: 2
+      x: .501953125
+      y: .227050781
+      width: .0244140625
+      height: .01953125
+    rotated: 0
+  - name: lasercannon-hit-sm-f1
+    originalWidth: 90
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 90
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .0444335938
+      y: .286621094
+      width: .0439453125
+      height: .0439453125
+    rotated: 0
+  - name: lasercannon-hit-sm-f2
+    originalWidth: 90
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 90
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .298828125
+      y: .286621094
+      width: .0439453125
+      height: .0439453125
+    rotated: 0
+  - name: lasercannon-hit-sm-f3
+    originalWidth: 90
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 90
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .343261719
+      y: .286621094
+      width: .0439453125
+      height: .0439453125
+    rotated: 0
+  - name: lasercanon-hit-f1
+    originalWidth: 175
+    originalHeight: 175
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 20
+      width: 150
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .34375
+      y: .555175781
+      width: .0732421875
+      height: .0659179688
+    rotated: 0
+  - name: lasercanon-hit-f2
+    originalWidth: 175
+    originalHeight: 175
+    trimRect:
+      serializedVersion: 2
+      x: 20
+      y: 10
+      width: 145
+      height: 145
+    coords:
+      serializedVersion: 2
+      x: .125
+      y: .657714844
+      width: .0708007812
+      height: .0708007812
+    rotated: 0
+  - name: lasercanon-hit-f3
+    originalWidth: 175
+    originalHeight: 175
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 10
+      width: 160
+      height: 160
+    coords:
+      serializedVersion: 2
+      x: .264160156
+      y: .743164062
+      width: .078125
+      height: .078125
+    rotated: 0
+  - name: laserhitjugg1-5-1-f1
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .874023438
+      y: .840820312
+      width: .0244140625
+      height: .0244140625
+    rotated: 0
+  - name: laserhitjugg1-5-1-f2
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .23828125
+      y: .222167969
+      width: .0244140625
+      height: .0244140625
+    rotated: 0
+  - name: laserhitjugg1-5-1-f3
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 45
+    coords:
+      serializedVersion: 2
+      x: .454589844
+      y: .224609375
+      width: .0244140625
+      height: .0219726562
+    rotated: 0
+  - name: laserjugg2-5-1
+    originalWidth: 75
+    originalHeight: 45
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 75
+      height: 45
+    coords:
+      serializedVersion: 2
+      x: .417480469
+      y: .224609375
+      width: .0366210938
+      height: .0219726562
+    rotated: 0
+  - name: laserturret1-5-1
+    originalWidth: 50
+    originalHeight: 25
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 5
+      width: 50
+      height: 15
+    coords:
+      serializedVersion: 2
+      x: .589355469
+      y: .828613281
+      width: .0244140625
+      height: .00732421875
+    rotated: 0
+  - name: mine2-5-1-f1
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 60
+      height: 60
+    coords:
+      serializedVersion: 2
+      x: .121582031
+      y: .217285156
+      width: .029296875
+      height: .029296875
+    rotated: 0
+  - name: mine2-5-1-f2
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 60
+      height: 60
+    coords:
+      serializedVersion: 2
+      x: .178710938
+      y: .217285156
+      width: .029296875
+      height: .029296875
+    rotated: 0
+  - name: mine2-5-1-f3
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 60
+      height: 60
+    coords:
+      serializedVersion: 2
+      x: .208496094
+      y: .217285156
+      width: .029296875
+      height: .029296875
+    rotated: 0
+  - name: mineturret1-5-1-f1
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 0
+      width: 60
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .248535156
+      y: .623046875
+      width: .029296875
+      height: .0341796875
+    rotated: 0
+  - name: mineturret1-5-1-f2
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 0
+      width: 60
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .384765625
+      y: .623046875
+      width: .029296875
+      height: .0341796875
+    rotated: 0
+  - name: mineturret1-5-1-f3
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 0
+      width: 60
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .5234375
+      y: .623046875
+      width: .029296875
+      height: .0341796875
+    rotated: 0
+  - name: mineturret1-5-1-f4
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 0
+      width: 60
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .312988281
+      y: .623046875
+      width: .029296875
+      height: .0341796875
+    rotated: 0
+  - name: snes-arm
+    originalWidth: 100
+    originalHeight: 40
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 100
+      height: 40
+    coords:
+      serializedVersion: 2
+      x: .546875
+      y: .227050781
+      width: .048828125
+      height: .01953125
+    rotated: 0
+  - name: snes-asteroid
+    originalWidth: 60
+    originalHeight: 60
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 5
+      width: 60
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .337890625
+      y: .222167969
+      width: .029296875
+      height: .0244140625
+    rotated: 0
+  - name: snes-damage-1
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 120
+      y: 125
+      width: 135
+      height: 140
+    coords:
+      serializedVersion: 2
+      x: .196289062
+      y: .66015625
+      width: .0659179688
+      height: .068359375
+    rotated: 0
+  - name: snes-damage-2
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 310
+      y: 55
+      width: 155
+      height: 55
+    coords:
+      serializedVersion: 2
+      x: .659667969
+      y: .838378906
+      width: .0756835938
+      height: .0268554688
+    rotated: 0
+  - name: snes-damage-3
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 345
+      y: 105
+      width: 115
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .2421875
+      y: .286621094
+      width: .0561523438
+      height: .0439453125
+    rotated: 0
+  - name: snes-damage-4
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 260
+      y: 515
+      width: 175
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .331054688
+      width: .0854492188
+      height: .0463867188
+    rotated: 0
+  - name: snes-damage-5
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 115
+      y: 385
+      width: 145
+      height: 150
+    coords:
+      serializedVersion: 2
+      x: .927246094
+      y: .748046875
+      width: .0708007812
+      height: .0732421875
+    rotated: 0
+  - name: snes-damage-6
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 495
+      y: 90
+      width: 105
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .602050781
+      y: .291503906
+      width: .0512695312
+      height: .0390625
+    rotated: 0
+  - name: snes-damage-7
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 310
+      y: 385
+      width: 105
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .196777344
+      y: .623046875
+      width: .0512695312
+      height: .0341796875
+    rotated: 0
+  - name: snes-dock-bottom-0
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .376953125
+      y: .331054688
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-bottom-1
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .76953125
+      y: .385253906
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-bottom-2
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .423828125
+      y: .331054688
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-bottom-3
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .261230469
+      y: .385253906
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-bottom-4
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .655761719
+      y: .331054688
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-bottom-readyf1
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .72265625
+      y: .385253906
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-bottom-readyf2
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .283203125
+      y: .331054688
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-bottom-readyf3
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .515136719
+      y: .331054688
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-empsparks-f1
+    originalWidth: 185
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 35
+      y: 45
+      width: 95
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .8359375
+      y: .333496094
+      width: .0463867188
+      height: .0439453125
+    rotated: 0
+  - name: snes-dock-empsparks-f2
+    originalWidth: 185
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 35
+      y: 5
+      width: 100
+      height: 105
+    coords:
+      serializedVersion: 2
+      x: .950683594
+      y: .503417969
+      width: .048828125
+      height: .0512695312
+    rotated: 0
+  - name: snes-dock-empsparks-f3
+    originalWidth: 185
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 20
+      width: 160
+      height: 130
+    coords:
+      serializedVersion: 2
+      x: .0859375
+      y: .491210938
+      width: .078125
+      height: .0634765625
+    rotated: 0
+  - name: snes-dock-mid-0
+    originalWidth: 105
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 105
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .890625
+      y: .385253906
+      width: .0512695312
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-mid-1
+    originalWidth: 105
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 105
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .209472656
+      y: .385253906
+      width: .0512695312
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-mid-2
+    originalWidth: 105
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 105
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .942382812
+      y: .385253906
+      width: .0512695312
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-mid-3
+    originalWidth: 105
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 105
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .231445312
+      y: .331054688
+      width: .0512695312
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-mid-4
+    originalWidth: 105
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 105
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .308105469
+      y: .385253906
+      width: .0512695312
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-mid-readyf1
+    originalWidth: 105
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 105
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .0859375
+      y: .331054688
+      width: .0512695312
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-mid-readyf2
+    originalWidth: 105
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 105
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .137695312
+      y: .331054688
+      width: .0512695312
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-mid-readyf3
+    originalWidth: 105
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 105
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .624023438
+      y: .385253906
+      width: .0512695312
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-top-0
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .406738281
+      y: .385253906
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-top-1
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .562011719
+      y: .331054688
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-top-2
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .67578125
+      y: .385253906
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-top-3
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .542480469
+      y: .385253906
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-top-4
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .359863281
+      y: .385253906
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-top-readyf1
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .330078125
+      y: .331054688
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-top-readyf2
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .84375
+      y: .385253906
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-dock-top-readyf3
+    originalWidth: 95
+    originalHeight: 95
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 95
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .608886719
+      y: .331054688
+      width: .0463867188
+      height: .0463867188
+    rotated: 0
+  - name: snes-energy-f1
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .263183594
+      y: .222167969
+      width: .0244140625
+      height: .0244140625
+    rotated: 0
+  - name: snes-energy-f2
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 0
+      width: 40
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .978027344
+      y: .466308594
+      width: .01953125
+      height: .0244140625
+    rotated: 0
+  - name: snes-energy-f3
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 0
+      width: 30
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .943847656
+      y: .840820312
+      width: .0146484375
+      height: .0244140625
+    rotated: 0
+  - name: snes-energy-f4
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 15
+      y: 0
+      width: 20
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .809082031
+      y: .840820312
+      width: .009765625
+      height: .0244140625
+    rotated: 0
+  - name: snes-energy-f5
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 15
+      y: 0
+      width: 20
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .783691406
+      y: .840820312
+      width: .009765625
+      height: .0244140625
+    rotated: 0
+  - name: snes-energy-f6
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 15
+      y: 0
+      width: 20
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .983886719
+      y: .840820312
+      width: .009765625
+      height: .0244140625
+    rotated: 0
+  - name: snes-energy-f7
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 15
+      y: 0
+      width: 20
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .748535156
+      y: .840820312
+      width: .009765625
+      height: .0244140625
+    rotated: 0
+  - name: snes-energy-f8
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 0
+      width: 30
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .793945312
+      y: .840820312
+      width: .0146484375
+      height: .0244140625
+    rotated: 0
+  - name: snes-energy-f9
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 0
+      width: 40
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .898925781
+      y: .840820312
+      width: .01953125
+      height: .0244140625
+    rotated: 0
+  - name: snes-explode-f1
+    originalWidth: 120
+    originalHeight: 120
+    trimRect:
+      serializedVersion: 2
+      x: 15
+      y: 15
+      width: 85
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .189453125
+      y: .331054688
+      width: .0415039062
+      height: .0463867188
+    rotated: 0
+  - name: snes-explode-f2
+    originalWidth: 120
+    originalHeight: 120
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 10
+      width: 105
+      height: 105
+    coords:
+      serializedVersion: 2
+      x: .0737304688
+      y: .380371094
+      width: .0512695312
+      height: .0512695312
+    rotated: 0
+  - name: snes-explode-f3
+    originalWidth: 120
+    originalHeight: 120
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 120
+      height: 120
+    coords:
+      serializedVersion: 2
+      x: .805664062
+      y: .49609375
+      width: .05859375
+      height: .05859375
+    rotated: 0
+  - name: snes-explode-f4
+    originalWidth: 120
+    originalHeight: 120
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 120
+      height: 120
+    coords:
+      serializedVersion: 2
+      x: .0859375
+      y: .432128906
+      width: .05859375
+      height: .05859375
+    rotated: 0
+  - name: snes-gaussgun-blast-f1
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 20
+      width: 25
+      height: 55
+    coords:
+      serializedVersion: 2
+      x: .735839844
+      y: .838378906
+      width: .0122070312
+      height: .0268554688
+    rotated: 0
+  - name: snes-gaussgun-blast-f2
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 10
+      width: 50
+      height: 75
+    coords:
+      serializedVersion: 2
+      x: .975585938
+      y: .584472656
+      width: .0244140625
+      height: .0366210938
+    rotated: 0
+  - name: snes-gaussgun-blast-f3
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 0
+      width: 65
+      height: 100
+    coords:
+      serializedVersion: 2
+      x: .177246094
+      y: .3828125
+      width: .0317382812
+      height: .048828125
+    rotated: 0
+  - name: snes-gaussgun-blast-f4
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 5
+      width: 70
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .589355469
+      y: .385253906
+      width: .0341796875
+      height: .0463867188
+    rotated: 0
+  - name: snes-gaussgun-blast-f5
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 15
+      y: 5
+      width: 70
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .207519531
+      y: .286621094
+      width: .0341796875
+      height: .0439453125
+    rotated: 0
+  - name: snes-gaussgun-blast-f6
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 25
+      y: 5
+      width: 60
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .177734375
+      y: .286621094
+      width: .029296875
+      height: .0439453125
+    rotated: 0
+  - name: snes-gaussgun-laser1
+    originalWidth: 2
+    originalHeight: 32
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 3
+      width: 2
+      height: 25
+    coords:
+      serializedVersion: 2
+      x: .998046875
+      y: .987792969
+      width: .0009765625
+      height: .0122070312
+    rotated: 0
+  - name: snes-gaussgun-origin-f1
+    originalWidth: 75
+    originalHeight: 75
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 75
+      height: 75
+    coords:
+      serializedVersion: 2
+      x: .293945312
+      y: .249511719
+      width: .0366210938
+      height: .0366210938
+    rotated: 0
+  - name: snes-gaussgun-origin-f2
+    originalWidth: 75
+    originalHeight: 75
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 75
+      height: 75
+    coords:
+      serializedVersion: 2
+      x: .370605469
+      y: .249511719
+      width: .0366210938
+      height: .0366210938
+    rotated: 0
+  - name: snes-gaussgun-origin-f3
+    originalWidth: 75
+    originalHeight: 75
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 75
+      height: 75
+    coords:
+      serializedVersion: 2
+      x: .663085938
+      y: .249511719
+      width: .0366210938
+      height: .0366210938
+    rotated: 0
+  - name: snes-joint
+    originalWidth: 25
+    originalHeight: 25
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 25
+      height: 25
+    coords:
+      serializedVersion: 2
+      x: .501464844
+      y: .823730469
+      width: .0122070312
+      height: .0122070312
+    rotated: 0
+  - name: snes-jugg-explode-f1
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 50
+      width: 180
+      height: 75
+    coords:
+      serializedVersion: 2
+      x: .574707031
+      y: .249511719
+      width: .087890625
+      height: .0366210938
+    rotated: 0
+  - name: snes-jugg-explode-f2
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 45
+      width: 180
+      height: 85
+    coords:
+      serializedVersion: 2
+      x: .387695312
+      y: .2890625
+      width: .087890625
+      height: .0415039062
+    rotated: 0
+  - name: snes-jugg-explode-f3
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 20
+      width: 180
+      height: 115
+    coords:
+      serializedVersion: 2
+      x: .373535156
+      y: .434570312
+      width: .087890625
+      height: .0561523438
+    rotated: 0
+  - name: snes-jugg-explode-f4
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 10
+      width: 180
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .353515625
+      y: .662597656
+      width: .087890625
+      height: .0659179688
+    rotated: 0
+  - name: snes-jugg-explode-f5
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 30
+      y: 10
+      width: 125
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .508300781
+      y: .555175781
+      width: .0610351562
+      height: .0659179688
+    rotated: 0
+  - name: snes-jugg-explode-f6
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 30
+      y: 10
+      width: 125
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .7734375
+      y: .662597656
+      width: .0610351562
+      height: .0659179688
+    rotated: 0
+  - name: snes-laser
+    originalWidth: 50
+    originalHeight: 45
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 5
+      width: 50
+      height: 35
+    coords:
+      serializedVersion: 2
+      x: .752929688
+      y: .229492188
+      width: .0244140625
+      height: .0170898438
+    rotated: 0
+  - name: snes-laserhit-f1
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .312988281
+      y: .222167969
+      width: .0244140625
+      height: .0244140625
+    rotated: 0
+  - name: snes-laserhit-f2
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .918945312
+      y: .840820312
+      width: .0244140625
+      height: .0244140625
+    rotated: 0
+  - name: snes-laserhit-f3
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 45
+    coords:
+      serializedVersion: 2
+      x: .392578125
+      y: .224609375
+      width: .0244140625
+      height: .0219726562
+    rotated: 0
+  - name: snes-laserhitsci-f1
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .958984375
+      y: .840820312
+      width: .0244140625
+      height: .0244140625
+    rotated: 0
+  - name: snes-laserhitsci-f2
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .758789062
+      y: .840820312
+      width: .0244140625
+      height: .0244140625
+    rotated: 0
+  - name: snes-laserhitsci-f3
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 45
+    coords:
+      serializedVersion: 2
+      x: .367675781
+      y: .224609375
+      width: .0244140625
+      height: .0219726562
+    rotated: 0
+  - name: snes-lasersci
+    originalWidth: 50
+    originalHeight: 25
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 5
+      width: 50
+      height: 15
+    coords:
+      serializedVersion: 2
+      x: .629394531
+      y: .828613281
+      width: .0244140625
+      height: .00732421875
+    rotated: 0
+  - name: snes-mafl-explode-f1
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 55
+      width: 170
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .838867188
+      y: .254394531
+      width: .0830078125
+      height: .0317382812
+    rotated: 0
+  - name: snes-mafl-explode-f2
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 50
+      width: 170
+      height: 75
+    coords:
+      serializedVersion: 2
+      x: .491210938
+      y: .249511719
+      width: .0830078125
+      height: .0366210938
+    rotated: 0
+  - name: snes-mafl-explode-f3
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 20
+      width: 170
+      height: 115
+    coords:
+      serializedVersion: 2
+      x: .461914062
+      y: .434570312
+      width: .0830078125
+      height: .0561523438
+    rotated: 0
+  - name: snes-mafl-explode-f4
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 10
+      width: 160
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .176757812
+      y: .555175781
+      width: .078125
+      height: .0659179688
+    rotated: 0
+  - name: snes-mafl-explode-f5
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 30
+      y: 10
+      width: 125
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .734375
+      y: .555175781
+      width: .0610351562
+      height: .0659179688
+    rotated: 0
+  - name: snes-mafl-explode-f6
+    originalWidth: 180
+    originalHeight: 180
+    trimRect:
+      serializedVersion: 2
+      x: 30
+      y: 10
+      width: 125
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .795898438
+      y: .555175781
+      width: .0610351562
+      height: .0659179688
+    rotated: 0
+  - name: snes-mayfl-dn-f1
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 15
+      width: 175
+      height: 130
+    coords:
+      serializedVersion: 2
+      x: .250488281
+      y: .491210938
+      width: .0854492188
+      height: .0634765625
+    rotated: 0
+  - name: snes-mayfl-dn-f2
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 10
+      width: 175
+      height: 130
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .491210938
+      width: .0854492188
+      height: .0634765625
+    rotated: 0
+  - name: snes-mayfl-dn-f3
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 15
+      width: 175
+      height: 120
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .432128906
+      width: .0854492188
+      height: .05859375
+    rotated: 0
+  - name: snes-mayfl-f1
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 15
+      width: 175
+      height: 125
+    coords:
+      serializedVersion: 2
+      x: .719726562
+      y: .493652344
+      width: .0854492188
+      height: .0610351562
+    rotated: 0
+  - name: snes-mayfl-f2
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 10
+      width: 175
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .555175781
+      width: .0854492188
+      height: .0659179688
+    rotated: 0
+  - name: snes-mayfl-f3
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 15
+      width: 175
+      height: 125
+    coords:
+      serializedVersion: 2
+      x: .483886719
+      y: .493652344
+      width: .0854492188
+      height: .0610351562
+    rotated: 0
+  - name: snes-mayfl-up-f1
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 20
+      width: 175
+      height: 120
+    coords:
+      serializedVersion: 2
+      x: .864746094
+      y: .49609375
+      width: .0854492188
+      height: .05859375
+    rotated: 0
+  - name: snes-mayfl-up-f2
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 15
+      width: 175
+      height: 130
+    coords:
+      serializedVersion: 2
+      x: .164550781
+      y: .491210938
+      width: .0854492188
+      height: .0634765625
+    rotated: 0
+  - name: snes-mayfl-up-f3
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 20
+      width: 175
+      height: 120
+    coords:
+      serializedVersion: 2
+      x: .204101562
+      y: .432128906
+      width: .0854492188
+      height: .05859375
+    rotated: 0
+  - name: snes-minegrav-f1
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .488769531
+      y: .623046875
+      width: .0341796875
+      height: .0341796875
+    rotated: 0
+  - name: snes-minegrav-f2
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .454101562
+      y: .623046875
+      width: .0341796875
+      height: .0341796875
+    rotated: 0
+  - name: snes-minegrav-f3
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .278320312
+      y: .623046875
+      width: .0341796875
+      height: .0341796875
+    rotated: 0
+  - name: snes-minegravfield-colapse-f1
+    originalWidth: 150
+    originalHeight: 150
+    trimRect:
+      serializedVersion: 2
+      x: 15
+      y: 15
+      width: 120
+      height: 120
+    coords:
+      serializedVersion: 2
+      x: .145019531
+      y: .432128906
+      width: .05859375
+      height: .05859375
+    rotated: 0
+  - name: snes-minegravfield-colapse-f2
+    originalWidth: 150
+    originalHeight: 150
+    trimRect:
+      serializedVersion: 2
+      x: 30
+      y: 30
+      width: 90
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .286621094
+      width: .0439453125
+      height: .0439453125
+    rotated: 0
+  - name: snes-minegravfield-colapse-f3
+    originalWidth: 150
+    originalHeight: 150
+    trimRect:
+      serializedVersion: 2
+      x: 55
+      y: 55
+      width: 40
+      height: 40
+    coords:
+      serializedVersion: 2
+      x: .526855469
+      y: .227050781
+      width: .01953125
+      height: .01953125
+    rotated: 0
+  - name: snes-minegravfield-f1
+    originalWidth: 150
+    originalHeight: 150
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 150
+      height: 150
+    coords:
+      serializedVersion: 2
+      x: .706054688
+      y: .748046875
+      width: .0732421875
+      height: .0732421875
+    rotated: 0
+  - name: snes-minegravfield-f2
+    originalWidth: 150
+    originalHeight: 150
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 150
+      height: 150
+    coords:
+      serializedVersion: 2
+      x: .779785156
+      y: .748046875
+      width: .0732421875
+      height: .0732421875
+    rotated: 0
+  - name: snes-minegravfield-f3
+    originalWidth: 150
+    originalHeight: 150
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 150
+      height: 150
+    coords:
+      serializedVersion: 2
+      x: .853515625
+      y: .748046875
+      width: .0732421875
+      height: .0732421875
+    rotated: 0
+  - name: snes-minegravtrigger
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .162109375
+      y: .623046875
+      width: .0341796875
+      height: .0341796875
+    rotated: 0
+  - name: snes-minion-2hit-lvl1-1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 0
+      width: 80
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .653808594
+      y: .291503906
+      width: .0390625
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-2hit-lvl1-2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .247070312
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-2hit-lvl2-1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .816894531
+      y: .291503906
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-2hit-lvl2-2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .209960938
+      y: .247070312
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-2hit-lvl3-1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 5
+      width: 85
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .342773438
+      y: .623046875
+      width: .0415039062
+      height: .0341796875
+    rotated: 0
+  - name: snes-minion-2hit-lvl3-2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .476074219
+      y: .291503906
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-normal-lvl1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .251953125
+      y: .247070312
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-shield-lvl1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .858886719
+      y: .291503906
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-shield-lvl2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .0419921875
+      y: .247070312
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-shield-lvl3
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .560058594
+      y: .291503906
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-speed-lvl1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 0
+      width: 80
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .735351562
+      y: .291503906
+      width: .0390625
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-speed-lvl2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .900878906
+      y: .291503906
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-speed-lvl3
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .774902344
+      y: .291503906
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-split-lvl1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 80
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .414550781
+      y: .623046875
+      width: .0390625
+      height: .0341796875
+    rotated: 0
+  - name: snes-minion-split-lvl2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .693359375
+      y: .291503906
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-split-lvl3
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .16796875
+      y: .247070312
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-tel01
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .083984375
+      y: .247070312
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-tel02
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .125976562
+      y: .247070312
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-tel03
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .942871094
+      y: .291503906
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-tel04
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 85
+      height: 80
+    coords:
+      serializedVersion: 2
+      x: .518066406
+      y: .291503906
+      width: .0415039062
+      height: .0390625
+    rotated: 0
+  - name: snes-minion-tel05
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 80
+      height: 75
+    coords:
+      serializedVersion: 2
+      x: .331054688
+      y: .249511719
+      width: .0390625
+      height: .0366210938
+    rotated: 0
+  - name: snes-minion-tel06
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 25
+      y: 20
+      width: 40
+      height: 40
+    coords:
+      serializedVersion: 2
+      x: .665527344
+      y: .227050781
+      width: .01953125
+      height: .01953125
+    rotated: 0
+  - name: snes-minion-tel07
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 35
+      y: 30
+      width: 20
+      height: 20
+    coords:
+      serializedVersion: 2
+      x: .579101562
+      y: .826171875
+      width: .009765625
+      height: .009765625
+    rotated: 0
+  - name: snes-minion-tel08
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 40
+      y: 35
+      width: 10
+      height: 10
+    coords:
+      serializedVersion: 2
+      x: .992675781
+      y: .893554688
+      width: .0048828125
+      height: .0048828125
+    rotated: 0
+  - name: snes-minion-tel09
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 80
+      width: 0
+      height: 0
+    coords:
+      serializedVersion: 2
+      x: .999511719
+      y: 1
+      width: 0
+      height: 0
+    rotated: 0
+  - name: snes-minion-tel10
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 35
+      y: 25
+      width: 25
+      height: 25
+    coords:
+      serializedVersion: 2
+      x: .488769531
+      y: .823730469
+      width: .0122070312
+      height: .0122070312
+    rotated: 0
+  - name: snes-minion-tel11
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 30
+      y: 20
+      width: 35
+      height: 35
+    coords:
+      serializedVersion: 2
+      x: .685546875
+      y: .229492188
+      width: .0170898438
+      height: .0170898438
+    rotated: 0
+  - name: snes-minion-tel12
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 35
+      y: 25
+      width: 25
+      height: 25
+    coords:
+      serializedVersion: 2
+      x: .476074219
+      y: .823730469
+      width: .0122070312
+      height: .0122070312
+    rotated: 0
+  - name: snes-minion-tel13
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 80
+      width: 0
+      height: 0
+    coords:
+      serializedVersion: 2
+      x: 1
+      y: 1
+      width: 0
+      height: 0
+    rotated: 0
+  - name: snes-missile
+    originalWidth: 70
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 5
+      width: 70
+      height: 40
+    coords:
+      serializedVersion: 2
+      x: .596191406
+      y: .227050781
+      width: .0341796875
+      height: .01953125
+    rotated: 0
+  - name: snes-missileemp
+    originalWidth: 70
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 5
+      width: 70
+      height: 40
+    coords:
+      serializedVersion: 2
+      x: .630859375
+      y: .227050781
+      width: .0341796875
+      height: .01953125
+    rotated: 0
+  - name: snes-missileemphit-f1
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 25
+      y: 25
+      width: 50
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .288085938
+      y: .222167969
+      width: .0244140625
+      height: .0244140625
+    rotated: 0
+  - name: snes-missileemphit-f10
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 90
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .8828125
+      y: .333496094
+      width: .0439453125
+      height: .0439453125
+    rotated: 0
+  - name: snes-missileemphit-f11
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 90
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .747070312
+      y: .333496094
+      width: .0439453125
+      height: .0439453125
+    rotated: 0
+  - name: snes-missileemphit-f12
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 25
+      y: 25
+      width: 50
+      height: 50
+    coords:
+      serializedVersion: 2
+      x: .849121094
+      y: .840820312
+      width: .0244140625
+      height: .0244140625
+    rotated: 0
+  - name: snes-missileemphit-f2
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 90
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .0888671875
+      y: .286621094
+      width: .0439453125
+      height: .0439453125
+    rotated: 0
+  - name: snes-missileemphit-f3
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 90
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .927246094
+      y: .333496094
+      width: .0439453125
+      height: .0439453125
+    rotated: 0
+  - name: snes-missileemphit-f4
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 90
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .470703125
+      y: .331054688
+      width: .0439453125
+      height: .0463867188
+    rotated: 0
+  - name: snes-missileemphit-f5
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 90
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .702636719
+      y: .331054688
+      width: .0439453125
+      height: .0463867188
+    rotated: 0
+  - name: snes-missileemphit-f6
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 10
+      width: 90
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .133300781
+      y: .286621094
+      width: .0439453125
+      height: .0439453125
+    rotated: 0
+  - name: snes-missileemphit-f7
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 10
+      width: 90
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .791503906
+      y: .333496094
+      width: .0439453125
+      height: .0439453125
+    rotated: 0
+  - name: snes-missileemphit-f8
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 90
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .453613281
+      y: .385253906
+      width: .0439453125
+      height: .0463867188
+    rotated: 0
+  - name: snes-missileemphit-f9
+    originalWidth: 100
+    originalHeight: 100
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 90
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .498046875
+      y: .385253906
+      width: .0439453125
+      height: .0463867188
+    rotated: 0
+  - name: snes-Mothership
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 80
+      y: 55
+      width: 540
+      height: 555
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .729003906
+      width: .263671875
+      height: .270996094
+    rotated: 0
+  - name: snes-mothership-core-caution-f1
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .879394531
+      y: .625488281
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-caution-f2
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .922363281
+      y: .254394531
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-caution-f3
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .76953125
+      y: .254394531
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-caution-f4
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .0249023438
+      y: .21484375
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-critical-f1
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .844726562
+      y: .625488281
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-critical-f2
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .657226562
+      y: .625488281
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-critical-f3
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .587890625
+      y: .625488281
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-critical-f4
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .734863281
+      y: .254394531
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-danger-f1
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .622558594
+      y: .625488281
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-danger-f2
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .810058594
+      y: .625488281
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-danger-f3
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .553222656
+      y: .625488281
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-danger-f4
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .700195312
+      y: .254394531
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-fine-f1
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .691894531
+      y: .625488281
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-fine-f2
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .948730469
+      y: .625488281
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-fine-f3
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .9140625
+      y: .625488281
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-mothership-core-fine-f4
+    originalWidth: 70
+    originalHeight: 65
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .95703125
+      y: .254394531
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: snes-shield
+    originalWidth: 70
+    originalHeight: 135
+    trimRect:
+      serializedVersion: 2
+      x: 25
+      y: 0
+      width: 30
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .940429688
+      y: .934082031
+      width: .0146484375
+      height: .0659179688
+    rotated: 0
+  - name: snes-shield-f1
+    originalWidth: 190
+    originalHeight: 135
+    trimRect:
+      serializedVersion: 2
+      x: 145
+      y: 0
+      width: 30
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .977539062
+      y: .867675781
+      width: .0146484375
+      height: .0659179688
+    rotated: 0
+  - name: snes-shield-f2
+    originalWidth: 190
+    originalHeight: 135
+    trimRect:
+      serializedVersion: 2
+      x: 145
+      y: 0
+      width: 30
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .955566406
+      y: .934082031
+      width: .0146484375
+      height: .0659179688
+    rotated: 0
+  - name: snes-shieldgenerate-f1
+    originalWidth: 190
+    originalHeight: 135
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 65
+      width: 10
+      height: 5
+    coords:
+      serializedVersion: 2
+      x: .992675781
+      y: .890625
+      width: .0048828125
+      height: .00244140625
+    rotated: 0
+  - name: snes-shieldgenerate-f2
+    originalWidth: 190
+    originalHeight: 135
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 60
+      width: 30
+      height: 15
+    coords:
+      serializedVersion: 2
+      x: .614257812
+      y: .828613281
+      width: .0146484375
+      height: .00732421875
+    rotated: 0
+  - name: snes-shieldgenerate-f3
+    originalWidth: 190
+    originalHeight: 135
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 50
+      width: 50
+      height: 35
+    coords:
+      serializedVersion: 2
+      x: .728027344
+      y: .229492188
+      width: .0244140625
+      height: .0170898438
+    rotated: 0
+  - name: snes-shieldgenerate-f4
+    originalWidth: 190
+    originalHeight: 135
+    trimRect:
+      serializedVersion: 2
+      x: 20
+      y: 40
+      width: 55
+      height: 55
+    coords:
+      serializedVersion: 2
+      x: .602539062
+      y: .838378906
+      width: .0268554688
+      height: .0268554688
+    rotated: 0
+  - name: snes-shieldgenerate-f5
+    originalWidth: 190
+    originalHeight: 135
+    trimRect:
+      serializedVersion: 2
+      x: 40
+      y: 30
+      width: 55
+      height: 75
+    coords:
+      serializedVersion: 2
+      x: .971679688
+      y: .340820312
+      width: .0268554688
+      height: .0366210938
+    rotated: 0
+  - name: snes-shieldgenerate-f6
+    originalWidth: 190
+    originalHeight: 135
+    trimRect:
+      serializedVersion: 2
+      x: 60
+      y: 20
+      width: 55
+      height: 95
+    coords:
+      serializedVersion: 2
+      x: .81640625
+      y: .385253906
+      width: .0268554688
+      height: .0463867188
+    rotated: 0
+  - name: snes-shieldgenerate-f7
+    originalWidth: 190
+    originalHeight: 135
+    trimRect:
+      serializedVersion: 2
+      x: 80
+      y: 10
+      width: 55
+      height: 115
+    coords:
+      serializedVersion: 2
+      x: .948242188
+      y: .564941406
+      width: .0268554688
+      height: .0561523438
+    rotated: 0
+  - name: snes-shieldgenerate-f8
+    originalWidth: 190
+    originalHeight: 135
+    trimRect:
+      serializedVersion: 2
+      x: 100
+      y: 0
+      width: 75
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .940429688
+      y: .867675781
+      width: .0366210938
+      height: .0659179688
+    rotated: 0
+  - name: snes-shieldgenerate-f9
+    originalWidth: 190
+    originalHeight: 135
+    trimRect:
+      serializedVersion: 2
+      x: 120
+      y: 0
+      width: 55
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .970703125
+      y: .934082031
+      width: .0268554688
+      height: .0659179688
+    rotated: 0
+  - name: snes-teleport-01
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 10
+      width: 180
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .255371094
+      y: .555175781
+      width: .087890625
+      height: .0659179688
+    rotated: 0
+  - name: snes-teleport-02
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 10
+      width: 180
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .503417969
+      y: .662597656
+      width: .087890625
+      height: .0659179688
+    rotated: 0
+  - name: snes-teleport-03
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 10
+      y: 10
+      width: 180
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .834960938
+      y: .662597656
+      width: .087890625
+      height: .0659179688
+    rotated: 0
+  - name: snes-teleport-04
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 15
+      y: 10
+      width: 175
+      height: 135
+    coords:
+      serializedVersion: 2
+      x: .6484375
+      y: .555175781
+      width: .0854492188
+      height: .0659179688
+    rotated: 0
+  - name: snes-teleport-05
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 25
+      y: 15
+      width: 155
+      height: 125
+    coords:
+      serializedVersion: 2
+      x: .569824219
+      y: .493652344
+      width: .0756835938
+      height: .0610351562
+    rotated: 0
+  - name: snes-teleport-06
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 35
+      y: 20
+      width: 130
+      height: 110
+    coords:
+      serializedVersion: 2
+      x: .840332031
+      y: .437011719
+      width: .0634765625
+      height: .0537109375
+    rotated: 0
+  - name: snes-teleport-07
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 56
+      y: 20
+      width: 105
+      height: 100
+    coords:
+      serializedVersion: 2
+      x: .125488281
+      y: .3828125
+      width: .0512695312
+      height: .048828125
+    rotated: 0
+  - name: snes-teleport-08
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 70
+      y: 45
+      width: 75
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .125
+      y: .623046875
+      width: .0366210938
+      height: .0341796875
+    rotated: 0
+  - name: snes-teleport-09
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 85
+      y: 60
+      width: 40
+      height: 35
+    coords:
+      serializedVersion: 2
+      x: .975585938
+      y: .566894531
+      width: .01953125
+      height: .0170898438
+    rotated: 0
+  - name: snes-teleport-10
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 100
+      y: 60
+      width: 25
+      height: 35
+    coords:
+      serializedVersion: 2
+      x: .984863281
+      y: .711425781
+      width: .0122070312
+      height: .0170898438
+    rotated: 0
+  - name: snes-teleport-11
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 110
+      y: 60
+      width: 15
+      height: 35
+    coords:
+      serializedVersion: 2
+      x: .992675781
+      y: .916503906
+      width: .00732421875
+      height: .0170898438
+    rotated: 0
+  - name: snes-teleport-12
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 95
+      y: 60
+      width: 30
+      height: 35
+    coords:
+      serializedVersion: 2
+      x: .984863281
+      y: .676269531
+      width: .0146484375
+      height: .0170898438
+    rotated: 0
+  - name: snes-teleport-13
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 85
+      y: 55
+      width: 45
+      height: 45
+    coords:
+      serializedVersion: 2
+      x: .479492188
+      y: .224609375
+      width: .0219726562
+      height: .0219726562
+    rotated: 0
+  - name: snes-teleport-14
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 75
+      y: 45
+      width: 65
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .0893554688
+      y: .21484375
+      width: .0317382812
+      height: .0317382812
+    rotated: 0
+  - name: snes-teleport-15
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 85
+      y: 55
+      width: 45
+      height: 45
+    coords:
+      serializedVersion: 2
+      x: .978027344
+      y: .443847656
+      width: .0219726562
+      height: .0219726562
+    rotated: 0
+  - name: snes-teleport-16
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 95
+      y: 60
+      width: 30
+      height: 35
+    coords:
+      serializedVersion: 2
+      x: .984863281
+      y: .693847656
+      width: .0146484375
+      height: .0170898438
+    rotated: 0
+  - name: snes-teleport-17
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 110
+      y: 60
+      width: 15
+      height: 35
+    coords:
+      serializedVersion: 2
+      x: .992675781
+      y: .898925781
+      width: .00732421875
+      height: .0170898438
+    rotated: 0
+  - name: snes-wreckage-1
+    originalWidth: 405
+    originalHeight: 295
+    trimRect:
+      serializedVersion: 2
+      x: 20
+      y: 10
+      width: 380
+      height: 275
+    coords:
+      serializedVersion: 2
+      x: .602539062
+      y: .865722656
+      width: .185546875
+      height: .134277344
+    rotated: 0
+  - name: snes-wreckage-2
+    originalWidth: 315
+    originalHeight: 295
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 5
+      width: 310
+      height: 275
+    coords:
+      serializedVersion: 2
+      x: .788574219
+      y: .865722656
+      width: .151367188
+      height: .134277344
+    rotated: 0
+  - name: snes-wreckage-3
+    originalWidth: 276
+    originalHeight: 359
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 10
+      width: 258
+      height: 335
+    coords:
+      serializedVersion: 2
+      x: .476074219
+      y: .836425781
+      width: .125976562
+      height: .163574219
+    rotated: 0
+  - name: snes-wreckage-4
+    originalWidth: 300
+    originalHeight: 224
+    trimRect:
+      serializedVersion: 2
+      x: 35
+      y: 5
+      width: 255
+      height: 219
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .621582031
+      width: .124511719
+      height: .106933594
+    rotated: 0
+  - name: snes-wreckage-5
+    originalWidth: 438
+    originalHeight: 369
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 4
+      width: 433
+      height: 365
+    coords:
+      serializedVersion: 2
+      x: .264160156
+      y: .821777344
+      width: .211425781
+      height: .178222656
+    rotated: 0
+  material: {fileID: 2100000, guid: 79ff7795522d64b7f83881357599369b, type: 2}
+  texture: {fileID: 2800000, guid: d92f21163e5714a8fb23f97cd790b8e6, type: 3}

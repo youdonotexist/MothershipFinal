@@ -1,0 +1,370 @@
+﻿#include "il2cpp-config.h"
+
+#ifndef _MSC_VER
+# include <alloca.h>
+#else
+# include <malloc.h>
+#endif
+
+
+
+#include "class-internals.h"
+#include "codegen/il2cpp-codegen.h"
+
+extern "C" void pinvoke_delegate_wrapper_PrimalityTest_t397689819 ();
+extern "C" void pinvoke_delegate_wrapper_KeyGeneratedEventHandler_t1233396096 ();
+extern "C" void pinvoke_delegate_wrapper_KeyGeneratedEventHandler_t1233396097 ();
+extern "C" void pinvoke_delegate_wrapper_AppDomainInitializer_t1372758802 ();
+extern "C" void pinvoke_delegate_wrapper_Swapper_t4148259466 ();
+extern "C" void pinvoke_delegate_wrapper_AssemblyLoadEventHandler_t3698454801 ();
+extern "C" void pinvoke_delegate_wrapper_AsyncCallback_t1363551830 ();
+extern "C" void pinvoke_delegate_wrapper_InternalCancelHandler_t3015292819 ();
+extern "C" void pinvoke_delegate_wrapper_ConsoleCancelEventHandler_t4179131414 ();
+extern "C" void pinvoke_delegate_wrapper_EventHandler_t247020293 ();
+extern "C" void pinvoke_delegate_wrapper_ReadDelegate_t3831560539 ();
+extern "C" void pinvoke_delegate_wrapper_WriteDelegate_t4066867812 ();
+extern "C" void pinvoke_delegate_wrapper_AddEventAdapter_t836903542 ();
+extern "C" void pinvoke_delegate_wrapper_MemberFilter_t1585748256 ();
+extern "C" void pinvoke_delegate_wrapper_GetterAdapter_t943738788 ();
+extern "C" void pinvoke_delegate_wrapper_TypeFilter_t2379296192 ();
+extern "C" void pinvoke_delegate_wrapper_ResolveEventHandler_t2783314641 ();
+extern "C" void pinvoke_delegate_wrapper_ObjectCreationDelegate_t965294309 ();
+extern "C" void pinvoke_delegate_wrapper_CrossContextDelegate_t2286976850 ();
+extern "C" void pinvoke_delegate_wrapper_RenewalDelegate_t4057835773 ();
+extern "C" void pinvoke_delegate_wrapper_HeaderHandler_t379822999 ();
+extern "C" void pinvoke_delegate_wrapper_CallbackHandler_t3576143653 ();
+extern "C" void pinvoke_delegate_wrapper_ParameterizedThreadStart_t3844818690 ();
+extern "C" void pinvoke_delegate_wrapper_ThreadStart_t2758142267 ();
+extern "C" void pinvoke_delegate_wrapper_TimerCallback_t4291881837 ();
+extern "C" void pinvoke_delegate_wrapper_WaitCallback_t827025885 ();
+extern "C" void pinvoke_delegate_wrapper_WaitOrTimerCallback_t4215077909 ();
+extern "C" void pinvoke_delegate_wrapper_UnhandledExceptionEventHandler_t4230172209 ();
+extern "C" void pinvoke_delegate_wrapper_PrimalityTest_t397689820 ();
+extern "C" void pinvoke_delegate_wrapper_KeyGeneratedEventHandler_t1233396098 ();
+extern "C" void pinvoke_delegate_wrapper_CertificateSelectionCallback_t3257378130 ();
+extern "C" void pinvoke_delegate_wrapper_CertificateValidationCallback_t3726148045 ();
+extern "C" void pinvoke_delegate_wrapper_CertificateValidationCallback2_t1582269749 ();
+extern "C" void pinvoke_delegate_wrapper_PrivateKeySelectionCallback_t4199006061 ();
+extern "C" void pinvoke_delegate_wrapper_DataReceivedEventHandler_t1372593658 ();
+extern "C" void pinvoke_delegate_wrapper_ElementHandler_t2742159566 ();
+extern "C" void pinvoke_delegate_wrapper_AsyncReadHandler_t1007715544 ();
+extern "C" void pinvoke_delegate_wrapper_ReadMethod_t1307699767 ();
+extern "C" void pinvoke_delegate_wrapper_UnmanagedReadOrWrite_t1833047712 ();
+extern "C" void pinvoke_delegate_wrapper_WriteMethod_t2894535040 ();
+extern "C" void pinvoke_delegate_wrapper_ReadDelegate_t3831560540 ();
+extern "C" void pinvoke_delegate_wrapper_WriteDelegate_t4066867813 ();
+extern "C" void pinvoke_delegate_wrapper_BindIPEndPoint_t3524008771 ();
+extern "C" void pinvoke_delegate_wrapper_DownloadProgressChangedEventHandler_t3634764377 ();
+extern "C" void pinvoke_delegate_wrapper_GetRequestStreamCallback_t745857726 ();
+extern "C" void pinvoke_delegate_wrapper_GetResponseCallback_t786822908 ();
+extern "C" void pinvoke_delegate_wrapper_ReadDelegate_t3831560541 ();
+extern "C" void pinvoke_delegate_wrapper_WriteDelegate_t4066867814 ();
+extern "C" void pinvoke_delegate_wrapper_HttpContinueDelegate_t835016574 ();
+extern "C" void pinvoke_delegate_wrapper_LocalCertificateSelectionCallback_t2540829269 ();
+extern "C" void pinvoke_delegate_wrapper_RemoteCertificateValidationCallback_t4087051103 ();
+extern "C" void pinvoke_delegate_wrapper_SocketAsyncCall_t106740903 ();
+extern "C" void pinvoke_delegate_wrapper_MatchAppendEvaluator_t2378778064 ();
+extern "C" void pinvoke_delegate_wrapper_EvalDelegate_t3818891356 ();
+extern "C" void pinvoke_delegate_wrapper_CostDelegate_t3008899218 ();
+extern "C" void pinvoke_delegate_wrapper_MatchEvaluator_t510977541 ();
+extern "C" void pinvoke_delegate_wrapper_ValidationEventHandler_t2777264566 ();
+extern "C" void pinvoke_delegate_wrapper_XmlNodeChangedEventHandler_t1687630483 ();
+extern "C" void pinvoke_delegate_wrapper_CharGetter_t2496392225 ();
+extern "C" void pinvoke_delegate_wrapper_Action_t437523947 ();
+extern "C" void pinvoke_delegate_wrapper_LogCallback_t3235662729 ();
+extern "C" void pinvoke_delegate_wrapper_PCMReaderCallback_t749510018 ();
+extern "C" void pinvoke_delegate_wrapper_PCMSetPositionCallback_t2977871350 ();
+extern "C" void pinvoke_delegate_wrapper_AudioConfigurationChangeHandler_t1722466426 ();
+extern "C" void pinvoke_delegate_wrapper_CameraCallback_t1908940458 ();
+extern "C" void pinvoke_delegate_wrapper_WillRenderCanvases_t1153522766 ();
+extern "C" void pinvoke_delegate_wrapper_StateChanged_t1076524291 ();
+extern "C" void pinvoke_delegate_wrapper_DisplaysUpdatedDelegate_t1240057615 ();
+extern "C" void pinvoke_delegate_wrapper_UnityAction_t909267611 ();
+extern "C" void pinvoke_delegate_wrapper_FontTextureRebuildCallback_t401089076 ();
+extern "C" void pinvoke_delegate_wrapper_WindowFunction_t999919624 ();
+extern "C" void pinvoke_delegate_wrapper_SkinChangedDelegate_t914030844 ();
+extern "C" void pinvoke_delegate_wrapper_BannerFailedToLoadDelegate_t2071786927 ();
+extern "C" void pinvoke_delegate_wrapper_BannerWasClickedDelegate_t1325188367 ();
+extern "C" void pinvoke_delegate_wrapper_BannerWasLoadedDelegate_t69910023 ();
+extern "C" void pinvoke_delegate_wrapper_InterstitialWasLoadedDelegate_t2963828231 ();
+extern "C" void pinvoke_delegate_wrapper_InterstitialWasViewedDelegate_t402653446 ();
+extern "C" void pinvoke_delegate_wrapper_IteratorDelegate_t3855630387 ();
+extern "C" void pinvoke_delegate_wrapper_ReapplyDrivenProperties_t3247703954 ();
+extern "C" void pinvoke_delegate_wrapper_CompressFunc_t1605129574 ();
+extern "C" void pinvoke_delegate_wrapper_OnValidateInput_t3303221397 ();
+extern "C" void pinvoke_delegate_wrapper_Callback_t4187391078 ();
+extern "C" void pinvoke_delegate_wrapper_CurtainChangeCallback_t728740647 ();
+extern "C" void pinvoke_delegate_wrapper_SongChangedEventHandler_t33399983 ();
+extern "C" void pinvoke_delegate_wrapper_SongEndedEventHandler_t1874844277 ();
+extern "C" void pinvoke_delegate_wrapper_SoundFinishedEventHandler_t2252829809 ();
+extern "C" void pinvoke_delegate_wrapper_ButtonDownHandler_t1077042582 ();
+extern "C" void pinvoke_delegate_wrapper_ButtonPressHandler_t3422062073 ();
+extern "C" void pinvoke_delegate_wrapper_ButtonUpHandler_t3041195261 ();
+extern "C" void pinvoke_delegate_wrapper_JoystickDoubleTapHandler_t153379412 ();
+extern "C" void pinvoke_delegate_wrapper_JoystickMoveEndHandler_t2083928348 ();
+extern "C" void pinvoke_delegate_wrapper_JoystickMoveHandler_t2267610941 ();
+extern "C" void pinvoke_delegate_wrapper_JoystickMoveStartHandler_t2105815157 ();
+extern "C" void pinvoke_delegate_wrapper_JoystickTapHandler_t2112530595 ();
+extern "C" void pinvoke_delegate_wrapper_JoystickTouchStartHandler_t587946859 ();
+extern "C" void pinvoke_delegate_wrapper_JoystickTouchUpHandler_t1102408748 ();
+extern "C" void pinvoke_delegate_wrapper_Cancel2FingersHandler_t1748880568 ();
+extern "C" void pinvoke_delegate_wrapper_DoubleTap2FingersHandler_t4258774624 ();
+extern "C" void pinvoke_delegate_wrapper_DoubleTapHandler_t3148000504 ();
+extern "C" void pinvoke_delegate_wrapper_Drag2FingersHandler_t1945811646 ();
+extern "C" void pinvoke_delegate_wrapper_DragEnd2FingersHandler_t2491491531 ();
+extern "C" void pinvoke_delegate_wrapper_DragEndHandler_t3041046115 ();
+extern "C" void pinvoke_delegate_wrapper_DragHandler_t3682527062 ();
+extern "C" void pinvoke_delegate_wrapper_DragStart2FingersHandler_t3827055972 ();
+extern "C" void pinvoke_delegate_wrapper_DragStartHandler_t2772987900 ();
+extern "C" void pinvoke_delegate_wrapper_EasyTouchIsReadyHandler_t1347646478 ();
+extern "C" void pinvoke_delegate_wrapper_LongTap2FingersHandler_t1692294219 ();
+extern "C" void pinvoke_delegate_wrapper_LongTapEnd2FingersHandler_t506330142 ();
+extern "C" void pinvoke_delegate_wrapper_LongTapEndHandler_t1010403510 ();
+extern "C" void pinvoke_delegate_wrapper_LongTapHandler_t68117987 ();
+extern "C" void pinvoke_delegate_wrapper_LongTapStart2FingersHandler_t3052440567 ();
+extern "C" void pinvoke_delegate_wrapper_LongTapStartHandler_t1240596879 ();
+extern "C" void pinvoke_delegate_wrapper_PinchEndHandler_t1495132713 ();
+extern "C" void pinvoke_delegate_wrapper_PinchInHandler_t7450347 ();
+extern "C" void pinvoke_delegate_wrapper_PinchOutHandler_t1877879894 ();
+extern "C" void pinvoke_delegate_wrapper_SimpleTap2FingersHandler_t2163547649 ();
+extern "C" void pinvoke_delegate_wrapper_SimpleTapHandler_t3561373081 ();
+extern "C" void pinvoke_delegate_wrapper_Swipe2FingersHandler_t2484340792 ();
+extern "C" void pinvoke_delegate_wrapper_SwipeEnd2FingersHandler_t4110429457 ();
+extern "C" void pinvoke_delegate_wrapper_SwipeEndHandler_t3180944553 ();
+extern "C" void pinvoke_delegate_wrapper_SwipeHandler_t1297239760 ();
+extern "C" void pinvoke_delegate_wrapper_SwipeStart2FingersHandler_t553274410 ();
+extern "C" void pinvoke_delegate_wrapper_SwipeStartHandler_t4071400642 ();
+extern "C" void pinvoke_delegate_wrapper_TouchCancelHandler_t3136056977 ();
+extern "C" void pinvoke_delegate_wrapper_TouchDown2FingersHandler_t2414075921 ();
+extern "C" void pinvoke_delegate_wrapper_TouchDownHandler_t618663849 ();
+extern "C" void pinvoke_delegate_wrapper_TouchStart2FingersHandler_t2423371695 ();
+extern "C" void pinvoke_delegate_wrapper_TouchStartHandler_t3226887495 ();
+extern "C" void pinvoke_delegate_wrapper_TouchUp2FingersHandler_t1262405944 ();
+extern "C" void pinvoke_delegate_wrapper_TouchUpHandler_t399380432 ();
+extern "C" void pinvoke_delegate_wrapper_TwistEndHandler_t3891277910 ();
+extern "C" void pinvoke_delegate_wrapper_TwistHandler_t671277635 ();
+extern "C" void pinvoke_delegate_wrapper_Callback_t4187391077 ();
+extern "C" void pinvoke_delegate_wrapper_CloseDelegate_t890700148 ();
+extern "C" void pinvoke_delegate_wrapper_OpenDelegate_t1492450310 ();
+extern "C" void pinvoke_delegate_wrapper_SetCompressionCallback_t2458683936 ();
+extern "C" void pinvoke_delegate_wrapper_WriteDelegate_t2087363675 ();
+extern "C" void pinvoke_delegate_wrapper_LoadFunction_t2829036286 ();
+extern "C" void pinvoke_delegate_wrapper_FinishedHandler_t2586567256 ();
+extern "C" void pinvoke_delegate_wrapper_DefaultsSetDelegate_t3097145909 ();
+extern "C" void pinvoke_delegate_wrapper_PathChangeDelegate_t2571562234 ();
+extern "C" void pinvoke_delegate_wrapper_ScreenChange_t2310935388 ();
+extern "C" void pinvoke_delegate_wrapper_OnFinished_t4089757585 ();
+extern "C" void pinvoke_delegate_wrapper_OnFinished_t4089757586 ();
+extern "C" void pinvoke_delegate_wrapper_OnContinueDelegate_t3982509931 ();
+extern "C" void pinvoke_delegate_wrapper_FinishedHandler_t2586567257 ();
+extern "C" void pinvoke_delegate_wrapper_BoolDelegate_t945637040 ();
+extern "C" void pinvoke_delegate_wrapper_FloatDelegate_t4185225186 ();
+extern "C" void pinvoke_delegate_wrapper_GetAxisFunc_t3240405851 ();
+extern "C" void pinvoke_delegate_wrapper_GetKeyStateFunc_t2362323372 ();
+extern "C" void pinvoke_delegate_wrapper_KeyCodeDelegate_t3737044594 ();
+extern "C" void pinvoke_delegate_wrapper_MoveDelegate_t757231766 ();
+extern "C" void pinvoke_delegate_wrapper_ObjectDelegate_t3413901829 ();
+extern "C" void pinvoke_delegate_wrapper_OnCustomInput_t3775009626 ();
+extern "C" void pinvoke_delegate_wrapper_OnScreenResize_t3539115999 ();
+extern "C" void pinvoke_delegate_wrapper_VectorDelegate_t2458450953 ();
+extern "C" void pinvoke_delegate_wrapper_VoidDelegate_t1986138970 ();
+extern "C" void pinvoke_delegate_wrapper_OnCenterCallback_t2517112729 ();
+extern "C" void pinvoke_delegate_wrapper_OnRenderCallback_t2210118618 ();
+extern "C" void pinvoke_delegate_wrapper_BoolDelegate_t945637039 ();
+extern "C" void pinvoke_delegate_wrapper_FloatDelegate_t4185225185 ();
+extern "C" void pinvoke_delegate_wrapper_KeyCodeDelegate_t3737044593 ();
+extern "C" void pinvoke_delegate_wrapper_ObjectDelegate_t3413901828 ();
+extern "C" void pinvoke_delegate_wrapper_VectorDelegate_t2458450952 ();
+extern "C" void pinvoke_delegate_wrapper_VoidDelegate_t1986138969 ();
+extern "C" void pinvoke_delegate_wrapper_OnReposition_t1160738747 ();
+extern "C" void pinvoke_delegate_wrapper_OnValidate_t3342145589 ();
+extern "C" void pinvoke_delegate_wrapper_OnClippingMoved_t1302042450 ();
+extern "C" void pinvoke_delegate_wrapper_OnGeometryUpdated_t1871707114 ();
+extern "C" void pinvoke_delegate_wrapper_LegacyEvent_t3762302001 ();
+extern "C" void pinvoke_delegate_wrapper_OnDragFinished_t2614441317 ();
+extern "C" void pinvoke_delegate_wrapper_OnDragNotification_t4185738334 ();
+extern "C" void pinvoke_delegate_wrapper_OnReposition_t1160738748 ();
+extern "C" void pinvoke_delegate_wrapper_HitCheck_t3012954453 ();
+extern "C" void pinvoke_delegate_wrapper_OnDimensionsChanged_t481648104 ();
+extern "C" void pinvoke_delegate_wrapper_OnInitializeItem_t2008047266 ();
+extern "C" void pinvoke_delegate_wrapper_On_ScreenResizeHandler_t3030730890 ();
+extern const methodPointerType g_DelegateWrappersManagedToNative[177] = 
+{
+	pinvoke_delegate_wrapper_PrimalityTest_t397689819,
+	pinvoke_delegate_wrapper_KeyGeneratedEventHandler_t1233396096,
+	pinvoke_delegate_wrapper_KeyGeneratedEventHandler_t1233396097,
+	pinvoke_delegate_wrapper_AppDomainInitializer_t1372758802,
+	pinvoke_delegate_wrapper_Swapper_t4148259466,
+	pinvoke_delegate_wrapper_AssemblyLoadEventHandler_t3698454801,
+	pinvoke_delegate_wrapper_AsyncCallback_t1363551830,
+	pinvoke_delegate_wrapper_InternalCancelHandler_t3015292819,
+	pinvoke_delegate_wrapper_ConsoleCancelEventHandler_t4179131414,
+	pinvoke_delegate_wrapper_EventHandler_t247020293,
+	pinvoke_delegate_wrapper_ReadDelegate_t3831560539,
+	pinvoke_delegate_wrapper_WriteDelegate_t4066867812,
+	pinvoke_delegate_wrapper_AddEventAdapter_t836903542,
+	pinvoke_delegate_wrapper_MemberFilter_t1585748256,
+	pinvoke_delegate_wrapper_GetterAdapter_t943738788,
+	pinvoke_delegate_wrapper_TypeFilter_t2379296192,
+	pinvoke_delegate_wrapper_ResolveEventHandler_t2783314641,
+	pinvoke_delegate_wrapper_ObjectCreationDelegate_t965294309,
+	pinvoke_delegate_wrapper_CrossContextDelegate_t2286976850,
+	pinvoke_delegate_wrapper_RenewalDelegate_t4057835773,
+	pinvoke_delegate_wrapper_HeaderHandler_t379822999,
+	pinvoke_delegate_wrapper_CallbackHandler_t3576143653,
+	pinvoke_delegate_wrapper_ParameterizedThreadStart_t3844818690,
+	pinvoke_delegate_wrapper_ThreadStart_t2758142267,
+	pinvoke_delegate_wrapper_TimerCallback_t4291881837,
+	pinvoke_delegate_wrapper_WaitCallback_t827025885,
+	pinvoke_delegate_wrapper_WaitOrTimerCallback_t4215077909,
+	pinvoke_delegate_wrapper_UnhandledExceptionEventHandler_t4230172209,
+	pinvoke_delegate_wrapper_PrimalityTest_t397689820,
+	pinvoke_delegate_wrapper_KeyGeneratedEventHandler_t1233396098,
+	pinvoke_delegate_wrapper_CertificateSelectionCallback_t3257378130,
+	pinvoke_delegate_wrapper_CertificateValidationCallback_t3726148045,
+	pinvoke_delegate_wrapper_CertificateValidationCallback2_t1582269749,
+	pinvoke_delegate_wrapper_PrivateKeySelectionCallback_t4199006061,
+	pinvoke_delegate_wrapper_DataReceivedEventHandler_t1372593658,
+	pinvoke_delegate_wrapper_ElementHandler_t2742159566,
+	pinvoke_delegate_wrapper_AsyncReadHandler_t1007715544,
+	pinvoke_delegate_wrapper_ReadMethod_t1307699767,
+	pinvoke_delegate_wrapper_UnmanagedReadOrWrite_t1833047712,
+	pinvoke_delegate_wrapper_WriteMethod_t2894535040,
+	pinvoke_delegate_wrapper_ReadDelegate_t3831560540,
+	pinvoke_delegate_wrapper_WriteDelegate_t4066867813,
+	pinvoke_delegate_wrapper_BindIPEndPoint_t3524008771,
+	pinvoke_delegate_wrapper_DownloadProgressChangedEventHandler_t3634764377,
+	pinvoke_delegate_wrapper_GetRequestStreamCallback_t745857726,
+	pinvoke_delegate_wrapper_GetResponseCallback_t786822908,
+	pinvoke_delegate_wrapper_ReadDelegate_t3831560541,
+	pinvoke_delegate_wrapper_WriteDelegate_t4066867814,
+	pinvoke_delegate_wrapper_HttpContinueDelegate_t835016574,
+	pinvoke_delegate_wrapper_LocalCertificateSelectionCallback_t2540829269,
+	pinvoke_delegate_wrapper_RemoteCertificateValidationCallback_t4087051103,
+	pinvoke_delegate_wrapper_SocketAsyncCall_t106740903,
+	pinvoke_delegate_wrapper_MatchAppendEvaluator_t2378778064,
+	pinvoke_delegate_wrapper_EvalDelegate_t3818891356,
+	pinvoke_delegate_wrapper_CostDelegate_t3008899218,
+	pinvoke_delegate_wrapper_MatchEvaluator_t510977541,
+	pinvoke_delegate_wrapper_ValidationEventHandler_t2777264566,
+	pinvoke_delegate_wrapper_XmlNodeChangedEventHandler_t1687630483,
+	pinvoke_delegate_wrapper_CharGetter_t2496392225,
+	pinvoke_delegate_wrapper_Action_t437523947,
+	pinvoke_delegate_wrapper_LogCallback_t3235662729,
+	pinvoke_delegate_wrapper_PCMReaderCallback_t749510018,
+	pinvoke_delegate_wrapper_PCMSetPositionCallback_t2977871350,
+	pinvoke_delegate_wrapper_AudioConfigurationChangeHandler_t1722466426,
+	pinvoke_delegate_wrapper_CameraCallback_t1908940458,
+	pinvoke_delegate_wrapper_WillRenderCanvases_t1153522766,
+	pinvoke_delegate_wrapper_StateChanged_t1076524291,
+	pinvoke_delegate_wrapper_DisplaysUpdatedDelegate_t1240057615,
+	pinvoke_delegate_wrapper_UnityAction_t909267611,
+	pinvoke_delegate_wrapper_FontTextureRebuildCallback_t401089076,
+	pinvoke_delegate_wrapper_WindowFunction_t999919624,
+	pinvoke_delegate_wrapper_SkinChangedDelegate_t914030844,
+	pinvoke_delegate_wrapper_BannerFailedToLoadDelegate_t2071786927,
+	pinvoke_delegate_wrapper_BannerWasClickedDelegate_t1325188367,
+	pinvoke_delegate_wrapper_BannerWasLoadedDelegate_t69910023,
+	pinvoke_delegate_wrapper_InterstitialWasLoadedDelegate_t2963828231,
+	pinvoke_delegate_wrapper_InterstitialWasViewedDelegate_t402653446,
+	pinvoke_delegate_wrapper_IteratorDelegate_t3855630387,
+	pinvoke_delegate_wrapper_ReapplyDrivenProperties_t3247703954,
+	pinvoke_delegate_wrapper_CompressFunc_t1605129574,
+	pinvoke_delegate_wrapper_OnValidateInput_t3303221397,
+	pinvoke_delegate_wrapper_Callback_t4187391078,
+	pinvoke_delegate_wrapper_CurtainChangeCallback_t728740647,
+	pinvoke_delegate_wrapper_SongChangedEventHandler_t33399983,
+	pinvoke_delegate_wrapper_SongEndedEventHandler_t1874844277,
+	pinvoke_delegate_wrapper_SoundFinishedEventHandler_t2252829809,
+	pinvoke_delegate_wrapper_ButtonDownHandler_t1077042582,
+	pinvoke_delegate_wrapper_ButtonPressHandler_t3422062073,
+	pinvoke_delegate_wrapper_ButtonUpHandler_t3041195261,
+	pinvoke_delegate_wrapper_JoystickDoubleTapHandler_t153379412,
+	pinvoke_delegate_wrapper_JoystickMoveEndHandler_t2083928348,
+	pinvoke_delegate_wrapper_JoystickMoveHandler_t2267610941,
+	pinvoke_delegate_wrapper_JoystickMoveStartHandler_t2105815157,
+	pinvoke_delegate_wrapper_JoystickTapHandler_t2112530595,
+	pinvoke_delegate_wrapper_JoystickTouchStartHandler_t587946859,
+	pinvoke_delegate_wrapper_JoystickTouchUpHandler_t1102408748,
+	pinvoke_delegate_wrapper_Cancel2FingersHandler_t1748880568,
+	pinvoke_delegate_wrapper_DoubleTap2FingersHandler_t4258774624,
+	pinvoke_delegate_wrapper_DoubleTapHandler_t3148000504,
+	pinvoke_delegate_wrapper_Drag2FingersHandler_t1945811646,
+	pinvoke_delegate_wrapper_DragEnd2FingersHandler_t2491491531,
+	pinvoke_delegate_wrapper_DragEndHandler_t3041046115,
+	pinvoke_delegate_wrapper_DragHandler_t3682527062,
+	pinvoke_delegate_wrapper_DragStart2FingersHandler_t3827055972,
+	pinvoke_delegate_wrapper_DragStartHandler_t2772987900,
+	pinvoke_delegate_wrapper_EasyTouchIsReadyHandler_t1347646478,
+	pinvoke_delegate_wrapper_LongTap2FingersHandler_t1692294219,
+	pinvoke_delegate_wrapper_LongTapEnd2FingersHandler_t506330142,
+	pinvoke_delegate_wrapper_LongTapEndHandler_t1010403510,
+	pinvoke_delegate_wrapper_LongTapHandler_t68117987,
+	pinvoke_delegate_wrapper_LongTapStart2FingersHandler_t3052440567,
+	pinvoke_delegate_wrapper_LongTapStartHandler_t1240596879,
+	pinvoke_delegate_wrapper_PinchEndHandler_t1495132713,
+	pinvoke_delegate_wrapper_PinchInHandler_t7450347,
+	pinvoke_delegate_wrapper_PinchOutHandler_t1877879894,
+	pinvoke_delegate_wrapper_SimpleTap2FingersHandler_t2163547649,
+	pinvoke_delegate_wrapper_SimpleTapHandler_t3561373081,
+	pinvoke_delegate_wrapper_Swipe2FingersHandler_t2484340792,
+	pinvoke_delegate_wrapper_SwipeEnd2FingersHandler_t4110429457,
+	pinvoke_delegate_wrapper_SwipeEndHandler_t3180944553,
+	pinvoke_delegate_wrapper_SwipeHandler_t1297239760,
+	pinvoke_delegate_wrapper_SwipeStart2FingersHandler_t553274410,
+	pinvoke_delegate_wrapper_SwipeStartHandler_t4071400642,
+	pinvoke_delegate_wrapper_TouchCancelHandler_t3136056977,
+	pinvoke_delegate_wrapper_TouchDown2FingersHandler_t2414075921,
+	pinvoke_delegate_wrapper_TouchDownHandler_t618663849,
+	pinvoke_delegate_wrapper_TouchStart2FingersHandler_t2423371695,
+	pinvoke_delegate_wrapper_TouchStartHandler_t3226887495,
+	pinvoke_delegate_wrapper_TouchUp2FingersHandler_t1262405944,
+	pinvoke_delegate_wrapper_TouchUpHandler_t399380432,
+	pinvoke_delegate_wrapper_TwistEndHandler_t3891277910,
+	pinvoke_delegate_wrapper_TwistHandler_t671277635,
+	pinvoke_delegate_wrapper_Callback_t4187391077,
+	pinvoke_delegate_wrapper_CloseDelegate_t890700148,
+	pinvoke_delegate_wrapper_OpenDelegate_t1492450310,
+	pinvoke_delegate_wrapper_SetCompressionCallback_t2458683936,
+	pinvoke_delegate_wrapper_WriteDelegate_t2087363675,
+	pinvoke_delegate_wrapper_LoadFunction_t2829036286,
+	pinvoke_delegate_wrapper_FinishedHandler_t2586567256,
+	pinvoke_delegate_wrapper_DefaultsSetDelegate_t3097145909,
+	pinvoke_delegate_wrapper_PathChangeDelegate_t2571562234,
+	pinvoke_delegate_wrapper_ScreenChange_t2310935388,
+	pinvoke_delegate_wrapper_OnFinished_t4089757585,
+	pinvoke_delegate_wrapper_OnFinished_t4089757586,
+	pinvoke_delegate_wrapper_OnContinueDelegate_t3982509931,
+	pinvoke_delegate_wrapper_FinishedHandler_t2586567257,
+	pinvoke_delegate_wrapper_BoolDelegate_t945637040,
+	pinvoke_delegate_wrapper_FloatDelegate_t4185225186,
+	pinvoke_delegate_wrapper_GetAxisFunc_t3240405851,
+	pinvoke_delegate_wrapper_GetKeyStateFunc_t2362323372,
+	pinvoke_delegate_wrapper_KeyCodeDelegate_t3737044594,
+	pinvoke_delegate_wrapper_MoveDelegate_t757231766,
+	pinvoke_delegate_wrapper_ObjectDelegate_t3413901829,
+	pinvoke_delegate_wrapper_OnCustomInput_t3775009626,
+	pinvoke_delegate_wrapper_OnScreenResize_t3539115999,
+	pinvoke_delegate_wrapper_VectorDelegate_t2458450953,
+	pinvoke_delegate_wrapper_VoidDelegate_t1986138970,
+	pinvoke_delegate_wrapper_OnCenterCallback_t2517112729,
+	pinvoke_delegate_wrapper_OnRenderCallback_t2210118618,
+	pinvoke_delegate_wrapper_BoolDelegate_t945637039,
+	pinvoke_delegate_wrapper_FloatDelegate_t4185225185,
+	pinvoke_delegate_wrapper_KeyCodeDelegate_t3737044593,
+	pinvoke_delegate_wrapper_ObjectDelegate_t3413901828,
+	pinvoke_delegate_wrapper_VectorDelegate_t2458450952,
+	pinvoke_delegate_wrapper_VoidDelegate_t1986138969,
+	pinvoke_delegate_wrapper_OnReposition_t1160738747,
+	pinvoke_delegate_wrapper_OnValidate_t3342145589,
+	pinvoke_delegate_wrapper_OnClippingMoved_t1302042450,
+	pinvoke_delegate_wrapper_OnGeometryUpdated_t1871707114,
+	pinvoke_delegate_wrapper_LegacyEvent_t3762302001,
+	pinvoke_delegate_wrapper_OnDragFinished_t2614441317,
+	pinvoke_delegate_wrapper_OnDragNotification_t4185738334,
+	pinvoke_delegate_wrapper_OnReposition_t1160738748,
+	pinvoke_delegate_wrapper_HitCheck_t3012954453,
+	pinvoke_delegate_wrapper_OnDimensionsChanged_t481648104,
+	pinvoke_delegate_wrapper_OnInitializeItem_t2008047266,
+	pinvoke_delegate_wrapper_On_ScreenResizeHandler_t3030730890,
+};

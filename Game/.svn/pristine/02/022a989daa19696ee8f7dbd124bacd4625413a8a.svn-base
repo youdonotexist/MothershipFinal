@@ -1,0 +1,37 @@
+using UnityEngine;
+using System.Collections;
+
+public class Gravity : MonoBehaviour
+{
+	public float power = 800.0f;
+	Transform target = null;
+	Rigidbody _rigidBody;
+	
+	Mine _mine;
+	
+	void Start() {
+		_rigidBody = transform.parent.GetComponent<Rigidbody>();	
+		_mine = transform.parent.GetComponent<Mine>();
+	}
+	
+	void OnTriggerEnter(Collider c) {
+		if (_mine.animating == false) {
+			bool isMinion = LayerMaskHelper.IsInLayerMask(c.gameObject, LayerMaskHelper.OnlyIncluding(LayerMask.NameToLayer("Minion")));
+			if (isMinion) {
+				target = c.transform;
+				
+				_mine.audio.clip = _mine._grabClip;
+				_mine.audio.loop = true;
+				_mine.audio.Play ();
+			}
+		}
+	}
+	
+	void FixedUpdate() {
+		if (target != null) {
+			Vector3 dir = (target.transform.position - transform.position).normalized;
+			_rigidBody.AddForce(dir * power, ForceMode.VelocityChange);
+		}
+	}
+}
+

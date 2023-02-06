@@ -1,0 +1,34 @@
+[
+  {
+    "_id": "510e04d3bbfe5c9417000001",
+    "name": "Battle of Iron Waters",
+    "hero_type_id": "BASIC",
+    "backstory": "In the Beginning, there was peace. Then, the poison rains fell. Then, the attacks began.",
+    "story": true,
+    "index": 0
+  },
+  {
+    "_id": "510cd3a1257b21b203000001",
+    "name": "Battle at Zero Zero ",
+    "hero_type_id": "JUGGERNAUT",
+    "backstory": "Smelt from the fires of their home world, these Heroes came to conquer and are equipped to completely eradicate as necessary. ",
+    "story": true,
+    "index": 1
+  },
+  {
+    "_id": "5174cc62e1f6ac5610000001",
+    "name": "Battle at Mayflower Point",
+    "hero_type_id": "SCIENTIST",
+    "backstory": "Technology had brought these men to the brink of space to a planet full of resources.  ",
+    "story": true,
+    "index": 2
+  },
+  {
+    "_id": "51be7956a0b0c95a4f000001",
+    "name": "Battle of Ternion Point",
+    "hero_type_id": "MIXED",
+    "backstory": "Desperation makes for strange bedfellows as a threat looms larger than the three. ",
+    "story": true,
+    "index": 3
+  }
+]

@@ -1,0 +1,79 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+
+public class PortraitManager
+{
+	UIAtlas _portraitAtlas;
+	Texture2D _atlasTexture;
+
+	List<Texture2D> textures = new List<Texture2D>();
+
+	public UIAtlas GetAtlas() {
+		return _portraitAtlas;
+	}
+
+	// Use this for initialization
+	public IEnumerator BuildPortraitAtlas (string path)
+	{
+		textures.Clear();
+		GameObject at = (GameObject) Resources.Load("Atlases/PortraitAtlas", typeof(GameObject));
+		at.gameObject.name = "PortraitAtlas";
+
+		GameObject paInstance = GameObject.Find("PortraitAtlas");
+		if (paInstance == null) {
+			paInstance = (GameObject)Object.Instantiate(at);
+			paInstance.name = "PortraitAtlas"; 
+		}
+		_portraitAtlas = paInstance.GetComponent<UIAtlas>();
+		GameObject.DontDestroyOnLoad(_portraitAtlas.gameObject);
+
+		_atlasTexture = new Texture2D(1024, 1024);//(Texture2D) Resources.Load("Atlases/PortraitTexture", typeof(Texture2D));
+
+		List<string> names = new List<string>();
+
+		DirectoryInfo info = new DirectoryInfo(path);
+		FileInfo[] fileInfos = info.GetFiles();
+		//for (file in fileInfo) print (file);
+		for (int i = 0; i < fileInfos.Length; i++) {
+			FileInfo file = fileInfos[i];
+
+			Texture2D texture = new Texture2D(1, 1);
+			WWW www = new WWW("file://" + file.FullName);
+			while (!www.isDone) { yield return null; }
+			www.LoadImageIntoTexture(texture);
+			
+			textures.Add(texture);
+			names.Add (file.Name);
+		}
+
+		Rect[] coordinates = _atlasTexture.PackTextures(textures.ToArray(), 1);
+		
+		Material material = new Material(Shader.Find("Unlit/Transparent Desaturated"));
+		material.SetTexture("_MainTex", _atlasTexture);
+
+		_portraitAtlas.spriteMaterial = material;
+		
+		for(int i = 0; i < coordinates.Length; i++)
+		{
+			Rect rect = NGUIMath.ConvertToPixels(coordinates[i], _atlasTexture.width, _atlasTexture.height, true);
+			
+			// Make sure that we don't shrink the textures
+			if (Mathf.RoundToInt(rect.width) != textures[i].width) continue;
+
+			UISpriteData sprite = new UISpriteData();
+			sprite.name = (names[i]).Replace(".png", "");
+			sprite.x = Mathf.RoundToInt(rect.x);
+			sprite.y = Mathf.RoundToInt(rect.y);
+			sprite.width = Mathf.RoundToInt(rect.width);
+			sprite.height = Mathf.RoundToInt(rect.height);
+
+			_portraitAtlas.spriteList.Add(sprite);
+		}
+
+		_portraitAtlas.MarkAsChanged();
+		Debug.Log ("Everything completed without error");
+	}
+}
+

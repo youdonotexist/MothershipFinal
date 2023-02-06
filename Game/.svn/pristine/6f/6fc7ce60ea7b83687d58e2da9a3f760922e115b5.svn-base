@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 49051723, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: GrapplerAnimation
+  m_EditorClassIdentifier: 
+  wrapMode: 4
+  stopAction: 0
+  length: .5
+  sampleRate_: 60
+  frameInfos:
+  - textureGUID: 6489faa629d154f41a9a649f9092bc00
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 0
+  - textureGUID: 138a2cd8a4ea3401c8169e75089ad343
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 1
+  - textureGUID: 2eac9ca4445a140bbb90fb2176c6d1df
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 2
+  eventInfos: []
+  speed: 1
+  editorPreviewSize: 256
+  editorScale: 1
+  editorOffset: 0
+  editorSpeed: 1
+  editorNeedRebuild: 0

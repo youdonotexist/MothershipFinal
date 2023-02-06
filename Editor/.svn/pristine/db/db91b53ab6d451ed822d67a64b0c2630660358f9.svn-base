@@ -1,0 +1,20 @@
+/*
+ * Copyright 2013 SirsiDynix.  All rights reserved.
+ */
+Ext.define('MothershipEditor.controller.BaseController', {
+	extend: 'Ext.app.Controller',
+	config: {
+		refs: {
+			navigation: 'mainnavigation',
+			rightButtons: '#rightNavButtonContainer'
+		}
+	},
+
+	onCardWillAppear: function(card) {
+		var rightButtons = this.getRightButtons();
+		rightButtons.removeAll();
+	},
+
+	onWorkflowViewWillAppear: Ext.emptyFn
+
+});

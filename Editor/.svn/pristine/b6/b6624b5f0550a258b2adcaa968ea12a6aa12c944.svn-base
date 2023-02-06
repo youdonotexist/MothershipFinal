@@ -1,0 +1,340 @@
+require('../utils');
+
+exports.addHero = function(req, res) {
+	mongo_connect(function(db) {
+		var hero = req.body;
+
+		var herolistcollection = db.collection('herolist');
+		var heroattributecollection = db.collection('hero_attribute_type');
+		var herocollection = db.collection('hero');
+
+		herolistcollection.findOne({_id: new BSON.ObjectID(hero.hero_list_id)}, function(err, list) {
+			var hero_type = list.hero_type_id;
+			if (hero_type == "MIXED") {
+				hero_type = hero.hero_type_id;
+			}
+			heroattributecollection.find({"$or": [{hero_type_id: hero_type}, {hero_type_id: "ALL"}]}).toArray(function(err, attribs) {
+				for (var i = 0; i < attribs.length; i++) {
+					var attrib = attribs[i];
+					hero[attrib.key] = attrib.attributes.default;
+
+					hero.hero_type_id = hero_type;
+
+					herocollection.insert(hero, {safe:true}, function(err, result) {
+						if (err) {
+							res.send({'error':'An error has occurred'});
+						} else {
+							console.log('Success: ' + JSON.stringify(result[0]));
+							res.send(result[0]);
+						}
+					});
+				}
+			});
+		});
+	});
+ };
+
+
+exports.uploadPortrait = function(req, res) {
+	mongo_connect(function(db) {
+		//Make sure the user exists in the db
+		var id = req.params.id;
+		var fs = fs = require('fs');
+		var AWS = require('aws-sdk');
+
+		db.collection('hero', function(err, collection) {
+			collection.findOne({'_id': new BSON.ObjectID(id)}, function(err, item) {
+				if (item) {
+					//Read incoming file
+					fs.readFile(req.files.userfile.path, function (err, data) {
+						var s3bucket = new AWS.S3({params: {Bucket: 'CommonwealthIndustries_Mothership/Portraits'}});
+						s3bucket.createBucket(function() {
+							var key = id + "_" + new Date().getTime() + ".png";
+							var bucketdata = {
+								Key: key,
+								Body: data,
+								ACL:'public-read'
+							};
+							s3bucket.putObject(bucketdata, function(err, resp) {
+								if (err) {
+									console.log("Error uploading data: ", err);
+									res.send(err);
+								} else {
+									item.photo_url = "https://s3.amazonaws.com/CommonwealthIndustries_Mothership/Portraits/" + key;
+									collection.update({'_id': new BSON.ObjectID(id)}, item, function(err) {
+										res.send(item);
+									});
+								}
+							});
+						});
+					});
+				}
+			});
+		});
+	});
+
+	//Upload to AWS
+	//Store url for hero
+	// get the temporary location of the file
+	//console.log(JSON.stringify(req.files));
+	//console.log("got something!");
+};
+
+exports.updateHero = function(req, res) {
+	mongo_connect(function(db) {
+		var id = req.params.id;
+
+		var herolistcollection = db.collection('herolist');
+		var herocollection = db.collection('hero');
+
+		herolistcollection.findOne({'_id': new BSON.ObjectID(req.body.hero_list_id)}, function( err, item) {
+			var hero = req.body;
+			hero.hero_type_id = item.hero_type_id;
+
+			herocollection.update({'_id': new BSON.ObjectID(id)}, hero, function(err) {
+				res.send(hero);
+			});
+		});
+	});
+};
+
+exports.deleteHero = function(req, res) {
+	mongo_connect(function(db) {
+		var id = req.params.id;
+		db.collection('hero', function(err, collection) {
+			collection.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
+				if (err) {
+					res.send({'error':'An error has occurred - ' + err});
+				} else {
+					var directiveCollection = db.collection('directive');
+					directiveCollection.remove({'hero_id': id}, function(err, result) {
+						res._id = id;
+						res.send(req.body);
+					});
+				}
+			});
+		});
+	});
+};
+
+exports.findHeroById = function(req, res) {
+	mongo_connect(function(db) {
+		var id = req.params.id;
+		db.collection('hero', function(err, collection) {
+			collection.findOne({'_id': new BSON.ObjectID(id)}, function(err, item) {
+				res.send(item);
+			});
+		});
+	});
+};
+
+exports.findFullHeroById = function(req, res) {
+	mongo_connect(function(db) {
+		var id = req.params.id;
+		db.collection('hero', function(err, collection) {
+			collection.findOne({'_id': new BSON.ObjectID(id)}, function(err, item) {
+				db.collection('directive', function(err, dir_collection){
+					dir_collection.find({'hero_id':item._id.toString()}).toArray(function(err, items) {
+						item.directives = items;
+						res.send([item]);
+					});
+				});
+			});
+		});
+	});
+};
+
+exports.saveAllHeroes = function(req, res) {
+	mongo_connect(function(db) {
+		var heroes = req.body;
+		var herocollection = db.collection('hero');
+		var numUpdates = heroes.length;
+		var updatesCompleted = 0;
+
+		for (var i = 0; i < heroes.length; i++) {
+			var hero = heroes[i];
+			console.log("eeeeh");
+			herocollection.update({'_id': new BSON.ObjectID(hero._id)}, hero, function(err) {
+				updatesCompleted++;
+				console.log(updatesCompleted + "/" + numUpdates);
+				if (updatesCompleted >= numUpdates) {
+					res.send(heroes);
+				}
+			});
+		}
+	});
+};
+
+exports.getHeroDifficultyScore = function(req, res) {
+  var MINE_SLOTS = 10.0,
+      SHIELD_SLOTS = 5.0,
+      BASE_SPEED = 200.0,
+	    map = {
+        BASIC: {
+          ai: {
+            'MOVE': {
+              cost: 1,
+              modifier: 'moveSpeed'
+            },
+            'FIRE MISSILE': {
+              cost: 3,
+              modifier: 'attackMissiles'
+            },
+            'DEPLOY SHIELD': {
+              cost: 2,
+              modifier: 'maxShields'
+            },
+            'DEPLOY MINE': {
+              cost: 2,
+              modifier: 'maxMines'
+            }
+          },
+
+          modifier: {
+            'moveSpeed': function(hero, cost, waitAfter) {
+              return cost * (hero.moveSpeed / BASE_SPEED);
+            },
+            'attackMissiles': function(hero, cost, waitAfter) {
+              return cost + (hero.attackMissiles ? 2 : 0);
+            },
+            'maxShields': function(hero, cost, waitAfter) {
+              return cost + (hero.maxShields / SHIELD_SLOTS);
+            },
+            'maxMines': function(hero, cost, waitAfter) {
+              return cost + (hero.maxMines / MINE_SLOTS);
+            }
+          }
+        },
+        JUGGERNAUT: {
+          ai: {
+            'MOVE': {
+              cost: 1,
+              modifier: 'moveSpeed'
+            },
+            'MOVE FORWARD': {
+              cost: 1,
+              modifier: 'moveSpeed'
+            },
+            'DEPLOY GRABBER': {
+              cost: 3,
+              modifier: 'deployGrabber'
+            },
+            'FIRE CHARGELASER': {
+              cost: 4,
+              modifier: 'chargeLaser'
+            },
+            'DEPLOY TURRETMINE': {
+              cost: 2,
+              modifier: 'maxMines'
+            }
+          },
+
+          modifier: {
+            'moveSpeed': function(hero, cost) {
+              return cost * (hero.moveSpeed / BASE_SPEED);
+            },
+            'deployGrabber': function(hero, cost, waitAfter) {
+              var baseWaitAfter = 3.0;
+              return cost * (waitAfter / baseWaitAfter);
+            },
+            'chargeLaser': function(hero, cost) {
+              var baseChargeTime = 3.0,
+                  baseChargeDamage = 10.0,
+                  cltValid = Utils.sanitizeValue(hero.chargeLaserTime, baseChargeTime),
+                  cdValid = Utils.sanitizeValue(hero.chargeLaserDamage, baseChargeDamage);
+                  return cost * (cltValid / baseChargeTime) * (cdValid / baseChargeDamage);
+
+              //return cost * (cost * (cltValid / SHIELD_SLOTS));
+            },
+            'maxMines': function(hero, cost) {
+              var tmpdValid = Utils.sanitizeValue(hero.turret_mine_proj_damage, 0.0),
+                  freqValid = Utils.sanitizeValue(hero.turretFrequency, 1.0),
+                  baseFrequency = 1.0;
+              return cost +
+                (cost * (hero.maxMines / MINE_SLOTS)) +
+                (cost * (tmpdValid / 1.0)) +
+                (cost * (freqValid/baseFrequency));
+            }
+          }
+        },
+        SCIENTIST: {
+          ai: {
+            'MOVE': {
+              cost: 1,
+              modifier: 'moveSpeed'
+            },
+            'MOVE FORWARD': {
+              cost: 1,
+              modifier: 'moveSpeed'
+            },
+            'TELEPORT': {
+              cost: 1,
+              modifier: 'teleport'
+            },
+            'DEPLOY BLACKHOLE': {
+              cost: 3,
+              modifier: 'maxMines'
+            },
+            'DEPLOY REFLECTSHIELD': {
+              cost: 4,
+              modifier: 'reflectShield'
+            },
+            'DEPLOY EMPMISSILE': {
+              cost: 2,
+              modifier: 'deployMissile'
+            }
+          },
+
+          modifier: {
+            'moveSpeed': function(hero, cost) {
+              return cost * (hero.moveSpeed / BASE_SPEED);
+            },
+            'deployMissile': function(hero, cost, waitAfter) {
+              return cost;// + (hero.attackMissiles ? 2 : 0);
+            },
+            'teleport': function(hero, cost) {
+              var telValid = Utils.sanitizeValue(hero.teleportCount, 3.0),
+                  telBase = 3.0;
+              return cost + (cost * (telValid / telBase));
+            },
+            'maxMines': function(hero, cost) {
+                return cost + (hero.maxMines / MINE_SLOTS);
+            },
+            'reflectShield': function(hero, cost) {
+                return cost + (hero.maxShields / SHIELD_SLOTS);
+            }
+          }
+        }
+	},
+
+	calculateHeroCost = function (hero, directives) {
+		var heroMapping = map[hero.hero_type_id],
+			cost = 0,
+			usageMap = {};
+
+		for (var i = 0; i < directives.length; i++) {
+			var directive = directives[i],
+				aiMapping = heroMapping.ai[directive.action];
+
+			if (!usageMap[directive.action]) {
+				cost += heroMapping.modifier[aiMapping.modifier](hero, aiMapping.cost, directive.waitAfter);
+				usageMap[directive.action] = true;
+			}
+		}
+
+		return cost.toPrecision(4);
+	};
+
+	mongo_connect(function(db) {
+		var id = req.params.id;
+		db.collection('hero', function(err, collection) {
+			collection.findOne({'_id': new BSON.ObjectID(id)}, function(err, item) {
+				db.collection('directive', function(err, dir_collection){
+					dir_collection.find({'hero_id':item._id.toString()}).toArray(function(err, items) {
+						res.send('{"cost" : ' + calculateHeroCost(item, items) + '}');
+					});
+				});
+			});
+		});
+	});
+}

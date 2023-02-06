@@ -1,0 +1,17 @@
+using UnityEngine;
+using System.Collections;
+
+public class MinionSprite : MonoBehaviour
+{
+	MinionVehicle _vehicle;
+	
+	void Start() {
+		_vehicle = transform.parent.GetComponent<MinionVehicle>();	
+	}
+	
+	void OnBecameInvisible() {
+		_vehicle.OnBecameInvisible();	
+	}
+	
+}
+

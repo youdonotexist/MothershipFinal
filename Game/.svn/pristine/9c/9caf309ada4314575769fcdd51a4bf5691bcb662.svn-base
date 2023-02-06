@@ -1,0 +1,145 @@
+using UnityEngine;
+using System.Collections;
+
+public class JuggernautHeroDirectives : DirectivePack
+{
+	public GameObject laserMissilePrefab = null;
+	public GameObject turretMinePrefab = null;
+	
+	LaserMissile _laserMissile;
+	LaserProjectile _laser;
+	
+	//Laser
+	float lastFireTime = 1.0f;
+	float waitBetweenFire = 1.0f;
+	int shotsPerWait = 1;
+	int currentShotsPerWait = 0;
+	public bool canFire = false;
+	
+	bool deploying = false;
+	
+	IKTest[] _ikArms;
+	
+	void Start() {
+		_laser = GetComponent<LaserProjectile>();	
+		_ikArms = GetComponentsInChildren<IKTest>();
+	}
+	
+	void Update() {
+		if (canFire) {
+			if (currentShotsPerWait < shotsPerWait) {
+				bool didFire = _laser.Fire();
+				if (didFire) {
+					currentShotsPerWait++;
+					lastFireTime = 0.0f;
+				}
+			}
+			else {
+				lastFireTime += Time.deltaTime;
+				if (lastFireTime > waitBetweenFire) {
+					currentShotsPerWait = 0;	
+				}
+			}
+		}	
+	}
+	
+	public override HeroAIManager.DirectiveState handleDirective(AIDirective directive) {
+		if (directive.action == "FIRE CHARGELASER") {
+			if (_laserMissile == null) {
+				GameObject go = (GameObject) Instantiate(laserMissilePrefab);
+				go.transform.position = _vehicle.muzzlePoint.transform.position;
+				go.transform.parent = _vehicle.transform;
+				_laserMissile = go.GetComponent<LaserMissile>();
+			}
+			
+			if (_laserMissile.IsBusy() == false) {
+				_laserMissile.StartFiring(directive.waitAfter);
+			}
+			
+			return HeroAIManager.DirectiveState.NEXT;
+			
+		}
+		else if (directive.action == "DEPLOY TURRETMINE") {
+			if (_aiManager.UsedFarSlots() < _vehicle.concurrentMines) {
+				StartCoroutine(DeployDeployable(directive, turretMinePrefab, SpatialNode.SpatialNodeZone.FAR));
+				return HeroAIManager.DirectiveState.HANDLED;
+			}
+			else {
+				return HeroAIManager.DirectiveState.NEXT;
+			}
+		}
+		else if (directive.action == "DEPLOY GRABBER") {
+			if (!deploying) {
+				deploying = true;
+				canFire = false;
+				foreach (IKTest ik in _ikArms) {
+					ik.DeployArms();
+				}
+			}
+		}
+		else if (directive.action == "MOVE FORWARD") {
+			StartCoroutine(MoveToLane(Random.Range(0, 5), directive));
+			return HeroAIManager.DirectiveState.HANDLED;
+		}
+		
+		return HeroAIManager.DirectiveState.UNHANDLED;
+	}
+	
+	public override void OnHeroReady() {
+		canFire = true;
+	}
+	
+	IEnumerator MoveToLane(int slot, AIDirective directive) {
+		SpatialNode node = FindOpenMoveSpot();
+		if (node != null) {
+			Vector3 startPosition = _vehicle.transform.position;
+			float startDistance = Vector3.Distance(startPosition, node.transform.position);
+			float moveTime = startDistance / _vehicle.moveSpeed;
+			
+			yield return StartCoroutine(MoveToLaneProper(node, moveTime));
+			
+			float waitfordirective = 0.0f;
+			while (waitfordirective < directive.waitAfter) {
+				waitfordirective += Time.deltaTime;
+				yield return null;
+			}
+		}
+		
+		_aiManager.PushAIDirective();
+	}
+	
+	SpatialNode FindOpenMoveSpot() {
+		SpatialNode current = _vehicle._currentNode;
+		
+		SpatialNode.SpatialNodeZone currentZone = current.GetZone();
+		int currentSlot = current.slot;
+		
+		SpatialNode.SpatialNodeZone newZone = Random.Range(0, 2) == 0 ? 
+												SpatialNode.SpatialNodeZone.HERO : 
+												SpatialNode.SpatialNodeZone.MID;
+		
+		if (currentZone == newZone) {
+			SpatialNode[] nodes = _aiManager.GetNodesForZone(newZone);	
+			int randomMid = Random.Range(0, nodes.Length);
+			SpatialNode randomMidNode = nodes[randomMid];
+			return randomMidNode._object == null ? randomMidNode : null;
+		}
+		else {
+			SpatialNode[] nodes = null;
+			if (newZone == SpatialNode.SpatialNodeZone.MID) {
+				nodes = current.ForwardNodes();
+			}
+			else {
+				nodes = current.BackwardNodes();
+			}
+			
+			int randomMid = Random.Range(0, nodes.Length);
+			SpatialNode randomMidNode = nodes[randomMid];
+			return randomMidNode != null && randomMidNode._object == null ? randomMidNode : null;
+		}
+		
+		return null;
+	}
+	
+}
+

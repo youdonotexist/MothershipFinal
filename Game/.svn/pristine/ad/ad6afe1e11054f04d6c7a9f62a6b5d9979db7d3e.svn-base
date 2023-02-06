@@ -1,0 +1,12 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class SpeedMinion : MonoBehaviour {
+
+	MinionBaseVehicle _vehicle;
+
+	void Awake () {
+		_vehicle = GetComponent<MinionBaseVehicle>();
+		_vehicle.maxSpeed *= 2.0f;
+	}
+}

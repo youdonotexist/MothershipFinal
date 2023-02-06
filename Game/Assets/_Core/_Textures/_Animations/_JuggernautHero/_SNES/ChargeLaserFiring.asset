@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 49051723, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: ChargeLaserFiring
+  m_EditorClassIdentifier: 
+  wrapMode: 8
+  stopAction: 0
+  length: 1.16666663
+  sampleRate_: 60
+  frameInfos:
+  - textureGUID: b2a823a1310f847ce8f1f399e17ea1c8
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 32
+  - textureGUID: 77830a27261d34a7187f2cd81c71a739
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 33
+  - textureGUID: 24dc324a1b38c4820ba3dc459c064713
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 34
+  - textureGUID: 31629a5decf1b4b0ba9c3689d8415933
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 35
+  - textureGUID: 447a6ccc03abb448a8554937acba9b2e
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 36
+  - textureGUID: e9709114208a6475180cccc6e0ba70ab
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 37
+  - textureGUID: d0e9ba29a59844e37b7f61e11dcb0e5f
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 38
+  eventInfos: []
+  speed: 1.66666663
+  editorPreviewSize: 256
+  editorScale: .634999931
+  editorOffset: 0
+  editorSpeed: 2
+  editorNeedRebuild: 0

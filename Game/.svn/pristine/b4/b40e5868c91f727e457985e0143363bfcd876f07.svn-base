@@ -1,0 +1,29 @@
+using UnityEngine;
+using System.Collections;
+
+public class MissionDetails : Singleton<MissionDetails>
+{
+	
+	public string encounterId;
+	public string encounterType;
+	public long encounterIndex;
+	
+	// Use this for initialization
+	void Start ()
+	{	
+		GameObject.DontDestroyOnLoad(gameObject);
+		ResourceManager.Instance.Init();
+		GameSaver.InitSaveState();
+		Camera.main.transparencySortMode = TransparencySortMode.Orthographic;
+		GameObject.Find("Camera").GetComponent<Camera>().transparencySortMode = TransparencySortMode.Orthographic;
+	}
+	
+	public void SetEncounterId(string id) {
+		encounterId = id;
+	}
+	
+	public string GetEncounterId() {
+		return encounterId;
+	}
+}
+

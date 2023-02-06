@@ -1,0 +1,117 @@
+using UnityEngine;
+using System.Collections;
+using MiniJSON;
+
+public class EncounterItem : MonoBehaviour
+{
+	public UILabel _title;
+	public UILabel _details;
+	public UISprite _shipSprite;
+	public UISprite _background;
+	public UILabel _highScore;
+	public UILabel _play;
+	
+	public GameObject basicDetails;
+	public GameObject juggernautDetails;
+	public GameObject scientistDetails;
+	
+	// Use this for initialization
+	void Awake ()
+	{
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		foreach (UILabel label in labels) {
+			if (label.name == "Title") {
+				_title = label;	
+			}
+			else if (label.name == "Details") {
+				_details = label;	
+			}
+			else if (label.name == "HighScore") {
+				_highScore = label;	
+			}
+		}
+		
+		UISprite[] sprites = GetComponentsInChildren<UISprite>();
+		foreach (UISprite sprite in sprites) {
+			if (sprite.name == "Ship") {
+				_shipSprite = sprite;
+			}
+			else if (sprite.name.Contains("nes_background")) {
+				_background = sprite;
+			}
+		}
+	}
+	
+	public void PrepareForReuse() {
+		basicDetails.SetActive(false);
+		juggernautDetails.SetActive(false);
+		scientistDetails.SetActive(false);
+		
+		gameObject.name = "[pooled]";
+		
+		transform.parent = null;
+	}
+	
+	public void UpdateData(string name, string type, string backstory, Hashtable saveData) {
+		_title.text = name;
+		_details.text = backstory;
+		
+		UpdateForType(type);
+		
+		if (saveData != null) { 
+			bool enabled = (bool) saveData["enabled"];
+			_play.text = enabled ? "Play" : "Locked";
+		}
+	}
+	
+	public void LoadHighScore(string encounterId) {
+		CI.Request highScoreReq = new CI.Request();
+		highScoreReq.Send ("http://mothership.mike-daly.com/score/"+encounterId, "get", true, (request) => {
+			IList scoreList = (IList) Json.Deserialize(highScoreReq.requestState.responseData.ToString());  
+		
+			if (scoreList != null) {
+				if (scoreList.Count > 0) {
+					IDictionary scoreData = (IDictionary) scoreList[0];
+					_highScore.text = (string) scoreData["score"];
+				}
+			}	
+		});	
+	}
+	
+	float CR(float val) {
+		return val/255.0f;	
+	}
+	
+	void UpdateForType(string type) {
+		if (type == "BASIC") {
+			_shipSprite.spriteName = "hero1-7-1-f1";
+			_background.color = new Color(CR (118.0f), CR (144.0f), CR (31.0f));
+			scientistDetails.SetActive(false);
+			juggernautDetails.SetActive(false);
+			basicDetails.SetActive(true);
+		}
+		else if (type == "JUGGERNAUT"){
+			_shipSprite.spriteName = "jugg3-5-1-f1";
+			_background.color = new Color(CR (203.0f), CR (93.0f), CR (60.0f));
+			juggernautDetails.SetActive(true);
+			basicDetails.SetActive(false);
+			scientistDetails.SetActive(false);
+		}
+		else if (type == "SCIENTIST") {
+			_shipSprite.spriteName = "mayfl2-5-1-f1";
+			_background.color = new Color(CR (15.0f), CR (129.0f), CR (143.0f));
+			scientistDetails.SetActive(true);
+			juggernautDetails.SetActive(false);
+			basicDetails.SetActive(false);
+		}
+		else {
+			//_shipSprite.spriteName = "";
+			_shipSprite.enabled = false;
+			_background.color = new Color(CR (30.0f), CR (30.0f), CR (30.0f));
+			scientistDetails.SetActive(false);
+			juggernautDetails.SetActive(false);
+			basicDetails.SetActive(false);	
+		}
+	}
+}
+

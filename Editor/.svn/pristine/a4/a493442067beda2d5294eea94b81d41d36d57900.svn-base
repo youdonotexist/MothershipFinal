@@ -1,0 +1,205 @@
+// Let's start with the basics
+$base-color: #34d740;
+$base-gradient: 'glossy';
+
+// Lists
+$list-active-gradient: 'bevel';
+$list-header-bg-color: #121314;
+$list-header-gradient: 'matte';
+
+$page-bg-color: #fff !default;
+
+// Tabs
+$tabs-dark: #111;
+
+@import 'sencha-touch/default';
+@import 'sencha-touch/default/all';
+
+@include icon('list');
+@include icon('arrow_down');
+@include icon('arrow_up');
+@include icon('delete');
+
+.bm-library-dropdown {
+  .x-field .x-input-el {
+    width: 90% !important;
+  }
+}
+
+.bm-search-home-button-left {
+  @include sencha-button-ui('search-button', rgb(255, 255, 255), linear-gradient(color-stops(white, white)));
+  @include background-image(none);
+  background: #A61814;
+  border-width: 0.1em;
+  border-radius: 0.0em !important;
+  border-color: black;
+  color: white;
+
+}
+
+.ms-order-button{
+  @include sencha-button-ui('order-button', rgba(255, 255, 255, 1), linear-gradient(color-stops(black, black)));
+  @include background-image(none);
+  background-color: #808080;
+  border-width: 0.1em;
+  border-radius: 0.0em !important;
+  border-color: black;
+
+}
+
+.ms-row-button{
+  @include sencha-button-ui('row-button', rgba(255, 255, 255, 1), linear-gradient(color-stops(white, #d3d3d3)));
+  @include background-image(none);
+  background-color: #d3d3d3;
+  border-radius: 0.0em !important;
+  border-bottom: 0.1em solid black;
+
+  .x-button-label {
+    text-align: left;
+  }
+}
+
+.ms-destroy-button{
+  @include sencha-button-ui('destroy-button', rgba(255, 255, 255, 1), linear-gradient(color-stops(#a30500, #a30500)));
+  @include background-image(none);
+  color: white;
+  background: linear-gradient(#a30500, #a30500);
+  border-width: 0.0em;
+  border-radius: 0.0em !important;
+
+  .x-button-label {
+    text-align: left;
+  }
+}
+
+.ms-add-button {
+  @include sencha-button-ui('add-button', rgba(255, 255, 255, 1), linear-gradient(color-stops(#ffffff, #ffffff)));
+  @include background-image(none);
+  color: white;
+  background: #34d740;//linear-gradient(#34d740, darken(#34d740, 30%));
+  border-width: 0.0em;
+  border-radius: 0.0em !important;
+  border-color: black;
+
+}
+
+.workflow-close-button{
+  @include sencha-button-ui('workflow-close', rgba(255, 255, 255, 1), linear-gradient(color-stops(black, black)));
+  @include background-image(none);
+  background-color: transparent;
+  border-width: 0.0em;
+}
+
+.hero-heading {
+  //background: l
+  @include background(linear-gradient(rgba(18, 19, 20, 0.86), darken(rgba(18, 19, 20, 0.86), 30%)));
+  color: #f0f0f0;
+}
+
+.ms-clear-button {
+  @include sencha-button-ui('clear-button', rgba(255, 255, 255, 1), linear-gradient(color-stops(black, black)));
+  @include background-image(none);
+  background-color: transparent;
+  border-width: 0em;
+  border-radius: 0.0em !important;
+
+}
+
+.x-toolbar-dark {
+  background-color: #34d740;
+  @include background-image(none);
+}
+
+.x-toolbar-dark .x-button {
+  background-color: #34d740;
+  background-image: linear-gradient(#34d740, #34d740);
+}
+
+.x-toolbar-dark .x-button.x-button-back:after {
+  background-color: #34d740;
+  background-image: linear-gradient(#34d740, #34d740);
+}
+
+.directive_item_view {
+  @include background(linear-gradient(rgba(18, 19, 20, 0.86), darken(rgba(18, 19, 20, 0.86), 30%)));
+  //border-top: 1px solid darkgray;
+}
+
+.x-toolbar-light .x-title {
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
+}
+
+.x-button-back .x-button-label {
+  color: #fff;
+}
+
+$list-padding: 0.5;
+
+.kitten-list-item {
+  //padding: $list-padding/2;
+  //background: #fff;
+  //border: 1px solid #ccc;
+  //border-bottom-width: 0;
+
+  //add rounded corners to the last item
+  &:last-child {
+    //border-bottom-width: 1px;
+    @include background(#efefef);
+  }
+  //
+  //border-bottom: .1rem #D9D9D9 solid;
+}
+
+.kitten-list-item-inner {
+  width: 95%;
+  border-bottom-width: 1px;
+}
+
+@include sencha-button-ui('fileready', #6dbc76, 'glossy');
+
+@include sencha-button-ui('fileupload', #67cef7, 'glossy');
+
+.x-fileup {
+  background: none;
+  background-size: 100%;
+  padding: 0px;
+}
+
+.x-fileup-ready {
+  background: none;
+  //background-image: url('../images/questionmark.png');
+  background-size: 100%;
+  padding: 0px;
+}
+
+$loading-spinner-color: #000000;
+//@include sencha-loading-spinner;
+.x-fileup-uploading {
+  .x-loading-spinner {
+    font-size: 100%;
+  }
+}
+
+.x-fileup-badge {
+  text-overflow: clip;
+  background-clip: padding-box;
+  border-radius: 0.25em;
+  //padding: 0.1em 0.3em;
+  z-index: 2;
+  text-shadow: rgba(0,0,0,0.5) 0 -0.08em 0;
+  box-shadow: rgba(0,0,0,0.5) 0 0.1em 0.1em;
+  overflow: hidden;
+  color: rgb(252, 239, 239);
+  border: 1px solid #900;
+  position: absolute;
+  //width: auto;
+  //min-width: 2em;
+  line-height: 1.2em;
+  font-size: .6em;
+  //right: 0px;
+  //top: -.2em;
+  //max-width: 95%;
+  background-image: -webkit-linear-gradient(top, #ff1a1a,#e60000 3%,#b30000);
+  display: inline-block;
+}

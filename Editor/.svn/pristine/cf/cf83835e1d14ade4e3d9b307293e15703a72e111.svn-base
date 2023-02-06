@@ -1,0 +1,28 @@
+/**
+ * Created by youdonotexist on 12/11/13.
+ */
+
+//EncounterMetric
+    //timestamp
+    //battle name
+    //hero
+    //damage taken
+    //death
+    //type (encounter)
+
+exports.addMetrics = function(req, res) {
+    mongo_connect(function(db) {
+        var metric = req.body;
+
+        var metricCollection = db.collection('metrics');
+
+
+        metricCollection.insert(metric, {safe:true}, function(err, result) {
+            if (err) {
+                res.send({'error':'An error has occurred'});
+            } else {
+                res.send(result[0]);
+            }
+        });
+    });
+};

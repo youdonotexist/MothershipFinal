@@ -1,0 +1,1 @@
+{ "options" : { "create" : "upgrade_type" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "mothership_me.upgrade_type", "name" : "_id_" } ] }

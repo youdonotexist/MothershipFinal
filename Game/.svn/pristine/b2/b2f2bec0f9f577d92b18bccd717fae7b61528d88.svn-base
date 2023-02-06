@@ -1,0 +1,108 @@
+using UnityEngine;
+using System.Collections;
+
+public class HeroMissile : MonoBehaviour
+{
+	Vector3[] reversePath = null;
+	int currentPathIndex = -1;
+	
+	public AudioClip _fireClip;
+	public AudioSource _audioSource;
+	
+	Vector3 fromNode;
+	Vector3 toNode;
+	
+	float speed = 300.0f;
+	float timeToTake = 0.0f;
+	float timer = 0.0f;
+	
+	Vector3 lastForward;
+	Vector3 newForward;
+	
+	Damagable _damagable;
+	HeroAIManager _aiManager;
+	
+	
+	// Use this for initialization
+	void Start ()
+	{
+		if (_audioSource == null) {
+			_audioSource = gameObject.AddComponent<AudioSource>();
+		}
+		
+		_audioSource.PlayOneShot(_fireClip);
+		
+		_damagable = GetComponent<Damagable>();
+		_aiManager = GameObject.Find("_MinesAndShields").GetComponent<HeroAIManager>();
+		_aiManager.AddMissile(1);
+	}
+	
+	public void SetPath(Path p, Vector3 start) {
+		//path = p;
+		reversePath = p.GetPointsReversed(start);
+	}
+	
+	public void SetPathNormal(Vector3[] points) {
+		reversePath = points;	
+	}
+	
+	void Update() {
+		if (_damagable.Health <= 0.0f) {
+				
+		}
+	}
+	
+	// Update is called once per frame
+	void FixedUpdate ()
+	{
+		if (currentPathIndex == -1) {
+			currentPathIndex++;
+			fromNode = reversePath[currentPathIndex];
+			toNode = reversePath[currentPathIndex + 1];
+			
+			currentPathIndex++;
+			
+			float dist = Vector3.Distance(fromNode, toNode);
+			timeToTake = dist/speed;
+			newForward = (toNode - fromNode).normalized;
+		}
+		
+		if (timer > timeToTake) {
+			lastForward = (toNode - fromNode).normalized;
+			
+			fromNode = reversePath[currentPathIndex];
+			toNode = reversePath[currentPathIndex + 1];
+			
+			currentPathIndex++;
+			newForward = (toNode - fromNode).normalized;
+			
+			float dist = Vector3.Distance(fromNode, toNode);
+			timeToTake = dist/speed;
+			timer = 0.0f;
+		}
+		
+		if (reversePath != null && reversePath.Length > 0) {
+			rigidbody.MovePosition(Vector3.Lerp(fromNode, toNode, timer/timeToTake));
+			transform.forward = newForward;
+			timer += Time.fixedDeltaTime;
+		}
+	}
+	
+	void OnCollisionEnter(Collision c) {
+		Damagable dam = c.gameObject.GetComponent<Damagable>();
+		if (dam != null) 
+			dam.OnDamage(50.0f, gameObject.layer);
+		
+		GameState.Instance.audioSource.PlayOneShot(_damagable._destroySound);
+		Destroy(gameObject);
+	}
+	
+	void OnDestroy() {
+		_aiManager.AddMissile(-1);	
+	}
+	
+	public void OnBecameInvisible() {
+		Destroy (gameObject);
+	}
+}
+

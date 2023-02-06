@@ -1,0 +1,37 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class CoreStatus : MonoBehaviour {
+	
+	exSpriteAnimation _animation;
+	public ColliderOutline2D _outline = null;
+	
+	void Awake() {
+		_animation = GetComponent<exSpriteAnimation>();	
+		_outline = GetComponent<ColliderOutline2D>();
+	}
+
+	void OnEnable() {
+		EasyTouch.On_TouchStart += CoreTouch;
+	}
+
+	void OnDisable() {
+		EasyTouch.On_TouchStart -= CoreTouch;
+	}
+
+	void CoreTouch(Gesture gesture) {
+		if (gesture.pickObject == gameObject) {
+			Messenger.Broadcast("OnPortSelected", 3, transform.position);
+		}
+	}
+	
+	public void UpdateState(int state) {
+		if (state < _animation.animations.Count) {
+			exSpriteAnimClip clip = _animation.animations[state];
+			if (_animation != null && !_animation.IsPlaying(clip.name)) {
+				_animation.Stop();
+				_animation.Play(clip.name);
+			}
+		}
+	}
+}

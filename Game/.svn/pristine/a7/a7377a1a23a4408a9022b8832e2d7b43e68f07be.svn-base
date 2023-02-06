@@ -1,0 +1,21 @@
+using UnityEngine;
+using System.Collections;
+
+public class LaserProjectile : MonoBehaviour
+{
+	public float damageAmt = 1.0f;
+	public Transform _muzzlePoint;
+
+	protected Vector3 fireForward;
+	
+	void Awake() {
+		fireForward = transform.right;	
+	}
+	
+	public GameObject _projectilePrefab;
+	public virtual bool Fire(Vector3 inheritedVelocity) {
+
+		return false;
+	}
+}
+

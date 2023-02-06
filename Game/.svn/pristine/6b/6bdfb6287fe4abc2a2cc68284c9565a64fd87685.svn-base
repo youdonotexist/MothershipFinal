@@ -1,0 +1,12 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class DoubleHealthMinion : MonoBehaviour {
+	Damagable _damagable;
+	// Use this for initialization
+	void Awake () {
+		_damagable = GetComponent<Damagable>();
+		_damagable.MaxHealth *= 2.0f;
+		_damagable.Health = _damagable.MaxHealth;
+	}
+}

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 49051723, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: MineAnimation
+  m_EditorClassIdentifier: 
+  wrapMode: 2
+  stopAction: 0
+  length: .333333343
+  sampleRate_: 60
+  frameInfos:
+  - textureGUID: 281a5327e86594f8cb7d575c9f9dc1d9
+    length: .166666672
+    atlas: {fileID: 11400000, guid: 2b6e24108db474ec7a7ae176be220a75, type: 2}
+    index: 60
+  - textureGUID: 94c3970ef22224d00b1a881de1d44179
+    length: .166666672
+    atlas: {fileID: 11400000, guid: 2b6e24108db474ec7a7ae176be220a75, type: 2}
+    index: 61
+  eventInfos: []
+  speed: 1
+  editorPreviewSize: 256
+  editorScale: .954999983
+  editorOffset: 0
+  editorSpeed: 1
+  editorNeedRebuild: 0

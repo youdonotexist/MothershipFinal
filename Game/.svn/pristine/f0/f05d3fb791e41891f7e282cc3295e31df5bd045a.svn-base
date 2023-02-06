@@ -1,0 +1,489 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using Vectrosity;
+
+public class Port : MonoBehaviour
+{
+	public GameObject[] shipPrefabs;
+	public AudioClip _readyClip;
+	
+	Camera _gameCamera;
+	TimeKeeper _keeper;
+	
+	Path2 currentPath;
+	
+	Vector2 currentPositionScreen;
+	Vector3 currentPositionWorld;
+	
+	VectorLine currentLine = null;
+	public Material lineMaterial;
+	
+	float timeSinceLastMovement = 0.0f;
+	
+	public float timeBetweenDeploy = 3.0f;
+	public float distanceBetweenPoints = 40.0f;
+	float lastDeploy = 0.0f;
+	
+	public bool minionReady = true;
+	public bool portReady = true;
+	
+	public GameObject portWorld;
+	public GameObject portedMinion = null;
+	public Vector3 portDirection;
+
+	public Vector2 nesPortOffset;
+	public Vector2 msPortOffset;
+	public Vector2 latestPortOffset;
+
+	public bool disableOnStart = true;
+	
+	public int portNumber;
+	
+	MothershipVehicle mothership = null;
+	
+	int maxPathNodes = 18;
+	
+	public exSprite _sprite;
+	public exSpriteAnimation _animation;
+	
+	public exSpriteAnimClip prepareAnimationName;
+	public exSpriteAnimClip readyAnimationName;
+
+	//Port minion types
+	public enum MinionTypes { 
+		NORMAL_MINION,
+		SPEED_MINION,
+		SPLIT_MINION,
+		SEEKER_MINION,
+		TWOHIT_MINION,
+		COUNT
+	}
+
+	public enum MinionUpgradeType {
+		LEVEL_MINION,
+		SINGLE_USE,
+		SINGLE_LEVEL
+	}
+
+	public struct MinionTypeLevelDetail {
+		public float damage;
+		public float speed;
+		public float cost;
+		public float life;
+	}
+
+	public struct MinionTypeDetails {
+		public int index;
+		public string title;
+		public string description;
+
+		public int state;
+		public MinionTypeLevelDetail[] levels;
+		public MinionUpgradeType upgradeType;
+	}
+
+	public MinionTypeDetails[] minionTypes;
+	private int currentType = 0;
+
+	void Awake() {
+		_gameCamera = Camera.main;
+		_sprite = transform.parent.GetComponent<exSprite>();
+
+		_keeper = GameObject.Find("TimeKeeper").GetComponent<TimeKeeper>();
+		
+		GameObject go = GameObject.Find("Mothership");
+		if (go != null) {
+			mothership = go.GetComponent<MothershipVehicle>();
+		}
+		lastDeploy = timeBetweenDeploy;
+
+		minionTypes = new MinionTypeDetails[(int)MinionTypes.COUNT];
+		for (int i = 0; i < minionTypes.Length; i++) {
+			minionTypes[i] = detailsForMinionType((Port.MinionTypes)i);
+		}
+	}
+	
+	void Start() {
+		PortMinion();
+		if (disableOnStart) {
+			this.OnDisable();
+		}
+
+		if (mothership != null) {
+			Messenger.Broadcast("onPortLoadoutUpdate", portNumber, minionTypes);
+		}
+	}
+	
+	void PortMinion() {
+		if (shipPrefabs.Length == 0) return;
+
+		GameObject prefab = shipPrefabs[Random.Range(0, shipPrefabs.Length-1)];
+
+		Vector3 minionPosition = portWorld.transform.position; minionPosition.z = mothership == null ? minionPosition.z : LayerManager._2;
+		portedMinion = (GameObject) Instantiate(prefab, minionPosition, prefab.transform.rotation);
+		
+		portedMinion.transform.forward = portDirection;
+		MinionBaseVehicle vehicle = portedMinion.GetComponent<MinionBaseVehicle> ();
+		vehicle.parentPort = this;
+		vehicle.portIndex = portNumber;
+		vehicle.OnPortChange(gameObject.activeSelf);
+
+		MinionTypeDetails dets = minionTypes[currentType];
+		portedMinion.GetComponent<MinionTypeBase>().SetLevelDetails(dets.levels[dets.state]);
+		
+		if (mothership != null) {
+			portedMinion.transform.parent = mothership.transform;
+		}
+	}
+	
+	Color[] buildColorSmooth(int lines) {
+		Color[] colors = new Color[currentPath.points.Count - 1];
+		
+		for (int i = 0; i < currentPath.points.Count - 1; i++) {
+			Color white = Color.white;
+			white.a = 1.0f - ( (i+1)/((float) lines));
+			colors[i] = white;
+		}
+		
+		return colors;
+	}
+
+	public void OnUpdatePort(int type) {
+		List<GameObject> prefabs = new List<GameObject>();
+		bool gotone = false;
+		for (int i = 0; i < minionTypes.Length; i++) {
+			if (i == type) {
+				MinionTypeDetails details = minionTypes[i];
+				if (details.state + 1 >= details.levels.Length) {
+					break;
+				}
+
+				float cost = details.levels[details.state + 1].cost;
+				if (cost <= mothership.GetScrap()) {
+					minionTypes[i].state += 1;
+
+					prefabs.Add((GameObject) Resources.Load("_MinionTypes/"+i.ToString()));
+					mothership.RemoveScrap(cost);
+					currentType = i;
+					gotone = true;
+				}
+				break;
+			}
+		}
+
+		if (gotone) {
+			for (int i = 0; i < minionTypes.Length; i++) {
+				if (i != type) {
+					MinionTypeDetails details = minionTypes[i];
+					minionTypes[i].state = -1;
+				}
+			}
+
+			shipPrefabs = prefabs.ToArray();
+			if (portedMinion != null) {
+				portedMinion.GetComponent<MinionPhysicsVehicle>().CleaupAndDestroy(Vector3.zero, false);
+			}
+
+			PortMinion();
+			lastDeploy = timeBetweenDeploy;
+			UpdateAnimation();
+		}
+
+		Messenger.Broadcast("onPortLoadoutUpdate", portNumber, minionTypes);
+	}
+
+	void OnDestroy(){
+		UnsubscribeEvent();
+	}
+
+	void UnsubscribeEvent() {
+		EasyTouch.On_TouchStart -= OnTouchStartET;
+		EasyTouch.On_TouchUp -= OnTouchEndET;
+		EasyTouch.On_Drag -= OnTouchDragET;
+	}
+
+	void OnTouchStartET(Gesture gesture) {
+		if (gesture.pickObject == gameObject){
+			if (portReady && minionReady) {
+				Time.timeScale = 0.01f;
+				currentPath = gameObject.AddComponent<Path2>();
+				
+				currentPositionScreen = UICamera.lastTouchPosition;
+				currentPositionWorld = _gameCamera.ScreenToWorldPoint(new Vector3(currentPositionScreen.x, currentPositionScreen.y, _gameCamera.transform.position.z));
+				currentPositionWorld.z = mothership == null ? transform.position.z : LayerManager._3;
+				
+				currentPath.AddPoint(new TimestampPoint(currentPositionWorld, 0.0f));
+				
+				timeSinceLastMovement = 0.0f;
+				lastDeploy = 0.0f;
+			}
+		}
+	}
+
+	private void OnTouchDragET(Gesture gesture) {
+		if (currentPath) {
+			Vector2 currentTouch = UICamera.lastTouchPosition;
+			
+			if (Vector2.Distance(currentTouch, currentPositionScreen) > distanceBetweenPoints) { 
+				currentPositionScreen = UICamera.lastTouchPosition;
+				Vector3 world = _gameCamera.ScreenToWorldPoint(new Vector3(currentPositionScreen.x, currentPositionScreen.y, _gameCamera.transform.position.z));	
+				world.z = mothership == null ? transform.position.z : LayerManager._3;
+				
+				currentPath.AddPoint(new TimestampPoint(world, timeSinceLastMovement));
+				timeSinceLastMovement = 0.0f; 
+				currentPositionWorld = world;
+				
+				if (currentLine == null) {
+					currentLine = new VectorLine("Test", currentPath.GetPoints(), lineMaterial, 10.0f, LineType.Continuous);
+				}
+				
+				currentLine.Resize(currentPath.GetPoints());
+				currentLine.SetColorsSmooth(buildColorSmooth(maxPathNodes));
+				currentLine.Draw3D ();
+				
+				if (currentPath.points.Count >= maxPathNodes) {
+					EndPath();	
+				}
+			}
+		}
+	}
+
+	void OnTouchEndET(Gesture gesture) {
+		if (GameState.Instance.IsPaused() == false) {
+			EndPath ();
+		}
+	}
+
+	void EndPath() {
+		if (shipPrefabs != null && shipPrefabs.Length > 0) {
+			if (currentPath != null) {
+				if (currentPath.points.Count > 1) {
+					MinionBaseVehicle minion = portedMinion.GetComponent<MinionBaseVehicle>();
+					minion.parentPort = this;
+					minion.SetPath(currentPath);
+					
+					minionReady = false;
+					
+					minion.transform.forward = Vector3.right * -1.0f;
+					
+					portedMinion = null;
+				}
+				else {
+					lastDeploy = timeBetweenDeploy;	
+				}
+				
+				Destroy (currentPath);
+				VectorLine.Destroy(ref currentLine);
+				currentLine = null;
+				currentPath = null;
+			}
+		}
+		Time.timeScale = 1.0f;
+	}
+				
+	void Update() {
+		timeSinceLastMovement += _keeper.AnimationTime();
+		
+		if (minionReady) {
+			lastDeploy += Time.deltaTime;
+			if (lastDeploy >= timeBetweenDeploy) {
+				if (portReady == false) {
+					MasterAudio.PlaySound(_readyClip.name);
+				}
+				if (portedMinion == null) {
+					PortMinion();
+				}
+				portReady = true;
+			}
+			else {
+				portReady = false;	
+			}
+		}
+		UpdateAnimation();
+
+	}
+
+	void UpdateAnimation() {
+		if (_animation) {
+			if (!portReady) {
+				float progress = lastDeploy/timeBetweenDeploy;
+				int frame = Mathf.FloorToInt(progress * 4.0f);
+				
+				_animation.Pause();
+				_animation.SetFrame(prepareAnimationName.name, frame);
+			}
+			else {
+				if (!_animation.IsPlaying(readyAnimationName.name) || _animation.IsPaused(readyAnimationName.name)) {
+					_animation.Play (readyAnimationName.name);
+				}
+			}
+		}
+	}
+	
+	public void MinionDestroyed() {
+		minionReady = true;
+	}
+	
+	void OnDisable() {
+		if (portedMinion != null) {
+			portedMinion.collider.enabled = false;
+			MinionBaseVehicle vehicle = portedMinion.GetComponent<MinionBaseVehicle>();
+			vehicle.OnPortChange(false);
+			
+			if (currentPath) {
+				Destroy (currentPath);
+				VectorLine.Destroy(ref currentLine);
+				currentLine = null;
+				currentPath = null;
+				lastDeploy = timeBetweenDeploy;	
+				Time.timeScale = 1.0f;
+			}
+		}
+
+		if (_sprite != null) {
+			_sprite.color = Color.red;
+		}
+		
+		if (_animation != null) {
+			_animation.Stop();
+			_animation.SetFrame(prepareAnimationName.name, 5);
+		}
+
+		UnsubscribeEvent();
+	}
+	
+	void OnEnable() {
+		EasyTouch.On_TouchStart += OnTouchStartET;
+		EasyTouch.On_TouchUp += OnTouchEndET;
+		EasyTouch.On_Drag += OnTouchDragET;
+
+		if (_sprite != null) {
+			_sprite.color = Color.white;
+		}
+
+		if (portedMinion != null) {
+			portedMinion.collider.enabled = true;
+			MinionBaseVehicle vehicle = portedMinion.GetComponent<MinionBaseVehicle>();
+			vehicle.OnPortChange(true);
+		}
+	}
+	
+	void OnDrawGizmosSelected() {
+		Debug.DrawLine(transform.position, transform.position + (portDirection * 100.0f));	
+	}
+
+	MinionTypeDetails detailsForMinionType(MinionTypes type) {
+		MinionTypeDetails dets = new MinionTypeDetails();
+		dets.index = (int) type;
+
+		if (type == MinionTypes.NORMAL_MINION) {
+			dets.state = 0;
+
+			dets.levels = new MinionTypeLevelDetail[1];
+			dets.levels[0].damage = 1.0f;
+			dets.levels[0].cost = 0.0f;
+			dets.levels[0].speed = 1.0f;
+			dets.levels[0].life = 1.0f;
+
+			dets.title = "Normal";
+			dets.description = "Deals one damage to anything it collides with, then promptly dies.";
+			dets.upgradeType = Port.MinionUpgradeType.SINGLE_LEVEL;
+		}
+		else if (type == MinionTypes.SPEED_MINION) {
+			dets.state = -1;
+
+			dets.levels = new MinionTypeLevelDetail[3];
+			dets.levels[0].damage = 0.5f;
+			dets.levels[0].speed = 1.5f;
+			dets.levels[0].cost = 4.0f;
+			dets.levels[0].life = 1.0f;
+
+			dets.levels[1].damage = 0.75f;
+			dets.levels[1].speed = 2.0f;
+			dets.levels[1].cost = 4.0f;
+			dets.levels[1].life = 1.0f;
+
+			dets.levels[2].damage = 1.0f;
+			dets.levels[2].speed = 2.5f;
+			dets.levels[2].cost = 4.0f;
+			dets.levels[2].life = 1.0f;
+
+			dets.title = "Speed";
+			dets.description = "Increases travel speed of minion.";
+			dets.upgradeType = Port.MinionUpgradeType.LEVEL_MINION;
+		}
+		else if ( type == MinionTypes.SPLIT_MINION) {
+			dets.state = -1;
+
+			dets.levels = new MinionTypeLevelDetail[3];
+			dets.levels[0].damage = 0.33f;
+			dets.levels[0].cost = 4.0f;
+			dets.levels[0].speed = 1.0f;
+			dets.levels[0].life = 1.0f;
+
+			dets.levels[1].damage = 0.44f;
+			dets.levels[1].cost = 4.0f;
+			dets.levels[1].speed = 1.0f;
+			dets.levels[1].life = 1.0f;
+
+			dets.levels[2].damage = 0.55f;
+			dets.levels[2].cost = 4.0f;
+			dets.levels[2].speed = 1.0f;
+			dets.levels[2].life = 1.0f;
+
+			dets.title = "Split";
+			dets.description = "Splits into three pieces at the end of its path, destroying any projectiles they collide with.";
+			dets.upgradeType = Port.MinionUpgradeType.LEVEL_MINION;
+		}
+		else if ( type == MinionTypes.SEEKER_MINION) {
+			dets.state = -1;
+
+			dets.levels = new MinionTypeLevelDetail[3];
+			dets.levels[0].damage = 0.75f;
+			dets.levels[0].cost = 4.0f;
+			dets.levels[0].speed = 1.0f;
+			dets.levels[0].life = 1.0f;
+			
+			dets.levels[1].damage = 0.85f;
+			dets.levels[1].cost = 4.0f;
+			dets.levels[1].speed = 1.0f;
+			dets.levels[1].life = 1.0f;
+			
+			dets.levels[2].damage = 1.0f;
+			dets.levels[2].cost = 4.0f;
+			dets.levels[2].speed = 1.0f;
+			dets.levels[2].life = 1.0f;
+
+			dets.title = "Seeker";
+			dets.description = "Will redirect to destroy the closest missile or mine projectile.";
+			dets.upgradeType = Port.MinionUpgradeType.LEVEL_MINION;
+		}
+		else if (type == MinionTypes.TWOHIT_MINION) {
+			dets.state = -1;
+
+			dets.levels = new MinionTypeLevelDetail[3];
+			dets.levels[0].damage = 1.0f;
+			dets.levels[0].cost = 4.0f;
+			dets.levels[0].speed = 1.0f;
+			dets.levels[0].life = 2.0f;
+			
+			dets.levels[1].damage = 1.3f;
+			dets.levels[1].cost = 4.0f;
+			dets.levels[1].speed = 1.0f;
+			dets.levels[1].life = 2.0f;
+			
+			dets.levels[2].damage = 1.5f;
+			dets.levels[2].cost = 4.0f;
+			dets.levels[2].speed = 1.0f;
+			dets.levels[2].life = 2.0f;
+
+			dets.title = "2Hit";
+			dets.description = "Can take two hits before being destroyed.";
+			dets.upgradeType = Port.MinionUpgradeType.LEVEL_MINION;
+		}
+
+		return dets;
+	}
+}
+

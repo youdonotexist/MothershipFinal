@@ -1,0 +1,66 @@
+/*
+ * Copyright 2013 SirsiDynix.  All rights reserved.
+ */
+MONGO = require('mongodb').MongoClient;
+BSON = require('mongodb').BSONPure;
+
+var mongo = {
+	"hostname":"dharma.mongohq.com",
+	"port":10085,
+	"username":"youdonotexist",
+	"password":"OneShipVersusAnArmy",
+	"name":"",
+	"db":"mothership_me"
+}
+
+var generate_mongo_url = function(obj){
+	obj.hostname = (obj.hostname || 'localhost');
+	obj.port = (obj.port || 27017);
+	obj.db = (obj.db || 'test');
+	if(obj.username && obj.password){
+		return "mongodb://" + obj.username + ":" + encodeURIComponent(obj.password) + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;
+	}
+	else{
+		return "mongodb://" + obj.hostname + ":" + obj.port + "/" + obj.db;
+	}
+}
+
+mongourl = generate_mongo_url(mongo);
+connection = null;
+
+mongo_connect = function(callback) {
+    if (connection) {
+        callback(connection);
+        return;
+    }
+
+	MONGO.connect(mongourl, function(err, conn){
+		if (conn && !err) {
+            connection = conn;
+			callback(conn);
+		}
+		else {
+			console.log("Couldn't connect to DB: ");
+			console.log(err);
+		}
+
+	});
+}
+
+/******************************************/
+
+/*var server = new Server('dharma.mongohq.com', 10006, {auto_reconnect: true, safe: false});
+db = new Db('app16408623', server);
+
+db.open(function(err, db) {
+	if(!err) {
+		db.authenticate('youdonotexist', 'Mothership13?', function(err, result) {
+			console.log("Connected to 'mothershipdb' database");
+		});
+	}
+});*/
+
+
+
+
+

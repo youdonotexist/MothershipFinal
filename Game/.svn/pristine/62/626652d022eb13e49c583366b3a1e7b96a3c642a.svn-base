@@ -1,0 +1,36 @@
+using UnityEngine;
+using System.Collections;
+
+public class DottedLine : MonoBehaviour
+{
+	public Transform end;
+	public Material mat;
+	public Material capMat;
+	public Texture2D cap;
+	void Awake() {
+		Vector3 start = transform.position;
+		Vector3 terminate = end.position;
+		start.z -= 100.0f; terminate.z -= 100.0f;
+
+		Vectrosity.VectorLine vl = new Vectrosity.VectorLine("dotted", new Vector2[] {start, terminate}, mat, 60.0f);
+
+		Vectrosity.VectorLine.SetEndCap ("Arrow", Vectrosity.EndCap.Front, capMat, cap);
+		vl.vectorObject.layer = gameObject.layer;
+		vl.SetTextureScale(transform, 5.0f);
+		vl.endCap = "Arrow";
+		vl.Draw();
+
+		vl.vectorObject.transform.parent = transform;
+	}
+
+	void OnDestroy() {
+		Vectrosity.VectorLine.RemoveEndCap("Arrow");
+	}
+
+	void OnDrawGizmos() {
+		Gizmos.DrawSphere(transform.position, 40.0f);
+		Gizmos.DrawSphere(end.position, 40.0f);
+	}
+
+}
+

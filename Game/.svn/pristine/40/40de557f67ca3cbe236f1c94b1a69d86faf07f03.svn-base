@@ -1,0 +1,34 @@
+using UnityEngine;
+using System.Collections;
+
+public class UpgraderTreeLevel : UpgradeTree
+{
+	public UpgraderCircle _level1;
+	public UpgraderCircle _level2;
+	public UpgraderCircle _level3;
+	public UpgraderCircle _downgrade;
+
+	void Awake() {
+		upgradeCircles = new UpgraderCircle[]{_level1, _level2, _level3, _downgrade};
+	}
+
+	public override void SetSelected (int selectedTypeIndex, int selectedLevelIndex)
+	{
+		for (int i = 0; i < upgradeCircles.Length; i++) {
+			UpgraderCircle it = upgradeCircles[i];
+			it.SetSelected(it.typeContext == selectedTypeIndex && it.levelContext == selectedLevelIndex);
+		}
+	}
+
+
+	public override void SetState(PortState state) {
+		PortState.MinionTypeDetails details = state.GetCurrentTypeDetails();
+
+		for (int i = 0; i < details.levels.Length; i++) {
+			upgradeCircles[i].SetDetails(i == details.state, i > details.state + 1, ResourceManager.Instance.GetQualityString() + "-minion-" + details.title.ToLower());
+			upgradeCircles[i].typeContext = state.selectedType;
+			upgradeCircles[i].levelContext = i;
+		}
+	}
+}
+

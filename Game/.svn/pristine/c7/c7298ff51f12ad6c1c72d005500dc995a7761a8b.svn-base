@@ -1,0 +1,168 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class SplitMinion : MinionTypeBase {
+
+	public MinionPhysicsVehicle splitMinionPrefab;
+	public LayerMask seekLayers;
+	
+	float radius;
+
+	protected override void Awake() {
+		base.Awake();
+		radius = ((SphereCollider)collider).radius * 10;
+	}
+
+	GameObject mid(Vector3 inheritedVelocity) {
+		MinionPhysicsVehicle instance = Instantiate(splitMinionPrefab) as MinionPhysicsVehicle;
+		instance.transform.forward = transform.forward;
+		if (inheritedVelocity.x > 0.0f) instance.rigidbody.velocity = inheritedVelocity;
+		instance.rigidbody.velocity = transform.forward * _vehicle.maxSpeed;
+		instance.damageMultiplier = _vehicle.damageMultiplier / 3.0f;
+		
+		Vector3 pos = transform.position; pos.z = LayerManager._2;
+		instance.transform.position = pos;
+		instance.collider.enabled = true;
+		instance.launched = true;
+		instance.online = true;
+		return instance.gameObject;
+	}
+
+	GameObject angled(float angle, Vector3 inheritedVelocity) {
+		float theta = Mathf.Deg2Rad * angle;
+		Vector3 forward = transform.forward;
+		
+		float cs = Mathf.Cos(theta);
+		float sn = Mathf.Sin(theta);
+		
+		float px = forward.x * cs - forward.y * sn; 
+		float py = forward.x * sn + forward.y * cs;
+		
+		MinionPhysicsVehicle instance = Instantiate(splitMinionPrefab) as MinionPhysicsVehicle;
+		instance.transform.forward = new Vector3(px, py, 0.0f);
+		if (inheritedVelocity.x > 0.0f) instance.rigidbody.velocity = inheritedVelocity;
+		instance.rigidbody.velocity = new Vector3(px, py, 0.0f) * _vehicle.maxSpeed;
+		instance.damageMultiplier = _vehicle.damageMultiplier / 3.0f;
+		
+		Vector3 pos = transform.position; pos.z = LayerManager._2;
+		instance.transform.position = pos;
+		instance.collider.enabled = true;
+		instance.launched = true;
+		instance.online = true;
+
+		return instance.gameObject;
+	}
+
+	public override void SetLevelDetails(PortState.MinionTypeLevelDetail levelDets) {
+		levelDetails = levelDets;
+		_vehicle.damageMultiplier = levelDetails.damage * 3.0f;
+		if (onDetailsChange != null) {
+			onDetailsChange(levelDets);
+		}
+	}
+
+	public override void OnPathEnd() {
+		Vector3 inheritedVelocity = _vehicle.LastVelocity();
+		
+		//Fire Left
+		GameObject center = mid(inheritedVelocity);
+		GameObject left = angled (45.0f, inheritedVelocity);
+		GameObject right = angled (-45.0f, inheritedVelocity);
+		
+		Physics.IgnoreCollision(center.collider, left.collider);
+		Physics.IgnoreCollision(center.collider, right.collider);
+		Physics.IgnoreCollision(left.collider, right.collider);
+
+		GameObject[] objs = new GameObject[]{left, center, right};
+
+		Transform[] targets = GetTargets(new Vector3[]{left.transform.forward, center.transform.forward, right.transform.forward});
+
+		for (int i = 0; i < objs.Length; i++) {
+			objs[i].AddComponent<SeekerMinion>().SetTarget(targets[i]);
+		}
+
+		//Destroy myself
+		//TODO play a split sound
+		_vehicle.CleanupAndDestroy(transform.position, false, MinionPhysicsVehicle.DestructionType.SPLIT);
+	}
+
+	Transform[] GetTargets(Vector3[] forwards) {
+		Vector3 thisPos = transform.position;
+		//Vector3 up = transform.up;
+		Collider[] hits = Physics.OverlapSphere(thisPos, radius * 4.0f, seekLayers); 
+
+		//If we have more than three targets
+		//If we have only three targets	
+		//If we have less than three targets
+
+		//Get all potential targets
+		//Loop through, determining a zone and the closest
+
+		//List<Collider> left = new List<Collider>();
+		//List<Collider> center = new List<Collider>();
+		//List<Collider> right = new List<Collider>();
+
+		Transform[] targets = new Transform[]{null, null, null};
+
+		List<Collider> hitlists = new List<Collider>(hits);
+		hitlists.Sort(delegate(Collider o1, Collider o2) {
+			GameObject c1 = o1.gameObject,
+						c2 = o2.gameObject;
+
+			return Vector3.Distance(this.transform.position, c1.transform.position).CompareTo ((Vector3.Distance(this.transform.position, c2.transform.position)));
+			
+		});
+
+		if (hitlists.Count == 0) {
+			return targets;
+		}
+
+		for (int i = 0; i < targets.Length; i++) {
+			targets[i] = hits[i % hitlists.Count].transform;
+
+			if (i == 2) break;
+		}
+
+		/*for (int i = 0; i < hits.Length; i++) {
+			Collider c = hits[i];
+			//Vector3 dir = (c.transform.position - thisPos).normalized;
+
+			/*float dot = Vector3.Dot (forwards[1], dir);
+			if (dot > 0.7f) { //Center
+				center.Add (c);
+			}
+			else if (dot >= 0.0f) {
+				float whichSide = MathUtils.AngleDir(forwards[1], dir, up);
+				if (whichSide == -1.0f) { //Right
+					right.Add(c);
+				}
+				else if (whichSide == 1.0f) {
+					left.Add(c);
+				}
+			}*/
+		/*}
+
+		List<Collider>[] lists = new List<Collider>[]{left, center, right};
+
+		for (int i = 0; i < lists.Length; i++) {
+			List<Collider> list = lists[i];
+			float closestDistance = Mathf.Infinity;
+			int closestIndex = -1;
+			for (int j = 0; j < list.Count; j++) {
+				Collider c = list[j];
+				float d = Vector3.Distance(c.transform.position, thisPos);
+				if (d < closestDistance) {
+					closestDistance = d;
+					closestIndex = j;
+				}
+			}
+
+			if (closestIndex > -1) {
+				targets[i] = list[closestIndex].transform;
+			}
+		}*/
+
+		return targets;
+	}
+}

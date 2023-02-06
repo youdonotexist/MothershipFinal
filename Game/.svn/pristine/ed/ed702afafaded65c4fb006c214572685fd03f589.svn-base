@@ -1,0 +1,208 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class UpgraderDetails : MonoBehaviour
+{
+	UILabel _description;
+	UILabel _cost;
+	UILabel _title;
+	UILabel _upgradeAction;
+	UILabel _toLevel;
+
+	UILabel _selectedComponent;
+
+	UIButton _upgraderButton;
+
+	public UITable _statsTable;
+	public UpgraderDetailStat statPrefab;
+	UpgraderDetailStat[] stats;
+	List<UpgraderDetailStat> _cachedStatItems = new List<UpgraderDetailStat>();
+
+	// Use this for initialization
+	void Awake ()
+	{
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		for (int i = 0 ; i < labels.Length; i++) {
+			UILabel label = labels[i];
+			if (label.name == "Title") {
+				_title = label;
+			}
+			else if (label.name == "Description") {
+				_description = label;
+			}
+			else if (label.name == "Cost") {
+				_cost = label;
+			}
+			else if (label.name == "UpgradeAction") {
+				_upgradeAction = label;
+			}
+			else if (label.name == "ToLevel") {
+				_toLevel = label;
+			}
+			else if (label.name == "ComponentName") {
+				_selectedComponent = label;
+			}
+		}
+
+		_upgraderButton = GetComponentInChildren<UIButton>();
+		stats = GetComponentsInChildren<UpgraderDetailStat>();
+	}
+
+	public void SetDetails(PortState portState, int selectedTypeIndex, int selectedLevelIndex) {
+		PortState.MinionTypeDetails details = portState.details[selectedTypeIndex];
+
+		_description.text = details.description;
+		_title.text = details.title;
+		_selectedComponent.text = portState.portIndex <= 2 ? "Port " + (portState.portIndex + 1).ToString() : "Mothership";
+
+		if (details.upgradeType == PortState.MinionUpgradeType.LEVEL_MINION) {
+			DetailsForLevel(portState, selectedTypeIndex, selectedLevelIndex);
+		}
+		else if (details.upgradeType == PortState.MinionUpgradeType.SINGLE_LEVEL) {
+			DetailsForLevel(portState, selectedTypeIndex, selectedLevelIndex);
+		}
+		else {
+			DetailsForSingleUse(portState, selectedTypeIndex, selectedLevelIndex);
+		}
+
+		_statsTable.Reposition();
+	}
+
+	UpgraderDetailStat GetCachedItem() {
+		if (_cachedStatItems.Count == 0)
+			return null;
+		
+		UpgraderDetailStat item = _cachedStatItems[0];
+		_cachedStatItems.RemoveAt(0);
+		return item;
+	}
+
+	void DetailsForSingleUse(PortState port, int selectedTypeIndex, int selectedLevelIndex) {
+		PortState.MinionTypeLevelDetail currentLevel = port.details[selectedTypeIndex].levels[0];
+
+		_upgraderButton.gameObject.SetActive(true);
+		_upgradeAction.text = "Repair";
+		_cost.text = "-" + currentLevel.cost.ToString();
+		_cost.color = Color.red;
+
+		CleanupStatItems();
+
+		/*UpgraderDetailStat cached = GetCachedItem();
+		if (cached == null) {
+			cached = GameObject.Instantiate(statPrefab) as UpgraderDetailStat;
+			cached.transform.parent = _statsTable.transform;
+			cached.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+		}
+		else {
+			cached.gameObject.SetActive(true);
+		}
+
+		//cached.SetDetails("SCRAP", port.scrapCount, port.scrapCount - currentLevel.cost);*/
+	}
+
+	void DetailsForSingleLevel(PortState port, int selectedTypeIndex, int selectedLevelIndex) {
+		if (port.details[port.selectedType].state == 0) {
+			_upgraderButton.gameObject.SetActive(false);
+		}
+	}
+
+	void DetailsForLevel(PortState port, int selectedTypeIndex, int selectedLevelIndex) {
+		_upgraderButton.gameObject.SetActive(true);
+
+		PortState.MinionTypeDetails currentType = port.details[port.selectedType];
+		PortState.MinionTypeDetails selectedType = port.details[selectedTypeIndex];
+
+		PortState.MinionTypeLevelDetail currentLevel = currentType.levels[currentType.state];
+		PortState.MinionTypeLevelDetail selectedLevel = selectedType.levels[selectedLevelIndex];
+
+		//If they're the same type, show the upgrade path unless it's max
+		//If they're different types, show the difference between the two
+
+		bool sameThing = (port.selectedType == selectedTypeIndex && currentType.state == selectedLevelIndex);
+		bool levelTooHigh = (port.selectedType == selectedTypeIndex && selectedLevelIndex > currentLevel.index + 1);
+		bool downgrade = (currentType.index != 0 && selectedType.index == 0);
+		bool lessThan = (currentType.index == selectedTypeIndex) && (selectedLevelIndex < currentLevel.index);
+		bool maxLevel = (port.selectedType == selectedTypeIndex) && 
+			(currentType.state >= currentType.levels.Length - 1 || currentType.state == selectedLevelIndex);
+
+		_upgraderButton.gameObject.SetActive( !sameThing && !maxLevel && !lessThan );
+
+		if (downgrade) {
+			_cost.text = "+" + Mathf.FloorToInt(currentLevel.cost * 0.5f).ToString();
+			_cost.color = Color.green;
+		}
+		else if (sameThing || maxLevel) {
+			_cost.text = "-";
+			_cost.color = Color.grey;
+		}
+		else {
+			if (levelTooHigh) {
+				_cost.text = (selectedType.levels[selectedLevelIndex - 1].cost + selectedLevel.cost).ToString();
+				_cost.color = Color.red;
+			}
+			else {
+				_cost.text = selectedLevel.cost.ToString();
+				_cost.color = Color.red;
+			}
+		}
+		 
+		_upgradeAction.text = selectedType.index == 0 ? "Downgrade" : "Upgrade";
+		
+		CleanupStatItems();
+
+		for (int i = 0; i < 3; i++) {
+			UpgraderDetailStat cached = GetCachedItem();
+			if (cached == null) {
+				cached = GameObject.Instantiate(statPrefab) as UpgraderDetailStat;
+				cached.transform.parent = _statsTable.transform;
+				cached.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+			}
+			else {
+				cached.gameObject.SetActive(true);
+			}
+
+			cached.name = i.ToString();
+			if (i == 0) {
+				if (maxLevel && !lessThan) {
+					cached.SetDetailsMax("LIFE", currentLevel.life);
+				}
+				else {
+					cached.SetDetails("LIFE", currentLevel.life, selectedLevel.life);
+				}
+			}
+			else if (i == 1) {
+				if (maxLevel && !lessThan) {
+					cached.SetDetailsMax("DAM", currentLevel.damage);
+				}
+				else {
+					cached.SetDetails("DAM", currentLevel.damage, selectedLevel.damage);
+				}
+			}
+			else if (i == 2) {
+				if (maxLevel && !lessThan) {
+					cached.SetDetailsMax("SPEED", currentLevel.speed);
+				}
+				else {
+					cached.SetDetails("SPEED", currentLevel.speed, selectedLevel.speed);
+				}
+			}
+			/*else if (i == 3) {
+				if (!maxLevel) {
+					bool isFree = selectedLevel.cost == 0;
+					cached.SetDetails("SCRAP", port.scrapCount, 
+					                  isFree ? port.scrapCount + Mathf.FloorToInt(currentLevel.cost * 0.5f) : port.scrapCount - selectedLevel.cost);
+				}
+			}*/
+		}
+	}
+
+	void CleanupStatItems() {
+		UpgraderDetailStat[] oldItems = _statsTable.GetComponentsInChildren<UpgraderDetailStat>();
+		for (int i = 0; i < oldItems.Length; i++) {
+			oldItems[i].gameObject.SetActive(false);
+			_cachedStatItems.Add(oldItems[i]);
+		}
+	}
+}
+

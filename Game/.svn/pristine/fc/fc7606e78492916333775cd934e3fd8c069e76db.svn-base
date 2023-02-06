@@ -1,0 +1,561 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using MiniJSON;
+
+public class MissionManager : MonoBehaviour {
+	
+	public GameObject basicHeroPrefab;
+	public GameObject juggernautHeroPrefab;
+	public GameObject scientistHeroPrefab;
+	
+	string heroType = "BASIC";
+	string currentEncounterId = "";
+	
+	public GameObject healthPrefab;
+	public GameObject mothershipExplosionPrefab;
+	public GameObject mothershipWreckagePrefab;
+	
+	public GameObject offscreen;
+	public GameObject offscreenWin;
+	public GameObject offscreenLose;
+	public GameObject healthSpawn;
+	
+	public AudioClip music1prefab;
+	public AudioClip music2prefab;
+	public AudioClip winMusic;
+	public AudioClip loseMusic;
+	
+	public Texture2D defaultPortrait;
+	
+	UILabel _deathScreen;
+	UIButton _deathButton;
+	UIButton _mainMenuButton;
+	UISprite _mainMenuBackground;
+	
+	GameObject currentHeroObject;
+	MothershipVehicle _mothership;
+	
+	HeroAIManager _manager;
+	public int currentHero = 0;
+	
+	HeroConfig[] heros;
+	
+	bool quitting = false;
+	
+	float pausedTimeScale = 1.0f;
+	
+	public int MaxPathNodes = 18;
+	
+	public int HeroesLeft() {
+		return heros.Length - currentHero;	
+	}
+	
+	void Download(string encId) {
+		currentEncounterId = encId;
+		
+		Debug.Log ("http://mothership.mike-daly.com/encounter/" + encId);
+		CI.Request encounterDetailsReq = new CI.Request();
+		encounterDetailsReq.Send("http://mothership.mike-daly.com/encounter/" + encId, "get", false,  (request) => {
+			
+			if (request.requestState.isDone) {
+				IDictionary search = (IDictionary) Json.Deserialize(encounterDetailsReq.requestState.responseData.ToString());  
+			
+				if (search == null) {
+					Debug.Log ("Retrying..");
+					Download (encId);
+				}
+				else {
+			   		IList heroSet = (IList) search["heroes"];
+					heros = new HeroConfig[heroSet.Count];
+					
+					for (int i = 0; i < heroSet.Count; i++) {
+						IDictionary hero = (IDictionary) heroSet[i];
+						string name 	= hero["name"].ToString();
+						
+						IList directiveList = (IList) hero["directives"];
+						string[] directives = new string[directiveList.Count];
+						for (int j = 0; j < directiveList.Count; j++) {
+							IDictionary directive = (IDictionary) directiveList[j];
+							object o = directive["waitAfter"];
+							
+							string action =  directive["action"].ToString();;
+							string waitAfter = directive["waitAfter"].ToString();
+							directives[j] = action + " | " + waitAfter.ToString();
+						}
+						
+						heros[i] = new HeroConfig(directives, hero, name);
+					}
+					SpawnHero ();
+				}	
+			}
+		});
+	}
+	
+	void BuildLevels () {
+		TextAsset asset = (TextAsset) Resources.Load("HeroData/JuggernautHero");
+		IDictionary search = (IDictionary) Json.Deserialize(asset.text);    
+   		IList heroSet = (IList) search["heroSet"];
+		
+		heros = new HeroConfig[heroSet.Count];
+		
+		for (int i = 0; i < heroSet.Count; i++) {
+			IDictionary hero = (IDictionary) heroSet[i];
+			string name 	= hero["name"].ToString();
+			
+			IList directiveList = (IList) hero["directives"];
+			string[] directives = new string[directiveList.Count];
+			for (int j = 0; j < directiveList.Count; j++) {
+				directives[j] = directiveList[j].ToString();	
+			}
+			
+			heros[i] = new HeroConfig(directives, hero, name);
+		}	
+	}
+	
+	void OnApplicationQuit() {
+		quitting = true;	
+	}
+	
+	void Awake() {
+		Application.targetFrameRate = 60;
+		
+		_manager = GameObject.Find("_MinesAndShields").GetComponent<HeroAIManager>();	
+		_deathScreen = GameObject.Find("OutcomeLabel").GetComponent<UILabel>();
+		_deathButton = GameObject.Find("RetryButton").GetComponent<UIButton>();
+		_mainMenuButton = GameObject.Find("Menu").GetComponent<UIButton>();
+		_mainMenuBackground = GameObject.Find("MenuBackground").GetComponent<UISprite>();
+		
+		_mothership = GameObject.Find("Mothership").GetComponent<MothershipVehicle>();
+		
+		_deathScreen.gameObject.SetActive(false);
+		_deathButton.gameObject.SetActive(false);
+		_mainMenuButton.gameObject.SetActive(false);
+		_mainMenuBackground.gameObject.SetActive(false);
+
+	}
+	
+	void Start() {
+		Random.seed = (int) Time.time;
+
+		string encId = MissionDetails.Instance.GetEncounterId();
+		if (encId != null && encId.Length > 0) {
+			Download(encId);
+		}
+		else {
+			Application.LoadLevel("MainMenu");	
+		}
+	}
+	
+	public void OnHeroDie() {
+		if (quitting == false) {
+			StartCoroutine(SpawnHealthAndWait());
+		}
+	}
+	
+	public void OnMothershipDie() {
+		YouLose();
+	}
+	
+	public void RetryBattle() {
+		Time.timeScale = 1.0f;
+		Application.LoadLevel("Scene01-4_3");
+	}
+	
+	IEnumerator SpawnHealthAndWait() {
+		int N = Random.Range(1, 5);
+		
+		SphereCollider sc = (SphereCollider) healthSpawn.collider;
+		
+		
+		exSprite[] sprites = new exSprite[N];
+		
+		for (int i = 0; i < N; i++) {
+			Vector2 rand = Random.insideUnitCircle * sc.radius;
+			GameObject instance = (GameObject) Instantiate(healthPrefab, new Vector3(rand.x, rand.y, 0.0f), Quaternion.identity);
+			sprites[i] = instance.GetComponent<exSprite>();
+		}
+		
+		float aliveTime = 4.0f;
+		float elapsed = 0.0f;
+		while (elapsed < aliveTime) {
+			
+			foreach(exSprite s in sprites) {
+				if (s != null) {
+					Color c = s.color;
+					c.a = (1.0f - (elapsed/aliveTime));
+					s.color = c;
+				}
+			}
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+		
+		foreach(exSprite s in sprites) {
+			if (s != null) {
+				Destroy (s.gameObject);
+			}
+		}
+		
+		while (_manager.GetMissileCount() > 0) {
+			yield return null;	
+		}
+		
+		SpawnHero ();
+	}
+	
+	public GameObject PrefabForHeroType() {
+		if (heroType == "BASIC") {
+			return basicHeroPrefab;	
+		}
+		else if (heroType == "JUGGERNAUT") {
+			return juggernautHeroPrefab;	
+		}
+		else if (heroType == "SCIENTIST") {
+			return scientistHeroPrefab;
+		}
+		
+		return null;
+	}
+	
+	void SpawnHero() {
+		if (currentHero < heros.Length) {
+			HeroConfig config = heros[currentHero];
+			heroType = config.getString("hero_type_id");
+			currentHeroObject = (GameObject) Instantiate(PrefabForHeroType());
+			currentHeroObject.transform.position = offscreen.transform.position;
+			
+			HeroVehicle hero = currentHeroObject.GetComponent<HeroVehicle>();
+			
+			hero._config = config;
+			hero.name = config.heroName;
+			GamePlayHUD.Instance().UpdateSprite(heroType); 
+			
+			StartCoroutine(DriveOnScreen(hero));
+			StartCoroutine(LoadHeroImage(hero));
+			
+			currentHero++;
+			
+			int index = config.getInt("debris_deploy_index");
+			if (index == 1) { //TODO: Fix this so we don't look for 1
+				index = (int) (( (float)heros.Length ) * 0.5f);
+			}
+			
+			if (currentHero == index) {
+				GameObject[] gos = GameObject.FindGameObjectsWithTag("AsteroidField");	
+				foreach (GameObject go in gos) {
+					AsteroidField ast = go.GetComponent<AsteroidField>();
+					ast.deployDebris = true;
+				}
+			}
+		}
+		else if (_mothership != null) {
+			YouWin();
+		}
+	}
+	
+	void postScore() {
+		long score = long.Parse(GamePlayHUD.Instance()._heroScoreLabel.text);
+		Hashtable data = new Hashtable();
+		data.Add( "score", score.ToString() );
+		
+		StartCoroutine(PostScoreAsync(data));
+	}
+	
+	IEnumerator PostScoreAsync(Hashtable data) {
+		CI.Request theRequest = new CI.Request();	
+		
+		Debug.Log("http://mothership.mike-daly.com/score/" + currentEncounterId);
+		theRequest.POST("http://mothership.mike-daly.com/score/" + currentEncounterId, data);
+		
+		while (!theRequest.requestState.isDone) { yield return null; }
+		
+		string stringResult = theRequest.requestState.responseData.ToString();
+		Hashtable result = (Hashtable) JSON.JsonDecode(stringResult);
+		
+	    if ( result == null )
+	    {
+	        Debug.LogWarning( "Could not parse JSON response!" );
+
+		}
+		else {
+			
+			string successProperty = (string) result["status"];
+			if (successProperty == "new_low_score") {
+				GamePlayHUD.Instance().ShowNewLowScoreMessage();	
+			}
+		}
+	}
+			
+	IEnumerator LoadHeroImage(HeroVehicle hero) {
+		string url = hero._config.getString("photo_url");
+		if (url != null) {
+			WWW www = new WWW(url);
+	        yield return www;
+			
+			GameObject go = (GameObject) GameObject.Find("HeroPortrait");
+			if (go != null) {
+	        	go.renderer.material.mainTexture = www.texture;
+			}
+		}
+		else {
+			GameObject go = (GameObject) GameObject.Find("HeroPortrait");
+			if (go != null) {
+	        	go.renderer.material.mainTexture = defaultPortrait;
+			}
+		}
+	}
+	
+	void YouLose() {
+		StartCoroutine(MothershipLose());
+	}
+	
+	public void PauseMenu(bool open) {
+		if (open) {
+			pausedTimeScale = Time.timeScale;
+			Time.timeScale = 0.0f;
+			GameState.Instance.SetPaused(true);
+			
+			_deathScreen.gameObject.SetActive(true);
+			_deathButton.gameObject.SetActive(true);
+			_mainMenuButton.gameObject.SetActive(true);
+			_mainMenuBackground.gameObject.SetActive(true);
+			_deathScreen.text = "Paused";// (and it's time to enjoy interbreeding between species!) ";
+			_deathButton.GetComponentInChildren<UILabel>().text = "Restart";
+			StartCoroutine("FadeInMenuBackground", 0.2f);
+		}
+		else {
+			Time.timeScale = pausedTimeScale;
+			GameState.Instance.SetPaused(false);
+			
+			_deathScreen.gameObject.SetActive(false);
+			_deathButton.gameObject.SetActive(false);
+			_mainMenuButton.gameObject.SetActive(false);
+			_mainMenuBackground.gameObject.SetActive(false);
+			StopCoroutine("FadeInMenuBackground");			
+		}
+	}
+	
+	IEnumerator FadeInMenuBackground(float duration) {
+		float elapsed = 0.0f;
+		Color currentColor = _mainMenuBackground.color;
+		currentColor.a = 0.0f;
+		_mainMenuBackground.color = currentColor;
+		
+		while (elapsed < duration) {
+			Color c = _mainMenuBackground.color;
+			c.a = Mathf.Lerp(0.0f, 0.7f, elapsed/duration);
+			_mainMenuBackground.color = c;
+			
+			elapsed += TimeKeeper.Instance().AnimationTime();
+			yield return null;
+		}
+	}
+	
+	void YouWin() {
+		_deathScreen.gameObject.SetActive(true);
+		_deathButton.gameObject.SetActive(true);
+		_mainMenuButton.gameObject.SetActive(true);
+		_deathScreen.text = "You Win";// (and it's time to enjoy interbreeding between species!) ";
+		_deathButton.GetComponentInChildren<UILabel>().text = "Play Again";
+		
+		GameState.Instance.SetOnWin();
+		
+		long idx = MissionDetails.Instance.encounterIndex;
+		if (idx > -1) {
+			GameSaver.SetSaveState(idx + 1, true);	
+		}
+		
+		gameObject.audio.clip = winMusic;
+		gameObject.audio.Play ();
+		
+		StartCoroutine(MothershipWin());
+		
+		postScore();
+	}
+	
+	IEnumerator ExplodeMothership() {
+		float explodeDuration = 4.0f;
+		float elapsed = 0.0f;
+		float explosionCount = 20;
+		float completedExplosions = 0;
+		float metric = explodeDuration/explosionCount;
+		
+		while (elapsed < explodeDuration) {
+			if (elapsed > metric * completedExplosions) {
+				Vector3 worldPt = new Vector3(Random.Range(_mothership.collider.bounds.min.x, _mothership.collider.bounds.max.x - 30.0f),
+												Random.Range(_mothership.collider.bounds.min.y, _mothership.collider.bounds.max.y),
+												LayerManager._3_5);
+												
+				Instantiate(mothershipExplosionPrefab, worldPt, mothershipExplosionPrefab.transform.rotation);
+				completedExplosions++;
+			}
+			
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+	}
+	
+	
+	IEnumerator MothershipLose() {
+		CurtainHelper _curtainHelper = GameObject.Find("UI Root").GetComponent<CurtainHelper>();
+		
+		//STop the current hero
+		HeroVehicle veh = currentHeroObject.GetComponent<HeroVehicle>();
+		veh.OnHeroWin();
+		veh.ClearDirectives();
+		
+		//Animate three explosions on the Mothership
+		yield return StartCoroutine(ExplodeMothership());
+		
+		//Fade the screen to white
+		//yield return StartCoroutine(CameraFade.StartAlphaFadeAsync(Color.white, false, 3.0f));
+		yield return StartCoroutine(_curtainHelper.AnimateCurtainRoutine(false, Color.clear, Color.white, 3.0f, null));
+		
+		//Swap out good for destroyed mothership
+		Instantiate(mothershipWreckagePrefab, _mothership.transform.position, mothershipWreckagePrefab.transform.rotation);
+		Destroy (_mothership.gameObject);
+		
+		//Continue
+		//yield return StartCoroutine(CameraFade.StartAlphaFadeAsync(Color.white, true, 3.0f));
+		yield return StartCoroutine(_curtainHelper.AnimateCurtainRoutine(true, Color.white, Color.clear, 3.0f, null));
+		
+		
+		_deathScreen.gameObject.SetActive(true);
+		_deathButton.gameObject.SetActive(true);
+		_mainMenuButton.gameObject.SetActive(true);
+		_deathScreen.text = "You Lose";// (and your race is pretty much doomed)";
+		
+		GameState.Instance.SetOnLose();
+		
+		if (currentHeroObject != null) {
+			StartCoroutine(CurrentHeroWin());	
+		}
+		
+		gameObject.audio.clip = loseMusic;
+		gameObject.audio.Play ();
+		
+		float lastDeploy = 0.0f;
+		float waitToDeploy = 2.3f;
+		
+		for (int i = currentHero + 1; i < heros.Length; i++) {
+			while (lastDeploy < waitToDeploy) {
+				lastDeploy += Time.deltaTime;
+				yield return null;
+			}	
+			
+			lastDeploy = 0.0f;
+			StartCoroutine(SpawnHeroWin(i));
+		}
+	}
+	
+	IEnumerator CurrentHeroWin() {
+		Vector3 start = currentHeroObject.transform.position;
+		Vector3 end = offscreenLose.transform.position;
+		
+		HeroVehicle veh = currentHeroObject.GetComponent<HeroVehicle>();
+		veh.OnHeroWin();
+		veh.ClearDirectives();
+		
+		float duration = 3.0f;
+		float elapsed = 0.0f;
+		
+		while (elapsed < duration) {
+			currentHeroObject.transform.position = Vector3.Lerp (start,end, elapsed/duration);
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+		
+		_manager.SetVehicle(null);
+	}
+	
+	IEnumerator SpawnHeroWin(int index) {
+		if (index < heros.Length) {
+			HeroConfig config = heros[index];
+			GameObject go = (GameObject) Instantiate(PrefabForHeroType());
+			go.transform.position = offscreen.transform.position;
+			HeroVehicle hero = go.GetComponent<HeroVehicle>();
+			
+			hero.name = config.heroName;
+			
+			Vector3 start = go.transform.position;
+			Vector3 end = offscreenLose.transform.position;
+			
+			float duration = 3.0f;
+			float elapsed = 0.0f;
+			
+			while (elapsed < duration) {
+				go.transform.position = Vector3.Lerp (start,end, elapsed/duration);
+				elapsed += Time.deltaTime;
+				yield return null;
+			} 
+		}
+	}
+	
+	IEnumerator MothershipWin() {
+		GameObject mothership = GameObject.Find("Mothership");	
+		MothershipVehicle veh = mothership.GetComponent<MothershipVehicle>();
+		veh.EnablePorts(false, MothershipVehicle.PortState.OFF);
+		
+		Deployable[] leftOvers = (Deployable[]) GameObject.FindObjectsOfType(typeof(Deployable));
+		foreach (Deployable left in leftOvers) {
+			Destroy (left.gameObject);	
+		}
+		
+		Vector3 end = offscreenWin.transform.position;
+		Vector3 start = mothership.transform.position;
+		float moveTime = 6.0f;
+		float currentTime = 0.0f;
+		
+		while (currentTime < moveTime) {
+			mothership.transform.position = Vector3.Lerp (start, end, currentTime/moveTime);
+			currentTime += Time.deltaTime;
+			yield return null;	
+		}
+	}
+	
+	IEnumerator DriveOnScreen(HeroVehicle hero) {
+		float duration = 4.0f;
+		float currentDuration = 0.0f;
+		Vector3 start = offscreen.transform.position;
+		Vector3 end = _manager.MiddleHeroNode().transform.position;
+		
+		hero.audio.loop = true;
+		hero.audio.clip = hero._spawnClip;
+		hero.audio.Play();
+		
+		_mothership.EnablePorts(false, MothershipVehicle.PortState.WAITING);
+		
+		while (currentDuration < duration) {
+			if (hero != null) {
+				hero.rigidbody.MovePosition(Vector3.Lerp(start, end, currentDuration/duration));
+			}
+			currentDuration += Time.deltaTime;
+			
+			yield return null;
+		}
+		
+		_mothership.EnablePorts(true, MothershipVehicle.PortState.ON);
+		
+		_manager.SetVehicle(hero);
+		if (currentHero-1 == 0) {
+			gameObject.audio.clip = music1prefab;
+			gameObject.audio.loop = true;
+			gameObject.audio.Play ();
+		}
+		else if (currentHero == 6) {
+			gameObject.audio.clip = music2prefab;
+			gameObject.audio.loop = true;
+			gameObject.audio.Play();
+		}
+		
+		if (hero != null) {
+			hero.audio.Stop();
+			hero.audio.loop = false;
+			hero.audio.clip = null;
+			
+			hero.rigidbody.MovePosition(end);
+			hero.OnHeroReady();
+		}
+	}
+}

@@ -1,0 +1,24 @@
+using UnityEngine;
+using System.Collections;
+
+public class MinionBaseVehicle : Vehicle
+{
+	public GameObject explosionPrefab;
+	public AudioClip _launchEffect;
+	public AudioClip _flyEffect;
+	
+	public Path path;
+	public Port parentPort;
+	public float maxSpeed = 2000.0f;
+	
+	public bool FollowPath = false;
+	public bool useSmoothPath = false;
+	// Use this for initialization
+	
+	public virtual void SetPath(Path p) {}
+	public virtual void StopFollowPath() {}
+	public virtual void OnBecameInvisible() {}
+	public virtual void OnPortChange(bool enabled) {}
+	public virtual void SetLaseredState() {}
+}
+

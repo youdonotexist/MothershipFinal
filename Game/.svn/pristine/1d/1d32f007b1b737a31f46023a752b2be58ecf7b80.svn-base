@@ -1,0 +1,98 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class UpgraderTreeRepair : UpgradeTree
+{
+	public UpgraderCircle circlePrefab;
+
+	private UIGrid _grid;
+	private List<UpgraderCircle> _cachedCircles = new List<UpgraderCircle>();
+
+	private float mothershipHealth;
+	private float maxMothershipHealth;
+
+
+	void Awake() {
+		_grid = GetComponentInChildren<UIGrid>();
+	}
+
+	void Start() {
+		Messenger.AddListener("OnMothershipHealthChange", new Callback<float, float>(OnHealthChange));
+	}
+
+	public override void SetSelected (int selectedTypeIndex, int selectedLevelIndex)
+	{
+		for (int i = 0; i < upgradeCircles.Length; i++) {
+			UpgraderCircle it = upgradeCircles[i];
+			it.SetSelected(it.typeContext == selectedTypeIndex && it.levelContext == selectedLevelIndex);
+		}
+	}
+	
+	
+	public override void SetState(PortState state) {
+		DestroyOldCircles();
+
+		for (int i = 0; i < state.details.Length; i++) {
+			PortState.MinionTypeDetails details = state.details[i];
+			UpgraderCircle c = GetCached();
+			if (c == null) {
+				c = GameObject.Instantiate(circlePrefab) as UpgraderCircle;
+				c.transform.parent = _grid.transform;
+				c.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+			}
+
+			c.gameObject.SetActive(true);
+
+			string damLevel = CalculateCoreLevel(mothershipHealth, maxMothershipHealth);
+			string spriteName = "mothership-core-" + damLevel + "-f1";
+
+			c.SetDetails(i == details.state, false, spriteName);
+			c.typeContext = state.selectedType;
+			c.levelContext = i;
+		}
+
+		_grid.Reposition();
+	}
+
+	UpgraderCircle GetCached() {
+		if (_cachedCircles.Count > 0) {
+			UpgraderCircle c = _cachedCircles[0];
+			_cachedCircles.RemoveAt(0);
+			return c;
+		}
+
+		return null;
+	}
+
+	void DestroyOldCircles() {
+		UpgraderCircle[] usedCircles = _grid.GetComponentsInChildren<UpgraderCircle>();
+		for (int i = 0; i < usedCircles.Length; i++) {
+			_cachedCircles.Add(usedCircles[i]);
+			usedCircles[i].gameObject.SetActive(false);
+		}
+	}
+
+	void OnHealthChange(float currentHealth, float maxHealth) {
+		mothershipHealth = currentHealth;
+		maxMothershipHealth = maxHealth;
+	}
+
+	string CalculateCoreLevel(float currentHealth, float maxHealth) {
+		float health = currentHealth / maxHealth;
+		int anim = Mathf.Max (Mathf.CeilToInt(health * 4.0f) - 1, 0);
+		if (anim == 0) {
+			return "fine";
+		}
+		else if (anim == 1) {
+			return "caution";
+		}
+		else if (anim == 2) {
+			return "danger";
+		}
+		else {
+			return "critical";
+		}
+	}
+}
+

@@ -1,0 +1,4 @@
+cd www
+sencha app build testing
+cd ..
+af update

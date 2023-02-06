@@ -1,0 +1,79 @@
+using UnityEngine;
+using System.Collections;
+
+public class Damagable : MonoBehaviour
+{
+	public float currentHealth = 200.0f;
+	public float maxHealth;
+	
+	public LayerMask damageLayers;
+	
+	public AudioClip _destroySound;
+	
+	public enum COLLISION_TYPE {
+		DAMAGE,
+		REFLECT,
+		DISABLE,
+		SHIP,
+		MINION
+	}
+	
+	public COLLISION_TYPE collisionType = COLLISION_TYPE.DAMAGE;
+	
+	void Awake() {
+		currentHealth = maxHealth;	
+	}
+
+	public Callback<float> DamageCallback = null;
+	public Callback<float> HealCallback = null;
+	
+	public virtual void OnDamage(float amount, int layer) {
+		if (LayerMaskHelper.IsInLayerMask(layer, damageLayers)) {
+			currentHealth -= amount;
+			if (currentHealth <= 0.0f) {
+				MasterAudio.PlaySound(_destroySound.name);
+			}
+			
+			if (gameObject.layer == LayerMask.NameToLayer("Mothership")) {
+				GamePlayHUD.Instance().AddToScore(amount * 100.0f);
+			}
+
+			if (DamageCallback != null) {
+				DamageCallback(amount);
+			}
+		}
+	}
+	
+	public void OnHeal(float amount) {
+		currentHealth += amount;
+		currentHealth = Mathf.Min(currentHealth, maxHealth);
+
+		if (HealCallback != null) {
+			HealCallback(amount);
+		}
+	}
+	
+	public void SetMaxHealth(float max) {
+		maxHealth = max;
+		currentHealth = maxHealth;
+	}
+	
+	public float Health {
+		set{ currentHealth = value;}
+		get{ return currentHealth; }
+	}
+	
+	public float MaxHealth {
+		set { maxHealth = value; }
+		get { return maxHealth; } 
+	}
+	
+	public float HealthPercentage {
+		get { return currentHealth/maxHealth; }
+	}
+
+	public virtual bool IsHitCount() {
+		return false;
+	}
+}
+

@@ -1,0 +1,213 @@
+using UnityEngine;
+using System.Collections;
+
+public class GamePlayHUD : MonoBehaviour
+{
+	public GameObject _heroHealthContainer;
+	
+	public UISprite _heroPortrait;
+	public UILabel _heroNameLabel;
+	public UILabel _heroLivesLabel;
+	public UISprite _heroLifeSprite;
+	public UISprite _curtain;
+
+	public UISprite _heroHealthBar;
+	public UISprite _heroHealthBarBg;
+	float heroLastHealth = 0.0f;
+	float heroColorRevertTime = 1.0f;
+	float heroColorRevertElapsed = 0.0f;
+	Color heroHealthStartColor;
+	Color heroHealthEffectColor;
+	
+	public UILabel _newLowScoreMessage;
+
+	public UISprite _mothershipHealthBar;
+	float mothershipLastHealth = 0.0f;
+	float mothershipColorRevertTime = 1.0f;
+	float mothershipColorRevertElapsed = 0.0f;
+	float mothershipHealthStartWidth = 0.0f;
+	Color mothershipHealthStartColor;
+	Color mothershipHealthEffectColor;
+	
+	public UILabel _heroScoreLabel;
+	private CurtainHelper _curtainHelper;
+
+	public UIPanel _gameplayHudPanel;
+	
+	float score = 0.0f;
+	
+	static GamePlayHUD _Instance;
+	public static GamePlayHUD Instance() {
+		if (_Instance == null) {
+			_Instance = GameObject.Find("GameplayPanel").GetComponent<GamePlayHUD>();	
+		}
+		
+		return _Instance;
+	}
+
+	void Awake() {
+		mothershipHealthStartWidth = _mothershipHealthBar.width;
+		mothershipHealthStartColor = _mothershipHealthBar.color;
+		heroHealthStartColor = _heroHealthBar.color;
+		
+		_curtainHelper = GameObject.Find("UI Root").GetComponentInChildren<CurtainHelper>();
+
+		Messenger.AddListener("OnMothershipHealthChange", new Callback<float, float>(SetMothershipHealth));
+		Messenger.AddListener("OnHeroHealthCountChange", new Callback<float, float, bool>(SetHeroHealthCount));
+		Messenger.AddListener("OnNewHero", new Callback<string, int>(SetNewHero));
+
+	}
+	
+	void Start() {
+		_curtainHelper.AnimateCurtain(true, Color.black, Color.clear, 0.5f, null);
+		_newLowScoreMessage.gameObject.SetActive(false);
+	}
+	
+	void Update() {
+		_mothershipHealthBar.color = Color.Lerp(mothershipHealthEffectColor, mothershipHealthStartColor, mothershipColorRevertElapsed/mothershipColorRevertTime);
+		_heroHealthBar.color = Color.Lerp(heroHealthEffectColor, heroHealthStartColor, heroColorRevertElapsed/heroColorRevertTime);
+		
+		mothershipColorRevertElapsed += Time.deltaTime;
+		heroColorRevertElapsed += Time.deltaTime;
+	}
+	
+	
+	public void SetNewHero(string name, int heroesLeft) {
+		_heroNameLabel.text = name;
+		_heroLivesLabel.text = "x" + heroesLeft.ToString();
+	}
+	
+	public void SetHeroHealthCount(float val, float maxHealth, bool setup) {
+		float health = val;
+		if (val < heroLastHealth) {
+			_heroHealthBar.color = Color.red;
+			heroHealthEffectColor = Color.red;
+			heroColorRevertElapsed = 0.0f;
+		}
+		heroLastHealth = val;
+
+		if (val <= 0.0f) {
+			_heroHealthBar.enabled = false;
+		}
+		else {
+			_heroHealthBar.width = Mathf.FloorToInt(health * _heroHealthBar.atlas.GetSprite(_heroHealthBar.spriteName).width);
+			_heroHealthBar.enabled = true;
+		}
+		 
+		if (setup) {
+			_heroHealthBarBg.width = _heroHealthBar.width;
+		}
+	}
+	
+	public void SetMothershipHealth(float currentHealth, float maxHealth) {
+		if (currentHealth > mothershipLastHealth) {
+			_mothershipHealthBar.color = Color.blue;
+			mothershipHealthEffectColor = Color.blue;
+			mothershipColorRevertElapsed = 0.0f;
+		}
+		else if (currentHealth < mothershipLastHealth) {
+			_mothershipHealthBar.color = Color.red;
+			mothershipHealthEffectColor = Color.red;
+			mothershipColorRevertElapsed = 0.0f;
+		}
+		mothershipLastHealth = currentHealth;
+		_mothershipHealthBar.width = Mathf.FloorToInt(currentHealth * mothershipHealthStartWidth);
+	}
+	
+	public void UpdateSprite(string type) {
+		if (type == "BASIC") {
+			_heroLifeSprite.spriteName = "symbol-hero2";
+		}
+		else if (type == "JUGGERNAUT") {
+			_heroLifeSprite.spriteName = "symbol-jugg2";
+		}
+		else if (type == "SCIENTIST") {
+			_heroLifeSprite.spriteName = "symbol-sci2";	
+		}
+		
+	}
+	
+	public void AddToScore(float s) {
+		score += s;
+		_heroScoreLabel.text = score.ToString("00000000");//string.Format("{0:000000}", ((int)score).ToString());
+	}
+	
+	public void ShowNewLowScoreMessage() {
+		_newLowScoreMessage.gameObject.SetActive(true);
+		_newLowScoreMessage.text = "New Low Score:\n" + score.ToString("00000000");
+	}
+
+	public void SetPortraitTexture(UIAtlas atlas, string spriteName) {
+		if (atlas == null || atlas.GetSprite(spriteName) == null) {
+			//Hide the Hero portrait
+			_heroPortrait.gameObject.SetActive(false);
+			
+			//Move the HeroHealth and HeroName back
+			Vector3 namePos = _heroNameLabel.transform.localPosition;
+			Vector3 healthPos = _heroHealthContainer.transform.localPosition;
+			
+			namePos.x = 2.0f;
+			healthPos.x = 0.0f;
+			
+			_heroNameLabel.transform.localPosition = namePos;
+			_heroHealthContainer.transform.localPosition = healthPos;
+		}
+		else {
+			_heroPortrait.gameObject.SetActive(true);
+			_heroPortrait.atlas = atlas;
+			_heroPortrait.spriteName = spriteName;
+			_heroPortrait.color = Color.black;
+			
+			//Move the HeroHealth and HeroName back
+			Vector3 namePos = _heroNameLabel.transform.localPosition;
+			Vector3 healthPos = _heroHealthContainer.transform.localPosition;
+
+			//Bounds b = _heroPortrait.CalculateBounds();
+			namePos.x = 15.0f + (_heroPortrait.width * _heroPortrait.transform.lossyScale.x * 0.5f);
+			healthPos.x = 10.0f + (_heroPortrait.width * _heroPortrait.transform.lossyScale.x * 0.5f);
+			
+			_heroNameLabel.transform.localPosition = namePos;
+			_heroHealthContainer.transform.localPosition = healthPos;
+		}
+	}
+
+	public void SetPortraitTexture(Texture2D texture) {
+		if (texture == null) {
+			//Hide the Hero portrait
+			_heroPortrait.gameObject.SetActive(false);
+
+			//Move the HeroHealth and HeroName back
+			Vector3 namePos = _heroNameLabel.transform.localPosition;
+			Vector3 healthPos = _heroHealthContainer.transform.localPosition;
+
+			namePos.x = 2.0f;
+			healthPos.x = 0.0f;
+
+			_heroNameLabel.transform.localPosition = namePos;
+			_heroHealthContainer.transform.localPosition = healthPos;
+
+		}
+		else {
+			_heroPortrait.gameObject.SetActive(true);
+			_heroPortrait.material.mainTexture = texture;
+
+			//Move the HeroHealth and HeroName back
+			Vector3 namePos = _heroNameLabel.transform.localPosition;
+			Vector3 healthPos = _heroHealthContainer.transform.localPosition;
+			
+			namePos.x = 5.0f + (_heroPortrait.renderer.bounds.size.x * 0.5f);
+			healthPos.x = (_heroPortrait.renderer.bounds.size.x * 0.5f);
+			
+			_heroNameLabel.transform.localPosition = namePos;
+			_heroHealthContainer.transform.localPosition = healthPos;
+		}
+	}
+
+	void OnDestroy() {
+		Messenger.RemoveListener("OnMothershipHealthChange", new Callback<float, float>(SetMothershipHealth));
+		Messenger.RemoveListener("OnHeroHealthCountChange", new Callback<float, float, bool>(SetHeroHealthCount));
+		Messenger.RemoveListener("OnNewHero", new Callback<string, int>(SetNewHero));
+	}
+	
+}
+

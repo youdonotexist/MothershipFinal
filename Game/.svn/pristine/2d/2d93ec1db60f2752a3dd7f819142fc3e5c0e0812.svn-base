@@ -1,0 +1,24 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class DoubleHealthMinion : MinionTypeBase {
+	DamagableHitCount _damagable;
+	exSprite _sprite;
+
+	protected override void Awake() {
+		base.Awake ();
+		_damagable = GetComponent<DamagableHitCount>();
+		_damagable.MaxHealth *= 2.0f;
+		_damagable.Health = _damagable.MaxHealth;
+		_damagable.DamageCallback = OnDamage;
+
+		_sprite = GetComponentInChildren<exSprite>();
+	}
+
+	void OnDamage(float damage) {
+		if (_damagable.hitsRemaining == 1) {
+			int index =  _sprite.atlas.GetIndexByName(ResourceManager.Instance.GetQualityString() + "-minion-1hit");
+			_sprite.SetSprite(_sprite.atlas, index);
+		}
+	}	
+}

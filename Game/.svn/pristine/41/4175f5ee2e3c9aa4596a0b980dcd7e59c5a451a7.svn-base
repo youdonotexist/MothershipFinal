@@ -1,0 +1,136 @@
+using UnityEngine;
+using System.Collections;
+
+public class MothershipVehicle : Vehicle
+{
+	public Port[] ports;
+	
+	GamePlayHUD _gameHUD;
+	Damagable _damagable;
+	CoreStatus _coreStatus;
+	
+	public enum PortState {
+		WAITING,
+		DISABLED,
+		OFF,
+		ON
+	};
+	
+	public PortState portState;
+	public bool isDestroyed = false;
+
+	public Vector2 nesColliderOffset;
+	public GameObject[] damageObjects;
+	int damagePanelCount = 0;
+	
+	void Awake() {
+		_gameHUD = GameObject.Find("GameplayHUD").GetComponent<GamePlayHUD>();
+		_damagable = GetComponent<Damagable>();
+		_coreStatus = GetComponentInChildren<CoreStatus>();
+		
+		portState = PortState.OFF;
+		
+		Vector3 pos = transform.position;
+		pos.z = LayerManager._1;
+		transform.position = pos;
+
+		if (MissionDetails.Instance.encounterType == "BASIC") {
+			Vector3 center = ((CapsuleCollider) collider).center;
+			center.x = nesColliderOffset.x;
+			((CapsuleCollider) collider).center = center;
+		}
+	}
+
+	// Use this for initialization
+	void Start ()
+	{
+		if (_gameHUD != null) {
+			_gameHUD.SetMothershipHealth(_damagable.Health/_damagable.MaxHealth);
+		}
+
+		ConstructDamagePanels();
+	}
+	
+	// Update is called once per frame
+	void Update ()
+	{
+		if (isDestroyed) return;
+		
+		if (_gameHUD != null)
+			_gameHUD.SetMothershipHealth(_damagable.Health/_damagable.MaxHealth);
+		
+		if (_damagable.Health <= 0.0f && isDestroyed == false) {
+			MissionManager mission = GameObject.Find("_MissionManager").GetComponent<MissionManager>();
+			mission.OnMothershipDie();
+			
+			//Destroy(gameObject);
+			Destroy (ports[0]);
+			Destroy (ports[1]);
+			Destroy (ports[2]);
+			
+			isDestroyed = true;
+		}
+		
+		
+		float health = _damagable.currentHealth / _damagable.maxHealth;
+		int anim = Mathf.Max (Mathf.CeilToInt(health * 4.0f) - 1, 0);
+		_coreStatus.UpdateState(anim);
+
+		UpdateDamagePanels(health);
+	}
+
+	void ConstructDamagePanels() {
+		damagePanelCount = 7;
+		if (MissionDetails.Instance.encounterType == "BASIC") {
+			damagePanelCount = 4;
+		}
+		else if (MissionDetails.Instance.encounterType == "JUGGERNAUT") {
+			damagePanelCount = 6;
+		}
+
+		for (int i = damagePanelCount; i < damageObjects.Length; i++) {
+			Destroy(damageObjects[i]);
+		}
+	}
+
+	void UpdateDamagePanels(float healthPercentage) {
+		int level = Mathf.FloorToInt((1.0f - healthPercentage) * damageObjects.Length);
+		for (int i = 0; i < damageObjects.Length; i++) {
+			GameObject damObject = damageObjects[i];
+			if (damObject != null) {
+				if (i < level) {
+					damObject.SetActive(true);
+				}
+				else {
+					damObject.SetActive(false);
+				}
+			}
+		}
+	}
+	
+	public void EnablePorts(bool enable, PortState state) {
+		ports[0].gameObject.SetActive(enable);
+		ports[1].gameObject.SetActive(enable);
+		ports[2].gameObject.SetActive(enable);
+		
+		portState = state;
+		
+		if (state == PortState.DISABLED) {
+			StopCoroutine("WaitForDisable");
+			StartCoroutine("WaitForDisable", 3.0f);
+		}
+	}
+				
+	IEnumerator WaitForDisable(float wait) {
+		float elapsed = 0.0f;
+		while (elapsed < wait) {
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+		
+		if (portState == PortState.DISABLED) {
+			EnablePorts(true, PortState.ON);	
+		}
+	}
+}
+

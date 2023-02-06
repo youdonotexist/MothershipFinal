@@ -1,0 +1,108 @@
+using UnityEngine;
+using System.Collections;
+using MiniJSON;
+
+public class EncounterItem : MonoBehaviour
+{
+	public UILabel _title;
+	public UILabel _details;
+	public UISprite _shipSprite;
+	public UISprite _background;
+	public UILabel _highScore;
+	
+	public GameObject basicDetails;
+	public GameObject juggernautDetails;
+	public GameObject scientistDetails;
+	
+	// Use this for initialization
+	void Awake ()
+	{
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		foreach (UILabel label in labels) {
+			if (label.name == "Title") {
+				_title = label;	
+			}
+			else if (label.name == "Details") {
+				_details = label;	
+			}
+			else if (label.name == "HighScore") {
+				_highScore = label;	
+			}
+		}
+		
+		UISprite[] sprites = GetComponentsInChildren<UISprite>();
+		foreach (UISprite sprite in sprites) {
+			if (sprite.name == "Ship") {
+				_shipSprite = sprite;
+			}
+			else if (sprite.name.Contains("nes_background")) {
+				_background = sprite;
+				sprite.color = new Color(Random.value, Random.value, Random.value, 1.0f);	
+			}
+		}
+	}
+	
+	public void PrepareForReuse() {
+		basicDetails.SetActive(false);
+		juggernautDetails.SetActive(false);
+		scientistDetails.SetActive(false);
+		
+		transform.parent = null;
+	}
+	
+	public void UpdateData(string name, string type, string backstory) {
+		_title.text = name;
+		_shipSprite.spriteName = TypeToSprite(type);
+		_details.text = backstory;
+		
+		GameObject weaponDetails = TypeToDetails(type);
+		if (weaponDetails != null) {
+			weaponDetails.SetActive(true);	
+		}
+	}
+	
+	public IEnumerator LoadHighScore(string encounterId) {
+		CI.Request highScoreReq = new CI.Request();
+		highScoreReq.GET ("http://mothership.mike-daly.com/score/"+encounterId );
+		
+		while (!highScoreReq.requestState.isDone) {yield return null;}
+
+		IList scoreList = (IList) Json.Deserialize(highScoreReq.requestState.responseData.ToString());  
+		
+		if (scoreList != null) {
+			if (scoreList.Count > 0) {
+				IDictionary scoreData = (IDictionary) scoreList[0];
+				_highScore.text = (string) scoreData["score"];
+			}
+		}
+	}
+	
+	string TypeToSprite(string type) {
+		if (type == "JUGGERNAUT"){
+			return "jugg3-5-1-f1";
+		}
+		else if (type == "BASIC") {
+			return "Hero6-5-1-f1";
+		}
+		else if (type == "SCIENTIST") {
+			return "mayfl2-5-1-f1";
+		}
+		
+		return "";
+	}
+	
+	GameObject TypeToDetails(string type) {
+		if (type == "JUGGERNAUT"){
+			return juggernautDetails;
+		}
+		else if (type == "BASIC") {
+			return basicDetails;
+		}
+		else if (type == "SCIENTIST") {
+			return scientistDetails;
+		}
+		
+		return null;	
+	}
+}
+

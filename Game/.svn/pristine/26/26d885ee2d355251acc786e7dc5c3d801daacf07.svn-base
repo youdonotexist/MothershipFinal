@@ -1,0 +1,174 @@
+using UnityEngine;
+using System.Collections;
+
+public class StoryManager : MonoBehaviour
+{
+	UILabel _dialogLabel;
+	UILabel _heroLabel;
+	UILabel _continueLabel;
+
+	//TODO: Set portrait
+	UISprite _leaderPortrait;
+
+	UIPanel _thisPanel;
+
+	CurtainHelper _curtainHelper;
+
+	bool readyToContinue = false;
+	int messagesToProcess = 0;
+
+	bool continuePressed = false;
+
+	public delegate void OnContinueDelegate();
+	public OnContinueDelegate onContinue;
+
+	struct StoryMessage {
+		public UILabel label;
+		public string message;
+		public bool repeat;
+
+		public StoryMessage(UILabel l, string m, bool r) {
+			label = l;
+			message = m;
+			repeat = r;
+		}
+	}
+
+	private static StoryManager _Instance;
+	public static StoryManager Instance() {
+		if (_Instance == null) {
+			_Instance = GameObject.Find("StoryPanel").GetComponent<StoryManager>();	
+		}
+		
+		return _Instance;
+	}
+
+	public void ReturnToMenu() {
+		_curtainHelper.AnimateCurtain(false, Color.clear, Color.black, 0.5f, LoadMainMenu);
+	}
+
+	public void LoadMainMenu() {
+		Application.LoadLevel("MainMenu");
+	}
+
+	void Awake() {
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		UISprite[] sprites = GetComponentsInChildren<UISprite>();
+		for (int i = 0; i < labels.Length; i++) {
+			UILabel label = labels[i];
+			if (label.name == "HeroNameLabel") {
+				_heroLabel = label;
+			}
+			else if (label.name == "DialogLabel") {
+				_dialogLabel = label;
+			}
+			else if (label.name == "ContinueLabel") {
+				_continueLabel = label;
+			}
+		}
+
+		for (int i = 0; i < sprites.Length; i++) {
+			UISprite sprite = sprites[i];
+			if (sprite.name == "HeroPortraitSprite") {
+				_leaderPortrait = sprite;
+			}
+		}
+
+		_thisPanel = GetComponent<UIPanel>();
+		_curtainHelper = GameObject.Find("UI Root").GetComponentInChildren<CurtainHelper>();
+	}
+
+	public void SetReadyToContinue(bool cont) {
+		readyToContinue = cont;
+	}
+
+	public void OnContinueTapped() {
+		if (readyToContinue && !continuePressed) {
+			continuePressed = true;
+			StopCoroutine("TypewriterSingle");
+			StopCoroutine("TypewriterRepeat");
+			StartCoroutine(FadeOutStory());
+		}
+	}
+
+	public void SetStoryTeller(string name) {
+		_heroLabel.text = name;
+	}
+
+	public void SetHeroMessage(string message, bool typewriter) {
+		StopCoroutine("TypewriterSingle");
+		StartCoroutine("TypewriterSingle", new StoryMessage(_dialogLabel, message, false)); 
+	}
+
+	public void SetForwardMessage(string message, bool typewriter, bool repeat) {
+		StopCoroutine("TypewriterRepeat");
+		StartCoroutine("TypewriterRepeat", new StoryMessage(_continueLabel, message, repeat));
+	}
+
+	IEnumerator TypewriterRepeat(StoryMessage messageStruct) {
+		float elapsed = 0.0f, duration = 0.1f;
+		int index = 0;
+		bool repeat = true;
+
+		if (!messageStruct.repeat) {
+			messageStruct.label.text = messageStruct.message;
+		}
+		else {
+			while (repeat) {
+				if (elapsed >= duration) {
+					messageStruct.label.text = messageStruct.message.Substring(0, index++);
+					elapsed = 0.0f;
+				}
+				else {
+					elapsed += Time.deltaTime;
+				}
+
+				if (index > messageStruct.message.Length) {
+					index = 0;
+					elapsed = 0.0f;
+				}
+
+				yield return null;
+			}
+		}
+	}
+
+	IEnumerator TypewriterSingle(StoryMessage messageStruct) {
+		float elapsed = 0.0f, duration = 0.05f;
+		int index = 0;
+
+		if (messageStruct.message != null) {
+			//string[] splitMessage = messageStruct.message.Split('|');
+
+			while (index <= messageStruct.message.Length) {
+				if (elapsed >= duration) {
+					messageStruct.label.text = messageStruct.message.Substring(0, index++);
+					elapsed = 0.0f;
+				}
+				else {
+					elapsed += Time.deltaTime;
+				}
+
+				yield return null;
+			}
+		}
+	}
+
+	IEnumerator FadeOutStory() {
+		float elapsed = 0.0f, duration = 1.0f;
+
+		while (elapsed < duration) {
+			_thisPanel.alpha = 1.0f - elapsed/duration;
+			elapsed += Time.deltaTime;
+
+			yield return null;
+		}
+
+		_thisPanel.alpha = 0.0f;
+		_thisPanel.enabled = false;
+		gameObject.SetActive(false);
+
+		onContinue();
+	}
+}
+

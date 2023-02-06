@@ -1,0 +1,13 @@
+using UnityEngine;
+using System.Collections;
+
+public class PostEncounterView : MonoBehaviour
+{
+	public virtual void OnWillAppear() {}
+	public virtual void OnWillDisappear() {}
+
+	public virtual void OnDidAppear() {}
+	public virtual void OnDidDisappear() {}
+
+}
+

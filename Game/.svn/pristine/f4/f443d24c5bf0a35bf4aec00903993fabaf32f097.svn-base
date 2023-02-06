@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 49051723, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: ChargeLaserCharging
+  m_EditorClassIdentifier: 
+  wrapMode: 2
+  stopAction: 0
+  length: .5
+  sampleRate_: 60
+  frameInfos:
+  - textureGUID: b71fc2742e066493389b5904b06b13eb
+    length: .166666672
+    atlas: {fileID: 11400000, guid: fe2f677463027488cb1c9ea83cec2b1a, type: 2}
+    index: 70
+  - textureGUID: cf3309777564d440a9890dfda2b07cdc
+    length: .166666672
+    atlas: {fileID: 11400000, guid: fe2f677463027488cb1c9ea83cec2b1a, type: 2}
+    index: 71
+  - textureGUID: bfca98f0265364c718214043b5b96321
+    length: .166666672
+    atlas: {fileID: 11400000, guid: fe2f677463027488cb1c9ea83cec2b1a, type: 2}
+    index: 72
+  eventInfos: []
+  speed: 2
+  editorPreviewSize: 256
+  editorScale: .888493717
+  editorOffset: 0
+  editorSpeed: 2
+  editorNeedRebuild: 0

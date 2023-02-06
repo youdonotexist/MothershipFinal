@@ -1,0 +1,18 @@
+{
+  "name": "mothership-editor",
+  "version": "0.0.1-2",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "",
+    "jade": "",
+    "aws-sdk": "",
+    "node-uuid":""
+  },
+  "subdomain": "Mothership-Editor",
+  "engines": {
+    "node": "0.8.x"
+  }
+}

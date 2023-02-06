@@ -1,0 +1,11 @@
+using UnityEngine;
+using System.Collections;
+
+public class LaserProjectile : MonoBehaviour
+{
+	public float damageAmt = 1.0f;
+	
+	public GameObject _projectilePrefab;
+	public virtual bool Fire(Vector3 inheritedVelocity) {return false;}
+}
+

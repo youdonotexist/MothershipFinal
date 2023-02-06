@@ -1,0 +1,18 @@
+using UnityEngine;
+using System.Collections;
+
+public class LoadingButton : MonoBehaviour
+{
+	MainMenuEncounterSelect mmes;
+	void Start() {
+		mmes = GameObject.Find("EncounterMenu").GetComponent<MainMenuEncounterSelect>();	
+	}
+	
+	void OnClick() {
+		UISlicedSprite sp = gameObject.GetComponentInChildren<UISlicedSprite>();
+		if (sp.spriteName == "refresh")
+			mmes.DownloadEncounters();
+	}
+	
+}
+

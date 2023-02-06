@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{6F824ECF-F2BC-827E-A29D-FB10759A3283}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-UnityScript-firstpass</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Standard Assets\Scripts\Camera Scripts\MouseOrbit.js" />
+     <Compile Include="Assets\Standard Assets\Scripts\Camera Scripts\SmoothFollow.js" />
+     <Compile Include="Assets\Standard Assets\Scripts\Camera Scripts\SmoothLookAt.js" />
+     <Compile Include="Assets\Standard Assets\Scripts\General Scripts\DragRigidbody.js" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
+     <None Include="Assets\NGUI\ReadMe - 3.0.8.txt" />
+     <None Include="Assets\_Core\_Textures\_Fonts\Denmark.txt" />
+     <None Include="Assets\ex2D\Core\Shaders\SpriteBlendSpecial.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 2.shader" />
+     <None Include="Assets\HueShiftShader\Shader\HueShift.shader" />
+     <None Include="Assets\NGUI\Examples\Models\Orc\Orc Skin.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
+     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
+     <None Include="Assets\ex2D\Core\Shaders\SpriteBlendClipping.shader" />
+     <None Include="Assets\ex2D\Core\Shaders\SpriteBlendPixelPerfect.shader" />
+     <None Include="Assets\_Core\_Textures\_Fonts\SNES2Font.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text (SoftClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (TextureClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (TextureClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 2.shader" />
+     <None Include="Assets\HueShiftShader\Shader\SpriteHueShift.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Dynamic Font (AlphaClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
+     <None Include="Assets\ThreadHelper\readme.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 3.shader" />
+     <None Include="Assets\EasyTouch\Readme_first.txt" />
+     <None Include="Assets\IndieEffects\ShaderDir\ColorBalance.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
+     <None Include="Assets\IndieEffects\AA Shaders\FXAA3Console.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (AlphaClip) .shader" />
+     <None Include="Assets\_Core\_Textures\_Fonts\NESFont.txt" />
+     <None Include="Assets\_Core\_Textures\_Fonts\xevious.txt" />
+     <None Include="Assets\IndieEffects\ShaderDir\DOFShader - BoxBlur.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Desaturated (SoftClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (TextureClip).shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (AlphaClip).shader" />
+     <None Include="Assets\IndieEffects\ShaderDir\FisheyeShader.shader" />
+     <None Include="Assets\_Core\_Shaders\HealthShader.shader" />
+     <None Include="Assets\_Core\_Textures\_Fonts\FuturaGlyph.txt" />
+     <None Include="Assets\IndieEffects\ShaderDir\_Depth.shader" />
+     <None Include="Assets\IndieEffects\ShaderDir\Outline.shader" />
+     <None Include="Assets\_Core\_Textures\_Fonts\NesFont2.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (AlphaClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text (AlphaClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
+     <None Include="Assets\IndieEffects\ShaderDir\BlurShader - Simple.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 2.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Dynamic Font (SoftClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Desaturated.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 3.shader" />
+     <None Include="Assets\IndieEffects\ShaderDir\_DepthNormals.shader" />
+     <None Include="Assets\DarkTonic\MasterAudio\ReleaseNotes.txt" />
+     <None Include="Assets\IndieEffects\AA Shaders\FXAA2.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
+     <None Include="Assets\IndieEffects\ShaderDir\StarBloom.shader" />
+     <None Include="Assets\IndieEffects\AA Shaders\FXAAPreset2.shader" />
+     <None Include="Assets\ex2D\Resources\Fonts\Source\hiragino_kaku_12.fnt" />
+     <None Include="Assets\_Core\_Textures\_Fonts\8bitFont.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (SoftClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (SoftClip).shader" />
+     <None Include="Assets\IndieEffects\ShaderDir\_Depth_Corrected.shader" />
+     <None Include="Assets\ex2D\Resources\Fonts\Source\hiragino_kaku_15.fnt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored.shader" />
+     <None Include="Assets\IndieEffects\ShaderDir\SSAOTest.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Dynamic Font.shader" />
+     <None Include="Assets\NGUI\ReadMe - 3.0.6 f7.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored.shader" />
+     <None Include="Assets\Resources\HeroData\BasicHero.txt" />
+     <None Include="Assets\IndieEffects\ShaderDir\Vignette.shader" />
+     <None Include="Assets\NGUI\Examples\Other\English.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text.shader" />
+     <None Include="Assets\IndieEffects\ShaderDir\MotionBlurAlphaBlended.shader" />
+     <None Include="Assets\NGUI\Examples\Other\French.txt" />
+     <None Include="Assets\HueShiftShader\License.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed).shader" />
+     <None Include="Assets\Resources\HeroData\JuggernautHero.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
+     <None Include="Assets\IndieEffects\AA Shaders\FXAAPreset3.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored Desaturated.shader" />
+     <None Include="Assets\IndieEffects\AA Shaders\SSAA.shader" />
+     <None Include="Assets\IndieEffects\ShaderDir\negative.shader" />
+     <None Include="Assets\IndieEffects\ShaderDir\DOFShader.shader" />
+     <None Include="Assets\HueShiftShader\Shader\InvisibleShadowCaster.shader" />
+     <None Include="Assets\IndieEffects\ShaderDir\BloomShader.shader" />
+     <None Include="Assets\ex2D\Core\Shaders\SpriteBlendNoZTest.shader" />
+     <None Include="Assets\ex2D\Core\Shaders\SpriteBlend.shader" />
+     <None Include="Assets\_Core\_Textures\_Fonts\MSFont.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Additive Colored.shader" />
+     <None Include="Assets\_Core\_Shaders\ActiveRadarScan.shader" />
+     <None Include="Assets\IndieEffects\ShaderDir\IndieRadialBlur.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
+     <None Include="Assets\NGUI\Examples\Shaders\Refractive.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text (TextureClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
+     <None Include="Assets\IndieEffects\ShaderDir\BlurShader - Gaussian.shader" />
+     <None Include="Assets\IndieEffects\ShaderDir\GodRays.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (SoftClip).shader" />
+     <None Include="Assets\IndieEffects\AA Shaders\DLAA.shader" />
+     <None Include="Assets\IndieEffects\AA Shaders\NFAA.shader" />
+     <None Include="Assets\_Core\_Textures\_Fonts\SNESFont.txt" />
+     <None Include="Assets\NGUI\Examples\Models\Orc Armor\Orc Armor.shader" />
+     <None Include="Assets\NGUI\Examples\Resources\Localization.txt" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="Ionic.Zlib">
+ <HintPath>/Users/mdaly/Desktop/GameDev/Mothership/Game/Assets/_Core/_Scripts/_Utils/_HttpLibrary/external/Ionic.Zlib.dll</HintPath>
+ </Reference>
+ <Reference Include="ex2D.Runtime">
+ <HintPath>/Users/mdaly/Desktop/GameDev/Mothership/Game/Assets/ex2D/Core/ex2D.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="I18N">
+ <HintPath>/Users/mdaly/Desktop/GameDev/Mothership/Game/Assets/Plugins/I18N.dll</HintPath>
+ </Reference>
+ <Reference Include="I18N.West">
+ <HintPath>/Users/mdaly/Desktop/GameDev/Mothership/Game/Assets/Plugins/I18N.West.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>

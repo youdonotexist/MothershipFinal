@@ -1,0 +1,132 @@
+{
+	"heroList": [
+		{
+			"name": "Hero Jacob",
+			"maxMines": 0,
+			"maxShields": 0,
+			"moveSpeed": 300,
+			"missiles": false,
+			"attackMissile": false,
+			"directives": []
+		},
+		{
+			"name": "Hero Stryker",
+			"maxMines": 0,
+			"maxShields": 0,
+			"moveSpeed": 300,
+			"missiles": false,
+			"attackMissile": false,
+			"directives": ["MOVE | 4"]
+		},
+		{
+			"name": "Hero Jimmy",
+			"maxMines": 1,
+			"maxShields": 0,
+			"moveSpeed": 300,
+			"missiles": true,
+			"attackMissile": false,
+			"directives": [
+				"FIRE MISSILE | 2",
+				"MOVE | 4"
+			]
+		},
+		{
+			"name": "Hero Audra",
+			"maxMines": 1,
+			"maxShields": 0,
+			"moveSpeed": 300,
+			"missiles": true,
+			"attackMissile": false,
+			"directives": [
+				"FIRE MISSILE | 2",
+				"MOVE | 4",
+				"DEPLOY MINE | 3"
+			]
+		},
+		{
+			"name": "Hero Kristi",
+			"maxMines": 2,
+			"maxShields": 1,
+			"moveSpeed": 300,
+			"missiles": true,
+			"attackMissile": false,
+			"directives": [
+				"FIRE MISSILE | 2",
+				"MOVE | 4",
+				"DEPLOY MINE | 3"
+			]
+		},
+		{
+			"name": "Hero Ashley",
+			"maxMines": 2,
+			"maxShields": 2,
+			"moveSpeed": 300,
+			"missiles": true,
+			"attackMissile": false,
+			"directives": [
+				"FIRE MISSILE | 2",
+				"MOVE | 4",
+				"DEPLOY SHIELD | 3",
+				"DEPLOY MINE | 2"
+			]
+		},
+		{
+			"name": "Hero Tom",
+			"maxMines": 3,
+			"maxShields": 2,
+			"moveSpeed": 400,
+			"missiles": true,
+			"attackMissile": false,
+			"directives": [
+				"FIRE MISSILE | 2",
+				"MOVE | 4",
+				"DEPLOY SHIELD | 3",
+				"DEPLOY MINE | 2"
+			]
+		},
+		{
+			"name": "Hero Dan",
+			"maxMines": 4,
+			"maxShields": 4,
+			"moveSpeed": 400,
+			"missiles": true,
+			"attackMissile": false,
+			"directives": [
+				"FIRE MISSILE | 1",
+				"MOVE | 2",
+				"DEPLOY SHIELD | 3",
+				"DEPLOY MINE | 2"
+			]
+		},
+		{
+			"name": "Hero Greyson",
+			"maxMines": 6,
+			"maxShields": 4,
+			"moveSpeed": 400,
+			"missiles": true,
+			"attackMissile": true,
+			"directives": [
+				"FIRE MISSILE | 1",
+				"MOVE | 2",
+				"DEPLOY SHIELD | 1",
+				"DEPLOY MINE | 1"
+			]
+		},
+		{
+			"name": "Hero Goat",
+			"maxMines": 8,
+			"maxShields": 4,
+			"moveSpeed": 400,
+			"missiles": true,
+			"attackMissile": true,
+			"directives": [
+				"FIRE MISSILE | 1",
+				"MOVE | 1",
+				"FIRE MISSILE | 1",
+				"DEPLOY SHIELD | 1",
+				"FIRE MISSILE | 1",
+				"DEPLOY MINE | 1"
+			]
+		}
+	]
+}

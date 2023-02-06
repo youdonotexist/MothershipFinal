@@ -1,0 +1,273 @@
+using UnityEngine;
+using System.Collections;
+using MiniJSON;
+
+public class EncounterItem : MonoBehaviour
+{
+	public GameObject cover;
+	public GameObject additional;
+
+	//Cached Components
+	public UILabel _title;
+	public UILabel _details;
+	public UISprite _shipSprite;
+	public UISprite _background;
+	public UILabel _highScore;
+	public UILabel _play;
+	public UISprite _locked;
+
+	public UISprite[] portraits;
+
+	private UIPanel _additionalPanel;
+	private Transform _rootTransform;
+	private Transform _coverTransform;
+
+	public string type = "";
+	
+	public GameObject basicDetails;
+	public GameObject juggernautDetails;
+	public GameObject scientistDetails;
+
+	bool flipping = false;
+	bool frontFacing = true;
+	bool additionalMode = false;
+
+	static Material sharedMaterial = null;
+
+	// Use this for initialization
+	void Awake ()
+	{
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		foreach (UILabel label in labels) {
+			if (label.name == "Title") {
+				_title = label;	
+			}
+			else if (label.name == "Details") {
+				_details = label;	
+			}
+			else if (label.name == "HighScore") {
+				_highScore = label;	
+			}
+		}
+		
+		UISprite[] sprites = GetComponentsInChildren<UISprite>();
+		foreach (UISprite sprite in sprites) {
+			if (sprite.name == "Ship") {
+				_shipSprite = sprite;
+			}
+			else if (sprite.name.Contains("nes_background")) {
+				_background = sprite;
+			}
+		}
+
+		if (additional != null) 
+			_additionalPanel = additional.GetComponent<UIPanel>();
+
+		_rootTransform = transform;
+	}
+
+	void Start() {
+		if (additional != null) {
+			//additional.SetActive(false);
+			//_additionalPanel.alpha = 0.0f;
+		}
+
+		if (cover != null) {
+			_coverTransform = cover.transform;
+		}
+	}
+	
+	public void PrepareForReuse() {
+		gameObject.name = "[pooled]";
+		
+		//transform.parent = null;
+	}
+	
+	public void UpdateData(string name, string type, string backstory, IList heroes, Hashtable saveData) {
+		_title.text = name.ToUpper();
+		_details.text = backstory;
+		
+		UpdateForType(type);
+
+		if (portraits != null && portraits.Length > 0) {
+			UIAtlas portAtlas = BundleManager.Instance.PortraitAtlas();
+			for (int i = 0; i < portraits.Length; i++) {
+				UISprite port = portraits[i];
+				if (i >= heroes.Count) {
+					port.atlas = null;
+					port.spriteName = "";
+				}
+				else {
+					string heroId = (string) heroes[i];
+					UISpriteData atSprite = portAtlas.GetSprite(heroId);
+					if (atSprite != null) {
+						port.atlas = portAtlas;
+						port.spriteName = heroId;
+					}
+					else {
+						port.atlas = _locked.atlas;
+						port.spriteName = "button";
+					}
+
+					bool beatHero = PlayerPrefs.GetString("hero_" + heroId).Length > 0;
+					port.color = beatHero ? Color.black : Color.white;
+
+				}
+			}
+		}
+		
+		if (saveData != null) { 
+			bool enabled = (bool) saveData["enabled"];
+			_play.text = enabled ? "GO!" : "";
+				_locked.enabled = !enabled;
+			_play.transform.parent.GetComponent<UIButton>().enabled = enabled;
+		}
+	}
+	
+	public void LoadHighScore(string encounterId) {
+		CI.Request highScoreReq = new CI.Request();
+		highScoreReq.Send (MissionManager.BaseUrl + "/score/"+encounterId, "get", true, (request) => {
+			IList scoreList = (IList) Json.Deserialize(highScoreReq.requestState.responseData.ToString());  
+		
+			if (scoreList != null) {
+				if (scoreList.Count > 0) {
+					IDictionary scoreData = (IDictionary) scoreList[0];
+					_highScore.text = (string) scoreData["score"];
+				}
+			}	
+		});	
+	}
+	
+	float CR(float val) {
+		return val/255.0f;	
+	}
+	
+	void UpdateForType(string type) {
+		this.type = type;
+		if (type == "BASIC") {
+			//_shipSprite.spriteName = "hero1-7-1-f1";
+			//_background.color = new Color(CR (118.0f), CR (144.0f), CR (31.0f));
+			//scientistDetails.SetActive(false);
+			//juggernautDetails.SetActive(false);
+			//basicDetails.SetActive(true);
+		}
+		else if (type == "JUGGERNAUT"){
+			//_shipSprite.spriteName = "jugg3-5-1-f1";
+			//_background.color = new Color(CR (203.0f), CR (93.0f), CR (60.0f));
+			//juggernautDetails.SetActive(true);
+			//basicDetails.SetActive(false);
+			//scientistDetails.SetActive(false);
+		}
+		else if (type == "SCIENTIST") {
+			//_shipSprite.spriteName = "mayfl2-5-1-f1";
+			//_background.color = new Color(CR (15.0f), CR (129.0f), CR (143.0f));
+			//scientistDetails.SetActive(true);
+			//juggernautDetails.SetActive(false);
+			//basicDetails.SetActive(false);
+		}
+		else {
+			//_shipSprite.enabled = false;
+			//scientistDetails.SetActive(false);
+			//juggernautDetails.SetActive(false);
+			//basicDetails.SetActive(false);	
+		}
+	}
+
+	public void OnCoverClick() {
+		if (!flipping) {
+			StartCoroutine("Flip", frontFacing);
+		}
+	}
+
+	public void OnClick() {
+		if (additionalMode) {
+			if (!flipping) {
+				StartCoroutine("Flip", true);
+			}
+		}
+	}
+
+	public void ShowAdditionalPanel() {
+		if (additional != null && gameObject.activeSelf) {
+			StopCoroutine("AdditionalTransition");
+			//Debug.Log ("Showing additional transition");
+			//StartCoroutine("AdditionalTransition", true);
+		}
+	}
+
+	public void HideAdditionalPanel() {
+		if (additional != null && gameObject.activeSelf) {
+			StopCoroutine("Flip");
+			StartCoroutine("Flip", false);
+			//StopCoroutine("AdditionalTransition");
+			//StartCoroutine("AdditionalTransition", false);
+		}
+	}
+
+	IEnumerator AdditionalTransition(bool show) {
+		Vector3 start 	= _rootTransform.localPosition;
+		Vector3 end 	= new Vector3(start.x, start.y, start.z - (show ? 20.0f : -20.0f));
+
+		//Vector3 startRot = _coverTransform.eulerAngles;
+		//Vector3 endRot = new Vector3(startRot.x, frontFacing ? 180.0f : 0.0f, startRot.z);
+
+		float 	duration 	= 1.0f, 
+				elapsed 	= 0.0f,
+				alphaStart 	= 0.0f,//_additionalPanel.alpha,
+				alphaEnd 	= show ? 1.0f : 0.0f;
+		
+		//Take the current rotation ([340 -> 40], [140 -> 220])
+		//Subtract if from the desired state (0 = front, 180 = back
+
+
+		if (show) {
+			//additional.SetActive(true);
+		}
+
+		//flipping = true;
+
+		while (elapsed < duration) {
+			float ratio = elapsed/duration;
+			_rootTransform.localPosition 	= Vector3.Lerp (start, end, ratio);
+			_additionalPanel.alpha 			= Mathf.Lerp(alphaStart, alphaEnd, ratio);
+			//_coverTransform.eulerAngles 	= Vector3.Lerp(startRot, endRot, ratio);
+
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+
+		additionalMode = show;
+		if (!show) {
+			//additional.SetActive(false);
+		}
+		_additionalPanel.alpha = alphaEnd;
+		_rootTransform.localPosition = end;
+		//_coverTransform.eulerAngles = endRot;
+		
+		//flipping = false;
+		//frontFacing = !show;
+	}
+
+	IEnumerator Flip (bool front) {
+		flipping = true;
+		float duration = 1.0f, elapsed = 0.0f;
+		Vector3 startRot = _coverTransform.eulerAngles;
+		
+		//Take the current rotation ([340 -> 40], [140 -> 220])
+		//Subtract if from the desired state (0 = front, 180 = back)
+		
+		float end = front ? 180.0f : 0.0f;
+		Vector3 endRot = new Vector3(startRot.x, end, startRot.z);
+		
+		while (elapsed < duration) {
+			_coverTransform.eulerAngles = Vector3.Lerp(startRot, endRot, elapsed/duration);
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+
+		_coverTransform.eulerAngles = endRot;
+		flipping = false;
+		frontFacing = !front;
+	}
+}
+

@@ -1,0 +1,71 @@
+using UnityEngine;
+using System.Collections;
+
+public class MainMenu : MonoBehaviour
+{
+	GameObject heroShip = null;
+	UIImageButton loadingIcon = null;
+	UISprite loadingSprite = null;
+	
+	GameObject encounterSelect = null;
+	
+	void OnClick() {
+		Application.LoadLevel("Scene01-4_3");	
+	}
+	
+	void Awake() {
+		Application.targetFrameRate = 60;
+		heroShip = GameObject.Find("HeroNew");	
+		encounterSelect = GameObject.Find("EncounterSelect");
+		
+		GameObject loadingIconGO = GameObject.Find("LoadingIcon");
+		if (loadingIconGO != null) {
+			loadingIcon = loadingIconGO.GetComponent<UIImageButton>();
+			loadingSprite = loadingIconGO.GetComponentInChildren<UISprite>();
+		
+			encounterSelect.SetActive(false);
+		}
+	}
+	
+	void Update() {
+		if (encounterSelect != null) {
+			if (heroShip == null) {
+				encounterSelect.SetActive(true);
+			}
+			
+			if (loadingSprite.spriteName == "loading") {
+					Vector3 ang = loadingIcon.transform.eulerAngles;
+					ang.z -= 200.0f * Time.deltaTime;
+					loadingIcon.transform.eulerAngles = ang;
+			}
+			else {
+				Vector3 ang = loadingIcon.transform.eulerAngles;
+				ang.z = 0.0f;
+				loadingIcon.transform.eulerAngles = ang;	
+			}
+		}
+	}
+	
+	public void SetLoading() {
+		loadingIcon.normalSprite = "loading";
+		loadingIcon.hoverSprite = "loading";
+		loadingIcon.pressedSprite = "loading";
+		loadingSprite.spriteName = "loading";
+	}
+	
+	public void FinishLoading() {
+		loadingIcon.normalSprite = "refresh";
+		loadingIcon.hoverSprite = "refresh";
+		loadingIcon.pressedSprite = "refresh";
+		loadingSprite.spriteName = "refresh";
+	}
+	
+	public void ShowEncounterSelect() {
+		
+	}
+	
+	public void HideEncounterSelect() {
+		
+	}
+}
+

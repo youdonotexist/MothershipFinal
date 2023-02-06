@@ -1,0 +1,26 @@
+using UnityEngine;
+using System.Collections;
+
+public class CenterDoubleShot : LaserProjectile
+{
+	public GameObject _muzzlePoint = null;
+	
+	public override bool Fire(Vector3 inheritedVelocity) {
+		bool blocked = false;//Physics.Raycast(transform.position, transform.forward, Mathf.Infinity, LayerMaskHelper.OnlyIncluding(LayerMask.NameToLayer("HeroShield")));
+		if (_projectilePrefab != null && blocked == false) {
+			GameObject instance = (GameObject) Instantiate(_projectilePrefab);
+			instance.transform.forward = this.fireForward;
+			if (inheritedVelocity.x > 0.0f) instance.rigidbody.velocity = new Vector3(inheritedVelocity.x, 0.0f, 0.0f);
+			instance.rigidbody.constantForce.force = (this.fireForward * 0.0001f);
+			instance.transform.parent = transform;
+			
+			Vector3 pos = _muzzlePoint.transform.position; pos.z = LayerManager._4;
+			instance.transform.position = pos;
+			
+			return true;
+		}
+		
+		return false;
+	}
+}
+

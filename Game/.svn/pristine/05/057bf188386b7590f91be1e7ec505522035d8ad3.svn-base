@@ -1,0 +1,19 @@
+using UnityEngine;
+using System.Collections;
+
+public class InGameMenu : MonoBehaviour
+{
+
+	void OnClick() {
+		GameObject current = UICamera.currentTouch.current;
+		
+		if (current.name == "Menu") {
+			Application.LoadLevel("MainMenu");
+		}
+		else if (current.name == "RetryButton") {
+			Application.LoadLevel("Scene01-4_3");		
+		}
+		
+	}
+}
+

@@ -1,0 +1,46 @@
+﻿using UnityEngine;
+using System.Collections;
+
+	public class UpgradeMenuItem : MonoBehaviour {
+	UILabel _title;
+	UILabel _state;
+	UISprite _icon;
+
+	Port.MinionTypeDetails cachedDetails;
+	// Use this for initialization
+	void Awake () {
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		for (int i = 0 ; i < labels.Length; i++) {
+			UILabel label = labels[i];
+			if (label.name == "Title") {
+				_title = label;
+			}
+			else if (label.name == "State") {
+				_state = label;
+			}
+		}
+
+		UISprite[] sprites = GetComponentsInChildren<UISprite>();
+		for (int i = 0 ; i < sprites.Length; i++) {
+			UISprite sprite = sprites[i];
+			if (sprite.name == "Icon") {
+				_icon = sprite;
+			}
+		}
+	}
+
+	public void SetDetails(Port.MinionTypeDetails details) {
+		cachedDetails = details;
+
+		_title.text = details.title;
+		_state.text = details.state >= 0 ? "Lvl " + details.state : "";
+
+		_icon.spriteName = ResourceManager.Instance.GetQualityString() + "-minion-" + details.title.ToLower();
+
+		_title.color = cachedDetails.state >= 0 ? Color.black : Color.blue;
+	}
+
+	public Port.MinionTypeDetails GetDetails() {
+		return cachedDetails;
+	}
+}

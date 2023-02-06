@@ -1,0 +1,14 @@
+/*
+ * Copyright 2013 SirsiDynix.  All rights reserved.
+ */
+exports.getAllByHeroType = function(req, res) {
+	mongo_connect(function(db) {
+		var id = req.query["hero_type_id"];
+
+		db.collection('directivetype', function(err, collection) {
+			collection.find({'hero_type_id':id}).toArray(function(err, items) {
+				res.send(items);
+			});
+		});
+	});
+};

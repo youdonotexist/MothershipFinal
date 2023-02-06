@@ -1,0 +1,113 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class EncounterSummary : PostEncounterView {
+
+	UITable _summaryTable;
+
+	public UISprite _portrait;
+	public UISprite _status;
+	public UILabel _name;
+	public UILabel _message;
+
+	public GameObject skipButton;
+	public GameObject upgradeButton;
+
+	public AudioClip typeWriter;
+	public AudioClip deadHit;
+
+	string name = "";
+	string status = "";
+	string message = "";
+
+	void Awake() {
+		_summaryTable = GetComponentInChildren<UITable>();
+	}
+
+	public void SetSummary(MissionManager.PostBattleMessage battleMessage) {
+		_portrait.spriteName = battleMessage.heroSpriteName;
+		name = battleMessage.heroName;
+		message = battleMessage.heroObit;
+
+		_name.text = "";
+		_message.text = "";
+
+	}
+
+	public override void OnWillAppear() {
+		_portrait.enabled = false;
+		_message.enabled = false;
+		_name.enabled = false;
+		_status.enabled = false;
+	}
+
+	public override void OnDidAppear() {
+		_name.enabled = true;
+		_message.enabled = true;
+
+		StartCoroutine(DoSummaryBang());
+	}
+
+	IEnumerator DoSummaryBang() {
+		yield return StartCoroutine(NGUIEffects.TypewriterSingle(_name, name, 0.05f, typeWriter));
+		yield return StartCoroutine(PortraitFlip());
+		yield return StartCoroutine(DeadStamp());
+		yield return StartCoroutine(NGUIEffects.TypewriterSingle(_message, message, 0.01f, typeWriter));
+	}
+
+	IEnumerator DeadStamp() {
+		Vector3 endScale = _status.transform.localScale;
+		Vector3 endRotation = _status.transform.localRotation.eulerAngles;endRotation.z -= 15.0f;
+		float duration = 0.3f, elapsed = 0.0f;
+
+		Vector3 startScale = new Vector3(endScale.x + 2.0f, endScale.y + 2.0f, endScale.z + 2.0f);
+		Vector3 startRotation = new Vector3(endRotation.x, endRotation.y, endRotation.z += 15.0f);
+
+		_status.enabled = true;
+
+		while (elapsed < duration) {
+			Quaternion q = _status.transform.localRotation;
+			q.eulerAngles = Vector3.Lerp(startRotation, endRotation, elapsed/duration);
+			_status.transform.localRotation = q;
+
+			_status.transform.localScale = Vector3.Lerp(startScale, endScale, elapsed/duration);
+			
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+
+		_status.transform.localScale = endScale;
+		Quaternion eq = _status.transform.localRotation;
+		eq.eulerAngles = endRotation;
+		_status.transform.localRotation = eq;
+		MasterAudio.PlaySound(deadHit.name);
+	}
+
+	IEnumerator PortraitFlip() {
+		Vector3 endPos = _portrait.transform.localPosition; //TODO: Use local
+		Vector3 endRotation = _portrait.transform.rotation.eulerAngles;
+		float duration = 0.7f, elapsed = 0.0f;
+
+		Vector3 startPos = new Vector3(endPos.x - 300.0f, endPos.y, endPos.z);
+		Vector3 startRotation = new Vector3(endRotation.x, endRotation.y, endRotation.z - 720.0f);
+
+		_portrait.transform.localPosition = startPos;
+		_portrait.enabled = true;
+
+		while (elapsed < duration) {
+			_portrait.transform.localPosition = Vector3.Lerp(startPos, endPos, elapsed/duration);
+			Quaternion q = _portrait.transform.rotation;
+			q.eulerAngles = Vector3.Lerp(startRotation, endRotation, elapsed/duration);
+			_portrait.transform.rotation = q;
+
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+
+		_portrait.transform.localPosition = endPos;
+	}
+
+	IEnumerator FadeInButtons() {
+		yield return false;
+	}
+}

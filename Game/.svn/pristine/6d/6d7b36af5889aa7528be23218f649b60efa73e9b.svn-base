@@ -1,0 +1,25 @@
+using UnityEngine;
+using System.Collections;
+
+public class HeroConfig
+{
+	public string[] directives;
+	public int maximumMines;
+	public int maximumShields;
+	public float movementSpeed;
+	public string heroName;
+	public bool hasMissiles;
+	public bool shootsMissileOnAttack;
+	
+	public HeroConfig (string[] rules, int maxMines, int maxShields, float moveSpeed, bool missiles, bool attackMissiles, string name) {
+		directives = rules;
+		maximumMines = maxMines;
+		maximumShields = maxShields;
+		movementSpeed = moveSpeed;
+		heroName = name;
+		hasMissiles = missiles;
+		shootsMissileOnAttack = attackMissiles;
+	}
+	
+}
+

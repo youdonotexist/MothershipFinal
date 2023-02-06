@@ -1,0 +1,26 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class TextureSwitcher : MonoBehaviour {
+	
+	public Texture2D nesTexture;
+	public Texture2D latestTexture;
+	
+	void OnEnable() {
+		if (MissionDetails.Instance.encounterType == "BASIC") {
+			OnTextureQualityChange("nes");
+		}
+		else if (MissionDetails.Instance.encounterType == "MIXED") {
+			OnTextureQualityChange("latest");
+		}
+	}
+
+	void OnTextureQualityChange(string qualityType) {
+		if ("nes".Equals(qualityType)) {
+			renderer.material.SetTexture("_MainTex", nesTexture);
+		}
+		else if ("latest".Equals(qualityType)) {
+			renderer.material.SetTexture("_MainTex", latestTexture);
+		}
+	}
+}

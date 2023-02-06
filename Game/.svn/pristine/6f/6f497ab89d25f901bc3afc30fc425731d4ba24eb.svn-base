@@ -1,0 +1,38 @@
+using UnityEngine;
+using UnityEditor;
+using System.Collections;
+
+public class SwitchQuality : ScriptableObject
+{
+	[MenuItem("Edit/Mothership/Quality/NES")]
+	static public void NESQuality () {
+		Switch ("nes");
+		EditorApplication.SaveScene();
+	}
+
+	[MenuItem("Edit/Mothership/Quality/MS")]
+	static public void MSQuality () {
+		Switch ("ms");
+	}
+	
+	[MenuItem("Edit/Mothership/Quality/SNES")]
+	static public void SNESQuality () {
+		Switch ("snes");
+	}
+
+	static public void Switch(string type) {
+		if (ResourceManager.Instance == null) return; //Fuck this shit
+		ResourceManager.Instance.LoadAtlases();
+		SpriteSwitcher[] sws = FindObjectsOfType(typeof(SpriteSwitcher)) as SpriteSwitcher[];
+		foreach (SpriteSwitcher sw in sws) {
+			sw.SetUp();
+			sw.OnSpriteQualityChange(type);
+		}
+		
+		UISwitcher[] uws = FindObjectsOfType(typeof(UISwitcher)) as UISwitcher[];
+		foreach (UISwitcher uw in uws) {
+			uw.SetUp(type);
+		}
+	}
+}
+

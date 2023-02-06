@@ -1,0 +1,248 @@
+using UnityEngine;
+using System.Collections;
+using Vectrosity;
+
+public class Port : MonoBehaviour
+{
+	public GameObject[] shipPrefabs;
+	public AudioClip _readyClip;
+	
+	AudioSource _audioSource;
+	
+	Camera _gameCamera;
+	TimeKeeper _keeper;
+	
+	Path currentPath;
+	
+	Vector2 currentPositionScreen;
+	Vector3 currentPositionWorld;
+	
+	VectorLine currentLine = null;
+	public Material lineMaterial;
+	
+	float timeSinceLastMovement = 0.0f;
+	
+	public float timeBetweenDeploy = 3.0f;
+	public float distanceBetweenPoints = 40.0f;
+	float lastDeploy = 0.0f;
+	
+	public bool minionReady = true;
+	public bool portReady = true;
+	
+	public GameObject portWorld;
+	public GameObject portedMinion = null;
+	public Vector3 portDirection;
+
+	public Vector2 nesPortOffset;
+	public Vector2 msPortOffset;
+	public Vector2 latestPortOffset;
+	
+	public int portNumber;
+	
+	GameObject mothership = null;
+	
+	int maxPathNodes = 18;
+	
+	public exSprite _sprite;
+	public exSpriteAnimation _animation;
+	
+	public exSpriteAnimClip prepareAnimationName;
+	public exSpriteAnimClip readyAnimationName;
+	
+	void Awake() {
+		_gameCamera = Camera.mainCamera;
+		
+		_keeper = GameObject.Find("TimeKeeper").GetComponent<TimeKeeper>();
+		
+		mothership = GameObject.Find("Mothership");
+		lastDeploy = timeBetweenDeploy;
+		
+		if (_audioSource == null) {
+			_audioSource = gameObject.AddComponent<AudioSource>();
+		}
+	}
+	
+	void Start() {
+		PortMinion();
+		this.OnDisable();
+	}
+	
+	void PortMinion() {
+		GameObject prefab = shipPrefabs[0];
+		Vector3 minionPosition = portWorld.transform.position; minionPosition.z = LayerManager._2;
+		portedMinion = (GameObject) Instantiate(prefab, minionPosition, prefab.transform.rotation);
+		
+		portedMinion.transform.forward = portDirection;
+		MinionBaseVehicle vehicle = portedMinion.GetComponent<MinionBaseVehicle> ();
+		vehicle.parentPort = this;
+		vehicle.portIndex = portNumber;
+		
+		if (mothership != null)
+			portedMinion.transform.parent = mothership.transform;
+	}
+	
+	Color[] buildColorSmooth(int lines) {
+		Color[] colors = new Color[currentPath.points.Count - 1];
+		
+		for (int i = 0; i < currentPath.points.Count - 1; i++) {
+			Color white = Color.white;
+			white.a = 1.0f - ( (i+1)/((float) lines));
+			colors[i] = white;
+		}
+		
+		return colors;
+	}
+	
+	void OnPress(bool pressed) {
+		if (GameState.Instance.IsPaused() == false) {
+			if (pressed == true) {
+				if (portReady && minionReady) {
+					Time.timeScale = 0.01f;
+					currentPath = gameObject.AddComponent<Path>();
+				
+					currentPositionScreen = UICamera.lastTouchPosition;
+					currentPositionWorld = _gameCamera.ScreenToWorldPoint(new Vector3(currentPositionScreen.x, currentPositionScreen.y, _gameCamera.transform.position.z));
+					currentPositionWorld.z = LayerManager._3;
+					
+					currentPath.AddPoint(new TimestampPoint(currentPositionWorld, 0.0f));
+					
+					timeSinceLastMovement = 0.0f;
+					lastDeploy = 0.0f;
+				}
+				
+			}
+			else {
+				EndPath ();
+			}
+		}
+	}
+	
+	void OnDrag (Vector2 delta) {
+		if (currentPath) {
+			Vector2 currentTouch = UICamera.lastTouchPosition;
+			
+			if (Vector2.Distance(currentTouch, currentPositionScreen) > distanceBetweenPoints) { 
+				currentPositionScreen = UICamera.lastTouchPosition;
+				Vector3 world = _gameCamera.ScreenToWorldPoint(new Vector3(currentPositionScreen.x, currentPositionScreen.y, _gameCamera.transform.position.z));	
+				world.z = LayerManager._3;
+				
+				currentPath.AddPoint(new TimestampPoint(world, timeSinceLastMovement));
+				timeSinceLastMovement = 0.0f; 
+				currentPositionWorld = world;
+				
+				if (currentLine == null) {
+					currentLine = new VectorLine("Test", currentPath.GetPoints(), lineMaterial, 10.0f, LineType.Continuous);
+				}
+				
+				currentLine.Resize(currentPath.GetPoints());
+				currentLine.SetColorsSmooth(buildColorSmooth(maxPathNodes));
+				currentLine.Draw3D ();
+				
+				if (currentPath.points.Count >= maxPathNodes) {
+					EndPath();	
+				}
+			}
+		}
+	}
+	
+	void EndPath() {
+		if (shipPrefabs != null && shipPrefabs.Length > 0) {
+			if (currentPath != null) {
+				if (currentPath.points.Count > 1) {
+					MinionBaseVehicle minion = portedMinion.GetComponent<MinionBaseVehicle>();
+					minion.parentPort = this;
+					minion.SetPath(currentPath);
+					
+					minionReady = false;
+					
+					minion.transform.forward = Vector3.right * -1.0f;
+					
+					portedMinion = null;
+				}
+				else {
+					lastDeploy = timeBetweenDeploy;	
+				}
+				
+				Destroy (currentPath);
+				VectorLine.Destroy(ref currentLine);
+				currentLine = null;
+				currentPath = null;
+			}
+		}
+		Time.timeScale = 1.0f;
+	}
+				
+	void Update() {
+		timeSinceLastMovement += _keeper.AnimationTime();
+		
+		if (minionReady) {
+			lastDeploy += Time.deltaTime;
+			if (lastDeploy >= timeBetweenDeploy) {
+				if (portReady == false) {
+					MasterAudio.PlaySound(_readyClip.name);
+				}
+				if (portedMinion == null) {
+					PortMinion();
+				}
+				portReady = true;
+			}
+			else {
+				portReady = false;	
+			}
+		}
+		
+		if (_animation) {
+				if (!portReady) {
+				float progress = lastDeploy/timeBetweenDeploy;
+				int frame = Mathf.FloorToInt(progress * 4.0f);
+				
+				_animation.Pause();
+				_animation.SetFrame(prepareAnimationName.name, frame);
+			}
+			else {
+				if (!_animation.IsPlaying(readyAnimationName.name) || _animation.IsPaused(readyAnimationName.name)) {
+					_animation.Play (readyAnimationName.name);
+				}
+			}
+		}
+	}
+	
+	public void MinionDestroyed() {
+		minionReady = true;
+	}
+	
+	void OnDisable() {
+		if (portedMinion != null) {
+			portedMinion.collider.enabled = false;
+			MinionBaseVehicle vehicle = portedMinion.GetComponent<MinionBaseVehicle>();
+			vehicle.OnPortChange(false);
+			
+			if (currentPath) {
+				Destroy (currentPath);
+				VectorLine.Destroy(ref currentLine);
+				currentLine = null;
+				currentPath = null;
+				lastDeploy = timeBetweenDeploy;	
+				Time.timeScale = 1.0f;
+			}
+		}
+		
+		if (_animation != null) {
+			_animation.Stop();
+			_animation.SetFrame(prepareAnimationName.name, 5);
+		}
+	}
+	
+	void OnEnable() {
+		if (portedMinion != null) {
+			portedMinion.collider.enabled = true;
+			MinionBaseVehicle vehicle = portedMinion.GetComponent<MinionBaseVehicle>();
+			vehicle.OnPortChange(true);
+		}
+	}
+	
+	void OnDrawGizmosSelected() {
+		Debug.DrawLine(transform.position, transform.position + (portDirection * 100.0f));	
+	}
+}
+

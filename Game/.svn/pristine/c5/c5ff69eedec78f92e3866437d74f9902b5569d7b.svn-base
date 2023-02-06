@@ -1,0 +1,256 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class HeroAIManager : MonoBehaviour
+{
+	MineNode[] mineManager;
+	ShieldNode[] shieldManager;
+	HeroMovementNode[] movementNodes;
+	
+	HeroVehicle _vehicle;
+	
+	int activeMissiles = 0;
+	
+	public GameObject minePrefab;
+	public GameObject shieldPrefab;
+	
+	//AI String
+	AIDirective[] aiList;
+	int currentAction = 0;
+	
+	public enum DirectiveState {
+		HANDLED,
+		UNHANDLED,
+		NEXT
+	};
+	
+	
+	void Awake() {
+		mineManager 	= GetComponentsInChildren<MineNode>();
+		shieldManager  	= GetComponentsInChildren<ShieldNode>();
+		movementNodes	= GetComponentsInChildren<HeroMovementNode>();
+	}
+	
+	public bool ShieldInSlot() {
+		ShieldNode node = shieldManager[_vehicle._currentNode.slot];
+		return node._object != null;
+	}
+	
+	public void AddMissile(int count) {
+		activeMissiles += count;
+	}
+	
+	public int GetMissileCount() {
+		return activeMissiles;	
+	}
+	
+	public SpatialNode MiddleHeroNode() {
+		return movementNodes[2];	
+	}
+	
+	public int UsedFarSlots() {
+		int count = 0;
+		for (int i = 0; i < mineManager.Length; i++) {
+			MineNode node = mineManager[i];
+			if (node._object != null) {
+				count++;	
+			}
+		}
+		
+		return count;
+	}
+	
+	public int UsedMiddleSlots() {
+		int count = 0;
+		for (int i = 0; i < shieldManager.Length; i++) {
+			ShieldNode node = shieldManager[i];
+			if (node._object != null) {
+				count ++;	
+			}
+		}
+		
+		return count;
+	}
+	
+	public HeroMovementNode GetHeroNodeForIndex(int index) {
+		if (index >=0 && index < movementNodes.Length)
+			return movementNodes[index];	
+		
+		return null;
+	}
+	
+	public ShieldNode GetMidNode(int index) {
+		if (index >=0 && index < shieldManager.Length)
+			return shieldManager[index];	
+		
+		return null;
+	}
+	
+	public MineNode GetFarNode(int index) {
+		if (index >=0 && index < mineManager.Length)
+			return mineManager[index];	
+		
+		return null;
+	}
+	
+	public SpatialNode[] FindSpotInZone(SpatialNode.SpatialNodeZone zone) {
+		if (zone == SpatialNode.SpatialNodeZone.MID)
+			return FindSpotForShield();
+		else if (zone == SpatialNode.SpatialNodeZone.FAR)
+			return FindSpotForMine();
+		
+		return new SpatialNode[2];
+	}
+	
+	public SpatialNode[] FindSpotForShield() {
+		bool found = false;
+		SpatialNode[] nodes = new SpatialNode[2];
+		
+		//while (found == false) {
+		int randomStart = Random.Range(0, 5);
+		int i = randomStart + 1;
+		
+		while (i != randomStart) {
+			if (i >= shieldManager.Length) {
+				i = 0;	
+			}
+			
+			SpatialNode placeNode = movementNodes[i];
+			ShieldNode node = shieldManager[i];
+			if (node._object == null) {
+				nodes[0] = placeNode;
+				nodes[1] = node;
+				found = true;
+				break;
+			}
+			
+			i++;
+		}
+		
+		return found == true ? nodes : null;
+	}
+	
+	public SpatialNode[] FindSpotForMine() {
+		bool found = false;
+		SpatialNode[] nodes = new SpatialNode[2];
+		
+		while (found == false) {
+			int randomSlotIndex = Random.Range(0, 5);
+			HeroMovementNode randomSlot = movementNodes[randomSlotIndex];
+			SpatialNode randomMidSlot = randomSlot.ForwardNode();
+			
+			SpatialNode[] mineNodes = randomMidSlot.ForwardNodes();
+			int randomStart = Random.Range(0, 3);
+			int i = randomStart + 1;
+			
+			while (i != randomStart) {
+				if (i >= mineNodes.Length) {
+					i = 0;	
+				}
+				
+				SpatialNode node = mineNodes[i];
+				if (node._object == null) {
+					nodes[0] = randomSlot;
+					nodes[1] = node;
+					found = true;	
+					break;
+				}
+				i++;
+				
+				Debug.Log("Finding Mine Spot: " + i);
+			}
+		}
+		
+		return nodes;
+	}
+	
+	public AIDirective Next() {
+		if (currentAction >= aiList.Length) {
+			currentAction = 0;
+		}
+		
+		if (aiList.Length > 0) {
+			AIDirective dir = aiList[currentAction];
+			currentAction++;
+			return dir;
+		}
+		
+		return new AIDirective("", 0.0f);
+	}
+	
+	public void PushAIDirective() {
+		AIDirective next = Next ();
+		if (_vehicle != null) {
+			DirectiveState state = _vehicle.HandleDirective(next);
+			if (state == DirectiveState.NEXT) {
+				StartCoroutine(DelayedPush());
+			}
+		}
+	}
+	
+	public void SetVehicle(HeroVehicle v) {
+		_vehicle = v;	
+		
+		if (_vehicle != null) {
+			aiList = new AIDirective[_vehicle._config.directives.Length];
+			for (int i = 0; i < aiList.Length; i++) {
+				string[] dirStr = _vehicle._config.directives[i].Split('|');
+				aiList[i] = new AIDirective(dirStr[0].Trim(), float.Parse(dirStr[1]));
+			}
+		}
+	}
+	
+	public int FindSpotForMine2() {
+		bool found = false;
+		
+		while (found == false) {
+			int randomStart = Random.Range(0, 10);
+			int i = randomStart + 1;
+			
+			while (i != randomStart) {
+				if (i >= mineManager.Length) {
+					i = 0;	
+				}
+				
+				MineNode node = mineManager[i];
+				if (node._object == null) {
+					return i;
+				}
+				i++;
+				
+				Debug.Log("Finding Mine Spot2: " + i);
+			}
+		}
+		return 0;
+	}
+	
+	IEnumerator DelayedPush() {
+		float waitTime = 1.0f;
+		float elapsed = 0.0f;
+		
+		while (elapsed < waitTime) {
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+		PushAIDirective();
+		yield return null;
+	}
+	
+	public SpatialNode[] GetHeroNodes() {return movementNodes;}
+	public SpatialNode[] GetMidNodes() {return mineManager;}
+	public SpatialNode[] GetFarNodes() {return shieldManager;}
+	public SpatialNode[] GetNodesForZone(SpatialNode.SpatialNodeZone zone) {
+		if (zone == SpatialNode.SpatialNodeZone.HERO)
+			return movementNodes;
+		else if (zone == SpatialNode.SpatialNodeZone.MID) {
+			return shieldManager;	
+		}
+		else {
+			return mineManager;	
+		}
+	}
+	
+	
+}
+

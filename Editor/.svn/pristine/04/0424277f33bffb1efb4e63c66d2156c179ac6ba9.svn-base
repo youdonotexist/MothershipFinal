@@ -1,0 +1,11 @@
+#Wed, 05 Jun 2013 21:56:05 -0600
+app.name=MothershipEditor
+
+app.framework=touch
+
+app.classpath=${app.dir}/app.js,${app.dir}/app
+
+app.build.dir=${workspace.build.dir}/${app.name}
+
+app.cmd.version=3.1.1.274
+app.id=44f44d5d-d9ec-4657-8262-a878d07d1634

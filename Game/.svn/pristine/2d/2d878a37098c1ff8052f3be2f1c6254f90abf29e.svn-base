@@ -1,0 +1,43 @@
+using UnityEngine;
+using System.Collections;
+
+public class HeroSingleShot : MonoBehaviour
+{
+	public AudioClip _shotClip;
+	public AudioClip _blowupClip;
+	
+	public float damageAmt = 1.0f;
+	
+	public GameObject _explodeEffect;
+	
+	AudioSource _shotAudio = null;
+	AudioSource _blowupAudio = null;
+	
+	void Start() {
+		if (_shotAudio == null) {
+			_shotAudio = gameObject.AddComponent<AudioSource>();
+		}
+		
+		_shotAudio.PlayOneShot(_shotClip);
+	}
+	
+	void OnCollisionEnter(Collision c) {
+		//bool isMinion = LayerMaskHelper.IsInLayerMask(c.gameObject, LayerMaskHelper.OnlyIncluding(LayerMask.NameToLayer("Minion")));
+		Damagable dam = c.gameObject.GetComponent<Damagable>();
+		if (dam != null)
+			dam.OnDamage(damageAmt, gameObject.layer);
+		
+		if (_blowupAudio != null && _blowupClip != null) {
+			_shotAudio.PlayOneShot(_blowupClip);
+		}
+		
+		if (_explodeEffect) {
+			GameObject go = (GameObject) GameObject.Instantiate(_explodeEffect, c.contacts[0].point, _explodeEffect.transform.rotation);
+			go.transform.forward = (c.contacts[0].normal * -1.0f);
+		}
+			
+		
+		Destroy(gameObject);
+	}
+}
+

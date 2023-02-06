@@ -1,0 +1,20 @@
+{"_id":{"$oid":"5115ef8c8cd21a937f95aac0"},"hero_type_id":"BASIC","label":"Max Mines","key":"maxMines","attributes":{"type":"slider","minvalue":"0","maxvalue":"10","step":"1","default":"0"}}
+{"_id":{"$oid":"5115efcf8cd21a937f95aac1"},"hero_type_id":"BASIC","label":"Max Shields","key":"maxShields","attributes":{"type":"slider","minvalue":"0","maxvalue":"5","step":"1","default":"0"}}
+{"_id":{"$oid":"5115f0108cd21a937f95aac2"},"hero_type_id":"ALL","label":"Move Speed","key":"moveSpeed","attributes":{"type":"slider","minvalue":"100","maxvalue":"1000","step":"20","default":"100"}}
+{"_id":{"$oid":"5115f0e68cd21a937f95aac3"},"hero_type_id":"BASIC","label":"Missiles","key":"missiles","attributes":{"type":"toggle","default":false}}
+{"_id":{"$oid":"5116d8626f1585acfbab54cd"},"hero_type_id":"BASIC","label":"Attack Missiles","key":"attackMissiles","attributes":{"type":"toggle","default":false}}
+{"_id":{"$oid":"5117274de23f0d0b4d583330"},"hero_type_id":"JUGGERNAUT","label":"Max TurretMines","key":"maxTurretMines","attributes":{"type":"slider","minvalue":"0","maxvalue":"10","step":"1","default":"0"}}
+{"_id":{"$oid":"5117335ae23f0d0b4d583331"},"hero_type_id":"JUGGERNAUT","label":"ChargeLaser Time","key":"chargeLaserTime","attributes":{"type":"slider","minvalue":"0.5","maxvalue":"10","step":"0.5","default":"0.5"}}
+{"_id":{"$oid":"51182017e23f0d0b4d583334"},"hero_type_id":"JUGGERNAUT","label":"Turret Shot Frequency","key":"turretFrequency","attributes":{"type":"slider","minvalue":"0.01","maxvalue":"10","step":"0.01","default":"0.5"}}
+{"_id":{"$oid":"513bcb316b96a14e94a9995a"},"hero_type_id":"ALL","label":"Health","key":"health","attributes":{"type":"slider","minvalue":"50","maxvalue":"500","step":"50","default":"150"}}
+{"_id":{"$oid":"5189cfc2da11895f8d61fe7b"},"hero_type_id":"ALL","label":"Small Projectile Damage","key":"small_projectile_damage","attributes":{"type":"slider","minvalue":"0.1","maxvalue":"30","step":"0.1","default":"1"}}
+{"_id":{"$oid":"5189d008da11895f8d61fe7c"},"hero_type_id":"JUGGERNAUT","label":"Turret Mine Projectile Damage","key":"turret_mine_proj_damage","attributes":{"type":"slider","minvalue":"0.1","maxvalue":"30","step":"0.1","default":"1"}}
+{"_id":{"$oid":"525776886cc0cc90a882d7c6"},"hero_type_id":"SCIENTIST","label":"Max Gravity Mines","key":"maxGravityMines","attributes":{"type":"slider","minvalue":"0","maxvalue":"10","step":"1","default":"0"}}
+{"_id":{"$oid":"52577d2c6cc0cc90a882d7c7"},"hero_type_id":"SCIENTIST","label":"Max Reflect Shields","key":"maxReflectShields","attributes":{"type":"slider","minvalue":"0","maxvalue":"5","step":"1","default":"0"}}
+{"_id":{"$oid":"5259c4986cc0cc90a882d7c9"},"hero_type_id":"SCIENTIST","label":"Teleport Count","key":"teleportCount","attributes":{"type":"slider","minvalue":"0","maxvalue":"10","step":"1","default":"1"}}
+{"_id":{"$oid":"529d57236cc0cc90a882d7d1"},"hero_type_id":"JUGGERNAUT","label":"ChargeLaser Damage","key":"chargeLaserDamage","attributes":{"type":"slider","minvalue":"10","maxvalue":"100","step":"1","default":"50"}}
+{"_id":{"$oid":"52a3f2056cc0cc90a882d7d4"},"hero_type_id":"ALL","label":"Asteroid Battle","key":"asteroidBattle","attributes":{"type":"toggle","default":false}}
+{"_id":{"$oid":"530ee8946cc0cc90a882d7dc"},"hero_type_id":"SCIENTIST","label":"Reactive Teleport Duration","key":"reactiveTeleportDuration","attributes":{"type":"slider","minvalue":"0","maxvalue":"10","step":"0.5","default":"3"}}
+{"_id":{"$oid":"531546936cc0cc90a882d7df"},"hero_type_id":"ALL","label":"Small Laser Fire Rate","key":"smallLaserFireRate","attributes":{"type":"slider","minvalue":"0.1","maxvalue":"10","step":"0.1","default":"1"}}
+{"_id":{"$oid":"531e79db6cc0cc90a882d7e0"},"hero_type_id":"SCIENTIST","label":"EMP Missile Speed","key":"empMissileSpeed","attributes":{"type":"slider","minvalue":"300","maxvalue":"1500","step":"100","default":"300"}}
+{"_id":{"$oid":"5320be516cc0cc90a882d7e1"},"hero_type_id":"ALL","label":"Boss Battle","key":"bossBattle","attributes":{"type":"toggle","default":false}}

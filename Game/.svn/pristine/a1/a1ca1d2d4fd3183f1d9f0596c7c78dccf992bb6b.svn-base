@@ -1,0 +1,57 @@
+using UnityEngine;
+using System.Collections;
+
+public class CurtainHelper : MonoBehaviour
+{
+	public UIAtlas uiAtlas;
+	public string spriteName;
+	
+	private UISprite _sprite;
+	
+	void Awake() {
+		GameObject go = new GameObject("Curtain");
+		go.layer = LayerMask.NameToLayer("UILayer");
+		
+		_sprite = go.AddComponent<UISprite>();
+		_sprite.atlas = uiAtlas;
+		_sprite.spriteName = spriteName;
+		_sprite.depth = 50;
+		
+		go.AddComponent<BoxCollider>();
+		
+		go.transform.parent = GetComponentInChildren<UIPanel>().transform;
+		go.transform.localPosition = new Vector3(0.0f, 0.0f, 50.0f);
+		go.transform.localScale = new Vector3(50000000, 50000000, 50000000);
+	}
+	
+	public delegate void CurtainChangeCallback();
+	
+	public void AnimateCurtain(bool open, Color fr, Color to, float d, CurtainChangeCallback callback) {
+		StartCoroutine(AnimateCurtainRoutine(open, fr, to, d, callback));		
+	}
+	
+	public IEnumerator AnimateCurtainRoutine(bool open, Color fr, Color to, float d, CurtainChangeCallback callback) {
+		float duration = d, elapsed = 0.0f;
+		
+		if (!open) {
+			_sprite.collider.enabled = true;	
+		}
+		
+		while (elapsed < duration) {
+			_sprite.color = Color.Lerp(fr, to, elapsed/duration);
+			elapsed += TimeKeeper.Instance().AnimationTime();
+			yield return null;
+		}
+		
+		_sprite.color = to;
+		
+		if (open) {
+			_sprite.collider.enabled = false;	
+		}
+		
+		if (callback != null) {
+			callback();
+		}
+	}
+}
+

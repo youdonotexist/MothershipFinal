@@ -1,0 +1,89 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System;
+
+public class SpriteSwitcher : MonoBehaviour {
+
+	public exSpriteAnimClip[] nesAnimations;
+	public string nesSpriteName;
+	public Vector2 nesSpriteOffset;
+	
+	public exSpriteAnimClip[] snesAnimations;
+	public string snesSpriteName;
+	public Vector2 snesSpriteOffset;
+	
+	public exSpriteAnimClip[] latestAnimations;
+	public string latestSpriteName;
+	public Vector2 latestSpriteOffset;
+	
+	public int defaultAnimationIndex = -1;
+
+	exSpriteAnimation _animation;
+	exSprite _sprite;
+
+	void Awake() {
+		_sprite = GetComponent<exSprite>();
+		_animation = GetComponent<exSpriteAnimation>();
+		Messenger.AddListener("on_sprite_quality_change", new Callback<string>(OnSpriteQualityChange));
+	}
+	
+	void OnEnable() {
+		if (MissionDetails.Instance.encounterType == "BASIC") {
+			OnSpriteQualityChange("nes");
+		}
+		else if (MissionDetails.Instance.encounterType == "MIXED") {
+			OnSpriteQualityChange("latest");
+		}
+	}
+
+	void OnSpriteQualityChange(string qualityType) {
+		if (ResourceManager.Instance == null) return; //Fuck this shit
+		
+		if ("nes".Equals(qualityType)) {
+			exAtlas atlas = ResourceManager.Instance.nesAtlas;
+			_sprite.SetSprite(atlas, atlas.GetIndexByName(nesSpriteName), true);
+			_sprite.offset = nesSpriteOffset;
+			if (_animation != null) {
+				//_animation.animations = new List<exSpriteAnimClip>(nesAnimations);
+				AddAnimations(nesAnimations);
+				if (defaultAnimationIndex >= 0) {
+					_animation.defaultAnimation = nesAnimations[defaultAnimationIndex];
+					_animation.PlayDefault();
+				}
+				_animation.enabled = true;
+			}
+		}
+		else if ("latest".Equals(qualityType)) {
+			try {
+				exAtlas atlas = ResourceManager.Instance.latestAtlas;
+				_sprite.SetSprite(atlas, atlas.GetIndexByName(latestSpriteName), true);
+			}
+			catch (Exception e) {
+				Debug.Log (e.ToString());	
+			}
+			_sprite.offset = latestSpriteOffset;
+			if (_animation != null) {
+				_animation.animations = new List<exSpriteAnimClip>(latestAnimations);
+				AddAnimations(latestAnimations);
+				if (defaultAnimationIndex >= 0) {
+					_animation.defaultAnimation = nesAnimations[defaultAnimationIndex];
+					_animation.PlayDefault();
+				}
+				_animation.enabled = true;
+			}
+		}
+
+	}
+
+	void OnDestroy() {
+		//Messenger.RemoveListener("on_sprite_quality_change", new Callback<string>(OnSpriteQualityChange));
+	}
+	
+	void AddAnimations(exSpriteAnimClip[] anims) {
+		_animation.animations.Clear();
+		for (int i = 0; i < anims.Length; i++) {
+			_animation.AddAnimation(anims[i]);	
+		}
+	}
+}

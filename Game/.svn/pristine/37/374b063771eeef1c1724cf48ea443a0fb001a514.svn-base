@@ -1,0 +1,72 @@
+using UnityEngine;
+using System.Collections;
+
+public class HeroSingleShot : LaserProjectile
+{
+	public AudioClip _shotClip;
+	public AudioClip _blowupClip;
+	
+	public GameObject _explodeEffect;
+	public Damagable _damagable;
+	
+	AudioSource _shotAudio = null;
+	AudioSource _blowupAudio = null;
+	
+	void Start() {
+		if (_shotAudio == null) {
+			_shotAudio = gameObject.AddComponent<AudioSource>();
+		}
+
+		_damagable.DamageCallback.Add(OnDamage);
+		_damagable.outDamageAmount = damageAmt;
+
+		MasterAudio.PlaySound(_shotClip.name);
+	}
+
+	void Update () {
+		if (_damagable.Health < 0.0f) {
+			Destroy(gameObject);
+		}
+	}
+
+	void OnDamage(float health) {
+		if (_damagable.Health <= 0.0f) {
+			if (_explodeEffect) {
+				Vector3 spawnPoint = transform.position;
+				spawnPoint.z = LayerManager._5;
+				
+				GameObject go = (GameObject) GameObject.Instantiate(_explodeEffect, spawnPoint, _explodeEffect.transform.rotation);
+				go.transform.up = transform.forward;
+			}
+			
+			Destroy(gameObject);
+		}
+	}
+
+	void OnDestroy() {
+		_damagable.DamageCallback.Remove(OnDamage);
+	}
+	
+	/*void OnCollisionEnter(Collision c) {
+		//bool isMinion = LayerMaskHelper.IsInLayerMask(c.gameObject, LayerMaskHelper.OnlyIncluding(LayerMask.NameToLayer("Minion")));
+		Damagable dam = c.gameObject.GetComponent<Damagable>();
+		if (dam != null)
+			dam.OnDamage(damageAmt, gameObject.layer);
+		
+		if (_blowupAudio != null && _blowupClip != null) {
+			MasterAudio.PlaySound(_blowupClip.name);
+		}
+		
+		if (_explodeEffect) {
+			Vector3 spawnPoint = c.contacts[0].point;
+			spawnPoint.z = LayerManager._5;
+			
+			GameObject go = (GameObject) GameObject.Instantiate(_explodeEffect, spawnPoint, _explodeEffect.transform.rotation);
+			go.transform.up = (c.contacts[0].normal * -1.0f);
+		}
+			
+		
+		Destroy(gameObject);
+	}*/
+}
+

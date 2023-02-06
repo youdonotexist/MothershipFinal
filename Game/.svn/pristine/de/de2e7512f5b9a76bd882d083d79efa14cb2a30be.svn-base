@@ -1,0 +1,206 @@
+using UnityEngine;
+using System.Collections;
+
+public class BasicHeroDirectives : DirectivePack
+{
+	public GameObject minePrefab;
+	public GameObject shieldPrefab;
+	public GameObject missileProjectile;
+	public GameObject projectile = null;
+	
+	public LaserProjectile _laser;
+	
+	//Laser
+	float lastFireTime = 1.0f;
+	float waitBetweenFire = 1.0f;
+	int shotsPerWait = 1;
+	int currentShotsPerWait = 0;
+	public bool canFire = false;
+	
+	void Start() {
+		_laser = GetComponent<LaserProjectile>();	
+		if (_vehicle != null && _vehicle._config != null && _laser != null) {
+			_laser.damageAmt = _vehicle._config.getFloat ("small_projectile_damage");
+		}
+	}
+	
+	void Update() {
+		if (canFire && PrimaryDirectivePack && _laser != null) {
+			if (currentShotsPerWait < shotsPerWait) {
+				bool didFire = _laser.Fire(_vehicle.rigidbody.velocity);
+				if (didFire) {
+					currentShotsPerWait++;
+					lastFireTime = 0.0f;
+				}
+			}
+			else {
+				lastFireTime += Time.deltaTime;
+				if (lastFireTime > waitBetweenFire) {
+					currentShotsPerWait = 0;	
+				}
+			}
+		}
+		
+	}
+	
+	public override void OnHeroReady() { 
+		canFire = true; 
+	}
+	public override void OnHeroWin() { canFire = false; }
+	
+	public override HeroAIManager.DirectiveState handleDirective(AIDirective directive) { 
+		if (directive.action == "MOVE") {
+			StartCoroutine(MoveToLane(Random.Range(0, 5), directive));
+			return HeroAIManager.DirectiveState.HANDLED;
+		}
+		else if (directive.action == "DEPLOY MINE") {
+			if (_aiManager.UsedFarSlots() < _vehicle._config.getInt ("maxMines")) {
+				StartCoroutine(DeployMine(directive));
+				return HeroAIManager.DirectiveState.HANDLED;
+			}
+			else {
+				return HeroAIManager.DirectiveState.NEXT;
+			}
+		}
+		else if (directive.action == "DEPLOY SHIELD") {
+			if (_aiManager.UsedMiddleSlots() < _vehicle._config.getInt ("maxShields")) {
+				StartCoroutine(DeployShield(directive));
+				return HeroAIManager.DirectiveState.HANDLED;
+			}
+			else {
+				return HeroAIManager.DirectiveState.NEXT;	
+			}
+		}
+		else if (directive.action == "FIRE MISSILE") {
+			StartCoroutine(FireMissile(directive));
+			return HeroAIManager.DirectiveState.HANDLED;
+		}
+		
+		return HeroAIManager.DirectiveState.UNHANDLED;
+	}
+	
+	IEnumerator MoveToLane(int slot, AIDirective directive) {
+		HeroMovementNode node = _aiManager.GetHeroNodeForIndex(slot);
+		Vector3 startPosition = _vehicle.transform.position;
+		float startDistance = Vector3.Distance(startPosition, node.transform.position);
+		float moveTime = startDistance / _vehicle._config.getFloat ("moveSpeed");
+		
+		yield return StartCoroutine(MoveToLaneProper(node, moveTime));
+		
+		float waitfordirective = 0.0f;
+		while (waitfordirective < directive.waitAfter) {
+			waitfordirective += Time.deltaTime;
+			yield return null;
+		}
+		
+		_aiManager.PushAIDirective();
+	}
+	
+	IEnumerator DeployMine(AIDirective directive) {
+		SpatialNode[] openNodes 	= _aiManager.FindSpotForMine();
+		SpatialNode movenode 		= openNodes[0];
+		SpatialNode minenode 		= openNodes[1];
+		
+		//First move to the open node
+		if (_vehicle != null && movenode != null) {
+			Vector3 startPosition 	= _vehicle.transform.position;
+			float startDistance 	= Vector3.Distance(startPosition, movenode.transform.position);
+			float moveTime 			= startDistance / _vehicle._config.getInt ("moveSpeed");
+			
+			yield return StartCoroutine(MoveToLaneProper(movenode, moveTime));
+			
+			if (_vehicle != null) {
+				//Then deploy the Mine
+				GameObject instance = (GameObject) Instantiate(minePrefab, _vehicle.transform.position, minePrefab.transform.rotation);
+				Mine mine = instance.GetComponent<Mine>();
+				mine._node = minenode;
+				minenode._object = mine;
+				mine.OnCreate(_vehicle.transform.position, minenode.transform.position);
+				//instance.transform.position = minenode.transform.position;
+				
+				//Then wait
+				float waitfordirective = 0.0f;
+				while (waitfordirective < directive.waitAfter) {
+					waitfordirective += Time.deltaTime;
+					yield return null;
+				}
+			}
+		}
+		
+		_aiManager.PushAIDirective();
+	}
+	
+	IEnumerator DeployShield(AIDirective directive) {
+		SpatialNode[] openNodes 	= _aiManager.FindSpotForShield();
+			
+		if (_vehicle != null && openNodes != null) {
+			SpatialNode movenode 		= openNodes[0];
+			SpatialNode minenode 		= openNodes[1];
+			
+			//First move to the open node
+			Vector3 startPosition = _vehicle.transform.position;
+			float startDistance = Vector3.Distance(startPosition, movenode.transform.position);
+			float moveTime = startDistance / _vehicle._config.getInt ("moveSpeed");
+			
+			yield return StartCoroutine(MoveToLaneProper(movenode, moveTime));
+			
+			if (_vehicle != null) {
+				//Then deploy the Mine
+				GameObject instance = (GameObject) Instantiate(shieldPrefab, _vehicle.transform.position, shieldPrefab.transform.rotation);
+				Shield shield = instance.GetComponent<Shield>();
+				shield._node = minenode;
+				minenode._object = shield;
+				shield.AnimateShield(_vehicle.transform.position, minenode.transform.position);
+				//instance.transform.position = minenode.transform.position;
+				
+				//Then wait
+				float waitfordirective = 0.0f;
+				while (waitfordirective < directive.waitAfter) {
+					waitfordirective += Time.deltaTime;
+					yield return null;
+				}
+			}
+		}
+		
+		_aiManager.PushAIDirective();
+	}
+	
+	IEnumerator FireMissile(AIDirective directive) {
+		int slot = Random.Range(0, 5);
+		HeroMovementNode movenode 	= _aiManager.GetHeroNodeForIndex(slot);
+		SpatialNode[] spatialNode 	= _aiManager.FindSpotForShield(); 
+		
+		//Pick a HeroMovement Node
+		if (_vehicle != null && spatialNode != null) {
+			SpatialNode shieldnode 		= spatialNode[1];
+			MineNode minenode 			= _aiManager.GetFarNode(_aiManager.FindSpotForMine2());
+			
+			//First move to the open node
+			Vector3 startPosition = _vehicle.transform.position;
+			float startDistance = Vector3.Distance(startPosition, movenode.transform.position);
+			float moveTime = startDistance / _vehicle._config.getInt ("moveSpeed");
+			
+			yield return StartCoroutine(MoveToLaneProper(movenode, moveTime));
+			
+			//Then FIRE LE MISSILE
+			if (_vehicle != null && _mothership != null) {
+				Vector3[] path = new Vector3[] {movenode.transform.position, shieldnode.transform.position, minenode.transform.position, _mothership.transform.position};
+				
+				GameObject instance = (GameObject) Instantiate(missileProjectile, transform.position, missileProjectile.transform.rotation);
+				instance.transform.forward = transform.forward;
+				HeroMissile hm = instance.GetComponent<HeroMissile>();
+				hm.SetPathNormal(path);
+			}
+			
+			//Wait for end
+			float waitfordirective = 0.0f;
+			while (waitfordirective < directive.waitAfter) {
+				waitfordirective += Time.deltaTime;
+				yield return null;
+			}
+		}
+		
+		_aiManager.PushAIDirective();
+	}
+}
+

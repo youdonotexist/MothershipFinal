@@ -1,0 +1,237 @@
+using UnityEngine;
+using System.Collections;
+
+public class IKTest : MonoBehaviour
+{
+	public Transform target;
+	
+	public Transform m_UpperArm;
+	public Transform m_MiddleArm;
+	public Transform m_LowerArm;
+	public Transform m_Effector;
+	
+	public Transform idleTarget = null;
+	public Transform idleTargetHolder = null;
+	
+	public bool UpperArm = true;
+	Magnet _magnet = null;
+	
+	Bone[] _bones = null;
+	
+	public Vector2 minMaxUpper = new Vector2(-360.0f, 360.0f);
+	public Vector2 minMaxMid = new Vector2(-360.0f, 360.0f);
+	public Vector2 minMaxLower = new Vector2(-70, 0.0f);
+	
+	//float tickUpdate = 0.0f;
+	//float tickElapsed = 0.0f;
+	
+	
+	void Start() {
+		if (UpperArm) {
+			GameObject goArm = GameObject.Find("UpperGrabSpot");
+			ArmGrabber uArm = goArm.GetComponent<ArmGrabber>();
+			uArm._arm = this;
+		}
+		else {
+			GameObject goArm = GameObject.Find("LowerGrabSpot");
+			ArmGrabber uArm = goArm.GetComponent<ArmGrabber>();
+			uArm._arm = this;
+		}
+		
+		_magnet = gameObject.GetComponentInChildren<Magnet>();
+		_magnet._ikTest = this;
+		
+		_bones = GetComponentsInChildren<Bone>();
+	}
+	
+	bool IsReadyToIK() {
+		for (int i = _bones.Length - 1; i >= 0; i--) {
+			Bone b = _bones[i];
+			if (!b.IsFinished() || b.IsCollapsed()) {
+				return false; 
+			}
+		}
+		
+		return true;
+	}
+	
+	public bool IsRetracting() {
+		for (int i = _bones.Length - 1; i >= 0; i--) {
+			Bone b = _bones[i];
+			if (!b.IsFinished() || !b.IsCollapsed()) {
+				return true; 
+			}
+		}
+		
+		return false;
+	}
+	
+	public bool IsRetracted() {
+		for (int i = _bones.Length - 1; i >= 0; i--) {
+			Bone b = _bones[i];
+			if (!b.IsFinished() || !b.IsCollapsed()) {
+				return false; 
+			}
+		}
+		
+		return false;
+	}
+	
+	// Update is called once per frame
+	void FixedUpdate ()
+	{
+		if (IsReadyToIK()) {
+			if (target != null) {
+					ComputeIK2(target.position);
+			}
+			else {
+				ComputeIK2(idleTarget.position);
+			}
+		}
+		
+		//idleTargetHolder.position = _magnet.transform.position;
+	}
+	
+	bool ComputeIK2(Vector3 end) {
+		CCD_Ik(	m_LowerArm,  0.0f, new Vector2(m_Effector.position.x, m_Effector.position.y), new Vector2(end.x, end.y), minMaxLower);//new Vector2(-70, 0.0f));
+		CCD_Ik(	m_MiddleArm, 0.0f, new Vector2(m_Effector.position.x, m_Effector.position.y), new Vector2(end.x, end.y), minMaxMid);//new Vector2(-360.0f, 360.0f));
+		CCD_Ik(	m_UpperArm,  0.0f, new Vector2(m_Effector.position.x, m_Effector.position.y), new Vector2(end.x, end.y), minMaxUpper);//new Vector2(-360.0f, 360.0f));
+		
+		return true;
+	}
+	
+	void CCD_Ik(Transform jointTrans, float length, Vector2 effector, Vector2 target, Vector2 minMaxAngle) {
+		Vector2 joint = new Vector3(jointTrans.position.x, jointTrans.position.y);
+		// Get the vector from the current bone to the end effector position.
+        float curToEndX = effector.x - joint.x;
+        float curToEndY = effector.y - joint.y;
+        float curToEndMag = Mathf.Sqrt( curToEndX*curToEndX + curToEndY*curToEndY );
+ 
+        // Get the vector from the current bone to the target position.
+        float curToTargetX = target.x - joint.x;
+        float curToTargetY = target.y - joint.y;
+        float curToTargetMag = Mathf.Sqrt(   curToTargetX*curToTargetX
+                                           + curToTargetY*curToTargetY );
+ 
+        // Get rotation to place the end effector on the line from the current
+        // joint position to the target postion.
+        float cosRotAng;
+        float sinRotAng;
+        float endTargetMag = (curToEndMag*curToTargetMag);
+        if( endTargetMag <= Mathf.Epsilon )
+        {
+            cosRotAng = 1.0f;
+            sinRotAng = 0.0f;
+        }
+        else
+        {
+            cosRotAng = (curToEndX*curToTargetX + curToEndY*curToTargetY) / endTargetMag;
+            sinRotAng = (curToEndX*curToTargetY - curToEndY*curToTargetX) / endTargetMag;
+        }
+ 
+        // Clamp the cosine into range when computing the angle (might be out of range
+        // due to floating point error).
+        float rotAng = Mathf.Acos( Mathf.Max(-1.0f, Mathf.Min(1.0f,cosRotAng) ) );
+        if( sinRotAng < 0.0f )
+            rotAng = -rotAng;
+ 
+        // Rotate the end effector position.
+        effector.x = joint.x + cosRotAng*curToEndX - sinRotAng*curToEndY;
+        effector.y = joint.y + sinRotAng*curToEndX + cosRotAng*curToEndY;
+ 
+        // Rotate the current bone in local space (this value is output to the user)
+		
+		Vector3 euler = jointTrans.localEulerAngles;
+		float angle = Mathf.Rad2Deg * SimplifyAngle( (Mathf.Deg2Rad * euler.z) + rotAng );
+		
+		angle = Mathf.Max (minMaxAngle.x, Mathf.Min (angle, minMaxAngle.y));
+		euler.z = angle;
+	
+        jointTrans.localEulerAngles = euler;
+	}
+	
+	private float SimplifyAngle(float angle)
+	{
+	    float ang = angle % (2.0f * Mathf.PI);
+	    if( ang < -Mathf.PI )
+	        ang += (2.0f * Mathf.PI);
+	    else if( ang > Mathf.PI )
+	        ang -= (2.0f * Mathf.PI);
+	    return ang;
+	}
+	
+	public void CalculateIK(Transform end) {
+		Vector3 dir = (end.position - target.position).normalized;
+		float dot = Vector3.Dot(transform.up, dir);// * 0.01f;
+		
+		Debug.Log (gameObject.name + " " + dot);
+		
+		Vector3 euler = transform.eulerAngles;
+		euler.x += dot * Time.fixedDeltaTime * 500.0f;
+		transform.eulerAngles = euler;
+	}
+	
+	public void DeployArms() {
+		StartCoroutine(DeployArmsCoroutine());
+	}
+	
+	public void RetractArm() {
+		if (!IsRetracted()) {
+			StartCoroutine(RetractArmsCoroutine());
+		}
+	}
+	
+	public Magnet GetMagnet() {
+		return _magnet;	
+	}
+	
+	IEnumerator RetractArmsCoroutine() {
+		_magnet.collider.enabled = false;
+		_bones = GetComponentsInChildren<Bone>();
+		for (int i = _bones.Length - 1; i >= 0; i--) {
+			Bone b = _bones[i];
+			b.CollapseBone();
+			
+			while (!b.IsFinished()) {
+				yield return null;	
+			}
+			
+			yield return null;
+		}	
+	}
+	
+	IEnumerator DeployArmsCoroutine() {
+		_bones = GetComponentsInChildren<Bone>();
+		for (int i = _bones.Length - 1; i >= 0; i--) {
+			Bone b = _bones[i];
+			b.InflateBone();
+			
+			while (!b.IsFinished()) {
+				yield return null;	
+			}
+			
+			yield return null;
+		}	
+		
+		_magnet.collider.enabled = true;
+	}
+	
+	void OnDrawGizmos() {
+		//Upper
+		DrawLines(m_UpperArm.position, minMaxUpper);
+		DrawLines (m_MiddleArm.position, minMaxMid);
+		DrawLines (m_LowerArm.position, minMaxLower);
+	}
+	
+	void DrawLines(Vector3 pos, Vector2 minMax) {
+		float x = pos.x + 100.0f * Mathf.Cos(Mathf.Deg2Rad * (minMax.x + 90));
+		float y = pos.y + 100.0f * Mathf.Sin(Mathf.Deg2Rad * (minMax.x + 90));
+		
+		float x2 = pos.x + 100.0f * Mathf.Cos(Mathf.Deg2Rad * (minMax.y + 90));
+		float y2 = pos.y + 100.0f * Mathf.Sin(Mathf.Deg2Rad * (minMax.y + 90));
+		
+		Debug.DrawLine(pos, new Vector3(x, y, pos.z), Color.red);
+		Debug.DrawLine(pos, new Vector3(x2, y2, pos.z), Color.blue);
+	}
+}
+

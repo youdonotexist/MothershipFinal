@@ -1,0 +1,18 @@
+using UnityEngine;
+using System.Collections;
+
+public class MinionTypeBase : MonoBehaviour
+{
+	public Port.MinionTypeLevelDetail levelDetails;
+	protected MinionPhysicsVehicle _vehicle;
+
+	protected virtual void Awake() {
+		_vehicle = GetComponent<MinionPhysicsVehicle>();
+	}
+
+	public virtual void SetLevelDetails(Port.MinionTypeLevelDetail levelDets) {
+		levelDetails = levelDets;
+		_vehicle.damageMultiplier = levelDetails.damage;
+	}
+}
+

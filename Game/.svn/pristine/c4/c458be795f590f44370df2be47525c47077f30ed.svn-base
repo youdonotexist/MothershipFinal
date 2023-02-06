@@ -1,0 +1,232 @@
+using UnityEngine;
+using System.Collections;
+
+public class MainMenu : MonoBehaviour
+{
+	//TODO: Add the loading spinner back
+	UIImageButton loadingIcon = null;
+	UISprite loadingSprite = null;
+
+	CurtainHelper _curtainHelper;
+	
+	//Encounter Select
+	GameObject encounterSelect = null;
+	MainMenuEncounterSelect mmes = null;
+
+	//TODO: Remove Debug
+	UILabel bundleDebug;
+
+	public GameObject[] frames;
+	float verticalHeight = 0.0f;
+	bool animating = false;
+	int debugTap = 0;
+	
+	void OnClick() {
+		Application.LoadLevel(LevelManager.Instance.EncounterLevelName());	
+	}
+	
+	void OnCurtainFinish() {
+				
+	}
+
+	void Update() {
+		bundleDebug.text = PlayerPrefs.GetInt("latestBundle").ToString();
+	}
+	
+	void Awake() {
+		Application.targetFrameRate = 60;
+
+		Cache.Init();
+		MissionDetails.Instance.Init ();
+		BundleManager.Instance.DoBundleStuffs();
+
+		bundleDebug = GameObject.Find("BundleNumber").GetComponent<UILabel>();
+
+		_curtainHelper = GameObject.Find("Camera").GetComponent<CurtainHelper>();
+		encounterSelect = GameObject.Find("EncounterSelect");
+		mmes = encounterSelect.GetComponent<MainMenuEncounterSelect>();
+		
+		GameObject loadingIconGO = GameObject.Find("LoadingIcon");
+		if (loadingIconGO != null) {
+			loadingIcon = loadingIconGO.GetComponent<UIImageButton>();
+			loadingSprite = loadingIconGO.GetComponentInChildren<UISprite>();
+		}
+		
+		//Screen size calculations
+		UICamera camera = GameObject.Find("Camera").GetComponent<UICamera>();
+		Rect rect = camera.camera.pixelRect;
+		Vector3 min = camera.camera.ScreenToWorldPoint(new Vector3(0.0f, rect.yMin, 0.0f));
+		Vector3 max = camera.camera.ScreenToWorldPoint(new Vector3(0.0f, rect.yMax, 0.0f));
+		verticalHeight = Vector3.Distance(min, max);
+		
+		//for (int i = 0; i < frames.Length; i++) {
+			//GameObject frame = frames[i];
+			//UIAnchor[] anchors = frame.GetComponentsInChildren<UIAnchor>();
+			//foreach(UIAnchor anchor in anchors) {
+			//	anchor.enabled = false;	
+			//}
+		//}
+	}
+	
+	void Start() {
+		if (_curtainHelper != null) {
+			_curtainHelper.AnimateCurtain(true, Color.black, Color.clear, 0.5f, OnCurtainFinish);	
+		}
+
+		float startY = 0.0f;
+
+		for (int i = 0; i < frames.Length; i++) {
+			GameObject frame = frames[i];
+			UIAnchor[] anchors = frame.GetComponentsInChildren<UIAnchor>();
+			foreach(UIAnchor anchor in anchors) {
+				anchor.enabled = false;	
+			}
+
+			Vector3 position = frame.transform.position;
+			
+			if (i == 0) {
+				startY = position.y;
+			}
+			else {
+				position.y = startY - (i * verticalHeight);
+				frame.transform.position = position;	
+			}
+		}
+
+		//GameObject.Find("Mothership").GetComponent<MothershipVehicle>().EnablePorts(true, MothershipVehicle.PortState.ON);
+	}
+	
+	public void OnMenuButtonTap() {
+		GameObject current = UICamera.currentTouch.current;
+		string buttonName = "";
+		if (current != null) {
+		 	buttonName = current.name;
+		}
+		
+		if (buttonName == "Play") {
+			UILabel button = current.GetComponentInChildren<UILabel>();
+			if (button.text == "Play") {
+				mmes.Play();			
+			}
+		}
+		else if (buttonName == "StoryMode") {
+			if (animating == false) {
+				animating = true;
+				
+				GameObject mainMenu = GameObject.Find("MainMenu");
+				UIAnchor[] anchors = mainMenu.GetComponentsInChildren<UIAnchor>();
+				foreach(UIAnchor anchor in anchors) {
+					anchor.enabled = false;
+				}
+				
+				mmes.DownloadEncounters(true);
+				StartCoroutine(AnimateTimelineIn());
+			}
+		}
+		else if (buttonName == "ArcadeMode") {
+			if (animating == false) {
+				animating = true;
+				
+				GameObject mainMenu = GameObject.Find("MainMenu");
+				UIAnchor[] anchors = mainMenu.GetComponentsInChildren<UIAnchor>();
+				foreach(UIAnchor anchor in anchors) {
+					anchor.enabled = false;	
+				}
+				
+				mmes.DownloadEncounters(false);
+				StartCoroutine(AnimateTimelineIn());
+			}
+		}
+		else if (buttonName == "Title") {
+			if (debugTap++ >= 4) {
+				Debug.Log ("Unlocked!");
+
+				GameSaver.SetSaveState(0, true);
+				GameSaver.SetSaveState(1, true);
+				GameSaver.SetSaveState(2, true);
+				GameSaver.SetSaveState(3, true);
+
+				UILabel label = current.GetComponentInChildren<UILabel>();
+				label.color = Color.blue;
+
+				debugTap = 0;
+			}
+
+
+		}
+		else if (buttonName == "Back") {
+			if (animating == false) {
+				animating = true;
+				StartCoroutine(AnimateTimelineBack());
+			}
+		}
+	}
+	
+	IEnumerator AnimateTimelineBack() {
+		Vector3[] starts = new Vector3[frames.Length];
+		Vector3[] ends = new Vector3[frames.Length];
+		
+		for (int i = 0; i < frames.Length; i++) {
+			GameObject frame = frames[i];
+			Vector3 start = starts[i] = frame.transform.position;
+			ends[i] = new Vector3(start.x, start.y - verticalHeight, start.z);
+		}
+		
+		float duration = 1.0f;
+		float elapsed = 0.0f;
+		
+		while (elapsed < duration) {
+			for (int i = 0; i < frames.Length; i++) {
+				GameObject frame = frames[i];
+				Vector3 start = starts[i];
+				Vector3 end = ends[i];
+				frame.transform.position = Vector3.Lerp(start, end, elapsed/duration);
+			}
+			
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+		animating = false;
+		for (int i = 0; i < frames.Length; i++) {
+			GameObject frame = frames[i];
+			Vector3 end = ends[i];
+			frame.transform.position = end;
+		}
+		
+		mmes.OnBackButtonTapped();
+	}
+	
+	IEnumerator AnimateTimelineIn() {
+		Vector3[] starts = new Vector3[frames.Length];
+		Vector3[] ends = new Vector3[frames.Length];
+		
+		for (int i = 0; i < frames.Length; i++) {
+			GameObject frame = frames[i];
+			Vector3 start = starts[i] = frame.transform.position;
+			ends[i] = new Vector3(start.x, start.y + verticalHeight, start.z);
+		}
+		
+		float duration = 1.0f;
+		float elapsed = 0.0f;
+		
+		while (elapsed < duration) {
+			for (int i = 0; i < frames.Length; i++) {
+				GameObject frame = frames[i];
+				Vector3 start = starts[i];
+				Vector3 end = ends[i];
+				frame.transform.position = Vector3.Lerp(start, end, elapsed/duration);
+			}
+
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+		
+		animating = false;
+		for (int i = 0; i < frames.Length; i++) {
+			GameObject frame = frames[i];
+			Vector3 end = ends[i];
+			frame.transform.position = end;
+		}
+	}
+}
+

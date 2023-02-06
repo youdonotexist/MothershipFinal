@@ -1,0 +1,62 @@
+/*
+ * Copyright 2013 SirsiDynix.  All rights reserved.
+ */
+Ext.define('MothershipEditor.controller.StoryController', {
+    extend: 'MothershipEditor.controller.BaseController',
+
+    config: {
+        control: {
+            'storycard #storyliner': {
+                change: 'onStoryChange',
+                keyup: 'onStoryChange'
+            },
+            'storycard #storyteller': {
+                change: 'onTellerChange',
+                keyup: 'onTellerChange'
+            },
+            'storycard button[action=save_story]': {
+                tap: 'onSave'
+            },
+            'storycard selectfield': {
+                change: 'onTellerChange'
+            }
+        }
+    },
+
+    onCardWillAppear: function (card, created) {
+        var textarea = card.down('#storyliner');
+        var select = card.down('selectfield');
+        textarea.setValue(MothershipEditor.CurrentBattle.get('storyLine'));
+        //name.setValue(MothershipEditor.CurrentBattle.get('storyTeller'));
+        //select.setOptions(MothershipEditor.CurrentBattle.heroes().data.data);
+        select.setDisplayField('name');
+        select.setValueField('id');
+        select.setStore({
+            model: 'MothershipEditor.model.Hero',
+            storeId: 'hero_type',
+            autoLoad: true,
+            proxy: {
+                type: 'rest',
+                url: '/herolist/'+MothershipEditor.CurrentBattle.getId(),
+                reader: {
+                    type: 'json',
+                    rootProperty: 'heroes'
+                }
+            }
+        });
+    },
+
+    onStoryChange: function (textarea) {
+        MothershipEditor.CurrentBattle.set('storyLine', textarea.getValue());
+    },
+
+    onTellerChange: function (select) {
+        var displayField = select.getDisplayField();
+        MothershipEditor.CurrentBattle.set('storyTeller', select.record.get(displayField));
+        MothershipEditor.CurrentBattle.set('storyTellerId', select.getValue());
+    },
+
+    onSave: function () {
+        MothershipEditor.CurrentBattle.save();
+    }
+});

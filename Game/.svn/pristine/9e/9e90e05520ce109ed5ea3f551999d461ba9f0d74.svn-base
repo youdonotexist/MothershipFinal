@@ -1,0 +1,29 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class UISwitcher : MonoBehaviour {
+	
+	public UIFont nesFont;
+	public UIFont latestFont;
+	
+	void Awake	() {
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		UIFont currentFont = GetCurrentFont();
+		for (int i = 0; i < labels.Length; i++) {
+			labels[i].font = currentFont;
+		}
+	}
+	
+	UIFont GetCurrentFont() {
+		string qualityType = MissionDetails.Instance.encounterType;
+		if ("BASIC".Equals(qualityType)) {
+			return nesFont;
+		}
+		else if ("MIXED".Equals(qualityType)) {
+			return latestFont;
+		}
+		else {
+			return latestFont;
+		}
+	}
+}

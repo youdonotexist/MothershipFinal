@@ -1,0 +1,220 @@
+using UnityEngine;
+using System.Collections;
+
+public class MothershipVehicle : Vehicle
+{
+	public Port[] ports;
+
+	Damagable _damagable;
+	CoreStatus _coreStatus;
+	
+	public enum PortState {
+		WAITING,
+		DISABLED,
+		OFF,
+		ON
+	};
+	
+	public PortState portState;
+	public bool isDestroyed = false;
+
+	public Vector2 nesColliderOffset;
+	public GameObject[] damageObjects;
+	int damagePanelCount = 0;
+
+	float scrapCount = 0;
+	Port.MinionTypeDetails[] upgrades = new Port.MinionTypeDetails[1];
+
+	public enum MothershipUpgradeTypes { 
+		REPAIR_20,
+		COUNT
+	}
+	
+	void Awake() {
+		_damagable = GetComponent<Damagable>();
+		_coreStatus = GetComponentInChildren<CoreStatus>();
+		
+		portState = PortState.OFF;
+
+		Vector3 pos = transform.position;
+		pos.z = LayerManager._1;
+		transform.position = pos;
+
+		if (MissionDetails.Instance.encounterType == "BASIC") {
+			Vector3 center = ((CapsuleCollider) collider).center;
+			center.x = nesColliderOffset.x;
+			((CapsuleCollider) collider).center = center;
+		}
+
+		for (int i = 0; i < (int)MothershipUpgradeTypes.COUNT; i++) {
+			Port.MinionTypeDetails dets = DetailsForUpgradeType((MothershipUpgradeTypes)i);
+			upgrades[i] = dets;
+		}
+
+		_damagable.DamageCallback = OnDamage;
+		_damagable.HealCallback = OnHeal;
+	}
+
+	// Use this for initialization
+	void Start ()
+	{
+		ConstructDamagePanels();
+
+		scrapCount = 1000;//PlayerPrefs.GetInt(MissionDetails.Instance.encounterId + "_Scrap");
+		Messenger.Broadcast("onScrapMetalUpdate", scrapCount);
+		Messenger.Broadcast("onPortLoadoutUpdate", 3, upgrades);
+		Messenger.Broadcast("OnMothershipHealthChange", _damagable.Health/_damagable.MaxHealth);
+	}
+
+	
+	// Update is called once per frame
+	void Update ()
+	{
+		if (isDestroyed) return;
+		
+		if (_damagable.Health <= 0.0f && isDestroyed == false) {
+			MissionManager mission = GameObject.Find("_MissionManager").GetComponent<MissionManager>();
+			mission.OnMothershipDie();
+			
+			//Destroy(gameObject);
+			Destroy (ports[0]);
+			Destroy (ports[1]);
+			Destroy (ports[2]);
+			
+			isDestroyed = true;
+		}
+		
+		
+		float health = _damagable.currentHealth / _damagable.maxHealth;
+		int anim = Mathf.Max (Mathf.CeilToInt(health * 4.0f) - 1, 0);
+		_coreStatus.UpdateState(anim);
+
+		UpdateDamagePanels(health);
+	}
+
+	void ConstructDamagePanels() {
+		damagePanelCount = 7;
+		if (MissionDetails.Instance.encounterType == "BASIC") {
+			damagePanelCount = 4;
+		}
+		else if (MissionDetails.Instance.encounterType == "JUGGERNAUT") {
+			damagePanelCount = 6;
+		}
+
+		for (int i = damagePanelCount; i < damageObjects.Length; i++) {
+			Destroy(damageObjects[i]);
+		}
+	}
+
+	void UpdateDamagePanels(float healthPercentage) {
+		int level = Mathf.FloorToInt((1.0f - healthPercentage) * damageObjects.Length);
+		for (int i = 0; i < damageObjects.Length; i++) {
+			GameObject damObject = damageObjects[i];
+			if (damObject != null) {
+				if (i < level) {
+					damObject.SetActive(true);
+				}
+				else {
+					damObject.SetActive(false);
+				}
+			}
+		}
+	}
+
+	void OnDamage(float amt) {
+		CameraShake.Instance.DoShake(amt);
+		Messenger.Broadcast("OnMothershipHealthChange", _damagable.Health/_damagable.MaxHealth);
+	}
+
+	void OnHeal(float amt) {
+		Messenger.Broadcast("OnMothershipHealthChange", _damagable.Health/_damagable.MaxHealth);
+	}
+
+	public void AddScrap(int amount) {
+		scrapCount += amount;
+		Messenger.Broadcast("onScrapMetalUpdate", scrapCount);
+	}
+
+	public void RemoveScrap(float amount) {
+		scrapCount -= amount;
+		Messenger.Broadcast("onScrapMetalUpdate", scrapCount);
+	}
+
+	public float GetScrap() {
+		return scrapCount;
+	}
+
+	void UpdateMothersipComponent(int portIndex, int portType) {
+		if (portIndex < ports.Length) {
+			ports[portIndex].OnUpdatePort(portType);
+		}
+		else { //Mothership repair
+			Port.MinionTypeDetails dets = upgrades[portType];
+			if (dets.levels[0].cost <= scrapCount) {
+				RemoveScrap(dets.levels[0].cost);
+				if (dets.index == (int) MothershipUpgradeTypes.REPAIR_20) {
+					_damagable.OnHeal(20.0f);
+				}
+			}
+		}
+	}
+	
+	public void EnablePorts(bool enable, PortState state) {
+
+		if (ports[0] != null)
+			ports[0].gameObject.SetActive(enable);
+
+		if (ports[1] != null)
+			ports[1].gameObject.SetActive(enable);
+
+		if (ports[2] != null)
+			ports[2].gameObject.SetActive(enable);
+		
+		portState = state;
+		
+		if (state == PortState.DISABLED) {
+			StopCoroutine("WaitForDisable");
+			StartCoroutine("WaitForDisable", 3.0f);
+		}
+	}
+				
+	IEnumerator WaitForDisable(float wait) {
+		float elapsed = 0.0f;
+		while (elapsed < wait) {
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+		
+		if (portState == PortState.DISABLED) {
+			EnablePorts(true, PortState.ON);	
+		}
+	}
+
+	Port.MinionTypeDetails DetailsForUpgradeType(MothershipUpgradeTypes type) {
+		Port.MinionTypeDetails dets = new Port.MinionTypeDetails();
+		if (type == MothershipUpgradeTypes.REPAIR_20) {
+			dets.index = (int) type;
+
+			dets.description = "Repair 20/200 damage to Mothership";
+			dets.upgradeType = Port.MinionUpgradeType.SINGLE_USE;
+			dets.title = "Repair 20";
+			dets.index = 0;
+			dets.state = -1;
+
+
+			dets.levels = new Port.MinionTypeLevelDetail[1];
+			dets.levels[0].cost = 2.0f;
+		}
+
+		return dets;
+	}
+
+	void OnEnable() {
+		Messenger.AddListener("UpdateShipComponent", new Callback<int, int>(UpdateMothersipComponent));
+	}
+
+	void OnDisable() {
+		Messenger.RemoveListener("UpdateShipComponent", new Callback<int, int>(UpdateMothersipComponent));
+	}
+}
+

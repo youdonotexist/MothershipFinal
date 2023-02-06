@@ -1,0 +1,21 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class CoreStatus : MonoBehaviour {
+	
+	exSpriteAnimation _animation;
+	
+	void Awake() {
+		_animation = GetComponent<exSpriteAnimation>();	
+	}
+	
+	public void UpdateState(int state) {
+		if (state < _animation.animations.Count) {
+			exSpriteAnimClip clip = _animation.animations[state];
+			if (_animation != null && !_animation.IsPlaying(clip.name)) {
+				_animation.Stop();
+				_animation.Play(clip.name);
+			}
+		}
+	}
+}

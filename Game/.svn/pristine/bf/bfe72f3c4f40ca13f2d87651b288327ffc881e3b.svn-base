@@ -1,0 +1,121 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using MiniJSON;
+public class MainMenuEncounterSelect : MonoBehaviour
+{
+	UIPopupList _list;
+	string[] names;
+	IList encounters;
+	
+	MainMenu _mainMenu;
+	
+	public UIGrid _encounterGrid;
+	public GameObject encounterPrefab;
+	
+	void Start ()
+	{
+		_list = GetComponent<UIPopupList>();
+		_mainMenu = GameObject.Find("UI Root (2D)").GetComponent<MainMenu>();
+		StartCoroutine(Download ());
+	}
+	
+	public void DownloadEncounters() {
+		StartCoroutine(Download ());
+	}
+	
+	IEnumerator Download() {
+		_mainMenu.SetLoading();
+		
+		HTTP.Request encounterReq = new HTTP.Request( "get", "http://mothership.mike-daly.com/encounter" );
+    	encounterReq.Send();
+
+	    while( !encounterReq.isDone ) { yield return null; }
+		
+		//var thing = new WWW("http://mothership.mike-daly.com/encounter");
+		//yield return thing;
+		
+		encounters = (IList) Json.Deserialize(encounterReq.response.Text);  
+		int childCount = _encounterGrid.transform.childCount;
+		for (int i = 0; i < childCount; i++) {
+			Transform child = _encounterGrid.transform.GetChild(0);
+			child.parent = null;
+			Destroy(child.gameObject);	
+		}
+		
+		for (int i = 0; i < encounters.Count; i++) {
+			IDictionary dict = (IDictionary) encounters[i];
+			string name = (string) dict["name"];
+			string type = (string) dict["hero_type_id"];
+			string backstory = (string) dict["backstory"];
+			string encid = (string) dict["_id"];
+			GameObject encounter = (GameObject) GameObject.Instantiate(encounterPrefab);
+			EncounterItem item = encounter.GetComponent<EncounterItem>();
+			
+			encounter.transform.parent = _encounterGrid.transform;
+			
+			item._title.text = name;
+			item._shipSprite.spriteName = TypeToSprite(type);
+			item._details.text = backstory;
+			item.LoadHighScore(encid);
+		}
+		_encounterGrid.Reposition();
+		
+		UICenterOnChild center = gameObject.GetComponentInChildren<UICenterOnChild>();
+		center.Recenter();
+		
+   		
+		//_list.items = new System.Collections.Generic.List<string>(names);
+		//_list.selection = _list.items[0];
+		
+		_mainMenu.FinishLoading();
+	}
+	
+	string TypeToSprite(string type) {
+		if (type == "JUGGERNAUT"){
+			return "jugg3-5-1-f1";
+		}
+		else if (type == "BASIC") {
+			return "Hero5-5-1";
+		}
+		
+		return "";
+	}
+	
+	void onChangeValue(string test) {
+		IDictionary enc = GetEncounterByName(test);
+		if (enc != null) {
+			GameObject go = GameObject.Find("MissionDetails");	
+			MissionDetails md = go.GetComponent<MissionDetails>();
+			md.SetEncounterId((string)enc["_id"]);
+		}
+		
+	}
+	
+	IDictionary GetEncounterByName(string name) {
+		foreach (IDictionary enc in encounters) {
+			string n = (string) enc["name"];
+			if (n == name) {
+				return enc;	
+			}
+		}
+		
+		return null;
+	}
+	
+	public void Play() {
+		UICenterOnChild center = gameObject.GetComponentInChildren<UICenterOnChild>();
+		GameObject centeredObject = center.centeredObject;
+		EncounterItem encounterItem = centeredObject.GetComponent<EncounterItem>();
+		
+		IDictionary enc = GetEncounterByName(encounterItem._title.text);
+		if (enc != null) {
+			GameObject go = GameObject.Find("MissionDetails");	
+			MissionDetails md = go.GetComponent<MissionDetails>();
+			md.SetEncounterId((string)enc["_id"]);
+			
+			Application.LoadLevel("Scene01-4_3");
+		}
+	}
+}
+

@@ -1,0 +1,57 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class UISwitcher : MonoBehaviour {
+	
+	public UIFont nesFont;
+	public UIFont msFont;
+	public UIFont latestFont;
+	
+	void Awake	() {
+		SetUp(null);
+	}
+
+	public void SetUp(string type) {
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		UIFont currentFont = GetCurrentFont(type);
+		for (int i = 0; i < labels.Length; i++) {
+			labels[i].bitmapFont = currentFont;
+		}
+	}
+
+	string ExtractType() {
+		string qualityType = MissionDetails.Instance.encounterType;
+		if ("BASIC".Equals(qualityType)) {
+			return "nes";
+		}
+		else if ("JUGGERNAUT".Equals(qualityType)) {
+			return "ms";
+		}
+		else if ("SCIENTIST".Equals(qualityType)) {
+			return "snes";
+		}
+		else {
+			return "ps";
+		}
+	}
+
+	
+	UIFont GetCurrentFont(string type) {
+		string qualityType = type;
+		if (type == null)
+			qualityType = ExtractType();
+
+		if ("nes".Equals(qualityType)) {
+			return nesFont;
+		}
+		else if ("ms".Equals(qualityType)) {
+			return msFont;
+		}
+		else if ("nes".Equals(qualityType)) {
+			return latestFont;
+		}
+		else {
+			return latestFont;
+		}
+	}
+}

@@ -1,0 +1,73 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class SplitMinion : MinionTypeBase {
+
+	public MinionPhysicsVehicle splitMinionPrefab;
+
+	// Update is called once per frame
+	void Update () {
+		if (_vehicle.pathEnded) {
+			Vector3 inheritedVelocity = _vehicle.LastVelocity();
+			
+			//Fire Left
+			GameObject center = mid(inheritedVelocity);
+			GameObject left = angled (45.0f, inheritedVelocity);
+			GameObject right = angled (-45.0f, inheritedVelocity);
+
+			Physics.IgnoreCollision(center.collider, left.collider);
+			Physics.IgnoreCollision(center.collider, right.collider);
+			Physics.IgnoreCollision(left.collider, right.collider);
+
+			//Destroy myself
+			//TODO play a split sound
+			_vehicle.CleaupAndDestroy(transform.position, false);
+		}
+	}
+
+	GameObject mid(Vector3 inheritedVelocity) {
+		MinionPhysicsVehicle instance = Instantiate(splitMinionPrefab) as MinionPhysicsVehicle;
+		instance.transform.forward = transform.forward;
+		if (inheritedVelocity.x > 0.0f) instance.rigidbody.velocity = inheritedVelocity;
+		instance.rigidbody.velocity = transform.forward * _vehicle.maxSpeed;
+		instance.damageMultiplier = _vehicle.damageMultiplier / 3.0f;
+		
+		Vector3 pos = transform.position; pos.z = LayerManager._2;
+		instance.transform.position = pos;
+		instance.collider.enabled = true;
+		instance.launched = true;
+		instance.online = true;
+		return instance.gameObject;
+	}
+
+	GameObject angled(float angle, Vector3 inheritedVelocity) {
+		float theta = Mathf.Deg2Rad * angle;
+		Vector3 forward = transform.forward;
+		
+		float cs = Mathf.Cos(theta);
+		float sn = Mathf.Sin(theta);
+		
+		float px = forward.x * cs - forward.z * sn; 
+		float py = forward.x * sn + forward.z * cs;
+		
+		MinionPhysicsVehicle instance = Instantiate(splitMinionPrefab) as MinionPhysicsVehicle;
+		instance.transform.forward = new Vector3(px, py, 0.0f);
+		if (inheritedVelocity.x > 0.0f) instance.rigidbody.velocity = inheritedVelocity;
+		instance.rigidbody.velocity = new Vector3(px, py, 0.0f) * _vehicle.maxSpeed;
+		instance.damageMultiplier = _vehicle.damageMultiplier / 3.0f;
+		
+		Vector3 pos = transform.position; pos.z = LayerManager._2;
+		instance.transform.position = pos;
+		instance.collider.enabled = true;
+		instance.launched = true;
+		instance.online = true;
+
+
+		return instance.gameObject;
+	}
+
+	public override void SetLevelDetails(PortState.MinionTypeLevelDetail levelDets) {
+		levelDetails = levelDets;
+		_vehicle.damageMultiplier = levelDetails.damage * 3.0f;
+	}
+}

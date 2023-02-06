@@ -1,0 +1,26 @@
+using UnityEngine;
+using System.Collections;
+
+public class Magnet : MonoBehaviour
+{
+
+	Transform current;
+	public LayerMask GrabberLayer;
+	
+	public IKTest _ikTest;
+	
+	void OnTriggerEnter(Collider c) {
+		if (current == null && LayerMaskHelper.IsInLayerMask(c.gameObject.layer, GrabberLayer)) {
+			MinionVehicle veh = c.GetComponent<MinionVehicle>();
+			veh.StopFollowPath();
+			
+			current = c.transform;
+			current.parent = transform;
+			current.localPosition = Vector3.zero;
+			
+			_ikTest.target = null;
+			_ikTest.RetractArm();
+		}
+	}
+}
+

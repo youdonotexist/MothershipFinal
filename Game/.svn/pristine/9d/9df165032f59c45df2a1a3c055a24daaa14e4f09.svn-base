@@ -1,0 +1,139 @@
+using UnityEngine;
+using System.Collections;
+
+public class HeroMissile : Deployable
+{
+	Vector3[] reversePath = null;
+	int currentPathIndex = -1;
+	
+	public AudioClip _fireClip;
+	public AudioSource _audioSource;
+	public GameObject missileEffectPrefab;
+	public GameObject missileExplosionPrefab;
+	
+	Vector3 fromNode;
+	Vector3 toNode;
+	
+	public float speed = 300.0f;
+	float timeToTake = 0.0f;
+	float timer = 0.0f;
+	
+	Vector3 newForward;
+	
+	Damagable _damagable;
+	HeroAIManager _aiManager;
+	
+	// Use this for initialization
+	void Start ()
+	{
+		if (_audioSource == null) {
+			_audioSource = gameObject.AddComponent<AudioSource>();
+		}
+
+		MasterAudio.PlaySound(_fireClip.name);
+		
+		_damagable = GetComponent<Damagable>();
+		_aiManager = GameObject.Find("_MinesAndShields").GetComponent<HeroAIManager>();
+		_aiManager.AddMissile(1);
+	}
+	
+	public void SetPath(Path2 p, Vector3 start) {
+		//path = p;
+		reversePath = p.GetPointsReversed(start);
+	}
+	
+	public void SetPathNormal(Vector3[] points) {
+		reversePath = points;	
+	}
+	
+	void Update() {
+		if (_damagable.Health <= 0.0f) {
+			if (missileExplosionPrefab != null) {
+				Vector3 pos = transform.position; pos.z = LayerManager._5;
+				Instantiate(missileExplosionPrefab, pos, missileExplosionPrefab.transform.rotation);
+			}
+			
+			MasterAudio.PlaySound(_damagable._destroySound.name);
+			Destroy(gameObject);
+		}
+	}
+	
+	// Update is called once per frame
+	void FixedUpdate ()
+	{
+		if (currentPathIndex == -1) {
+			currentPathIndex++;
+			fromNode = reversePath[currentPathIndex];
+			toNode = reversePath[currentPathIndex + 1];
+			
+			currentPathIndex++;
+			
+			float dist = Vector3.Distance(fromNode, toNode);
+			timeToTake = dist/speed;
+			newForward = (toNode - fromNode).normalized;
+		}
+		
+		if (timer > timeToTake) {
+			//lastForward = (toNode - fromNode).normalized;
+			
+			fromNode = reversePath[currentPathIndex];
+			if (currentPathIndex + 1 < reversePath.Length) {
+				toNode = reversePath[currentPathIndex + 1];
+			
+				currentPathIndex++;
+				newForward = (toNode - fromNode).normalized;
+			
+				float dist = Vector3.Distance(fromNode, toNode);
+				timeToTake = dist/speed;
+				timer = 0.0f;
+			}
+			else {
+				if (missileExplosionPrefab != null) {
+					Instantiate(missileExplosionPrefab, transform.position, missileExplosionPrefab.transform.rotation);
+				}
+			
+				MasterAudio.PlaySound(_damagable._destroySound.name);
+				Destroy(gameObject);
+			}
+
+		}
+		
+		if (reversePath != null && reversePath.Length > 0) {
+			rigidbody.MovePosition(Vector3.Lerp(fromNode, toNode, timer/timeToTake));
+			transform.forward = newForward;
+			timer += Time.fixedDeltaTime;
+		}
+	}
+	
+	void OnCollisionEnter(Collision c) {
+		Damagable dam = c.gameObject.GetComponent<Damagable>();
+		if (dam != null) {
+			if (_damagable.collisionType == Damagable.COLLISION_TYPE.DISABLE) {
+				MothershipVehicle mothership = dam.GetComponent<MothershipVehicle>();
+				if (mothership != null) {
+					mothership.EnablePorts(false, MothershipVehicle.PortStatus.DISABLED);
+					Vector3 pos = mothership.transform.position;
+					Instantiate(missileEffectPrefab, new Vector3(pos.x, pos.y, LayerManager._3_5), missileEffectPrefab.transform.rotation);
+					foreach (Port p in mothership.ports) {
+						if (p.portedMinion != null) {
+							Vector3 portPos = p.portedMinion.transform.position;
+							GameObject portEffect = (GameObject) Instantiate(missileEffectPrefab, new Vector3(portPos.x, portPos.y, LayerManager._3_5), missileEffectPrefab.transform.rotation);
+							portEffect.transform.parent = p.portedMinion.transform;
+							portEffect.GetComponent<exSprite>().scale = new Vector2(2.0f, 2.0f);
+							portEffect.GetComponent<EffectTime>().playDuration = 3.0f;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	void OnDestroy() {
+		_aiManager.AddMissile(-1);	
+	}
+	
+	public void OnBecameInvisible() {
+		Destroy (gameObject);
+	}
+}
+

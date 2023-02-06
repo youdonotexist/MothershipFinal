@@ -1,0 +1,451 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using Vectrosity;
+
+public class Port : MonoBehaviour
+{
+	public GameObject[] shipPrefabs;
+	public AudioClip _readyClip;
+	
+	Camera _gameCamera;
+	TimeKeeper _keeper;
+	
+	Path2 currentPath;
+	public Vector3[] __PATH;
+	
+	//Vector2 lastPositionScreen;
+	Vector3 lastPositionWorld;
+	
+	VectorLine currentLine = null;
+	public Material lineMaterial;
+	
+	float timeSinceLastMovement = 0.0f;
+	
+	public float timeBetweenDeploy = 3.0f;
+	public float distanceBetweenPoints = 40.0f;
+	float lastDeploy = 0.0f;
+	
+	public bool minionReady = true;
+	public bool portReady = true;
+	
+	public GameObject portWorld;
+	public GameObject portedMinion = null;
+	public MinionBaseVehicle deployedVehicle = null;
+
+	public Vector3 portDirection;
+
+	public Vector2 nesPortOffset;
+	public Vector2 msPortOffset;
+	public Vector2 latestPortOffset;
+
+	public bool disableOnStart = true;
+	public bool fauxPort = false;
+	
+	public int portNumber;
+	
+	MothershipVehicle mothership = null;
+	
+	int maxPathNodes = 30;
+	
+	public exSprite _sprite;
+	public exSpriteAnimation _animation;
+	
+	public exSpriteAnimClip prepareAnimationName;
+	public exSpriteAnimClip readyAnimationName;
+
+	public PortState portState = new PortState();
+	//private int currentType = 0;
+
+	ColliderOutline2D _outline;
+
+	void Awake() {
+		_gameCamera = Camera.main;
+		_sprite = transform.parent.GetComponent<exSprite>();
+		_outline = GetComponent<ColliderOutline2D>();
+
+		_keeper = GameObject.Find("TimeKeeper").GetComponent<TimeKeeper>();
+		
+		GameObject go = GameObject.Find("Mothership");
+		if (go != null) {
+			mothership = go.GetComponent<MothershipVehicle>();
+		}
+		lastDeploy = timeBetweenDeploy;
+
+		portState.portIndex = portNumber;
+		portState.selectedType = 0;
+		portState.details = new PortState.MinionTypeDetails[(int)PortState.MinionTypes.COUNT];
+
+		EasyTouch.On_TouchStart += OnTouchStartBroadcast;
+
+		if (!fauxPort) {
+			for (int i = 0; i < portState.details.Length; i++) {
+				portState.details[i] = detailsForMinionType((PortState.MinionTypes)i);
+			}
+		}
+	}
+	
+	void Start() {
+		PortMinion();
+		SetEnable(!disableOnStart);
+
+		if (mothership != null) {
+			Messenger.Broadcast("OnPortInit", portState, _outline);
+		}
+	}
+	
+	void PortMinion() {
+		if (shipPrefabs.Length == 0) return;
+
+		GameObject prefab = shipPrefabs[Random.Range(0, shipPrefabs.Length-1)];
+
+		Vector3 minionPosition = portWorld.transform.position; minionPosition.z = mothership == null ? minionPosition.z : LayerManager._2;
+		Object o = Instantiate(prefab, minionPosition, prefab.transform.rotation);
+		portedMinion = (GameObject) o;
+		deployedVehicle = null;
+		
+		portedMinion.transform.forward = portDirection;
+		MinionBaseVehicle vehicle = portedMinion.GetComponent<MinionBaseVehicle> ();
+		vehicle.parentPort = this;
+		vehicle.portIndex = portNumber;
+		vehicle.OnPortChange(enabled);
+		vehicle.collider.enabled = false;
+
+		timeBetweenDeploy = vehicle.GetReloadSpeed();
+
+		if (!fauxPort) {
+			PortState.MinionTypeDetails dets = portState.details[portState.selectedType];
+			portedMinion.GetComponent<MinionTypeBase>().SetLevelDetails(dets.levels[dets.state]);
+		}
+		
+		if (mothership != null) {
+			portedMinion.transform.parent = mothership.transform;
+		}
+	}
+	
+	Color[] buildColorSmooth(int lines) {
+		Color[] colors = new Color[currentPath.points.Count - 1];
+		
+		for (int i = 0; i < currentPath.points.Count - 1; i++) {
+			Color white = Color.white;
+			white.a = 1.0f - ( (i+1)/((float) lines));
+			colors[i] = white;
+		}
+		
+		return colors;
+	}
+
+	public void OnUpdatePort(int type, int level) {
+		List<GameObject> prefabs = new List<GameObject>();
+		bool gotone = false;
+		for (int i = 0; i < portState.details.Length; i++) {
+			if (i == type) {
+				PortState.MinionTypeDetails details = portState.details[i];
+				if (details.state + 1 >= details.levels.Length) {
+					break;
+				}
+
+				float cost = 0.0f;
+				if (level == details.state + 1) {
+					cost = details.levels[details.state + 1].cost;
+				}
+				else {
+					cost = details.levels[level-1].cost + details.levels[level].cost;
+				}
+
+				float lastCost = portState.GetCurrentLevelDetails().cost;
+				if (cost <= mothership.GetScrap()) {
+					portState.details[i].state = level;
+					portState.selectedType = i;
+
+					if (cost == 0) {
+						mothership.AddScrap(Mathf.FloorToInt(lastCost * 0.5f));
+					}
+
+					prefabs.Add((GameObject) Resources.Load("_MinionTypes/"+i.ToString()));
+					mothership.RemoveScrap(cost);
+					//currentType = i;
+					gotone = true;
+				}
+				break;
+			}
+		}
+
+		if (gotone) {
+			for (int i = 0; i < portState.details.Length; i++) {
+				if (i != type) {
+					portState.details[i].state = -1;
+				}
+			}
+
+			shipPrefabs = prefabs.ToArray();
+			if (portedMinion != null) {
+				portedMinion.GetComponent<MinionPhysicsVehicle>().CleaupAndDestroy(Vector3.zero, false);
+			}
+
+			PortMinion();
+			lastDeploy = timeBetweenDeploy;
+			UpdateAnimation();
+
+			Messenger.Broadcast("onPortLoadoutUpdate", portState, gotone);
+		}
+		else {
+			Messenger.Broadcast("UpgraderMessage", "Not enough scrap!");
+		}
+	}
+
+	void OnDestroy(){
+		UnsubscribeEvent();
+		EasyTouch.On_TouchStart -= OnTouchStartBroadcast;
+	}
+
+	void UnsubscribeEvent() {
+		EasyTouch.On_TouchStart -= OnTouchStartET;
+		EasyTouch.On_TouchUp -= OnTouchEndET;
+		EasyTouch.On_Drag -= OnTouchDragET;
+	}
+
+	void OnTouchStartBroadcast(Gesture gesture) {
+		if (gesture.pickObject == gameObject) {
+			Messenger.Broadcast("OnPortSelected", portNumber, portWorld.transform.position);
+		}
+	}
+
+	void OnTouchStartET(Gesture gesture) {
+		if (gesture.pickObject == gameObject){
+			if (portReady && minionReady) {
+				Time.timeScale = 0.01f;
+				currentPath = new Path2();
+				
+				//lastPositionScreen = UICamera.lastTouchPosition;
+				lastPositionWorld = portedMinion.transform.position;//_gameCamera.ScreenToWorldPoint(new Vector3(currentPositionScreen.x, currentPositionScreen.y, _gameCamera.transform.position.z));
+				lastPositionWorld.z = mothership == null ? transform.position.z : LayerManager._3;
+
+				currentPath.AddPoint(new TimestampPoint(lastPositionWorld, 0.0f));
+				
+				timeSinceLastMovement = 0.0f;
+				lastDeploy = 0.0f;
+			}
+			else if (deployedVehicle != null) {
+				deployedVehicle.OnPostDeployTap();
+			}
+		}
+	}
+
+	private void OnTouchDragET(Gesture gesture) {
+		if (currentPath != null) {
+			Vector2 newTouch = UICamera.lastTouchPosition;
+			Vector3 newWorld = _gameCamera.ScreenToWorldPoint(new Vector3(newTouch.x, newTouch.y, _gameCamera.transform.position.z));
+			newWorld.z = mothership == null ? transform.position.z : LayerManager._3;
+
+			//Calculate the distance in world space, not screen space
+			float distance = Vector3.Distance(newWorld, lastPositionWorld);
+			if (distance >= distanceBetweenPoints) {
+				Vector3 dir = (newWorld - lastPositionWorld).normalized;
+				Vector3 normalizedMin =  dir * distanceBetweenPoints;
+				Vector3 normalizedMax =  dir * distance;
+
+				int segmentCount = Mathf.FloorToInt(normalizedMax.magnitude / normalizedMin.magnitude);
+				int index = 1;
+
+				while (index <= segmentCount) {
+					newWorld = lastPositionWorld + (dir * (index * distanceBetweenPoints)); 
+					newWorld.z = mothership == null ? transform.position.z : LayerManager._3;
+				
+					currentPath.AddPoint(new TimestampPoint(newWorld, timeSinceLastMovement));
+					timeSinceLastMovement = 0.0f; 
+					index++;
+				}
+
+				lastPositionWorld = newWorld;
+				
+				if (currentLine == null) {
+					currentLine = new VectorLine("Test", currentPath.GetPoints(), lineMaterial, 5.0f, LineType.Continuous);
+				}
+				
+				currentLine.Resize(currentPath.GetPoints());
+				currentLine.SetColorsSmooth(buildColorSmooth(maxPathNodes));
+				currentLine.Draw3D ();
+				
+				if (currentPath.points.Count >= maxPathNodes) {
+					EndPath();	
+				}
+			}
+		}
+	}
+
+	void OnTouchEndET(Gesture gesture) {
+		if (GameState.Instance.IsPaused() == false) {
+			/*__PATH = currentPath.GetPoints();
+
+			float[,] serialized = new float[__PATH.Length, 3];
+
+			for (int i = 0; i < __PATH.Length; i++) {
+				Vector3 vec = __PATH[i];
+				serialized[i, 0] = vec.x;
+				serialized[i, 1] = vec.y;
+				serialized[i, 2] = vec.z;
+			}
+
+			var epochStart = new System.DateTime(1970, 1, 1, 8, 0, 0, System.DateTimeKind.Utc);
+			var timestamp = (System.DateTime.UtcNow - epochStart).TotalSeconds;
+
+			System.IO.Stream str = System.IO.File.Create("Path_" + timestamp.ToString());
+			System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+			formatter.Serialize(str, serialized);
+			str.Close();  */ 
+			
+			EndPath ();
+		}
+	}
+
+	void EndPath() {
+		if (shipPrefabs != null && shipPrefabs.Length > 0) {
+			if (currentPath != null) {
+				if (currentPath.points.Count > 1) {
+					MinionBaseVehicle minion = portedMinion.GetComponent<MinionBaseVehicle>();
+					minion.parentPort = this;
+					minion.SetPath(currentPath);
+					minion.transform.forward = Vector3.right * -1.0f;
+
+					deployedVehicle = minion;
+					minionReady = false;
+					portedMinion = null;
+					Messenger.Broadcast("OnMinionFired");
+				}
+				else {
+					lastDeploy = timeBetweenDeploy;	
+				}
+				
+				currentPath = null;
+				VectorLine.Destroy(ref currentLine);
+				currentLine = null;
+				currentPath = null;
+			}
+		}
+		Time.timeScale = 1.0f;
+	}
+				
+	void Update() {
+		timeSinceLastMovement += _keeper.AnimationTime();
+		
+		if (minionReady) {
+			lastDeploy += Time.deltaTime;
+			if (lastDeploy >= timeBetweenDeploy) {
+				if (portReady == false) {
+					MasterAudio.PlaySound(_readyClip.name);
+				}
+				if (portedMinion == null) {
+					PortMinion();
+				}
+				portReady = true;
+			}
+			else {
+				portReady = false;	
+			}
+		}
+		UpdateAnimation();
+
+	}
+
+	void UpdateAnimation() {
+		if (_animation) {
+			if (!portReady) {
+				float progress = lastDeploy/timeBetweenDeploy;
+				int frame = Mathf.FloorToInt(progress * 4.0f);
+				
+				_animation.Pause();
+				_animation.SetFrame(prepareAnimationName.name, frame);
+			}
+			else {
+				if (!_animation.IsPlaying(readyAnimationName.name) || _animation.IsPaused(readyAnimationName.name)) {
+					_animation.Play (readyAnimationName.name);
+				}
+			}
+		}
+	}
+	
+	public void MinionDestroyed() {
+		minionReady = true;
+	}
+	
+	public void SetEnable(bool enable) {
+		this.enabled = enable;
+		if (enable) {
+			EasyTouch.On_TouchStart += OnTouchStartET;
+			EasyTouch.On_TouchUp += OnTouchEndET;
+			EasyTouch.On_Drag += OnTouchDragET;
+			
+			if (_sprite != null) {
+				_sprite.color = Color.white;
+			}
+			
+			if (portedMinion != null) {
+				portedMinion.collider.enabled = true;
+				MinionBaseVehicle vehicle = portedMinion.GetComponent<MinionBaseVehicle>();
+				vehicle.OnPortChange(true);
+			}
+		}
+		else {
+			if (portedMinion != null) {
+				portedMinion.collider.enabled = false;
+				MinionBaseVehicle vehicle = portedMinion.GetComponent<MinionBaseVehicle>();
+				vehicle.OnPortChange(false);
+				
+				if (currentPath != null) {
+					currentPath = null;
+					VectorLine.Destroy(ref currentLine);
+					currentLine = null;
+					currentPath = null;
+					lastDeploy = timeBetweenDeploy;	
+					Time.timeScale = 1.0f;
+				}
+			}
+
+			if (_sprite != null) {
+				_sprite.color = Color.red;
+			}
+			
+			if (_animation != null) {
+				_animation.Stop();
+				_animation.SetFrame(prepareAnimationName.name, 5);
+			}
+
+			UnsubscribeEvent();
+		}
+	}
+	
+	void OnDrawGizmosSelected() {
+		Debug.DrawLine(transform.position, transform.position + (portDirection * 100.0f));	
+	}
+
+	PortState.MinionTypeDetails detailsForMinionType(PortState.MinionTypes type) {
+		const int defaultMinion = 0;
+
+		IList upgrades = BundleManager.Instance.GetUpgrades(true);
+		IDictionary currentUpgrade = (IDictionary) upgrades[(int)type];
+		IList levels = (IList) currentUpgrade["levels"];
+
+		PortState.MinionTypeDetails dets = new PortState.MinionTypeDetails();
+		dets.index = (int) type;
+		dets.state = (defaultMinion == (int) type) ? 0 : -1;
+		dets.title = currentUpgrade["type"].ToString();
+
+		dets.levels = new PortState.MinionTypeLevelDetail[levels.Count];
+		for (int i = 0; i < levels.Count; i++) {
+			IDictionary level = (IDictionary) levels[i];
+
+			dets.levels[i].title = level["title"].ToString();
+			dets.levels[i].description = level["description"].ToString();
+
+			dets.levels[i].cost = float.Parse(level["cost"].ToString());
+			dets.levels[i].damage = float.Parse(level["damage"].ToString());
+			dets.levels[i].speed = float.Parse(level["speed"].ToString());
+			dets.levels[i].life = float.Parse(level["life"].ToString());
+			dets.levels[i].index = int.Parse(level["index"].ToString());
+		}
+
+		return dets;
+	}
+}
+

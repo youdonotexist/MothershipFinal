@@ -1,0 +1,32 @@
+[
+  {
+    "score": "500",
+    "encounterId": "51be7956a0b0c95a4f000001",
+    "_id": "51c261a4f80b108a55000001"
+  },
+  {
+    "score": "700",
+    "encounterId": "51be7956a0b0c95a4f000001",
+    "_id": "51c8db35f887180200000001"
+  },
+  {
+    "score": "300",
+    "encounterId": "51be7956a0b0c95a4f000001",
+    "_id": "51c8db6ef887180200000002"
+  },
+  {
+    "score": "500",
+    "encounterId": "51be7956a0b0c95a4f000001",
+    "_id": "51fe9a31d5c305c036000001"
+  },
+  {
+    "score": "900",
+    "encounterId": "51be7956a0b0c95a4f000001",
+    "_id": "52044c0639788f0d2e000001"
+  },
+  {
+    "score": "5200",
+    "encounterId": "51be7956a0b0c95a4f000001",
+    "_id": "5220089ca4b06c2f5a000001"
+  }
+]

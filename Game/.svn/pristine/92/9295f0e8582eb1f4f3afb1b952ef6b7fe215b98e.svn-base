@@ -1,0 +1,65 @@
+using UnityEngine;
+using System.Collections;
+
+public class MothershipVehicle : Vehicle
+{
+	public GameObject[] ports;
+	public GameObject[] portUI;
+	
+	UISlider healthSlider;
+	Damagable _damagable;
+	
+	void Awake() {
+		healthSlider = GameObject.Find("MothershipProgress").GetComponent<UISlider>();	
+		_damagable = GetComponent<Damagable>();
+	}
+	
+	public void EnablePorts(bool enable) {
+		ports[0].active = enable;
+		ports[1].active = enable;
+		ports[2].active = enable;
+	}
+	
+	public void EnableUI( bool enable) {
+		portUI[0].SetActiveRecursively(enable);
+		portUI[1].SetActiveRecursively(enable);
+		portUI[2].SetActiveRecursively(enable);
+	}
+	
+	// Use this for initialization
+	void Start ()
+	{
+		healthSlider.sliderValue = _damagable.Health/_damagable.MaxHealth;
+	}
+	
+	// Update is called once per frame
+	void Update ()
+	{
+		healthSlider.sliderValue = _damagable.Health/_damagable.MaxHealth;
+		
+		if (_damagable.Health <= 0.0f) {
+			MissionManager mission = GameObject.Find("_MissionManager").GetComponent<MissionManager>();
+			mission.OnMothershipDie();
+			
+			Destroy(gameObject);
+			Destroy (ports[0]);
+			Destroy (ports[1]);
+			Destroy (ports[2]);
+			Destroy (portUI[0]);
+			Destroy (portUI[1]);
+			Destroy (portUI[2]);
+		}
+	}
+	
+	//void OnCollisionEnter(Collision c) {
+	//	if (LayerMaskHelper.IsInLayerMask(c.gameObject, LayerMaskHelper.OnlyIncluding(LayerMask.NameToLayer("HeroProjectile")))) {
+	//		if (c.gameObject.name.Contains("SingleShot")) {
+	//			currentHealth -= 1.0f;
+	//		}
+	////		else if (c.gameObject.name.Contains("Missile")) {
+	//		currentHealth -= 50.0f;	
+	//		}
+	//	}
+	//}
+}
+

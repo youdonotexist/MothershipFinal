@@ -1,0 +1,40 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class PoolManager : MonoBehaviour
+{
+	static PoolManager _Instance;
+	public static PoolManager Instance() {
+		if (_Instance == null) {
+			_Instance = GameObject.Find("PoolManager").GetComponent<PoolManager>();	
+		}
+		
+		return _Instance;
+	}
+	
+	static public GameObject[] basicPrefabs;
+	static public GameObject[] juggernautPrefabs;
+	static public GameObject[] scientistPrefabs;
+	
+	void Awake() {
+		_pools = new Dictionary<string, PoolingSystem<GameObject>>();
+	}
+	
+	Dictionary<string, PoolingSystem<GameObject>> _pools;
+	
+	public void AddPool(PoolingSystem<GameObject> pool, string type) {
+		_pools.Add(type, pool);
+	}
+		
+	public GameObject Create(string type) {
+		PoolingSystem<GameObject> pool = _pools[type];
+		return pool.GetElement();
+	}
+	
+	public void Release(GameObject obj, string type) {
+		PoolingSystem<GameObject> pool = _pools[type];
+		pool.ReleaseElement(obj, true);
+	}
+}
+

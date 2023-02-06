@@ -1,0 +1,33 @@
+using UnityEngine;
+using System.Collections;
+
+public class ColliderOutline2D : MonoBehaviour
+{
+	Vectrosity.VectorLine outline = null;
+
+	void Awake() {
+		//Bounds b = collider.bounds;
+		Vector3[] pts = RandomUtilities.GetColliderVertexPositions(gameObject);
+		Vector3[] continuous = new Vector3[] {pts[0], pts[2], pts[3], pts[1], pts[0]};
+		
+		outline = new Vectrosity.VectorLine("outline", continuous, null, 7.0f, Vectrosity.LineType.Continuous);
+		outline.SetColor(Color.gray);
+		outline.Draw3D();
+		outline.vectorObject.SetActive(false);
+	}
+
+	public void Show(bool enabled) {
+		outline.vectorObject.SetActive(enabled);
+	}
+
+	public void SetColor(Color c) {
+		outline.SetColor(c);
+		outline.Draw3D();
+	}
+
+	public Color GetColor() {
+		return outline.color;
+	}
+
+}
+

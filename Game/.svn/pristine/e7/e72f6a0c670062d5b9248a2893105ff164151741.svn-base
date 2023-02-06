@@ -1,0 +1,80 @@
+using UnityEngine;
+using System.Collections;
+
+public class DirectivePack : MonoBehaviour
+{
+	protected HeroAIManager _aiManager;
+	protected HeroVehicle _vehicle;
+	protected GameObject _mothership;
+	
+	void Awake() {
+		GameObject heroAI = GameObject.Find("_MinesAndShields");
+		_aiManager = heroAI != null ? heroAI.GetComponent<HeroAIManager>() : null;	
+		
+		_mothership = GameObject.Find("Mothership");
+	}
+	
+	public void SetHero(HeroVehicle veh) { _vehicle = veh; }
+	public virtual HeroAIManager.DirectiveState handleDirective(AIDirective directive) { return HeroAIManager.DirectiveState.UNHANDLED;}
+	
+	protected IEnumerator MoveToLaneProper(SpatialNode node, float time) {
+		if (_vehicle != null) {
+			Vector3 startPosition = _vehicle.transform.position;
+			
+			_vehicle.moveDirection = startPosition.y - node.transform.position.y;
+		
+			float elapsedMove = 0.0f;
+			while (elapsedMove < time) {
+				if (_vehicle != null) {
+					_vehicle.rigidbody.MovePosition(Vector3.Lerp(startPosition, node.transform.position, elapsedMove/time));
+				}
+				elapsedMove += Time.deltaTime;
+				yield return null;
+			}
+		
+			_vehicle._currentNode = node;
+			_vehicle.moveDirection = 0.0f;
+		
+			if (_vehicle != null) {
+				_vehicle.rigidbody.MovePosition(node.transform.position);
+			}
+		}
+	}
+	
+	protected IEnumerator DeployDeployable(AIDirective directive, GameObject deployablePrefab, SpatialNode.SpatialNodeZone zone) {
+		SpatialNode[] openNodes 	= _aiManager.FindSpotForMine();
+		SpatialNode movenode 		= openNodes[0];
+		SpatialNode minenode 		= openNodes[1];
+		
+		//First move to the open node
+		if (_vehicle != null) {
+			Vector3 startPosition 	= _vehicle.transform.position;
+			float startDistance 	= Vector3.Distance(startPosition, movenode.transform.position);
+			float moveTime 			= startDistance / _vehicle._config.getFloat("moveSpeed");
+			
+			yield return StartCoroutine(MoveToLaneProper(movenode, moveTime));
+			
+			if (_vehicle != null) {
+				//Then deploy the Mine
+				GameObject instance = (GameObject) Instantiate(deployablePrefab, _vehicle.transform.position, deployablePrefab.transform.rotation);
+				Deployable mine = instance.GetComponent<Deployable>();
+				mine._node = minenode;
+				minenode._object = mine;
+				mine.OnCreate(_vehicle.transform.position, minenode.transform.position);
+				
+				//Then wait
+				float waitfordirective = 0.0f;
+				while (waitfordirective < directive.waitAfter) {
+					waitfordirective += Time.deltaTime;
+					yield return null;
+				}
+			}
+		}
+		
+		_aiManager.PushAIDirective();
+	}	
+	
+	public virtual void OnHeroReady() {}
+	public virtual void OnHeroWin() {}
+}
+

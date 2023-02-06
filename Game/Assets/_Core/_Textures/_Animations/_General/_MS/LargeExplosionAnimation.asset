@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 49051723, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: LargeExplosionAnimation
+  m_EditorClassIdentifier: 
+  wrapMode: 1
+  stopAction: 3
+  length: .666666687
+  sampleRate_: 60
+  frameInfos:
+  - textureGUID: 1e59a254c20b64d18a56499e88612742
+    length: .166666672
+    atlas: {fileID: 11400000, guid: fe2f677463027488cb1c9ea83cec2b1a, type: 2}
+    index: 50
+  - textureGUID: a440496893e6841adbb7bc52478bffb3
+    length: .166666672
+    atlas: {fileID: 11400000, guid: fe2f677463027488cb1c9ea83cec2b1a, type: 2}
+    index: 51
+  - textureGUID: 7895a9fbee84247afa53c33c350707a0
+    length: .166666672
+    atlas: {fileID: 11400000, guid: fe2f677463027488cb1c9ea83cec2b1a, type: 2}
+    index: 52
+  - textureGUID: 78524f9d56a7947b08d3fa983afab8a9
+    length: .166666672
+    atlas: {fileID: 11400000, guid: fe2f677463027488cb1c9ea83cec2b1a, type: 2}
+    index: 53
+  eventInfos: []
+  speed: 3
+  editorPreviewSize: 256
+  editorScale: 1.13432443
+  editorOffset: 0
+  editorSpeed: 3
+  editorNeedRebuild: 0

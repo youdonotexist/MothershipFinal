@@ -1,0 +1,261 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using Vectrosity;
+using MiniJSON;
+
+public class LoadingButton : MonoBehaviour
+{
+	MainMenuEncounterSelect mmes;
+	VectorLine baseTimeLine;
+	GameObject timeLine;
+	
+	public GameObject timelineEventPrefab;
+	public GameObject loadingButtonPrefab;
+	
+	void Start() {
+		GameObject go = GameObject.Find("EncounterSelect");
+		timeLine = GameObject.Find("TimeLine");
+		if (go != null)
+			mmes = go.GetComponent<MainMenuEncounterSelect>();	
+		
+		if (timeLine != null) {
+			timeLine.SetActive(false);
+		}
+	}
+	
+	void OnClick() {
+		
+		GameObject current = UICamera.currentTouch.current;
+		string buttonName = current.name;
+		if (current.name == "Play") {
+			mmes.Play();			
+		}
+		else if (false) {
+			UISlicedSprite sp = current.GetComponentInChildren<UISlicedSprite>();
+			if (sp.spriteName == "refresh")
+				mmes.DownloadEncounters();	
+		}
+		else if (buttonName == "StoryMode") {
+			GameObject mainMenu = GameObject.Find("MainMenu");
+			UIAnchor[] anchors = mainMenu.GetComponentsInChildren<UIAnchor>();
+			foreach(UIAnchor anchor in anchors) {
+				anchor.enabled = false;	
+			}
+			
+			StartCoroutine(AnimateTimelineIn());
+			StartCoroutine(AnimateTimelineDraw(4));
+			
+			int numEvents = 4;
+			
+			/*GameObject timeline = GameObject.Find("TimeLine");
+			
+			Vector3[] points = new Vector3[] { new Vector3(timeline.transform.position.x, 0.0f, 0.0f), new Vector3(timeline.transform.position.x + 500.0f, 0.0f, 0.0f), new Vector3(timeline.transform.position.x + 1000.0f, 0.0f, 0.0f) };
+			VectorLine timeLine = new Vectrosity.VectorLine("timeLine", points, Color.red, null, 5.0f, LineType.Continuous, Vectrosity.Joins.Fill);
+			timeLine.vectorObject.transform.parent = timeline.transform;
+			timeLine.Draw3D();
+			
+			Vector3[] dotPoints = new Vector3[] { new Vector3(timeline.transform.position.x, 0.0f, 0.0f), new Vector3(timeline.transform.position.x + 500.0f, 0.0f, 0.0f), new Vector3(timeline.transform.position.x + 1000.0f, 0.0f, 0.0f) };
+			Color[] dotColors = new Color[] {Color.red, Color.red, Color.red};
+			VectorPoints dots = new VectorPoints("Dots", dotPoints, dotColors, null, 10.0f);
+			dots.vectorObject.transform.parent = timeline.transform;
+ 			dots.Draw();*/
+									
+		}
+		else if (buttonName == "DebugMenu") {
+			Application.OpenURL("http://mothership.mike-daly.com");		
+		}
+	}
+	
+	IEnumerator AnimateTimelineIn() {
+		GameObject mainMenu = GameObject.Find("MainMenu");
+		UICamera camera = GameObject.Find("Camera").GetComponent<UICamera>();
+		//UILabel label = mainMenu.GetComponent
+		
+		Rect rect = camera.camera.pixelRect;
+		Vector3 min = camera.camera.ScreenToWorldPoint(new Vector3(0.0f, rect.yMin, 0.0f));
+		Vector3 max = camera.camera.ScreenToWorldPoint(new Vector3(0.0f, rect.yMax, 0.0f));
+		float distance = Vector3.Distance(min, max);
+		
+		Vector3 start = mainMenu.transform.position;
+		Vector3 end = new Vector3(start.x, start.y + distance, start.z);
+		float duration = 1.0f;
+		float elapsed = 0.0f;
+		
+		while (elapsed < duration) {
+			mainMenu.transform.position = Vector3.Lerp(start, end, elapsed/duration);
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+	}
+	
+	IEnumerator AnimateTimelineDraw(int eventCount) {
+		timeLine.SetActive(true);
+		
+		Transform timelineTransform = timeLine.transform;
+		UIPanel panel = timeLine.GetComponent<UIPanel>();
+		UIDraggablePanel draggable = timeLine.GetComponent<UIDraggablePanel>();
+		Collider touchCollider = panel.GetComponentInChildren<Collider>();
+		
+		//if there's a saved story, use that
+		//Otherwise start from the beginning
+		Vector2 yearRange = new Vector2(1000.0f, 4250.0f);
+		Vector2 normalizedYearRange = new Vector2(0.0f, yearRange.y - yearRange.x);
+		
+		//Event Object
+		// Exact Date
+		// Year
+		// Text
+		// Graphic
+		
+		Vector3 startSpot = new Vector3(0.0f, touchCollider.bounds.max.y, 0.0f);
+		Vector3 currentTimelineSpot = new Vector3(0.0f, touchCollider.bounds.max.y - 200.0f, 0.0f) ;
+		
+		List<Dictionary<string,string>> events = fakeTimeline();
+		Dictionary<string,string> nextEvent = events[0];
+		float nextYear = float.Parse(nextEvent["year"]);
+		
+		bool hasEvents = true;
+		int direction = 1;
+		
+		Vector3[] points = new Vector3[] { new Vector3(0.0f, startSpot.y, 0.0f), currentTimelineSpot };
+		if (baseTimeLine == null) {
+			baseTimeLine = new Vectrosity.VectorLine("timeLine", points, Color.red, null, 5.0f, LineType.Continuous, Vectrosity.Joins.Fill);
+			baseTimeLine.vectorObject.transform.parent = timeLine.transform.parent;
+			timelineTransform = baseTimeLine.vectorObject.transform;
+			baseTimeLine.Draw3D();
+		}
+		
+		Vector3 pointStart = new Vector3(startSpot.x, startSpot.y, startSpot.z - 0.1f);
+		VectorPoints pts = new VectorPoints("start", new Vector3[] {pointStart}, new Color[] {Color.white}, null, 10.0f);
+		pts.vectorObject.transform.parent = timelineTransform;
+		pts.Draw3D();
+		
+		GameObject wait = (GameObject) Instantiate(loadingButtonPrefab);
+		wait.transform.position = currentTimelineSpot;
+		wait.transform.parent = timeLine.transform;
+		
+		yield return StartCoroutine(Download());
+		
+		
+		float originalBounds = touchCollider.bounds.max.y;
+		
+		//Awesome Scrolling code
+		while (hasEvents) {
+			if (true) {
+				
+				//currentTimelineSpot.y = startSpot.y + draggable.panel.clipRange.y;//100.0f * Time.deltaTime;
+				float scroll = originalBounds - touchCollider.bounds.max.y; //draggable.panel.clipRange.y * 2.0f;
+				timelineTransform.position = new Vector3(timelineTransform.position.x, -scroll, timelineTransform.position.z);
+				
+			}
+			yield return null;
+		}
+		
+			
+			
+		/*Vector3[] points = new Vector3[] { new Vector3(timeline.transform.position.x, 0.0f, 0.0f), new Vector3(timeline.transform.position.x + 500.0f, 0.0f, 0.0f), new Vector3(timeline.transform.position.x + 1000.0f, 0.0f, 0.0f) };
+		VectorLine timeLine = new Vectrosity.VectorLine("timeLine", points, Color.red, null, 5.0f, LineType.Continuous, Vectrosity.Joins.Fill);
+		timeLine.vectorObject.transform.parent = timeline.transform;
+		timeLine.Draw3D();
+		
+		Vector3[] dotPoints = new Vector3[] { new Vector3(timeline.transform.position.x, 0.0f, 0.0f), new Vector3(timeline.transform.position.x + 500.0f, 0.0f, 0.0f), new Vector3(timeline.transform.position.x + 1000.0f, 0.0f, 0.0f) };
+		Color[] dotColors = new Color[] {Color.red, Color.red, Color.red};
+		VectorPoints dots = new VectorPoints("Dots", dotPoints, dotColors, null, 10.0f);
+		dots.vectorObject.transform.parent = timeline.transform;
+		dots.Draw();
+		yield return null;*/
+	}
+	
+	List<Dictionary<string, string>> fakeTimeline() {
+		List<Dictionary<string,string>> events = new List<Dictionary<string, string>>();
+		int year = 0;
+		for (int i = 0; i < 50; i++) {
+			year += Random.Range(-500, -1500);
+			
+			Dictionary<string, string> firstContact = new Dictionary<string, string>();
+			firstContact.Add ("date", "Mar 3, Year of the Firebrand (" + year.ToString() + ")");
+			firstContact.Add ("year", year.ToString());
+			firstContact.Add ("text", "Minion ship surveying the outer ring discovers unidentifable ship. Party boards to find crew dead.");
+			firstContact.Add ("graphic", null);
+			
+			events.Add(firstContact);
+		}
+		
+		return events;
+	}
+	
+	IEnumerator Download() {
+		HTTP.Request encounterReq = new HTTP.Request( "get", "http://mothership.mike-daly.com/encounter" );
+    	encounterReq.Send();
+
+	    while( !encounterReq.isDone ) { yield return null; }
+		
+		//var thing = new WWW("http://mothership.mike-daly.com/encounter");
+		//yield return thing;
+		
+		IList encounters = (IList) Json.Deserialize(encounterReq.response.Text);  
+		
+		for (int i = 0; i < encounters.Count; i++) {
+			IDictionary dict = (IDictionary) encounters[i];
+			string name = (string) dict["name"];
+			string type = (string) dict["hero_type_id"];
+			string backstory = (string) dict["backstory"];
+			string encid = (string) dict["_id"];
+			GameObject encounter = (GameObject) GameObject.Instantiate(timelineEventPrefab);
+			EncounterItem item = encounter.GetComponent<EncounterItem>();
+			
+			//encounter.transform.parent = _encounterGrid.transform;
+			
+			//item._title.text = name;
+			//item._shipSprite.spriteName = TypeToSprite(type);
+			//item._details.text = backstory;
+			//item.LoadHighScore(encid);
+		}
+	}
+}
+
+
+/*
+ * Go Ahead and put a pin in this one
+ * //Awesome Scrolling code
+		while (hasEvents) {
+			if (true) {
+				Vector3[] points = new Vector3[] { new Vector3(0.0f, startSpot.y, 0.0f), currentTimelineSpot };
+				if (baseTimeLine == null) {
+					baseTimeLine = new Vectrosity.VectorLine("timeLine", points, Color.red, null, 5.0f, LineType.Continuous, Vectrosity.Joins.Fill);
+					baseTimeLine.vectorObject.transform.parent = timeLine.transform.parent;
+					timelineTransform = baseTimeLine.vectorObject.transform;
+				}
+				baseTimeLine.points3 = points;
+				baseTimeLine.Draw3D();
+				
+				currentTimelineSpot.y = startSpot.y + draggable.panel.clipRange.y;//100.0f * Time.deltaTime;
+				timelineTransform.position = new Vector3(timelineTransform.position.x, -currentTimelineSpot.y, timelineTransform.position.z);
+				
+				Debug.Log(currentTimelineSpot);
+				
+				if (currentTimelineSpot.y <= nextYear) {
+					GameObject go = (GameObject) GameObject.Instantiate(timelineEventPrefab);
+					go.transform.parent = timelineTransform;
+					go.transform.localPosition = currentTimelineSpot;
+					TimelineEvent e = go.GetComponent<TimelineEvent>();
+					e.direction = (direction *= -1);
+					e.timelineEvent = nextEvent;
+					e.parentTimeline = timelineTransform;
+					e.gridTransform = timeLine.GetComponentInChildren<UIGrid>().transform;
+					
+					events.Remove(nextEvent);
+					if (events.Count > 0) {
+						nextEvent = events[0];	
+						nextYear = float.Parse(nextEvent["year"]);
+					}
+					else {
+						//hasEvents = false;	
+						nextYear = -1000000.0f;
+					}
+				}
+			}
+			yield return null;
+		}
+		*/

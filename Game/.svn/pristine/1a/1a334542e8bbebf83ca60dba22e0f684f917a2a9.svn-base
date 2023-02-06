@@ -1,0 +1,395 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class HeroAIManager : MonoBehaviour
+{
+	MineNode[] mineManager;
+	ShieldNode[] shieldManager;
+	HeroMovementNode[] movementNodes;
+	
+	HeroVehicle _vehicle;
+	
+	int activeMissiles = 0;
+	
+	public GameObject minePrefab;
+	public GameObject shieldPrefab;
+	
+	//TaskQueue 		_dialogQueue;
+	
+	//AI String
+	AIDirective[] aiList;
+	int currentAction = 0;
+	
+	int currentSlot = 2;
+	
+	GameObject _mothership;
+	
+	void Awake() {
+		mineManager 	= GetComponentsInChildren<MineNode>();
+		shieldManager  	= GetComponentsInChildren<ShieldNode>();
+		movementNodes	= GetComponentsInChildren<HeroMovementNode>();
+		
+		_mothership = GameObject.Find("Mothership");
+		
+		//_dialogQueue = gameObject.AddComponent<TaskQueue>();
+	}
+	
+	public bool ShieldInSlot() {
+		ShieldNode node = shieldManager[currentSlot];
+		return node._object != null;
+	}
+	
+	public void AddMissile(int count) {
+		activeMissiles += count;
+	}
+	
+	public int GetMissileCount() {
+		return activeMissiles;	
+	}
+	
+	
+	
+	public HeroMovementNode MiddleHeroNode() {
+		return movementNodes[2];	
+	}
+	
+	int MineCount() {
+		int count = 0;
+		for (int i = 0; i < mineManager.Length; i++) {
+			MineNode node = mineManager[i];
+			if (node._object != null) {
+				count++;	
+			}
+		}
+		
+		return count;
+	}
+	
+	int ShieldCount() {
+		int count = 0;
+		for (int i = 0; i < shieldManager.Length; i++) {
+			ShieldNode node = shieldManager[i];
+			if (node._object != null) {
+				count ++;	
+			}
+		}
+		
+		return count;
+	}
+	
+	int FindSpotForShield() {
+		bool found = false;
+		
+		while (found == false) {
+			int randomStart = Random.Range(0, 5);
+			int i = randomStart + 1;
+			
+			while (i != randomStart) {
+				if (i >= shieldManager.Length) {
+					i = 0;	
+				}
+				
+				ShieldNode node = shieldManager[i];
+				if (node._object == null) {
+					return i;
+				}
+				i++;
+			}
+		}
+		return 0;
+	}
+	
+	int[] FindSpotForMine() {
+		bool found = false;
+		int[] nodes = new int[2];
+		
+		while (found == false) {
+			int randomSlotIndex = Random.Range(0, 5);
+			HeroMovementNode randomSlot = movementNodes[randomSlotIndex];
+			
+			int[] mineNodeIndexes = randomSlot.MineSlots();
+			int randomStart = Random.Range(0, 3);
+			int i = randomStart + 1;
+			
+			while (i != randomStart) {
+				if (i >= mineNodeIndexes.Length) {
+					i = 0;	
+				}
+				
+				MineNode node = mineManager[mineNodeIndexes[i]];
+				if (node._object == null) {
+					nodes[0] = randomSlotIndex;
+					nodes[1] = i;
+					found = true;	
+					break;
+				}
+				i++;
+			}
+		}
+		
+		return nodes;
+	}
+	
+	public AIDirective Next() {
+		if (currentAction >= aiList.Length) {
+			currentAction = 0;
+		}
+		
+		if (aiList.Length > 0) {
+			AIDirective dir = aiList[currentAction];
+			currentAction++;
+			return dir;
+		}
+		
+		return new AIDirective("", 0.0f);
+	}
+	
+	void PushAIDirective() {
+		AIDirective next = Next ();
+		if (_vehicle != null) {
+			
+			if (next.action == "MOVE") {
+				//QueueTask t = new QueueTask(MoveToLane(Random.Range(0, 5), next));
+				//_dialogQueue.AddTask(t);
+				StartCoroutine(MoveToLane(Random.Range(0, 5), next));
+			}
+			else if (next.action == "DEPLOY MINE") {
+				if (MineCount() < _vehicle.concurrentMines) {
+					//QueueTask t = new QueueTask( DeployMine (next));
+					//_dialogQueue.AddTask(t);
+					StartCoroutine(DeployMine(next));
+				}
+				else {
+					if (_vehicle != null)
+						PushAIDirective();	
+				}
+			}
+			else if (next.action == "DEPLOY SHIELD") {
+				if (ShieldCount() < _vehicle.concurrentShields) {
+					//QueueTask t = new QueueTask( DeployShield (next));
+					//_dialogQueue.AddTask(t);	
+					StartCoroutine(DeployShield(next));
+				}
+				else {
+					if (aiList.Length > 1 && _vehicle != null) {
+						PushAIDirective();	
+					}
+				}
+			}
+			else if (next.action == "FIRE MISSILE") {
+				//QueueTask t = new QueueTask( FireMissile (next));
+				//_dialogQueue.AddTask(t);	
+				StartCoroutine(FireMissile(next));
+			}
+		}
+	}
+	
+	public void SetVehicle(HeroVehicle v) {
+		_vehicle = v;	
+		
+		if (_vehicle != null) {
+			aiList = new AIDirective[_vehicle.directives.Length];
+			for (int i = 0; i < aiList.Length; i++) {
+				string[] dirStr = _vehicle.directives[i].Split('|');
+				aiList[i] = new AIDirective(dirStr[0].Trim(), float.Parse(dirStr[1]));
+			}
+		
+		
+			PushAIDirective();
+		}
+	}
+	
+	public void DeployMine(int slot) {
+		if (slot == -1) { //Random
+			
+		}
+		else {
+			
+		}
+	}
+	
+	public void DeployShield(int slot) {
+		if (slot == -1) { //Random 
+			
+		}
+		else {
+			
+		}
+	}
+	
+	public int GetUnblockedLane() {
+		//foreach (
+		return 1;
+	}
+	
+	IEnumerator MoveToLane(int slot, AIDirective directive) {
+		if (_vehicle != null) {
+			HeroMovementNode node = movementNodes[slot];
+			Vector3 startPosition = _vehicle.transform.position;
+			float startDistance = Vector3.Distance(startPosition, node.transform.position);
+			float moveTime = startDistance / _vehicle.moveSpeed;
+			
+			yield return StartCoroutine(MoveToLaneProper(slot, moveTime));
+			
+			float waitfordirective = 0.0f;
+			while (waitfordirective < directive.waitAfter) {
+				waitfordirective += Time.deltaTime;
+				yield return null;
+			}
+		}
+		
+		if (_vehicle != null)
+			PushAIDirective();
+	}
+	
+	IEnumerator MoveToLaneProper(int slot, float time) {
+		if (_vehicle != null) {
+			HeroMovementNode node = movementNodes[slot];
+			Vector3 startPosition = _vehicle.transform.position;
+		
+			float elapsedMove = 0.0f;
+			while (elapsedMove < time) {
+				if (_vehicle != null) {
+					_vehicle.rigidbody.MovePosition(Vector3.Lerp(startPosition, node.transform.position, elapsedMove/time));
+				}
+				elapsedMove += Time.deltaTime;
+				yield return null;
+			}
+		
+			currentSlot = slot;
+		
+			if (_vehicle != null) {
+				_vehicle.rigidbody.MovePosition(node.transform.position);
+			}
+		}
+	}
+	
+	IEnumerator DeployMine(AIDirective directive) {
+		int[] openNodes = FindSpotForMine();
+		HeroMovementNode movenode = movementNodes[openNodes[0]];
+		MineNode minenode = mineManager[movenode.MineSlots()[openNodes[1]]];
+		
+		//First move to the open node
+		if (_vehicle != null) {
+			Vector3 startPosition = _vehicle.transform.position;
+			float startDistance = Vector3.Distance(startPosition, movenode.transform.position);
+			float moveTime = startDistance / _vehicle.moveSpeed;
+			
+			yield return StartCoroutine(MoveToLaneProper(openNodes[0], moveTime));
+			
+			if (_vehicle != null) {
+				//Then deploy the Mine
+				GameObject instance = (GameObject) Instantiate(minePrefab, _vehicle.transform.position, minePrefab.transform.rotation);
+				Mine mine = instance.GetComponent<Mine>();
+				mine._node = minenode;
+				minenode._object = mine;
+				mine.AnimateMine(_vehicle.transform.position, minenode.transform.position);
+				//instance.transform.position = minenode.transform.position;
+				
+				//Then wait
+				float waitfordirective = 0.0f;
+				while (waitfordirective < directive.waitAfter) {
+					waitfordirective += Time.deltaTime;
+					yield return null;
+				}
+			}
+		}
+		
+		if (_vehicle != null)
+			PushAIDirective();
+		
+	}
+	
+	IEnumerator DeployShield(AIDirective directive) {
+		int openNode = FindSpotForShield();
+		HeroMovementNode movenode = movementNodes[openNode];
+		ShieldNode minenode = shieldManager[openNode];
+		
+		if (_vehicle != null) {
+			//First move to the open node
+			Vector3 startPosition = _vehicle.transform.position;
+			float startDistance = Vector3.Distance(startPosition, movenode.transform.position);
+			float moveTime = startDistance / _vehicle.moveSpeed;
+			
+			yield return StartCoroutine(MoveToLaneProper(openNode, moveTime));
+			
+			if (_vehicle != null) {
+				//Then deploy the Mine
+				GameObject instance = (GameObject) Instantiate(shieldPrefab, _vehicle.transform.position, shieldPrefab.transform.rotation);
+				Shield shield = instance.GetComponent<Shield>();
+				shield._node = minenode;
+				minenode._object = shield;
+				shield.AnimateShield(_vehicle.transform.position, minenode.transform.position);
+				//instance.transform.position = minenode.transform.position;
+				
+				//Then wait
+				float waitfordirective = 0.0f;
+				while (waitfordirective < directive.waitAfter) {
+					waitfordirective += Time.deltaTime;
+					yield return null;
+				}
+			}
+		}
+		
+		if (_vehicle != null)
+			PushAIDirective();
+	}
+	
+	int FindSpotForMine2() {
+		bool found = false;
+		
+		while (found == false) {
+			int randomStart = Random.Range(0, 10);
+			int i = randomStart + 1;
+			
+			while (i != randomStart) {
+				if (i >= mineManager.Length) {
+					i = 0;	
+				}
+				
+				MineNode node = mineManager[i];
+				if (node._object == null) {
+					return i;
+				}
+				i++;
+			}
+		}
+		return 0;
+	}
+	
+	IEnumerator FireMissile(AIDirective directive) {
+		//Pick a HeroMovement Node
+		if (_vehicle != null) {
+			int slot = Random.Range(0, 5);
+			HeroMovementNode movenode = movementNodes[slot];
+			ShieldNode shieldnode = shieldManager[FindSpotForShield()];
+			MineNode minenode = mineManager[FindSpotForMine2()];
+			
+			//First move to the open node
+			Vector3 startPosition = _vehicle.transform.position;
+			float startDistance = Vector3.Distance(startPosition, movenode.transform.position);
+			float moveTime = startDistance / _vehicle.moveSpeed;
+			
+			yield return StartCoroutine(MoveToLaneProper(slot, moveTime));
+			
+			//Then FIRE LE MISSILE
+			Vector3[] path = new Vector3[] {movenode.transform.position, shieldnode.transform.position, minenode.transform.position, _mothership.transform.position};
+			if (_vehicle != null) {
+				_vehicle.FireMissileNormal(path);
+			}
+			
+			//Wait for end
+			float waitfordirective = 0.0f;
+			while (waitfordirective < directive.waitAfter) {
+				waitfordirective += Time.deltaTime;
+				yield return null;
+			}
+			
+			if (_vehicle != null) {
+				PushAIDirective();
+			}
+		}
+	}
+}
+

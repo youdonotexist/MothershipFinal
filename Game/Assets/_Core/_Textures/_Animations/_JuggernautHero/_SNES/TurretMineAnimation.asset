@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 49051723, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: TurretMineAnimation
+  m_EditorClassIdentifier: 
+  wrapMode: 2
+  stopAction: 0
+  length: .666666687
+  sampleRate_: 60
+  frameInfos:
+  - textureGUID: abf5041e1f54c49e893cf9094c9e51d8
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 54
+  - textureGUID: 57105374c765c416d881cd83ce378cc9
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 55
+  - textureGUID: 0250dc3a1b5e64fce954eb773359ac15
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 56
+  - textureGUID: a2de09bca856d4c28addc9504a8e9586
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 57
+  eventInfos: []
+  speed: 1
+  editorPreviewSize: 256
+  editorScale: 1
+  editorOffset: 0
+  editorSpeed: 1
+  editorNeedRebuild: 0

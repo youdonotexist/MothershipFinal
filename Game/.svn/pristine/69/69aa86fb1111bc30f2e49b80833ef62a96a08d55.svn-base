@@ -1,0 +1,51 @@
+using UnityEngine;
+using System.Collections;
+
+public class InGameMenu : MonoBehaviour
+{
+	bool paused = false;
+	MissionManager _missionManager;
+	CurtainHelper _curtainHelper;
+	
+	void Awake() {
+		_curtainHelper = GameObject.Find("UI Root").GetComponent<CurtainHelper>();
+	}
+	
+	void Start() {
+		GameObject go = (GameObject) GameObject.Find("_MissionManager");
+		_missionManager = go.GetComponent<MissionManager>();
+	}
+	
+	void OnClick() {
+		GameObject current = UICamera.currentTouch.current;
+		
+		if (current.name == "Menu") {
+			_curtainHelper.AnimateCurtain(false, Color.clear, Color.black, 0.5f, LoadMainMenu);
+		}
+		else if (current.name == "RetryButton") {
+			_curtainHelper.AnimateCurtain(false, Color.clear, Color.black, 0.5f, Retry);
+		}
+		else if (current.name == "MenuButton") {
+			if (!GameState.Instance.DidWin() && !GameState.Instance.DidLose()) {
+				if (!paused) {
+					_missionManager.PauseMenu(true);
+					paused = true;
+				}
+				else {
+					_missionManager.PauseMenu(false);	
+					paused = false;
+				}
+			}
+		}
+	}
+	
+	void LoadMainMenu() {
+		Time.timeScale = 1.0f;
+		Application.LoadLevel(LevelManager.Instance.MainMenuLevelName());
+	}
+	
+	void Retry() {
+		_missionManager.RetryBattle();
+	}
+}	
+

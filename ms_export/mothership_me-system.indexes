@@ -1,0 +1,12 @@
+{"v":1,"key":{"_id":1},"ns":"mothership_me.herotype","name":"_id_"}
+{"v":1,"key":{"_id":1},"ns":"mothership_me.herolist","name":"_id_"}
+{"v":1,"key":{"_id":1},"ns":"mothership_me.hero","name":"_id_"}
+{"v":1,"key":{"_id":1},"ns":"mothership_me.directivetype","name":"_id_"}
+{"v":1,"key":{"_id":1},"ns":"mothership_me.directive","name":"_id_"}
+{"v":1,"key":{"user":1,"userSource":1},"unique":true,"ns":"mothership_me.system.users","name":"user_1_userSource_1"}
+{"v":1,"key":{"_id":1},"ns":"mothership_me.system.users","name":"_id_"}
+{"v":1,"key":{"_id":1},"ns":"mothership_me.hero_attribute_type","name":"_id_"}
+{"v":1,"key":{"_id":1},"ns":"mothership_me.score","name":"_id_"}
+{"v":1,"key":{"_id":1},"ns":"mothership_me.metrics","name":"_id_"}
+{"v":1,"key":{"_id":1},"ns":"mothership_me.bundle","name":"_id_"}
+{"v":1,"key":{"_id":1},"ns":"mothership_me.upgrade_type","name":"_id_"}

@@ -1,0 +1,24 @@
+CACHE MANIFEST
+# 274f19fc6257780761984a1f96c5ca8449fa37e3
+index.html
+# 899bd13e2a188e6c14abf535ca6913ec6e067c81
+resources/css/app.css
+# 5e2fdee4f0ea431dff16037a190699606659b8e1
+app.js
+# c61ed40a13eac2c70e2da161e86995046ed76185
+resources/images/hero1.png
+# 060eda7512e7a43cf3f3caef81cf2014ba7ac006
+resources/images/hero2.png
+# 042f95a7d0e62fce093163d061782d43d571c23e
+resources/images/hero3.png
+# 257a8400ed2b7dae6eefa9cfcc13a2960b307579
+resources/images/questionmark.png
+# f3fb39b4ac1c2305e52ce99004cd02c5b4dcf1da
+resources/images/space_seamless.png
+
+
+FALLBACK:
+
+
+NETWORK:
+*

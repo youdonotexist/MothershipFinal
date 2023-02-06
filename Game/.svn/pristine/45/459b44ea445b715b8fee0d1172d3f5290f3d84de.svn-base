@@ -1,0 +1,71 @@
+using UnityEngine;
+using System.Collections;
+
+public class MothershipVehicle : Vehicle
+{
+	public GameObject[] ports;
+	public GameObject[] portUI;
+	
+	GamePlayHUD _gameHUD;
+	Damagable _damagable;
+	
+	void Awake() {
+		_gameHUD = GameObject.Find("GameplayHUD").GetComponent<GamePlayHUD>();;
+		_damagable = GetComponent<Damagable>();
+	}
+	
+	public void EnablePorts(bool enable) {
+		ports[0].SetActive(enable);
+		ports[1].SetActive(enable);
+		ports[2].SetActive(enable);
+	}
+	
+	public void EnableUI( bool enable) {
+		portUI[0].SetActive(enable);
+		portUI[1].SetActive(enable);
+		portUI[2].SetActive(enable);
+	}
+	
+	// Use this for initialization
+	void Start ()
+	{
+		if (_gameHUD != null)
+			_gameHUD.SetMothershipHealth(_damagable.Health/_damagable.MaxHealth);
+	}
+	
+	// Update is called once per frame
+	void Update ()
+	{
+		if (_gameHUD != null)
+			_gameHUD.SetMothershipHealth(_damagable.Health/_damagable.MaxHealth);
+		
+		if (_damagable.Health <= 0.0f) {
+			MissionManager mission = GameObject.Find("_MissionManager").GetComponent<MissionManager>();
+			mission.OnMothershipDie();
+			
+			Destroy(gameObject);
+			Destroy (ports[0]);
+			Destroy (ports[1]);
+			Destroy (ports[2]);
+			Destroy (portUI[0]);
+			Destroy (portUI[1]);
+			Destroy (portUI[2]);
+		}
+	}
+	
+	public override void SetDisabled() {
+		//TODO: set disabled	
+	}
+	
+	//void OnCollisionEnter(Collision c) {
+	//	if (LayerMaskHelper.IsInLayerMask(c.gameObject, LayerMaskHelper.OnlyIncluding(LayerMask.NameToLayer("HeroProjectile")))) {
+	//		if (c.gameObject.name.Contains("SingleShot")) {
+	//			currentHealth -= 1.0f;
+	//		}
+	////		else if (c.gameObject.name.Contains("Missile")) {
+	//		currentHealth -= 50.0f;	
+	//		}
+	//	}
+	//}
+}
+

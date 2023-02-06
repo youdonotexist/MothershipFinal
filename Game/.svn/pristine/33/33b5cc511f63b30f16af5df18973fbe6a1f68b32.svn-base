@@ -1,0 +1,25 @@
+using UnityEngine;
+using System.Collections;
+
+public class TimeKeeper : MonoBehaviour
+{
+	float deltaTime;
+	float lastTime;
+	
+	// Use this for initialization
+	void Start ()
+	{
+	
+	}
+	
+	void Update () {
+		//_debugText.Text = "Object Count: " + ObjectPool.instance.ActiveObjectCount().ToString();
+		deltaTime = Time.realtimeSinceStartup - lastTime;
+		lastTime = Time.realtimeSinceStartup;
+	}
+	
+	public float AnimationTime() {
+		return deltaTime;		
+	}
+}
+

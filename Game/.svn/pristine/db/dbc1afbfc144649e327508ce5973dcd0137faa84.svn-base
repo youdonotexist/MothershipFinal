@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 49051723, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: MothershipPort3PrepareAnim
+  m_EditorClassIdentifier: 
+  wrapMode: 1
+  stopAction: 0
+  length: .833333373
+  sampleRate_: 60
+  frameInfos:
+  - textureGUID: bcd9d462121af44db894a81765e85d07
+    length: .166666672
+    atlas: {fileID: 11400000, guid: 2b6e24108db474ec7a7ae176be220a75, type: 2}
+    index: 17
+  - textureGUID: 306bef34932174c64adbf3b57bc0ee49
+    length: .166666672
+    atlas: {fileID: 11400000, guid: 2b6e24108db474ec7a7ae176be220a75, type: 2}
+    index: 18
+  - textureGUID: 2a4dec56153d64772a17df80c87a4239
+    length: .166666672
+    atlas: {fileID: 11400000, guid: 2b6e24108db474ec7a7ae176be220a75, type: 2}
+    index: 19
+  - textureGUID: c2f462e09700545b782141f5db3a0ebf
+    length: .166666672
+    atlas: {fileID: 11400000, guid: 2b6e24108db474ec7a7ae176be220a75, type: 2}
+    index: 20
+  - textureGUID: e7e82557a439f450ab760a86b9db9b00
+    length: .166666672
+    atlas: {fileID: 11400000, guid: 2b6e24108db474ec7a7ae176be220a75, type: 2}
+    index: 21
+  eventInfos: []
+  speed: 1
+  editorPreviewSize: 256
+  editorScale: .741049409
+  editorOffset: 0
+  editorSpeed: 1
+  editorNeedRebuild: 0

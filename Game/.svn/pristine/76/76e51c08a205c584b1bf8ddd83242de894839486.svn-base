@@ -1,0 +1,164 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class UpgraderDetails : MonoBehaviour
+{
+	UILabel _description;
+	UILabel _cost;
+	UILabel _title;
+	UILabel _upgradeAction;
+	UILabel _toLevel;
+
+	UIButton _upgraderButton;
+
+	public UITable _statsTable;
+	public UpgraderDetailStat statPrefab;
+	UpgraderDetailStat[] stats;
+	List<UpgraderDetailStat> _cachedStatItems = new List<UpgraderDetailStat>();
+
+	// Use this for initialization
+	void Awake ()
+	{
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		for (int i = 0 ; i < labels.Length; i++) {
+			UILabel label = labels[i];
+			if (label.name == "Title") {
+				_title = label;
+			}
+			else if (label.name == "Description") {
+				_description = label;
+			}
+			else if (label.name == "Cost") {
+				_cost = label;
+			}
+			else if (label.name == "UpgradeAction") {
+				_upgradeAction = label;
+			}
+			else if (label.name == "ToLevel") {
+				_toLevel = label;
+			}
+		}
+
+		_upgraderButton = GetComponentInChildren<UIButton>();
+		stats = GetComponentsInChildren<UpgraderDetailStat>();
+	}
+
+	public void SetDetails(Port.MinionTypeDetails current, Port.MinionTypeDetails details) {
+		_description.text = details.description;
+		_title.text = details.title;
+
+		if (details.upgradeType == Port.MinionUpgradeType.LEVEL_MINION) {
+			DetailsForLevel(current, details);
+		}
+		else if (details.upgradeType == Port.MinionUpgradeType.SINGLE_LEVEL) {
+			DetailsForLevel(current, details);
+		}
+		else {
+			DetailsForSingleUse(details);
+		}
+	}
+
+	UpgraderDetailStat GetCachedItem() {
+		if (_cachedStatItems.Count == 0)
+			return null;
+		
+		UpgraderDetailStat item = _cachedStatItems[0];
+		_cachedStatItems.RemoveAt(0);
+		return item;
+	}
+
+	void DetailsForSingleUse(Port.MinionTypeDetails details) {
+		_upgraderButton.gameObject.SetActive(true);
+		_cost.text = details.levels[details.state + 1].cost.ToString();
+		_toLevel.text = "";
+		_upgradeAction.text = "Repair\n\n";
+
+		CleanupStatItems();
+	}
+
+	void DetailsForSingleLevel(Port.MinionTypeDetails current, Port.MinionTypeDetails details) {
+		if (details.state == 0) {
+			_upgraderButton.gameObject.SetActive(false);
+		}
+	}
+
+	void DetailsForLevel(Port.MinionTypeDetails current, Port.MinionTypeDetails details) {
+		_upgraderButton.gameObject.SetActive(true);
+
+		Port.MinionTypeLevelDetail currLevel = current.levels[current.state];
+
+		if (details.state + 1 < details.levels.Length) {
+			_cost.text = details.levels[details.state + 1].cost.ToString();
+			_toLevel.text = "Lv" + (details.state + 2);
+			_upgradeAction.text = "Purchase\n\n";
+
+			Port.MinionTypeLevelDetail viewLevel = details.levels[details.state + 1];
+
+			CleanupStatItems();
+			
+			for (int i = 0; i < 3; i++) {
+				UpgraderDetailStat cached = GetCachedItem();
+				if (cached == null) {
+					cached = GameObject.Instantiate(statPrefab) as UpgraderDetailStat;
+					cached.transform.parent = _statsTable.transform;
+					cached.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+				}
+				else {
+					cached.gameObject.SetActive(true);
+				}
+
+				if (i == 0) {
+					cached.SetDetails("LIFE", currLevel.life, viewLevel.life);
+				}
+				else if (i == 1) {
+					cached.SetDetails("DAM", currLevel.damage, viewLevel.damage);
+				}
+				else if (i == 2) {
+					cached.SetDetails("SPEED", currLevel.speed, viewLevel.speed);
+				}
+			}
+
+			_statsTable.Reposition();
+		}
+		else {
+			_cost.text = "";
+			_toLevel.text = "";
+			_upgradeAction.text = "MAX";
+			CleanupStatItems();
+
+			for (int i = 0; i < 3; i++) {
+				UpgraderDetailStat cached = GetCachedItem();
+				if (cached == null) {
+					cached = GameObject.Instantiate(statPrefab) as UpgraderDetailStat;
+					cached.transform.parent = _statsTable.transform;
+					cached.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+				}
+				else {
+					cached.gameObject.SetActive(true);
+				}
+				
+				if (i == 0) {
+					cached.SetDetailsMax("LIFE", currLevel.life);
+				}
+				else if (i == 1) {
+					cached.SetDetailsMax("DAM", currLevel.damage);
+				}
+				else if (i == 2) {
+					cached.SetDetailsMax("SPEED", currLevel.speed);
+				}
+			}
+			
+			_statsTable.Reposition();
+		}
+	}
+
+	void CleanupStatItems() {
+		UpgraderDetailStat[] oldItems = _statsTable.GetComponentsInChildren<UpgraderDetailStat>();
+		for (int i = 0; i < oldItems.Length; i++) {
+			oldItems[i].gameObject.SetActive(false);
+			_cachedStatItems.Add(oldItems[i]);
+		}
+	}
+}
+

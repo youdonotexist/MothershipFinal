@@ -1,0 +1,23 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+
+public class ResourceManager : Singleton<ResourceManager>
+{
+	public exAtlas nesAtlas;
+	public exAtlas msAtlas;
+	public exAtlas snesAtlas;
+	public exAtlas latestAtlas;
+	
+	protected ResourceManager () {}
+	
+	void Awake() {
+		this.nesAtlas = (exAtlas) Resources.Load("Atlases/_NES/NESAtlas", typeof(exAtlas));	
+		this.latestAtlas = (exAtlas) Resources.Load("Atlases/_Latest/ModernAtlas", typeof(exAtlas));
+		this.msAtlas = (exAtlas) Resources.Load("Atlases/_MS/MSAtlas", typeof(exAtlas));
+	}
+
+
+}
+

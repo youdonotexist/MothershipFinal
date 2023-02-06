@@ -1,0 +1,384 @@
+using UnityEngine;
+using System.Collections;
+using Vectrosity;
+
+public class MinionPhysicsVehicle : MinionBaseVehicle
+{
+	float lastPointTime = 0.0f;
+	float lastVelocity = 0.0f;
+	Vector3 lastForward;
+	
+	protected TimestampPoint fromPoint = null;
+	protected TimestampPoint goToPoint = null;
+
+	Collider _collider;
+	public bool launched = false;
+	exSpriteAnimation _animation;
+	exSprite _sprite;
+	
+	float smoothPathElapsed = 0.0f;
+	VectorLine spline;
+
+	bool constantForward = false;
+	
+	public bool pathEnded = false;
+	public bool online = false;
+	public float damageMultiplier = 1.0f;
+
+	public DebrisParticleEffect _debrisPrefabDirectional;
+	public DebrisParticleEffect _debrisPrefabRadial;
+
+	private Damagable.COLLISION_TYPE lastCollisionType;
+
+	// Use this for initialization
+	void Awake ()
+	{	
+		_damagable = GetComponent<DamagableHitCount>();
+		_animation = GetComponentInChildren<exSpriteAnimation>();
+		_sprite = GetComponentInChildren<exSprite>();
+
+		_collider = collider;
+
+		_damagable.DamageCallback.Add(OnDamage);
+		_baseType = GetComponent<MinionTypeBase>();
+	}
+
+	public void SetFollowPath() {
+		online = true;
+		FollowPath = true;
+		launched = true;
+
+		MasterAudio.PlaySound(_launchEffect.name);
+		MasterAudio.PlaySound (_flyEffect.name + (portIndex + 1).ToString ());
+		
+		_collider.enabled = true;
+	}
+	
+	public override void StopFollowPath(bool keepMoving) {
+		FollowPath = false;
+		constantForward = false;
+		MasterAudio.StopAllOfSound (_flyEffect.name + (portIndex + 1).ToString ());
+		if (keepMoving) {
+			rigidbody.velocity = transform.forward * maxSpeed;
+		}
+		else {
+			rigidbody.velocity = Vector3.zero;
+		}
+	}
+
+	void Update() {
+		_collider.enabled = launched;
+		
+		if (_damagable.Health <= 0.0f) {
+			CleaupAndDestroy(transform.position, true);
+			if (parentPort != null) {
+				parentPort.MinionDestroyed();
+			}
+		}
+	}
+	
+	// Update is called once per frame
+	void FixedUpdate ()
+	{
+		if (FollowPath) {
+			if (!useSmoothPath) {
+				NormalPath();
+			}
+			else {
+				SmoothPath();
+			}
+
+			lastForward = transform.forward;
+		}
+		else if (constantForward) {
+			rigidbody.velocity = lastForward * maxSpeed;
+		}
+	}
+	
+	public override void SetPath(Path2 p) {
+		if (!useSmoothPath) {
+			path = p;	
+		}
+		else {
+			path = p;
+			Vector3[] points = new Vector3[p.points.Count];
+			spline = new VectorLine("path", new Vector3[250 + 1], Color.white, null, 1.0f, LineType.Continuous);
+			
+			for (int i = 0; i < p.points.Count; i++) {
+				TimestampPoint pt = p.points[i];
+				points[i] = pt.point;
+			}
+			
+			spline.MakeSpline(points, 250);
+		}
+		
+		SetFollowPath();
+	}
+	
+	void SmoothPath() {
+		float length = spline.GetLength();
+		float duration = length / maxSpeed;
+		float ratio = smoothPathElapsed/duration;
+		
+		Vector3 next = spline.GetPoint3D01(ratio);
+		Vector3 future = spline.GetPoint3D01(ratio + 0.0001f);
+		Vector3 dir = (future - next).normalized;
+		
+		if (dir != Vector3.zero) {
+			transform.forward = dir;
+		}
+		
+		SetToSplinePosition(next);
+		
+		smoothPathElapsed += Time.fixedDeltaTime;
+		
+		if (ratio >= 1.0f) {
+			rigidbody.velocity = transform.forward * maxSpeed;
+			FollowPath = false;
+			constantForward = true;
+			pathEnded = true;
+			_baseType.OnPathEnd();
+		}
+	}
+	
+	void SetToSplinePosition(Vector3 splinePosition)
+	{
+		Transform myTransform = transform;
+		Rigidbody myRigidbody = rigidbody;
+		
+	    //set the local x velocity to zero to help prevent sliding off the spline
+	    Vector3 localVelocity = myTransform.InverseTransformDirection(myRigidbody.velocity);
+	    localVelocity = new Vector3(0f, localVelocity.y, localVelocity.z);
+	    myRigidbody.velocity = myTransform.TransformDirection(localVelocity);
+	 
+	    //set handcar position onto spline
+	    Vector3 position = new Vector3(splinePosition.x, splinePosition.y, splinePosition.z);
+	    myTransform.position = position;
+	}
+	
+	void NormalPath() {
+		if (goToPoint == null && path.AtEnd() == false) {
+				goToPoint = path.Begin();
+				transform.position = goToPoint.point;
+				
+				fromPoint = goToPoint;
+				goToPoint = path.Next();
+				
+				float dist = (goToPoint.point - fromPoint.point).magnitude;
+				float dt = goToPoint.timestamp;
+				lastVelocity = Mathf.Min (dist/dt, maxSpeed);
+				goToPoint.timestamp = dist/lastVelocity;
+				
+				lastForward =  (goToPoint.point - fromPoint.point).normalized;
+			}
+			
+			if (goToPoint != null) { //Follow to the next node
+				float d = Vector3.Distance(transform.position, goToPoint.point);
+				if (d > 0.8f) {
+					Vector3 dir = (goToPoint.point - transform.position).normalized;
+					rigidbody.velocity = lastVelocity * dir;
+					rigidbody.AddForce((Time.fixedDeltaTime * lastVelocity) * dir, ForceMode.VelocityChange);
+					lastPointTime += Time.fixedDeltaTime;
+				}
+				else {
+					lastPointTime = 0.0f;
+					fromPoint = goToPoint;
+					goToPoint = path.Next();
+					
+					if (goToPoint != null) {
+						float dist = (goToPoint.point - fromPoint.point).magnitude;
+						float dt = goToPoint.timestamp;
+						lastVelocity = Mathf.Min (dist/dt, maxSpeed);
+						goToPoint.timestamp = dist/lastVelocity;
+						
+						lastForward =  (goToPoint.point - fromPoint.point).normalized;
+						transform.right = new Vector3(0.0f, 0.0f, 1.0f);
+						transform.forward = lastForward;
+						
+						if (transform.right.z > 0.0f) {
+							Vector3 scale = transform.localScale;
+							transform.localScale = new Vector3(	Mathf.Abs(scale.x), Mathf.Abs(scale.y), Mathf.Abs(scale.z));
+						}
+						else {
+							Vector3 scale = transform.localScale;
+							transform.localScale = new Vector3(	-Mathf.Abs(scale.x), -Mathf.Abs(scale.y), -Mathf.Abs(scale.z));
+						}
+					}
+					
+					if (path.AtEnd()) {
+						rigidbody.velocity = lastForward * Mathf.Min(lastVelocity, maxSpeed);
+						pathEnded = true;
+						_baseType.OnPathEnd();
+					}
+				}
+			}
+			else {
+				if (path.AtEnd()) {
+					rigidbody.velocity = lastForward * Mathf.Min(lastVelocity, maxSpeed);
+					pathEnded = true;
+					_baseType.OnPathEnd();
+				}
+			}	
+	}
+	
+	public override void OnBecameInvisible() {
+		if (parentPort != null) {
+			parentPort.MinionDestroyed();
+			Destroy (gameObject);
+		}
+	}
+
+	public void OnCollisionEnter(Collision c) {
+		bool destroySelf = true;
+		bool damageOther = false;
+		Damagable dam = c.gameObject.GetComponent<Damagable>();
+		DamagableHitCount thisDamagable = (DamagableHitCount) _damagable;
+		
+		if (dam != null) {
+			if (dam.collisionType == Damagable.COLLISION_TYPE.REFLECT) {
+				destroySelf = false;
+				damageOther = true;
+				
+				if (path.points.Count > 0 && thisDamagable.hitCount == 1) {
+					StopFollowPath(false);
+					rigidbody.AddForce(transform.forward * -maxSpeed, ForceMode.VelocityChange);
+					rigidbody.AddTorque(c.contacts[0].normal * -maxSpeed, ForceMode.VelocityChange);
+				}
+			}
+			else if (dam.collisionType == Damagable.COLLISION_TYPE.DISABLE) {
+				destroySelf = false;	
+				damageOther = false;
+			}
+			else if (dam.collisionType == Damagable.COLLISION_TYPE.DAMAGE) {
+				damageOther = true;	
+			}
+			else if (dam.collisionType == Damagable.COLLISION_TYPE.SHIP) {
+				if (online) {
+					damageOther = true;	
+					destroySelf = true;
+				}
+				else { //This was the inert minion effect where the Hero ship would just push the dead minions off screen
+					Vector3 direction = (transform.position - c.transform.position).normalized;
+					HeroVehicle veh = c.transform.GetComponent<HeroVehicle>();
+					float speed = veh._config.getFloat("moveSpeed");
+					destroySelf = false;
+					damageOther = false;
+					rigidbody.AddForce(direction * speed, ForceMode.VelocityChange);
+				}
+			}
+			else if (dam.collisionType == Damagable.COLLISION_TYPE.MINION) {
+				destroySelf = true;
+				dam.OnDamage(50.0f * thisDamagable.hitCount, gameObject.layer);
+				dam.OnDamage(50.0f * thisDamagable.hitCount, gameObject.layer);
+			}
+			else if (dam.collisionType == Damagable.COLLISION_TYPE.SMALL_LASER) {
+				dam.OnDamage(50.0f * thisDamagable.hitCount, gameObject.layer);
+				damageOther = true;
+				destroySelf = true;
+			}
+			
+			if (damageOther) {
+				if (dam.IsHitCount()) {
+					dam.OnDamage(thisDamagable.hitCount, gameObject.layer);
+					dam.OnDamage(thisDamagable.hitCount, gameObject.layer);
+				}
+				else {
+					dam.OnDamage(50.0f * damageMultiplier, gameObject.layer);
+				}
+			}
+
+			lastCollisionType = dam.collisionType;
+		}
+		
+		if (destroySelf) {
+			if (dam != null) {
+				if (dam.collisionType == Damagable.COLLISION_TYPE.SHIP) {
+					thisDamagable.OnDamageHitCount(thisDamagable.hitsRemaining, dam.gameObject.layer);
+				}
+				else {
+					thisDamagable.OnDamage(1.0f, dam.gameObject.layer);
+				}
+			}
+		}
+
+		//Effects
+		//States:
+			//Small laser = nothing
+			//Double hit versus double hit minion = directional
+		if (_debrisPrefabRadial != null && dam != null && dam.Health <= 0.0f) {
+			if (dam.collisionType != Damagable.COLLISION_TYPE.SMALL_LASER && dam.collisionType != _damagable.collisionType) {
+				DebrisParticleEffect debris = Instantiate(_damagable.Health <= 0.0f ? _debrisPrefabRadial : _debrisPrefabDirectional, 
+				                                          dam.transform.position, 
+				                                          Quaternion.identity) as DebrisParticleEffect;
+				Vector3 forward = transform.forward;
+				forward.z = 0.0f;
+				debris.transform.forward = forward;
+				
+				debris.DoIt(maxSpeed, dam.colors);
+			}
+		}
+	}
+	
+	void OnDamage(float damage) {
+		if (_damagable.Health <= 0.0f) {
+			DebrisParticleEffect debridPrefab = lastCollisionType == Damagable.COLLISION_TYPE.SMALL_LASER ? _debrisPrefabDirectional : _debrisPrefabRadial;
+			if (_debrisPrefabRadial != null) {
+				DebrisParticleEffect debris = Instantiate(debridPrefab, 
+				                                          _sprite.transform.position, 
+				                                          Quaternion.identity) as DebrisParticleEffect;
+				Vector3 forward = transform.forward;
+				forward.z = 0.0f;
+				debris.transform.forward = forward;
+				
+				debris.DoIt(maxSpeed, _damagable.colors);
+			}
+		}
+	}
+
+	public void CleaupAndDestroy(Vector3 explosionPoint, bool explode) {
+		MasterAudio.PlaySound(_damagable._destroySound.name);
+		MasterAudio.StopAllOfSound(_flyEffect.name + (portIndex+1).ToString ());
+		if (explode && explosionPrefab != null) {
+			GameObject go = (GameObject) GameObject.Instantiate(explosionPrefab, explosionPoint, explosionPrefab.transform.rotation);
+			go.transform.parent = transform.parent;
+			go.transform.localScale = transform.localScale;
+			go.layer = gameObject.layer;
+
+		}
+		Destroy(gameObject);
+	}
+	
+	public override void SetDisabled ()
+	{
+		this.StopFollowPath(false);
+		online = false;
+	}
+
+	public override void OnPortChange(bool enabled) {
+		online = enabled;
+		exSprite[] children = GetComponentsInChildren<exSprite>();
+		for (int i = 0; i < children.Length; i++)
+		{
+			children[i].color = enabled ? Color.white : Color.red;
+		}
+	}
+
+	public override void SetLaseredState() {
+		_sprite.color = Color.yellow;
+	}
+
+	public Vector3 LastVelocity() {
+		return lastForward * lastVelocity;
+	}
+	
+	void OnDrawGizmos() {
+		Debug.DrawLine(transform.position, transform.position + (lastForward * 100.0f));	
+	}
+
+	void OnDestroy() {
+		_damagable.DamageCallback.Remove(OnDamage);
+		MasterAudio.StopAllOfSound (_flyEffect.name + (portIndex+1).ToString ());
+		VectorLine.Destroy (ref spline);
+	}
+}
+

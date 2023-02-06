@@ -1,0 +1,136 @@
+using UnityEngine;
+using System.Collections;
+
+public class MinionVehicle : Vehicle
+{
+	public Path path;
+	
+	public Port parentPort;
+	
+	public float maxSpeed = 2000.0f;
+	
+	float lastPointTime = 0.0f;
+	float lastVelocity = 0.0f;
+	Vector3 lastForward;
+	
+	protected TimestampPoint fromPoint = null;
+	protected TimestampPoint goToPoint = null;
+	
+	public GameObject explosionPrefab;
+	public AudioClip _launchEffect;
+	public AudioClip _flyEffect;
+	
+	AudioSource _audioSource = null;
+	AudioSource _spawnAudio = null;
+	
+	public bool FollowPath = false;
+	
+	Damagable _damagable;
+	
+	// Use this for initialization
+	void Start ()
+	{
+		if (_audioSource == null)
+			_audioSource = gameObject.AddComponent<AudioSource>();
+		
+		if (_spawnAudio == null)
+			_spawnAudio = gameObject.AddComponent<AudioSource>();
+		
+		_damagable = GetComponent<Damagable>();
+	}
+	
+	public void SetFollowPath() {
+		FollowPath = true;
+		_spawnAudio.PlayOneShot(_launchEffect);
+		
+		_audioSource.clip = _flyEffect;
+		_audioSource.loop = true;
+		_audioSource.Play ();
+	}
+	
+	public void StopFollowPath() {
+		FollowPath = false;
+		_audioSource.Stop();
+		rigidbody.velocity = Vector3.zero;
+		rigidbody.isKinematic = true;
+	}
+	
+	void Update() {
+		if (_damagable.Health <= 0.0f) {
+			parentPort.MinionDestroyed();
+			Destroy (gameObject);
+		}
+	}
+	
+	// Update is called once per frame
+	void FixedUpdate ()
+	{
+		if (FollowPath) {
+			if (goToPoint == null && path.AtEnd() == false) {
+				goToPoint = path.Begin();
+				transform.position = goToPoint.point;
+				
+				fromPoint = goToPoint;
+				goToPoint = path.Next();
+				
+				float dist = (goToPoint.point - fromPoint.point).magnitude;
+				float dt = goToPoint.timestamp;
+				lastVelocity = Mathf.Min (dist/dt, maxSpeed);
+				goToPoint.timestamp = dist/lastVelocity;
+				
+				lastForward =  (goToPoint.point - fromPoint.point).normalized;
+			}
+			
+			if (goToPoint != null) { //Follow to the next node
+				if (lastPointTime < goToPoint.timestamp) {
+					rigidbody.MovePosition(Vector3.Slerp(fromPoint.point, goToPoint.point, lastPointTime/goToPoint.timestamp));
+					//Vector3 dir = (goToPoint.point - transform.position).normalized;
+					//rigidbody.velocity = lastVelocity * dir;
+					//rigidbody.AddForce((Time.fixedDeltaTime * lastVelocity) * dir, ForceMode.VelocityChange);
+					lastPointTime += Time.fixedDeltaTime;
+				}
+				else {
+					lastPointTime = 0.0f;
+					fromPoint = goToPoint;
+					goToPoint = path.Next();
+					
+					if (goToPoint != null) {
+						float dist = (goToPoint.point - fromPoint.point).magnitude;
+						float dt = goToPoint.timestamp;
+						lastVelocity = Mathf.Min (dist/dt, maxSpeed);
+						goToPoint.timestamp = dist/lastVelocity;
+						
+						lastForward =  (goToPoint.point - fromPoint.point).normalized;
+						transform.forward = lastForward;//Vector3.Slerp(transform.forward, newForward, Time.deltaTime * 150.0f);
+					}
+					
+					if (path.AtEnd()) {
+						rigidbody.velocity = lastForward * Mathf.Min(lastVelocity, maxSpeed);
+					}
+				}
+			}
+		}
+	}
+	
+	public void SetPath(Path p) {
+		path = p;	
+		SetFollowPath();
+	}
+	
+	public void OnBecameInvisible() {
+		if (parentPort != null) {
+			parentPort.MinionDestroyed();
+			Destroy (gameObject);
+		}
+	}
+	
+	void OnCollisionEnter(Collision c) {
+		Damagable dam = c.gameObject.GetComponent<Damagable>();
+		if (dam != null)
+			dam.OnDamage(50.0f, gameObject.layer);
+		
+		GameState.Instance.audioSource.PlayOneShot(_damagable._destroySound);
+		Destroy(gameObject);
+	}
+}
+

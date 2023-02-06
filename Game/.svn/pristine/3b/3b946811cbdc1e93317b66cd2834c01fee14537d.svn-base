@@ -1,0 +1,72 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class SplitMinion : MonoBehaviour {
+
+	public GameObject splitMinionPrefab;
+	MinionPhysicsVehicle _minion;
+
+	void Awake() {
+		_minion = GetComponent<MinionPhysicsVehicle>();
+	}
+
+	// Update is called once per frame
+	void Update () {
+		if (_minion.pathEnded) {
+			Vector3 inheritedVelocity = rigidbody.velocity;
+			
+			//Fire Left
+			GameObject center = mid(inheritedVelocity);
+			GameObject left = angled (45.0f, inheritedVelocity);
+			GameObject right = angled (-45.0f, inheritedVelocity);
+
+			Physics.IgnoreCollision(center.collider, left.collider);
+			Physics.IgnoreCollision(center.collider, right.collider);
+			Physics.IgnoreCollision(left.collider, right.collider);
+
+			//Destroy myself
+			_minion.CleaupAndDestroy(transform.position);
+		}
+	}
+
+	GameObject mid(Vector3 inheritedVelocity) {
+		GameObject instance = (GameObject) Instantiate(splitMinionPrefab);
+		instance.transform.forward = transform.forward;
+		if (inheritedVelocity.x > 0.0f) instance.rigidbody.velocity = inheritedVelocity;
+		instance.rigidbody.velocity = transform.forward * 1000.0f;
+		
+		Vector3 pos = transform.position; pos.z = LayerManager._2;
+		instance.transform.position = pos;
+		instance.collider.enabled = true;
+		MinionPhysicsVehicle mpv = instance.GetComponent<MinionPhysicsVehicle>();
+		mpv.launched = true;
+		mpv.online = true;
+		return instance;
+	}
+
+	GameObject angled(float angle, Vector3 inheritedVelocity) {
+		float theta = Mathf.Deg2Rad * angle;
+		Vector3 forward = transform.forward;
+		
+		float cs = Mathf.Cos(theta);
+		float sn = Mathf.Sin(theta);
+		
+		float px = forward.x * cs - forward.z * sn; 
+		float py = forward.x * sn + forward.z * cs;
+		
+		GameObject instance = (GameObject) Instantiate(splitMinionPrefab);
+		instance.transform.forward = new Vector3(px, py, 0.0f);
+		if (inheritedVelocity.x > 0.0f) instance.rigidbody.velocity = inheritedVelocity;
+		instance.rigidbody.velocity = new Vector3(px, py, 0.0f) * 1000.0f;
+		
+		Vector3 pos = transform.position; pos.z = LayerManager._2;
+		instance.transform.position = pos;
+		instance.collider.enabled = true;
+		MinionPhysicsVehicle mpv = instance.GetComponent<MinionPhysicsVehicle>();
+		mpv.launched = true;
+		mpv.online = true;
+
+
+		return instance;
+	}
+}

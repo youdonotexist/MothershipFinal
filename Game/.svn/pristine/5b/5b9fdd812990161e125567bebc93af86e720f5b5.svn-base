@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ModernAtlasHue
+  m_Shader: {fileID: 4800000, guid: edae74a028ca6f843ac7f089b8762809, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: d92f21163e5714a8fb23f97cd790b8e6, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Desaturate
+        second: 1
+      data:
+        first:
+          name: _Alpha
+        second: 1
+      data:
+        first:
+          name: _Shift
+        second: .0500000007
+      data:
+        first:
+          name: _LimitL
+        second: 0
+      data:
+        first:
+          name: _LimitU
+        second: .240816325
+      data:
+        first:
+          name: _Inverted
+        second: -1
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}

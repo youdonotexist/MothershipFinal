@@ -1,0 +1,101 @@
+using UnityEngine;
+using System.Collections;
+
+public class Bone : MonoBehaviour
+{
+	public Transform startJoint;
+	public Transform endJoint;
+	
+	public bool endBone = false;
+	public bool topBone = true;
+	
+	bool inflating = false;
+	bool finished = false;
+	
+	float startLength;
+	Vector3 originalEndDirection;
+	Vector3 collapseDirection;
+	float originalRot = 0.0f;
+	exSprite _sprite;
+	
+	void Awake() {
+		_sprite = GetComponent<exSprite>();
+		startLength = _sprite.width;
+		
+		_sprite.width = 0.0f;
+		originalEndDirection = (endJoint.position - startJoint.position).normalized;
+		endJoint.transform.position = startJoint.transform.position;
+		finished = true;
+		inflating = false;
+	}
+	
+	public void CollapseBone() {
+		inflating = false;
+		finished = false;
+		
+		collapseDirection = (startJoint.position - endJoint.position).normalized;
+		originalEndDirection = collapseDirection * -1.0f;
+		startLength = _sprite.width;
+		
+		originalRot = endJoint.eulerAngles.z;
+	}
+	
+	public void InflateBone() {
+		inflating = true;
+		finished = false;
+		
+		if (endBone) {
+			Vector3 euler = endJoint.localEulerAngles;
+			euler.z = 270.0f;
+			endJoint.localEulerAngles = euler;
+		}
+	}
+	
+	public bool IsFinished() {
+		return finished;	
+	}
+	
+	public bool IsCollapsed() {
+		return !inflating;
+	}
+	
+	void Update() {
+		
+		if (!finished) {
+			if (inflating) {
+				if (_sprite.width < startLength) {
+					_sprite.width += (300.0f * Time.deltaTime);
+					
+					float delta = _sprite.width / startLength;
+					endJoint.transform.position += ((Time.deltaTime * 300.0f) * (originalEndDirection));
+					
+					if (endBone) {
+							
+					}
+				}
+				else {
+					finished = true;	
+				}
+			}
+			else {
+				if (_sprite.width >= 0.0f) {
+					_sprite.width -= (500.0f * Time.deltaTime);
+				
+					float delta = 1.0f - (_sprite.width / startLength);
+					endJoint.transform.position += ((Time.deltaTime * 500.0f) * (collapseDirection));
+					
+					if (endBone) {
+						Vector3 euler = endJoint.eulerAngles;
+						euler.z = Mathf.Lerp(originalRot, topBone ? 180.0f : 0.0f, delta);
+						endJoint.eulerAngles = euler;
+					}
+				}
+				else {
+					finished = true;	
+				}
+			}
+		}
+	}
+	
+}
+

@@ -1,0 +1,156 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class PostEncounterManager : MonoBehaviour {
+	public GameObject rootContainer;
+	Vector3 startPos;
+	Vector3 hiddenPos;
+	bool hidden = false;
+
+	UIPanel _panel;
+
+	public Upgrader _upgrader;
+	public EncounterSummary _summary;
+	public UISprite _background;
+
+	public  UpgraderDetailStat statPrefab;
+
+	PostEncounterView[] screens;
+	int screenIndex = 0;
+
+	Vector3 initPos;
+	float verticalHeight;
+
+	void Awake() {
+		//Capture start/end positions for root container
+		Vector3 sPos = rootContainer.transform.position;
+		startPos = sPos;
+		hiddenPos = new Vector3(sPos.x - rootContainer.collider.bounds.size.x, sPos.y, sPos.z);
+		
+		//Get the root panel and disable it so it doesn't count against draw calls
+		_panel = GetComponent<UIPanel>();
+
+		//Screen size calculations
+		UICamera camera = GameObject.Find("Camera").GetComponent<UICamera>();
+		Rect rect = camera.camera.pixelRect;
+		Vector3 min = camera.camera.ScreenToWorldPoint(new Vector3(0.0f, rect.yMin, 0.0f));
+		Vector3 max = camera.camera.ScreenToWorldPoint(new Vector3(0.0f, rect.yMax, 0.0f));
+		verticalHeight = Vector3.Distance(min, max);
+
+		UIWidget widget = _upgrader.GetComponent<UIWidget>();
+		widget.topAnchor.absolute = (int) (widget.topAnchor.absolute - verticalHeight);
+		initPos = _summary.transform.localPosition;
+
+	}
+
+	// Use this for initialization
+	void Start () {
+		screens = new PostEncounterView[]{_summary, _upgrader};
+		StartCoroutine(DoHide(0.0f));
+		ActivateCurrentScreen();
+	}
+
+	void OnEncounterEnd() {
+		screenIndex = 0;
+		_summary.transform.position = initPos;
+		ActivateCurrentScreen();
+	}
+
+	public void NextScreen() {
+		screenIndex++;
+		ActivateCurrentScreen();
+	}
+
+	/**
+	 * Order of SetActive is important here so the screen has time to call its appropriate coroutines
+	 * being deactivated
+	 */
+	void ActivateCurrentScreen() {
+		for (int i = 0; i < screens.Length; i++) {
+			bool current = i == screenIndex;
+			if (current) {
+				//NGUITools.SetActive(screens[i].gameObject, current);
+				screens[i].OnWillAppear();
+			}
+			else {
+				screens[i].OnWillDisappear();
+				//NGUITools.SetActive(screens[i].gameObject, current);
+			}
+		}
+
+		StartCoroutine(AnimateToCurrent());
+	}
+
+	IEnumerator AnimateToCurrent() {
+		Vector3 start = initPos;
+		Vector3 end = new Vector3(initPos.x, initPos.y + (verticalHeight * screenIndex * 0.5f), initPos.z);
+
+		float duration = 0.5f, elapsed = 0.0f;
+		float t = 0.0f;
+		while (t <= 1.0f) {
+			t += Time.deltaTime/duration;
+			_summary.transform.localPosition = Vector3.Lerp(start, end, Mathf.SmoothStep(0.0f, 1.0f, t));
+
+			yield return null;
+		}
+
+		_summary.transform.localPosition = end;
+	}
+
+	public void ContinueToBattle() {
+		Hide ();
+		Messenger.Broadcast("OnUpgradeFinish");
+	}
+
+	void OnUpgradeDialog(MissionManager.PostBattleMessage message) {
+		_summary.SetSummary(message);
+		OnEncounterEnd();
+		Show ();
+	}
+
+	void Show() {
+		StartCoroutine(DoShow(0.4f));
+	}
+
+	void Hide() {
+		StartCoroutine(DoHide(0.4f));
+	}
+
+	IEnumerator DoShow(float d) {
+		float duration = d, t = 0.0f;
+		_panel.enabled = true;
+		
+		while (t <= 1.0f) {
+			t += Time.deltaTime/duration;
+			rootContainer.transform.position = Vector3.Lerp(hiddenPos, startPos, Mathf.SmoothStep(0.0f, 1.0f, t));
+			yield return null;
+		}
+
+		screens[screenIndex].OnDidAppear();
+		
+		rootContainer.transform.position = startPos;
+	}
+	
+	IEnumerator DoHide(float d) {
+
+		screens[screenIndex].OnWillDisappear();
+		float duration = d, t = 0.0f;
+		while (t <= 1.0f) {
+			t+= Time.deltaTime/duration;
+			rootContainer.transform.position = Vector3.Lerp(startPos, hiddenPos, Mathf.SmoothStep(0.0f, 1.0f, t));
+			yield return null;
+		}
+		
+		//_panel.enabled = false;
+		screens[screenIndex].OnDidDisappear();
+		rootContainer.transform.position = hiddenPos;
+	}
+
+	void OnEnable() {
+		Messenger.AddListener("OnUpgradeDialog", new Callback<MissionManager.PostBattleMessage>(OnUpgradeDialog));
+	}
+
+	void OnDestroy() {
+		Messenger.RemoveListener("OnUpgradeDialog", new Callback<MissionManager.PostBattleMessage>(OnUpgradeDialog));
+	}
+}

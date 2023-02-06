@@ -1,0 +1,34 @@
+using UnityEngine;
+using System.Collections;
+
+public class MathUtils
+{
+	public static float SimplifyAngle(float angle)
+	{
+		float ang = angle % (2.0f * Mathf.PI);
+		if( ang < -Mathf.PI )
+			ang += (2.0f * Mathf.PI);
+		else if( ang > Mathf.PI )
+			ang -= (2.0f * Mathf.PI);
+		return ang;
+	} 
+
+	public static float SimplifyAngleDeg(float angle)
+	{
+		float ang = angle % (360.0f);
+		if( ang < -180.0f )
+			ang += (360.0f);
+		else if( ang > 180.0f)
+			ang -= (360.0f);
+		return ang;
+	} 
+
+	public static float ClosestAngle(float target, float current) {
+		if (Mathf.Abs(target - current) > 180.0f) {
+			return target < 0 ? target + 360.0f : target - 360.0f;
+		}
+
+		return target;
+	}
+}
+

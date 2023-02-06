@@ -1,0 +1,456 @@
+using UnityEngine;
+using UnityEditor;
+using System.Collections;
+using System.Collections.Generic;
+
+[CustomEditor(typeof(EventSounds))]
+[CanEditMultipleObjects]
+public class AudioEventInspector : Editor
+{
+	private List<string> groupNames = null;
+	private List<string> busNames = null;
+	private List<string> playlistNames = null;
+	private bool maInScene;
+	private MasterAudio ma;
+	
+	public override void OnInspectorGUI()
+	{
+		EditorGUIUtility.LookLikeControls();
+		EditorGUI.indentLevel = 1;
+		
+		ma = GUIHelper.GetSingleMasterAudio();
+		if (ma != null) {
+			GUIHelper.DrawTexture(ma.logoTexture);
+		}
+		
+		EventSounds sounds = (EventSounds)target;
+		
+		maInScene = ma != null;		
+		if (maInScene) {
+			groupNames = ma.GroupNames;
+			busNames = ma.BusNames;
+			playlistNames = ma.PlaylistNames;
+		}
+		
+		GUILayout.Label("Group Controls", EditorStyles.boldLabel);
+		sounds.soundSpawnMode = (MasterAudio.SoundSpawnLocationMode) EditorGUILayout.EnumPopup("Sound Spawn Mode", sounds.soundSpawnMode);
+		sounds.disableSounds = EditorGUILayout.Toggle("Disable Sounds", sounds.disableSounds);
+
+		EditorGUILayout.Separator();
+		GUILayout.Label("Sound Triggers", EditorStyles.boldLabel);
+
+		var disabledText = "";
+		if (sounds.disableSounds) {
+			disabledText = " (DISABLED) ";
+		}
+
+		List<bool> changedList = new List<bool>();
+
+		// trigger sounds
+
+		EditorGUI.indentLevel = 0;
+		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
+		sounds.useStartSound = EditorGUILayout.Toggle("Start" + disabledText, sounds.useStartSound);
+		EditorGUILayout.EndHorizontal();
+		if (sounds.useStartSound && !sounds.disableSounds) {
+			changedList.Add(RenderAudioEvent(sounds.startSound, EventSounds.EventType.OnStart));
+		}
+		
+		EditorGUI.indentLevel = 0;
+		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
+		sounds.useEnableSound = EditorGUILayout.Toggle("Enable" + disabledText, sounds.useEnableSound);
+		EditorGUILayout.EndHorizontal();
+		if (sounds.useEnableSound && !sounds.disableSounds) {
+			changedList.Add(RenderAudioEvent(sounds.enableSound, EventSounds.EventType.OnEnable));
+		}
+
+		EditorGUI.indentLevel = 0;
+		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
+		sounds.useDisableSound = EditorGUILayout.Toggle("Disable" + disabledText, sounds.useDisableSound);
+		EditorGUILayout.EndHorizontal();
+		if (sounds.useDisableSound && !sounds.disableSounds) {
+			changedList.Add(RenderAudioEvent(sounds.disableSound, EventSounds.EventType.OnDisable));
+		}
+
+
+		EditorGUI.indentLevel = 0;
+		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
+		sounds.useVisibleSound = EditorGUILayout.Toggle("Visible" + disabledText, sounds.useVisibleSound);
+		EditorGUILayout.EndHorizontal();
+		if (sounds.useVisibleSound && !sounds.disableSounds) {
+			changedList.Add(RenderAudioEvent(sounds.visibleSound, EventSounds.EventType.OnVisible));
+		}
+
+		EditorGUI.indentLevel = 0;
+		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
+		sounds.useInvisibleSound = EditorGUILayout.Toggle("Invisible" + disabledText, sounds.useInvisibleSound);
+		EditorGUILayout.EndHorizontal();
+		if (sounds.useInvisibleSound && !sounds.disableSounds) {
+			changedList.Add(RenderAudioEvent(sounds.invisibleSound, EventSounds.EventType.OnInvisible));
+		}
+
+		EditorGUI.indentLevel = 0;
+		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
+		sounds.useCollisionSound = EditorGUILayout.Toggle("Collision" + disabledText, sounds.useCollisionSound);
+		EditorGUILayout.EndHorizontal();
+		if (sounds.useCollisionSound && !sounds.disableSounds) {
+			changedList.Add(RenderAudioEvent(sounds.collisionSound, EventSounds.EventType.OnCollision));
+		}
+
+		EditorGUI.indentLevel = 0;
+		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
+		sounds.useTriggerEnterSound = EditorGUILayout.Toggle("Trigger Enter" + disabledText, sounds.useTriggerEnterSound);
+		EditorGUILayout.EndHorizontal();
+		if (sounds.useTriggerEnterSound && !sounds.disableSounds) {
+			changedList.Add(RenderAudioEvent(sounds.triggerSound, EventSounds.EventType.OnTriggerEnter));
+		}
+
+		EditorGUI.indentLevel = 0;
+		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
+		sounds.useTriggerExitSound = EditorGUILayout.Toggle("Trigger Exit" + disabledText, sounds.useTriggerExitSound);
+		EditorGUILayout.EndHorizontal();
+		if (sounds.useTriggerExitSound && !sounds.disableSounds) {
+			changedList.Add(RenderAudioEvent(sounds.triggerExitSound, EventSounds.EventType.OnTriggerExit));
+		}
+		
+		EditorGUI.indentLevel = 0;
+		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
+		sounds.useMouseEnterSound = EditorGUILayout.Toggle("Mouse Enter" + disabledText, sounds.useMouseEnterSound);
+		EditorGUILayout.EndHorizontal();
+		if (sounds.useMouseEnterSound && !sounds.disableSounds) {
+			changedList.Add(RenderAudioEvent(sounds.mouseEnterSound, EventSounds.EventType.OnMouseEnter));
+		}
+
+		EditorGUI.indentLevel = 0;
+		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
+		sounds.useMouseClickSound = EditorGUILayout.Toggle("Mouse Click" + disabledText, sounds.useMouseClickSound);
+		EditorGUILayout.EndHorizontal();
+		if (sounds.useMouseClickSound && !sounds.disableSounds) {
+			changedList.Add(RenderAudioEvent(sounds.mouseClickSound, EventSounds.EventType.OnMouseClick));
+		}
+
+
+		EditorGUI.indentLevel = 0;
+
+		EditorGUILayout.Separator();
+		GUILayout.Label("Trigger Sounds for PoolManager Plugin", EditorStyles.boldLabel);
+
+		EditorGUI.indentLevel = 0;
+		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
+		sounds.useSpawnedSound = EditorGUILayout.Toggle("Spawned" + disabledText, sounds.useSpawnedSound);
+		EditorGUILayout.EndHorizontal();
+		if (sounds.useSpawnedSound && !sounds.disableSounds) {
+			changedList.Add(RenderAudioEvent(sounds.spawnedSound, EventSounds.EventType.OnSpawned));
+		}
+
+		EditorGUI.indentLevel = 0;
+		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
+		sounds.useDespawnedSound = EditorGUILayout.Toggle("Despawned" + disabledText, sounds.useDespawnedSound);
+		EditorGUILayout.EndHorizontal();
+		if (sounds.useDespawnedSound && !sounds.disableSounds) {
+			changedList.Add(RenderAudioEvent(sounds.despawnedSound, EventSounds.EventType.OnDespawned));
+		}
+
+		if (GUI.changed || changedList.Contains(true)) {
+			EditorUtility.SetDirty(target);
+		}
+
+		//DrawDefaultInspector();
+	}
+
+	private bool RenderAudioEvent(AudioEvent aEvent, EventSounds.EventType eType)
+	{
+		bool showLayerTagFilter = EventSounds.layerTagFilterEvents.Contains(eType.ToString());
+		
+		bool isDirty = false;
+
+		EditorGUI.indentLevel = 0;
+	
+		if (eType == EventSounds.EventType.OnEnable) {
+			GUIHelper.ShowColorWarning("*If this prefab is in the scene at startup, use Start event instead.");
+		}
+		
+		aEvent.currentSoundFunctionType = (MasterAudio.EventSoundFunctionType) EditorGUILayout.EnumPopup("Action Type", aEvent.currentSoundFunctionType);
+		
+		switch (aEvent.currentSoundFunctionType) {
+			case MasterAudio.EventSoundFunctionType.PlaySound:
+				if (maInScene) {
+					var existingIndex = groupNames.IndexOf(aEvent.soundType);
+		
+					int? groupIndex = null;
+					
+					if (existingIndex >= 1) {
+						groupIndex = EditorGUILayout.Popup("Sound Group", existingIndex, groupNames.ToArray());
+						if (existingIndex == 1) {
+							GUIHelper.ShowColorWarning("*No Sound Group specified. Event will do nothing.");
+						}
+					} else if (existingIndex == -1 && aEvent.soundType == MasterAudio.NO_GROUP_NAME) {
+						groupIndex = EditorGUILayout.Popup("Sound Group", existingIndex, groupNames.ToArray());
+					} else { // non-match
+						GUIHelper.ShowColorWarning("Sound Group found no match. Type in or choose one.");
+						aEvent.soundType = EditorGUILayout.TextField("Sound Group", aEvent.soundType);
+						var newIndex = EditorGUILayout.Popup("All Sound Groups", -1, groupNames.ToArray());
+						if (newIndex >= 0) {
+							groupIndex = newIndex;
+						}
+					}
+					
+					if (groupIndex.HasValue) {
+						if (groupIndex.Value == -1) {
+							aEvent.soundType = MasterAudio.NO_GROUP_NAME;
+						} else {
+							aEvent.soundType = groupNames[groupIndex.Value];
+						}
+					}
+				} else {
+					aEvent.soundType = EditorGUILayout.TextField("Sound Group", aEvent.soundType);
+				}
+		
+				aEvent.volume = EditorGUILayout.Slider("Volume", aEvent.volume, 0f, 1f);
+				aEvent.useFixedPitch = EditorGUILayout.Toggle("Override pitch?", aEvent.useFixedPitch);
+				if (aEvent.useFixedPitch) {
+					GUIHelper.ShowColorWarning("*Random pitches for the variation will not be used.");
+					aEvent.pitch = EditorGUILayout.Slider("Pitch", aEvent.pitch, -3f, 3f);
+				}
+		
+				#if UNITY_3_0 || UNITY_3_1 || UNITY_3_2 || UNITY_3_3 || UNITY_3_4 || UNITY_3_5
+				#else
+				aEvent.delaySound = EditorGUILayout.Slider("Delay Sound (sec)", aEvent.delaySound, 0f, 10f);
+				#endif
+				break;
+			case MasterAudio.EventSoundFunctionType.PlaylistControl:
+				aEvent.currentPlaylistCommand = (MasterAudio.PlaylistCommand) EditorGUILayout.EnumPopup("Playlist Command", aEvent.currentPlaylistCommand);
+			
+				EditorGUI.indentLevel = 1;
+			
+				switch (aEvent.currentPlaylistCommand) {
+					case MasterAudio.PlaylistCommand.ChangePlaylist:
+				
+						if (maInScene) {
+							var existingIndex = playlistNames.IndexOf(aEvent.playlistName);
+				
+							int? playlistIndex = null;
+							
+							if (existingIndex >= 1) {
+								playlistIndex = EditorGUILayout.Popup("Playlist Name", existingIndex, playlistNames.ToArray());
+								if (existingIndex == 1) {
+									GUIHelper.ShowColorWarning("*No Bus Name specified. Event will do nothing.");
+								}
+							} else if (existingIndex == -1 && aEvent.playlistName == MasterAudio.NO_GROUP_NAME) {
+								playlistIndex = EditorGUILayout.Popup("Playlist Name", existingIndex, playlistNames.ToArray());
+							} else { // non-match
+								GUIHelper.ShowColorWarning("Playlist Name found no match. Type in or choose one.");
+								aEvent.playlistName = EditorGUILayout.TextField("Playlist Name", aEvent.playlistName);
+								var newIndex = EditorGUILayout.Popup("All Playlists", -1, playlistNames.ToArray());
+								if (newIndex >= 0) {
+									playlistIndex = newIndex;
+								}
+							}
+							
+							if (playlistIndex.HasValue) {
+								if (playlistIndex.Value == -1) {
+									aEvent.playlistName = MasterAudio.NO_GROUP_NAME;
+								} else {
+									aEvent.playlistName = playlistNames[playlistIndex.Value];
+								}
+							}
+						} else {
+							aEvent.playlistName = EditorGUILayout.TextField("Playlist Name", aEvent.playlistName);
+						}
+				
+						aEvent.startPlaylist = EditorGUILayout.Toggle("Start Playlist?", aEvent.startPlaylist);
+						break;
+					case MasterAudio.PlaylistCommand.FadeToVolume:
+						aEvent.fadeVolume = EditorGUILayout.Slider("Target Volume", aEvent.fadeVolume, 0f, 1f);
+						aEvent.fadeTime = EditorGUILayout.Slider("Fade Time", aEvent.fadeTime, 0f, 10f);
+						break;
+					case MasterAudio.PlaylistCommand.PlayClip:
+						aEvent.clipName = EditorGUILayout.TextField("Clip Name", aEvent.clipName);
+						if (string.IsNullOrEmpty(aEvent.clipName)) {
+							GUIHelper.ShowColorWarning("*Clip name is empty. Event will do nothing.");
+						}
+						break;
+					case MasterAudio.PlaylistCommand.NextPlaylist:
+						aEvent.startPlaylist = EditorGUILayout.Toggle("Start Playlist?", aEvent.startPlaylist);
+						break;
+					case MasterAudio.PlaylistCommand.PreviousPlaylist:
+						aEvent.startPlaylist = EditorGUILayout.Toggle("Start Playlist?", aEvent.startPlaylist);
+						break;
+				}
+				break;
+			case MasterAudio.EventSoundFunctionType.GroupControl:
+				EditorGUI.indentLevel = 1;
+
+				aEvent.currentSoundGroupCommand = (MasterAudio.SoundGroupCommand) EditorGUILayout.EnumPopup("Group Command", aEvent.currentSoundGroupCommand);
+			
+				if (aEvent.currentSoundGroupCommand != MasterAudio.SoundGroupCommand.None) {
+					if (maInScene) {
+						var existingIndex = groupNames.IndexOf(aEvent.soundType);
+			
+						int? groupIndex = null;
+						
+						if (existingIndex >= 1) {
+							groupIndex = EditorGUILayout.Popup("Sound Group", existingIndex, groupNames.ToArray());
+						} else if (existingIndex == -1 && aEvent.soundType == MasterAudio.NO_GROUP_NAME) {
+							groupIndex = EditorGUILayout.Popup("Sound Group", existingIndex, groupNames.ToArray());
+						} else { // non-match
+							GUIHelper.ShowColorWarning("Sound Group found no match. Type in or choose one.");
+							aEvent.soundType = EditorGUILayout.TextField("Sound Group", aEvent.soundType);
+							var newIndex = EditorGUILayout.Popup("All Sound Groups", -1, groupNames.ToArray());
+							if (newIndex >= 0) {
+								groupIndex = newIndex;
+							}
+						}
+						
+						if (groupIndex.HasValue) {
+							if (groupIndex.Value == -1) {
+								aEvent.soundType = MasterAudio.NO_GROUP_NAME;
+							} else {
+								aEvent.soundType = groupNames[groupIndex.Value];
+							}
+						}
+					} else {
+						aEvent.soundType = EditorGUILayout.TextField("Sound Group", aEvent.soundType);
+					}
+				}
+
+				switch (aEvent.currentSoundGroupCommand) {
+					case MasterAudio.SoundGroupCommand.None:	
+						break;
+					case MasterAudio.SoundGroupCommand.FadeToVolume:
+						aEvent.fadeVolume = EditorGUILayout.Slider("Target Volume", aEvent.fadeVolume, 0f, 1f);
+						aEvent.fadeTime = EditorGUILayout.Slider("Fade Time", aEvent.fadeTime, 0f, 10f);
+						break;
+					case MasterAudio.SoundGroupCommand.FadeOutAllOfSound:
+						aEvent.fadeTime = EditorGUILayout.Slider("Fade Time", aEvent.fadeTime, 0f, 10f);
+						break;
+					case MasterAudio.SoundGroupCommand.Mute:	
+						break;
+					case MasterAudio.SoundGroupCommand.Pause:	
+						break;
+					case MasterAudio.SoundGroupCommand.Solo:	
+						break;
+					case MasterAudio.SoundGroupCommand.Unmute:	
+						break;
+					case MasterAudio.SoundGroupCommand.Unpause:	
+						break;
+					case MasterAudio.SoundGroupCommand.Unsolo:	
+						break;
+				}
+				
+				break;	
+			case MasterAudio.EventSoundFunctionType.BusControl:
+				aEvent.currentBusCommand = (MasterAudio.BusCommand) EditorGUILayout.EnumPopup("Bus Command", aEvent.currentBusCommand);
+
+				EditorGUI.indentLevel = 1;
+			
+				if (aEvent.currentBusCommand != MasterAudio.BusCommand.None) {
+					if (maInScene) {
+						var existingIndex = busNames.IndexOf(aEvent.busName);
+			
+						int? busIndex = null;
+						
+						if (existingIndex >= 1) {
+							busIndex = EditorGUILayout.Popup("Bus Name", existingIndex, busNames.ToArray());
+							if (existingIndex == 1) {
+								GUIHelper.ShowColorWarning("*No Bus Name specified. Event will do nothing.");
+							}
+						} else if (existingIndex == -1 && aEvent.busName == MasterAudio.NO_GROUP_NAME) {
+							busIndex = EditorGUILayout.Popup("Bus Name", existingIndex, busNames.ToArray());
+						} else { // non-match
+							aEvent.busName = EditorGUILayout.TextField("Bus Name", aEvent.busName);
+							var newIndex = EditorGUILayout.Popup("All Buses", -1, busNames.ToArray());
+							if (newIndex >= 0) {
+								busIndex = newIndex;
+							}
+							GUIHelper.ShowColorWarning("*Bus Name found no match. Type in or choose one.");
+						}
+						
+						if (busIndex.HasValue) {
+							if (busIndex.Value == -1) {
+								aEvent.busName = MasterAudio.NO_GROUP_NAME;
+							} else {
+								aEvent.busName = busNames[busIndex.Value];
+							}
+						}
+					} else {
+						aEvent.busName = EditorGUILayout.TextField("Bus Name", aEvent.busName);
+					}
+			
+					aEvent.volume = EditorGUILayout.Slider("Volume", aEvent.volume, 0f, 1f);
+					aEvent.useFixedPitch = EditorGUILayout.Toggle("Override pitch?", aEvent.useFixedPitch);
+					if (aEvent.useFixedPitch) {
+						GUIHelper.ShowColorWarning("*Random pitches for the variation will not be used.");
+						aEvent.pitch = EditorGUILayout.Slider("Pitch", aEvent.pitch, -3f, 3f);
+					}
+				
+				}	
+			
+				switch (aEvent.currentBusCommand) {
+					case MasterAudio.BusCommand.FadeToVolume:
+						aEvent.fadeVolume = EditorGUILayout.Slider("Target Volume", aEvent.fadeVolume, 0f, 1f);
+						aEvent.fadeTime = EditorGUILayout.Slider("Fade Time", aEvent.fadeTime, 0f, 10f);
+						break;
+					case MasterAudio.BusCommand.Pause:
+						break;
+					case MasterAudio.BusCommand.Unpause:
+						break;
+				}
+				
+				break;
+		}
+		
+		EditorGUI.indentLevel = 0;
+
+		aEvent.emitParticles = EditorGUILayout.Toggle("Emit Particle", aEvent.emitParticles);
+		if (aEvent.emitParticles) {
+			aEvent.particleCountToEmit = EditorGUILayout.IntSlider("Particle Count", aEvent.particleCountToEmit, 1, 100);
+		}
+
+		if (showLayerTagFilter) {
+			aEvent.useLayerFilter = EditorGUILayout.BeginToggleGroup("Layer filters", aEvent.useLayerFilter);
+			if (aEvent.useLayerFilter) {
+				for (var i = 0; i < aEvent.matchingLayers.Count; i++) {
+					aEvent.matchingLayers[i] = EditorGUILayout.LayerField("Layer Match " + (i + 1), aEvent.matchingLayers[i]);
+				}
+				EditorGUILayout.BeginHorizontal();
+				GUILayout.Space(24);
+				if (GUILayout.Button(new GUIContent("Add", "Click to add a layer match at the end"), GUILayout.Width(60))) {
+					aEvent.matchingLayers.Add(0);
+					isDirty = true;
+				}
+				if (aEvent.matchingLayers.Count > 1) {
+					if (GUILayout.Button(new GUIContent("Remove", "Click to remove the last layer match"), GUILayout.Width(60))) {
+						aEvent.matchingLayers.RemoveAt(aEvent.matchingLayers.Count - 1);
+						isDirty = true;
+					}
+				}
+				EditorGUILayout.EndHorizontal();
+			}
+			EditorGUILayout.EndToggleGroup();
+
+			aEvent.useTagFilter = EditorGUILayout.BeginToggleGroup("Tag filter", aEvent.useTagFilter);
+			if (aEvent.useTagFilter) {
+				for (var i = 0; i < aEvent.matchingTags.Count; i++) {
+					aEvent.matchingTags[i] = EditorGUILayout.TagField("Tag Match " + (i + 1), aEvent.matchingTags[i]);
+				}
+				EditorGUILayout.BeginHorizontal();
+				GUILayout.Space(24);
+				if (GUILayout.Button(new GUIContent("Add", "Click to add a tag match at the end"), GUILayout.Width(60))) {
+					aEvent.matchingTags.Add("Untagged");
+					isDirty = true;
+				}
+				if (aEvent.matchingTags.Count > 1) {
+					if (GUILayout.Button(new GUIContent("Remove", "Click to remove the last tag match"), GUILayout.Width(60))) {
+						aEvent.matchingTags.RemoveAt(aEvent.matchingLayers.Count - 1);
+						isDirty = true;
+					}
+				}
+				EditorGUILayout.EndHorizontal();
+			}
+			EditorGUILayout.EndToggleGroup();
+		}
+
+		return isDirty;
+	}
+}

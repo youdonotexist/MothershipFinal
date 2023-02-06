@@ -1,0 +1,41 @@
+/*
+ * Copyright 2013 SirsiDynix.  All rights reserved.
+ */
+Ext.define('MothershipEditor.controller.StoryController', {
+    extend: 'MothershipEditor.controller.BaseController',
+
+    config: {
+        control: {
+            'storycard #storyliner': {
+                change: 'onStoryChange',
+                keyup: 'onStoryChange'
+            },
+            'storycard #storyteller': {
+                change: 'onTellerChange',
+                keyup: 'onTellerChange'
+            },
+            'storycard button[action=save_story]': {
+                tap: 'onSave'
+            }
+        }
+    },
+
+    onCardWillAppear: function (card, created) {
+        var textarea = card.down('#storyliner');
+        var name = card.down('#storyteller');
+        textarea.setValue(MothershipEditor.CurrentBattle.get('storyLine'));
+        name.setValue(MothershipEditor.CurrentBattle.get('storyTeller'));
+    },
+
+    onStoryChange: function (textarea) {
+        MothershipEditor.CurrentBattle.set('storyLine', textarea.getValue());
+    },
+
+    onTellerChange: function (textfield) {
+        MothershipEditor.CurrentBattle.set('storyTeller', textfield.getValue());
+    },
+
+    onSave: function () {
+        MothershipEditor.CurrentBattle.save();
+    }
+});

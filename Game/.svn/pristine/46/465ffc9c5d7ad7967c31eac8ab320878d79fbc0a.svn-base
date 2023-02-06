@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 49051723, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: LaserExplosion
+  m_EditorClassIdentifier: 
+  wrapMode: 1
+  stopAction: 3
+  length: .5
+  sampleRate_: 60
+  frameInfos:
+  - textureGUID: 16f91e83417d64b728a31e57f6b226b2
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 125
+  - textureGUID: 9d6547b9113cf40a2903dd365161a687
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 126
+  - textureGUID: a62a359598e724a3dbe01612c290d170
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 127
+  eventInfos: []
+  speed: 2
+  editorPreviewSize: 256
+  editorScale: .629687548
+  editorOffset: 0
+  editorSpeed: 2
+  editorNeedRebuild: 0

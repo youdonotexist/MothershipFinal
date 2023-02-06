@@ -1,0 +1,57 @@
+using UnityEngine;
+using UnityEditor;
+using System.Collections;
+
+public class SwitchQuality : ScriptableObject
+{
+	[MenuItem("Edit/Mothership/Game/KillHero _4")]
+	static public void KillHero () {
+		HeroVehicle veh = FindObjectOfType(typeof(HeroVehicle)) as HeroVehicle;
+		if (veh != null) {
+			Damagable dam = veh.GetComponent<Damagable>();
+			dam.OnDamage(dam.maxHealth, LayerMask.NameToLayer("Minion"));
+			dam.OnDamage(dam.maxHealth, LayerMask.NameToLayer("Minion"));
+		}
+		else {
+			Debug.Log ("No Hero Found");
+		}
+	}
+
+	[MenuItem("Edit/Mothership/Quality/NES _1")]
+	static public void NESQuality () {
+		Switch ("nes");
+		EditorApplication.SaveScene();
+	}
+
+	[MenuItem("Edit/Mothership/Quality/MS _2")]
+	static public void MSQuality () {
+		Switch ("ms");
+	}
+	
+	[MenuItem("Edit/Mothership/Quality/SNES _3")]
+	static public void SNESQuality () {
+		Switch ("snes");
+	}
+
+
+	static public void Switch(string type) {
+		if (ResourceManager.Instance == null) return; //Fuck this shit
+		ResourceManager.Instance.LoadAtlases();
+		SpriteSwitcher[] sws = FindObjectsOfType(typeof(SpriteSwitcher)) as SpriteSwitcher[];
+		foreach (SpriteSwitcher sw in sws) {
+			sw.SetUp();
+			sw.OnSpriteQualityChange(type);
+		}
+		
+		UISwitcher[] uws = FindObjectsOfType(typeof(UISwitcher)) as UISwitcher[];
+		foreach (UISwitcher uw in uws) {
+			uw.SetUp(type);
+		}
+
+		TextureSwitcher tss = FindObjectOfType(typeof(TextureSwitcher)) as TextureSwitcher;
+		tss.OnTextureQualityChange(type);
+
+		ResourceManager.Instance.ForceDestroy();
+	}
+}
+

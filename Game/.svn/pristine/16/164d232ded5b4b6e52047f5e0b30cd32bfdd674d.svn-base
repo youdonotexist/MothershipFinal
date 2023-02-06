@@ -1,0 +1,29 @@
+using UnityEngine;
+using System.Collections;
+
+public class TargetedShot : LaserProjectile
+{
+	Transform _target;
+	
+	public override bool Fire() {
+		if (_target != null) {
+			if (_projectilePrefab != null) {
+				Vector3 forward = Vector3.Normalize(_target.transform.position - transform.position);
+				GameObject instance = (GameObject) Instantiate(_projectilePrefab);
+				instance.transform.forward = forward;
+				instance.rigidbody.constantForce.force = forward * 0.0001f;
+				instance.transform.parent = transform;
+				instance.transform.position = transform.position;
+			
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public void SetTarget(Transform target) {
+		_target = target;
+	}
+}
+

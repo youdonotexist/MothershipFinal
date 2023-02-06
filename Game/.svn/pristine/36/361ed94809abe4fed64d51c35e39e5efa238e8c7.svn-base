@@ -1,0 +1,70 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class PoolManager : MonoBehaviour
+{
+	static PoolManager _Instance;
+	public static PoolManager Instance() {
+		if (_Instance == null) {
+			_Instance = GameObject.Find("_PoolManager").GetComponent<PoolManager>();	
+		}
+		
+		return _Instance;
+	}
+	
+	public GameObject[] basicPrefabs;
+	public GameObject[] juggernautPrefabs;
+	public GameObject[] scientistPrefabs;
+	public GameObject[] generalPrefabs;
+
+	void Awake() {
+		_pools = new Dictionary<string, PoolingSystem<GameObject>>();
+
+		GameObject[] currentPrefabArray = null;
+		if (MissionDetails.Instance.encounterType == "BASIC") {
+			currentPrefabArray = basicPrefabs;
+		}
+		else if (MissionDetails.Instance.encounterType == "JUGGERNAUT") {
+			currentPrefabArray = juggernautPrefabs;
+		}
+		else {
+			currentPrefabArray = scientistPrefabs;
+		}
+
+		if (currentPrefabArray != null) {
+			for (int i = 0; i < currentPrefabArray.Length; i++) {
+				GameObject prefab = currentPrefabArray[i];
+				AddPool(new PoolingSystem<GameObject>(prefab, 4), prefab.name);
+			}
+		}
+
+		if (generalPrefabs != null) {
+			for (int i = 0; i < generalPrefabs.Length; i++) {
+				GameObject prefab = generalPrefabs[i];
+				AddPool(new PoolingSystem<GameObject>(prefab, 4), prefab.name);
+			}
+		}
+	}
+	
+	Dictionary<string, PoolingSystem<GameObject>> _pools;
+	
+	public void AddPool(PoolingSystem<GameObject> pool, string type) {
+		_pools.Add(type, pool);
+	}
+
+	public GameObject Create(string type, Vector3 pos, Quaternion rot) {
+		PoolingSystem<GameObject> pool = _pools[type];
+		return pool.GetElement();
+	}
+
+	public GameObject Create(string type) {
+		return Create (type, Vector3.zero, Quaternion.identity);
+	}
+	
+	public void Release(GameObject obj, string type) {
+		PoolingSystem<GameObject> pool = _pools[type];
+		pool.ReleaseElement(obj, true);
+	}
+}
+

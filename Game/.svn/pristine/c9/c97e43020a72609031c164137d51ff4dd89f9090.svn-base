@@ -1,0 +1,149 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System;
+using MiniJSON;
+public class MainMenuEncounterSelect : MonoBehaviour
+{
+	UIPopupList _list;
+	string[] names;
+	IList encounters;
+	
+	MainMenu _mainMenu;
+	GameObject loadingIcon;
+	
+	public UIGrid _encounterGrid;
+	public GameObject encounterPrefab;
+	
+	PoolingSystem<GameObject> encounterPool;
+	
+	void Start ()
+	{
+		_list = GetComponent<UIPopupList>();
+		_mainMenu = GameObject.Find("UI Root").GetComponent<MainMenu>();
+		
+		loadingIcon = GameObject.Find("LoadingIcon");
+		
+		encounterPool = new PoolingSystem<GameObject>(encounterPrefab, 10);
+	}
+	
+	public void DownloadEncounters(bool story) {
+		StartCoroutine(Download (story));
+	}
+	
+	void Update() {
+		if (loadingIcon != null && loadingIcon.activeSelf) {
+			Vector3 rot = loadingIcon.transform.eulerAngles;
+			rot.z -= (200.0f * Time.deltaTime);
+			loadingIcon.transform.eulerAngles = rot;
+		}
+	}
+	
+	IEnumerator Download(bool story) {
+		StartLoading();
+		
+		CI.Request encounterReq = new CI.Request();
+		encounterReq.GET ("http://mothership.mike-daly.com/encounter" + (story ? "?story=true" : ""), true);
+
+	    while( !encounterReq.requestState.isDone ) { yield return null; }
+		
+		encounters = (IList) Json.Deserialize(encounterReq.ResponseText);
+		ArrayList saveState = null;
+		
+		if (story) {
+			saveState = GameSaver.GetSaveState();				
+		}
+		
+		if (encounters == null) {
+			Debug.Log ("Retrying..");
+			StartCoroutine(Download(story));
+		}
+		else {
+			//Create new items
+			UnityEngine.Random.seed = 1;
+			for (int i = 0; i < encounters.Count; i++) {
+				IDictionary dict = (IDictionary) encounters[i];
+				string name = (string) dict["name"];
+				string type = (string) dict["hero_type_id"];
+				string backstory = (string) dict["backstory"];
+				string encid = (string) dict["_id"];
+				
+				GameObject encounter = encounterPool.GetElement();
+				encounter.name = "encounter" + i;
+				EncounterItem item = encounter.GetComponent<EncounterItem>();
+				
+				encounter.transform.parent = _encounterGrid.transform;
+				item.transform.localPosition = Vector3.zero;
+				
+				item.UpdateData(name, type, backstory, story ? (Hashtable) saveState[i] : null);
+				StartCoroutine(item.LoadHighScore(encid));
+			}
+			_encounterGrid.Reposition();
+			
+			UICenterOnChild center = gameObject.GetComponentInChildren<UICenterOnChild>();
+			center.Recenter();
+			FinishLoading();
+		}
+	}
+	
+	void onChangeValue(string test) {
+		IDictionary enc = GetEncounterByName(test);
+		if (enc != null) {
+			GameObject go = GameObject.Find("MissionDetails");	
+			MissionDetails md = go.GetComponent<MissionDetails>();
+			md.SetEncounterId((string)enc["_id"]);
+		}
+		
+	}
+	
+	IDictionary GetEncounterByName(string name) {
+		foreach (IDictionary enc in encounters) {
+			string n = (string) enc["name"];
+			if (n == name) {
+				return enc;	
+			}
+		}
+		
+		return null;
+	}
+	
+	public void Play() {
+		UICenterOnChild center = gameObject.GetComponentInChildren<UICenterOnChild>();
+		GameObject centeredObject = center.centeredObject;
+		EncounterItem encounterItem = centeredObject.GetComponent<EncounterItem>();
+		
+		
+		IDictionary enc = GetEncounterByName(encounterItem._title.text);
+		if (enc != null) {
+			GameObject go = GameObject.Find("MissionDetails");	
+			MissionDetails md = go.GetComponent<MissionDetails>();
+			md.SetEncounterId((string)enc["_id"]);
+			md.encounterIndex = enc["index"] == null ? -1 : (long) enc["index"];
+			
+			Application.LoadLevel("Scene01-4_3");
+		}
+	}
+	
+	public void OnBackButtonTapped() {
+		EncounterItem[] oldItems = _encounterGrid.GetComponentsInChildren<EncounterItem>();
+		for (int i = 0; i < oldItems.Length; i++) {
+			EncounterItem child = oldItems[i];
+			child.PrepareForReuse();
+			encounterPool.ReleaseElement(child.gameObject, true);
+		}	
+	}
+	
+	public void StartLoading() {
+		if (loadingIcon != null) {
+			loadingIcon.SetActive(true);
+		}
+	}
+	
+	public void FinishLoading() {
+		if (loadingIcon != null) {
+			loadingIcon.SetActive(false);
+		}
+	}
+	
+}
+

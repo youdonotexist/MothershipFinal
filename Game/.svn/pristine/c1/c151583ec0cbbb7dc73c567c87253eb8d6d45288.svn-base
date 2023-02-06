@@ -1,0 +1,9 @@
+using UnityEngine;
+using System.Collections;
+
+public class LaserProjectile : MonoBehaviour
+{
+	public GameObject _projectilePrefab;
+	public virtual bool Fire() {return false;}
+}
+

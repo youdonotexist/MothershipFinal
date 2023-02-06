@@ -1,0 +1,55 @@
+using UnityEngine;
+using System.Collections;
+
+public class GamePlayHUD : MonoBehaviour
+{
+	public Renderer _heroHealthBar;
+	public UILabel _heroNameLabel;
+	public UILabel _heroLivesLabel;
+	public UISprite _heroLifeSprite;
+	
+	public UILabel _newLowScoreMessage;
+	
+	public Renderer _mothershipHealthBar;
+	
+	public UILabel _heroScoreLabel;
+	
+	float score = 0.0f;
+	
+	static GamePlayHUD _Instance;
+	public static GamePlayHUD Instance() {
+		if (_Instance == null) {
+			_Instance = GameObject.Find("GameplayHUD").GetComponent<GamePlayHUD>();	
+		}
+		
+		return _Instance;
+	}
+	
+	
+	public void SetNewHero(string name, int heroesLeft) {
+		_heroNameLabel.text = name;
+		_heroLivesLabel.text = "x" + heroesLeft.ToString();
+		
+		//SetHeroHealthCount(3);
+	}
+	
+	public void SetHeroHealthCount(float val, float maxHealth) {
+		float health = maxHealth - (maxHealth * val);
+		_heroHealthBar.material.SetFloat("_ScanAmt", health);
+	}
+	
+	public void SetMothershipHealth(float val) {
+		_mothershipHealthBar.material.SetFloat("_ScanAmt", 30.0f * val);
+	}
+	
+	public void AddToScore(float s) {
+		score += s;
+		_heroScoreLabel.text = score.ToString("00000000");//string.Format("{0:000000}", ((int)score).ToString());
+	}
+	
+	public void ShowNewLowScoreMessage() {
+		_newLowScoreMessage.gameObject.SetActive(true);
+		_newLowScoreMessage.text = "New Low Score:\n" + score.ToString("00000000");
+	}
+}
+

@@ -1,0 +1,48 @@
+using UnityEngine;
+using System.Collections;
+using MiniJSON;
+
+public class EncounterItem : MonoBehaviour
+{
+	public UILabel _title;
+	public UILabel _details;
+	public UISprite _shipSprite;
+	public UILabel _highScore;
+	// Use this for initialization
+	void Awake ()
+	{
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		foreach (UILabel label in labels) {
+			if (label.name == "Title") {
+				_title = label;	
+			}
+			else if (label.name == "Details") {
+				_details = label;	
+			}
+			else if (label.name == "HighScore") {
+				_highScore = label;	
+			}
+		}
+		
+		_shipSprite = GetComponentInChildren<UISprite>();
+	}
+	
+	public void LoadHighScore(string encounterId) {
+		HTTP.Request highScoreReq = new HTTP.Request( "get", "http://localhost:9002/score/"+encounterId );
+		highScoreReq.Send( ( request ) => {
+    		// parse some JSON, for example:
+			IList scoreList = (IList) Json.Deserialize(request.response.Text);  
+			if (scoreList.Count > 0) {
+				IDictionary scoreData = (IDictionary) scoreList[0];
+				_highScore.text = (string) scoreData["score"];
+			}
+		});
+	}
+	
+	// Update is called once per frame
+	void Update ()
+	{
+	
+	}
+}
+

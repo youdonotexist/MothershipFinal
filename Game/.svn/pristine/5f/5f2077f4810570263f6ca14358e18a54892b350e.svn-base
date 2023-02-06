@@ -1,0 +1,21 @@
+using UnityEngine;
+using System.Collections;
+
+public class FollowObject : MonoBehaviour
+{
+	public Transform toFollow = null;
+	// Update is called once per frame
+	void FixedUpdate ()
+	{
+		if (toFollow != null) {
+			Vector3 followPos = toFollow.transform.position;
+			Vector3 camPos = transform.position;
+			
+			camPos.x = followPos.x;
+			camPos.z = followPos.z;
+			
+			transform.position = camPos;
+		}
+	}
+}
+

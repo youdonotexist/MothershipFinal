@@ -1,0 +1,149 @@
+using UnityEngine;
+using System.Collections;
+
+public class HeroVehicle : Vehicle {
+	
+	public GameObject projectile = null;
+	public GameObject missileProjectile = null;
+	public GameObject muzzlePoint = null;
+	
+	public AudioClip _spawnClip;
+	
+	public float moveSpeed = 200.0f;
+	public string[] directives;
+	public int concurrentMines = 3;
+	public int concurrentShields = 0;
+	
+	UISlider _slider = null;
+	UILabel _label = null;
+	
+	HeroAIManager _aiManager;
+	
+	public bool Firelaser = false;
+	public bool HasMissiles = false;
+	public bool AttackMissiles = false;
+	
+	//Laser
+	float lastFireTime = 1.0f;
+	float waitBetweenFire = 1.0f;
+	int shotsPerWait = 1;
+	int currentShotsPerWait = 0;
+	public enum LASER_FIRE_TYPE {
+		SINGLE = 0, //1 Shot every .5 Second
+		BURST = 1, //3-5 Shots every .5
+		AUTOMATIC = 2, //Rapid fire for 5 seconds with cooldown 3 second cooldown
+		MISSILE = 3
+	};
+	public LASER_FIRE_TYPE fireType;
+	
+	Damagable _damagable = null;
+	
+	void Awake() {
+		_slider = GameObject.Find("HeroProgress").GetComponent<UISlider>();
+		_label = GameObject.Find("HeroName").GetComponent<UILabel>();
+		
+		_aiManager = GameObject.Find("_MinesAndShields").GetComponent<HeroAIManager>();
+		_damagable = GetComponent<Damagable>();
+	}
+	
+	void Start() {
+		_slider.sliderValue = _damagable.Health/_damagable.MaxHealth;
+		_label.text = gameObject.name;
+		
+		SetLaserType(fireType);
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		if (Firelaser) {
+			if (fireType != LASER_FIRE_TYPE.MISSILE) {//Laser
+				if (currentShotsPerWait < shotsPerWait) {
+					bool blocked = Physics.Raycast(transform.position, transform.forward, Mathf.Infinity, LayerMaskHelper.OnlyIncluding(LayerMask.NameToLayer("HeroShield")));
+					if (projectile != null && blocked == false) {
+						GameObject instance = (GameObject) Instantiate(projectile);
+						instance.transform.forward = transform.forward;
+						instance.rigidbody.constantForce.force = transform.forward * 0.0001f;
+						instance.transform.parent = transform;
+						instance.transform.position = muzzlePoint.transform.position;
+						
+						currentShotsPerWait++;
+						lastFireTime = 0.0f;
+					}
+				}
+				else {
+					lastFireTime += Time.deltaTime;
+					if (lastFireTime > waitBetweenFire) {
+						currentShotsPerWait = 0;	
+					}
+				}
+			}
+			else { // Missile
+				if (missileProjectile != null) {
+					GameObject instance = (GameObject) Instantiate(projectile);
+					instance.transform.forward = transform.forward;
+					instance.rigidbody.constantForce.force = transform.forward * 0.0001f;
+					instance.transform.parent = transform;
+					instance.transform.localPosition = Vector3.zero;
+				}
+			}
+		}
+		
+		//Health
+		_slider.sliderValue = _damagable.Health/_damagable.MaxHealth;
+		if (_damagable.Health <= 0.0f) {
+			_aiManager.SetVehicle(null);
+		
+			if (GameState.Instance.ApplicationQuit == false) {
+				GameObject go = GameObject.Find("_MissionManager");
+				if (go != null) {
+					MissionManager mm = go.GetComponent<MissionManager>();
+					mm.OnHeroDie();
+				}
+			}
+			
+			Destroy (gameObject);	
+		}
+	}
+	
+	void SetLaserType(LASER_FIRE_TYPE type) {
+		//if (type != fireType) {
+			fireType = type;
+			if (type == LASER_FIRE_TYPE.SINGLE) {
+				waitBetweenFire = 0.5f;	
+				shotsPerWait = 1;
+				currentShotsPerWait = 0;
+				lastFireTime = 0.0f;
+			}
+			else if (type == LASER_FIRE_TYPE.BURST) {
+				waitBetweenFire = 0.5f;
+				shotsPerWait = Random.Range(3, 5);
+				currentShotsPerWait = 0;
+				lastFireTime = 0.0f;
+			}
+			else if (type == LASER_FIRE_TYPE.AUTOMATIC) {
+				waitBetweenFire = 3.0f;
+				shotsPerWait = 20;
+				currentShotsPerWait = 0;
+				lastFireTime = 0.0f;
+			}
+		//}
+	}
+	
+	void FireMissile(Path p) {
+		if (missileProjectile != null && HasMissiles) {
+			GameObject instance = (GameObject) Instantiate(missileProjectile, transform.position, missileProjectile.transform.rotation);
+			instance.transform.forward = transform.forward;
+			HeroMissile hm = instance.GetComponent<HeroMissile>();
+			hm.SetPath(p, transform.position);
+		}
+	}
+	
+	public void FireMissileNormal(Vector3[] path) {
+		if (missileProjectile != null && HasMissiles) {
+			GameObject instance = (GameObject) Instantiate(missileProjectile, transform.position, missileProjectile.transform.rotation);
+			instance.transform.forward = transform.forward;
+			HeroMissile hm = instance.GetComponent<HeroMissile>();
+			hm.SetPathNormal(path);
+		}
+	}
+}

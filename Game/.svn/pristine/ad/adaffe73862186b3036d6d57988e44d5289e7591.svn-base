@@ -1,0 +1,156 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System;
+using MiniJSON;
+public class MainMenuEncounterSelect : MonoBehaviour
+{
+	UIPopupList _list;
+	string[] names;
+	IList encounters;
+	
+	MainMenu _mainMenu;
+	CurtainHelper _curtainHelper;
+	GameObject loadingIcon;
+	
+	public UIGrid _encounterGrid;
+	public GameObject encounterPrefab;
+	
+	PoolingSystem<GameObject> encounterPool;
+	
+	void Start ()
+	{
+		_list = GetComponent<UIPopupList>();
+		_mainMenu = GameObject.Find("UI Root").GetComponent<MainMenu>();
+		_curtainHelper = GameObject.Find("UI Root").GetComponent<CurtainHelper>();
+		
+		loadingIcon = GameObject.Find("LoadingIcon");
+		
+		encounterPool = new PoolingSystem<GameObject>(encounterPrefab, 10);
+	}
+	
+	public void DownloadEncounters(bool story) {
+		Download (story);
+	}
+	
+	void Update() {
+		if (loadingIcon != null && loadingIcon.activeSelf) {
+			Vector3 rot = loadingIcon.transform.eulerAngles;
+			rot.z -= (200.0f * Time.deltaTime);
+			loadingIcon.transform.eulerAngles = rot;
+		}
+	}
+	
+	void Download(bool story) {
+		StartLoading();
+		
+		CI.Request encounterReq = new CI.Request();
+		encounterReq.Send ("http://mothership.mike-daly.com/encounter" + (story ? "?story=true" : ""), "get", true,  (request) => {
+			ReleaseMenuItems();
+
+			encounters = (IList) Json.Deserialize(encounterReq.ResponseText);
+			ArrayList saveState = null;
+			
+			if (story) {
+				saveState = GameSaver.GetSaveState();				
+			}
+			
+			if (encounters == null) {
+				Debug.Log ("Retrying..");
+				Download (story);
+			}
+			else {
+				//Create new items
+				UnityEngine.Random.seed = 1;
+				for (int i = 0; i < encounters.Count; i++) {
+					IDictionary dict = (IDictionary) encounters[i];
+					string name = (string) dict["name"];
+					string type = (string) dict["hero_type_id"];
+					string backstory = (string) dict["backstory"];
+					string encid = (string) dict["_id"];
+					
+					GameObject encounter = encounterPool.GetElement();
+					encounter.name = "encounter" + i;
+					EncounterItem item = encounter.GetComponent<EncounterItem>();
+					
+					encounter.transform.parent = _encounterGrid.transform;
+					item.transform.localPosition = Vector3.zero;
+					
+					item.UpdateData(name, type, backstory, story ? (Hashtable) saveState[i] : null);
+					item.LoadHighScore(encid);
+				}
+				_encounterGrid.Reposition();
+				
+				UICenterOnChild center = gameObject.GetComponentInChildren<UICenterOnChild>();
+				center.Recenter();
+				FinishLoading();
+			}	
+		});
+	}
+	
+	void onChangeValue(string test) {
+		IDictionary enc = GetEncounterByName(test);
+		if (enc != null) {
+			MissionDetails.Instance.SetEncounterId((string)enc["_id"]);
+			MissionDetails.Instance.encounterType = (string) enc["hero_type_id"];
+		}
+	}
+	
+	IDictionary GetEncounterByName(string name) {
+		foreach (IDictionary enc in encounters) {
+			string n = (string) enc["name"];
+			if (n == name) {
+				return enc;	
+			}
+		}
+		
+		return null;
+	}
+	
+	public void Play() {
+		_curtainHelper.AnimateCurtain(false, Color.clear, Color.black, 0.5f, PlayCallback);
+	}
+	
+	void PlayCallback() {
+		UICenterOnChild center = gameObject.GetComponentInChildren<UICenterOnChild>();
+		GameObject centeredObject = center.centeredObject;
+		EncounterItem encounterItem = centeredObject.GetComponent<EncounterItem>();
+		
+		
+		IDictionary enc = GetEncounterByName(encounterItem._title.text);
+		if (enc != null) {
+			MissionDetails.Instance.SetEncounterId((string)enc["_id"]);
+			MissionDetails.Instance.encounterIndex = enc["index"] == null ? -1 : (long) enc["index"];
+			MissionDetails.Instance.encounterType = (string) enc["hero_type_id"];
+			
+			Application.LoadLevel(LevelManager.Instance.EncounterLevelName());
+		}
+	}
+	
+	public void OnBackButtonTapped() {
+		ReleaseMenuItems();	
+	}
+	
+	private void ReleaseMenuItems() {
+		EncounterItem[] oldItems = _encounterGrid.GetComponentsInChildren<EncounterItem>();
+		for (int i = 0; i < oldItems.Length; i++) {
+			EncounterItem child = oldItems[i];
+			child.PrepareForReuse();
+			encounterPool.ReleaseElement(child.gameObject, true);
+		}	
+	}
+	
+	public void StartLoading() {
+		if (loadingIcon != null) {
+			loadingIcon.SetActive(true);
+		}
+	}
+	
+	public void FinishLoading() {
+		if (loadingIcon != null) {
+			loadingIcon.SetActive(false);
+		}
+	}
+	
+}
+

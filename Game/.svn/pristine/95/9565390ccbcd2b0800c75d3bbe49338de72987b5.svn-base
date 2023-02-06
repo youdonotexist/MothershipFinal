@@ -1,0 +1,232 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class Upgrader : MonoBehaviour {
+	public GameObject[] upgrades;
+	public GameObject upgraderContainer;
+	public UILabel timer;
+	public UILabel scrapCount;
+	
+	public UpgradeMenuItem menuItemPrefab;
+	public UpgraderDetails _details;
+
+	int scrapMetal;
+	UIPanel _panel;
+
+	UITable _scrollView;
+	UIButton[] rows;
+
+	public GameObject upgradePortContainer;
+	UpgraderPortButton[] ports;
+
+	List<UpgradeMenuItem> _cachedMenuItems = new List<UpgradeMenuItem>();
+
+	Vector3 startPos;
+	Vector3 hiddenPos;
+
+	int currentPortIndex = 0;
+	Port.MinionTypeDetails currentDetails;
+	bool firstUpdate = true;
+
+	Port.MinionTypeDetails[][] details = new Port.MinionTypeDetails[4][];
+
+	void Awake() {
+		Messenger.AddListener("onScrapMetalUpdate", new Callback<float>(updateScrapMetal));
+		Messenger.AddListener("onPortLoadoutUpdate", new Callback<int, Port.MinionTypeDetails[]>(onPortLoadoutUpdate));
+
+		//Capture start/end positions for root container
+		Vector3 sPos = upgraderContainer.transform.position;
+		startPos = sPos;
+		hiddenPos = new Vector3(sPos.x - upgraderContainer.collider.bounds.size.x, sPos.y, sPos.z);
+
+		//Get the root panel and disable it so it doesn't count against draw calls
+		_panel = GetComponent<UIPanel>();
+		_panel.enabled = false;
+
+		ports = upgradePortContainer.GetComponentsInChildren<UpgraderPortButton>();
+		List<UpgraderPortButton> butts = new List<UpgraderPortButton>(ports);
+		butts.Sort(new System.Comparison<UpgraderPortButton>((x, y) => string.Compare(x.name, y.name)));
+		ports = butts.ToArray();
+
+		_scrollView = GetComponentInChildren<UITable>();
+
+		StartCoroutine(DoHide(0.0f));
+	}
+
+	public void HandleChangePort() {
+		string name = UIButton.current.name;
+		char num 	= name.ToCharArray()[name.Length - 1];
+		int index 	= 0;
+		bool wasInt = int.TryParse(num.ToString(), out index);
+		if (wasInt) {
+			index = index-1;
+		}
+		else {
+			index = 3;
+		}
+		ChangePort(index);
+	}
+
+	void ChangePort(int index) {
+		currentPortIndex = index;
+		onPortLoadoutUpdate(currentPortIndex, details[currentPortIndex]);
+		UpdatePortHighlight();
+	}
+
+	public void ContinueToBattle() {
+		Messenger.Broadcast("OnUpgradeFinish");
+	}
+
+	public void SelectedPowerup() {
+		UIButton b = UIButton.current;
+		UpgradeMenuItem item = b.GetComponent<UpgradeMenuItem>();
+		_details.SetDetails(item.GetDetails());
+		currentDetails = item.GetDetails();
+	}
+
+	public void UpgradePort() {
+		Messenger.Broadcast("UpdateShipComponent", currentPortIndex, currentDetails.index);
+	}
+
+	public void UpgradePort1() {
+		UIButton b = UIButton.current;
+		Messenger.Broadcast("UpdateShipComponent", 0, nameToIndex(b.name.ToLower()));
+	}
+
+	public void UpgradePort2() {
+		UIButton b = UIButton.current;
+		Messenger.Broadcast("UpdateShipComponent", 1, nameToIndex(b.name.ToLower()));
+	}
+
+	public void UpgradePort3() {
+		UIButton b = UIButton.current;
+		Messenger.Broadcast("UpdateShipComponent", 2, nameToIndex(b.name.ToLower()));
+	}
+
+	void updateScrapMetal(float metal) {
+		scrapCount.text = metal.ToString();
+	}
+
+	void Update() {
+		if (firstUpdate) {
+			currentPortIndex = 0;
+			ChangePort(currentPortIndex);
+			firstUpdate = false;
+		}
+	}
+
+	void onPortLoadoutUpdate(int index, Port.MinionTypeDetails[] types) {
+		details[index] = types;
+
+		_scrollView.GetComponent<UIScrollView>().ResetPosition();
+
+		UpgradeMenuItem[] oldItems = _scrollView.GetComponentsInChildren<UpgradeMenuItem>();
+		for (int i = 0; i < oldItems.Length; i++) {
+			oldItems[i].gameObject.SetActive(false);
+			_cachedMenuItems.Add(oldItems[i]);
+		}
+
+		for (int i = 0; i < types.Length; i++) {
+			UpgradeMenuItem cached = GetCachedItem();
+			if (cached == null) {
+				cached = GameObject.Instantiate(menuItemPrefab) as UpgradeMenuItem;
+				cached.GetComponent<UIButton>().onClick.Add(new EventDelegate(SelectedPowerup));
+			}
+			else {
+				cached.gameObject.SetActive(true);
+			}
+
+			cached.name = i.ToString();
+			cached.SetDetails(types[i]);
+			cached.transform.parent = _scrollView.transform;
+			cached.transform.localPosition = Vector3.zero;
+			cached.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+			if (types[i].state >= 0 || index == ports.Length - 1) {
+				currentDetails = types[i];
+				if (index != ports.Length - 1) {
+					UpdatePortState(index, currentDetails);
+				}
+			}
+		}
+
+		_scrollView.Reposition();
+		_scrollView.GetComponent<UIScrollView>().ResetPosition();
+		_details.SetDetails(currentDetails);
+	}
+
+	void UpdatePortState(int portIndex, Port.MinionTypeDetails details) {
+		ports[portIndex].UpdatePortState(details);
+	}
+
+	void UpdatePortHighlight() {
+		for (int i = 0; i < ports.Length; i++) {
+			ports[i].UpdateHighlight(i == currentPortIndex);
+		}
+	}
+
+	UpgradeMenuItem GetCachedItem() {
+		if (_cachedMenuItems.Count == 0)
+			return null;
+
+		UpgradeMenuItem item = _cachedMenuItems[0];
+		_cachedMenuItems.RemoveAt(0);
+		return item;
+	}
+
+	public void SetTimer(float time) {
+		timer.text = time.ToString() + "s";
+	}
+
+	public void Show() {
+		StartCoroutine(DoShow (1.0f));
+	}
+
+	public void Hide() {
+		StartCoroutine(DoHide (1.0f));
+	}
+
+	IEnumerator DoShow(float d) {
+		float duration = d, elapsed = 0.0f;
+		_panel.enabled = true;
+
+		while (elapsed < duration) {
+			upgraderContainer.transform.position = Vector3.Lerp(hiddenPos, startPos, elapsed/duration);
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+
+		upgraderContainer.transform.position = startPos;
+	}
+
+	IEnumerator DoHide(float d) {
+		float duration = d, elapsed = 0.0f;
+		while (elapsed < duration) {
+			upgraderContainer.transform.position = Vector3.Lerp(startPos, hiddenPos, elapsed/duration);
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+
+		_panel.enabled = false;
+		upgraderContainer.transform.position = hiddenPos;
+	}
+
+	void OnDestroy() {
+		Messenger.RemoveListener("onScrapMetalUpdate", new Callback<float>(updateScrapMetal));
+		Messenger.RemoveListener("onPortLoadoutUpdate", new Callback<int, Port.MinionTypeDetails[]>(onPortLoadoutUpdate));
+	}
+
+	int nameToIndex(string name) {
+		if (name == "0normal") return (int)Port.MinionTypes.NORMAL_MINION;
+		if (name == "1speed") return (int)Port.MinionTypes.SPEED_MINION;
+		if (name == "2split") return (int)Port.MinionTypes.SPLIT_MINION;
+		if (name == "3seeker") return (int)Port.MinionTypes.SEEKER_MINION;
+		if (name == "42hit") return (int)Port.MinionTypes.TWOHIT_MINION;
+		Debug.Log("Not found: " + name);
+		return -1;
+	}
+
+
+
+
+}

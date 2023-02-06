@@ -1,0 +1,139 @@
+using UnityEngine;
+using UnityEditor;
+using System.Collections;
+using System.Collections.Generic;
+
+public class SwitchQuality : ScriptableObject
+{
+	[MenuItem("Edit/Mothership/Game/Rebuild Debris")]
+	static public void RebuildDebris() {
+		if (ResourceManager.Instance == null) return; //Fuck this shit
+		ResourceManager.Instance.LoadAtlases();
+
+		/*Damagable[] sws = FindObjectsOfType(typeof(Damagable)) as Damagable[];
+		foreach (Damagable d in sws) {
+			exSprite[] sprites = d.GetComponentsInChildren<exSprite>();
+			Dictionary<string, Color32> colors = new Dictionary<string, Color32>();
+			foreach (exSprite sprite in sprites) {
+				string path = AssetDatabase.GUIDToAssetPath(sprite.textureGUID);
+				Texture2D tex = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
+				Color32[] cs = tex.GetPixels32();
+				foreach (Color32 c in cs) {
+					string key = c.r.ToString() + "_" + c.g.ToString() + "_" + c.b.ToString();
+					if (!colors.ContainsKey(key)) {
+						colors[key] = c;
+					}
+				}
+
+				d.colors = new List<Color32>(colors.Values).ToArray();
+			}
+		}*/
+
+		exAtlasInfo[] infos = new exAtlasInfo[]
+		{
+			(exAtlasInfo) Resources.Load("Atlases/_NES/NESAtlas - EditorInfo", typeof(exAtlasInfo)), 
+			(exAtlasInfo) Resources.Load("Atlases/_MS/MSAtlas - EditorInfo", typeof(exAtlasInfo)),
+			(exAtlasInfo) Resources.Load("Atlases/_SNES/ModernAtlas - EditorInfo", typeof(exAtlasInfo))
+		};
+
+
+		Object[] selectedAsset = Selection.GetFiltered (typeof(Object), SelectionMode.DeepAssets);
+		try {
+			foreach(Object obj in selectedAsset)
+			{
+				if (obj is GameObject) {
+					SpriteSwitcher[] sw = ((GameObject)obj).GetComponentsInChildren<SpriteSwitcher>(true);
+					if (sw != null && sw.Length > 0) {
+						ExtractColors(sw[0], infos); 	
+					}
+				}
+				
+			}
+		}
+		catch (UnityException e) {
+
+		}
+		finally {
+			ResourceManager.Instance.ForceDestroy();
+		}
+	}
+
+	private static void ExtractColors(SpriteSwitcher d, exAtlasInfo[] infos) {
+		string[] types = new string[]{"nes", "ms", "snes"};
+		for (int i = 0; i < types.Length; i++) {
+			exAtlasInfo currAtlasInfo = infos[i];
+			int index = d.GetSpriteIndexForQuality(types[i]);
+
+			if (index < 0 || index >= currAtlasInfo.elements.Count) {
+				Debug.Log ("Sprite index out of range: " + d.nesSpriteName);
+				continue;
+			}
+
+			Dictionary<string, Color32> colors = new Dictionary<string, Color32>();
+			Texture2D tex = currAtlasInfo.elements[index].texture;
+			Color[] cs = tex.GetPixels();
+			foreach (Color c in cs) {
+				if (c.a < 1.0f) continue;
+				string key = c.r.ToString() + "_" + c.g.ToString() + "_" + c.b.ToString();
+				if (!colors.ContainsKey(key)) {
+					colors[key] = (Color32) c;
+				}
+			}
+
+			d.SetColorsForType(types[i], new List<Color32>(colors.Values).ToArray());
+		}
+	}
+
+
+
+	[MenuItem("Edit/Mothership/Game/KillHero _4")]
+	static public void KillHero () {
+		HeroVehicle veh = FindObjectOfType(typeof(HeroVehicle)) as HeroVehicle;
+		if (veh != null) {
+			Damagable dam = veh.GetComponent<Damagable>();
+			dam.OnDamage(dam.maxHealth, LayerMask.NameToLayer("Minion"));
+			dam.OnDamage(dam.maxHealth, LayerMask.NameToLayer("Minion"));
+		}
+		else {
+			Debug.Log ("No Hero Found");
+		}
+	}
+
+	[MenuItem("Edit/Mothership/Quality/NES _1")]
+	static public void NESQuality () {
+		Switch ("nes");
+		EditorApplication.SaveScene();
+	}
+
+	[MenuItem("Edit/Mothership/Quality/MS _2")]
+	static public void MSQuality () {
+		Switch ("ms");
+	}
+	
+	[MenuItem("Edit/Mothership/Quality/SNES _3")]
+	static public void SNESQuality () {
+		Switch ("snes");
+	}
+
+
+	static public void Switch(string type) {
+		if (ResourceManager.Instance == null) return; //Fuck this shit
+		ResourceManager.Instance.LoadAtlases();
+		SpriteSwitcher[] sws = FindObjectsOfType(typeof(SpriteSwitcher)) as SpriteSwitcher[];
+		foreach (SpriteSwitcher sw in sws) {
+			sw.SetUp();
+			sw.OnSpriteQualityChange(type);
+		}
+		
+		UISwitcher[] uws = FindObjectsOfType(typeof(UISwitcher)) as UISwitcher[];
+		foreach (UISwitcher uw in uws) {
+			uw.SetUp(type);
+		}
+
+		TextureSwitcher tss = FindObjectOfType(typeof(TextureSwitcher)) as TextureSwitcher;
+		tss.OnTextureQualityChange(type);
+
+		ResourceManager.Instance.ForceDestroy();
+	}
+}
+

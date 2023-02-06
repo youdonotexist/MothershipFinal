@@ -1,0 +1,1168 @@
+{"action":"FIRE MISSILE","waitAfter":"2","hero_id":"511305843686b94134000002","_id":{"$oid":"5113059a3686b94134000006"}}
+{"action":"FIRE MISSILE","waitAfter":"2","hero_id":"511305843686b94134000002","_id":{"$oid":"51172ca5266318fefe000002"}}
+{"_id":{"$oid":"52a2ae1fe42fc8d749000003"},"action":"MOVE","waitAfter":"1","hero_id":"510e0ba70d728d101a000003","order":0}
+{"_id":{"$oid":"52a2ae324f12de214c000001"},"action":"MOVE","waitAfter":"2","hero_id":"510e0ba70d728d101a000003","order":0}
+{"action":"MOVE","waitAfter":"2.5","hero_id":"ext-record-44","order":0,"_id":{"$oid":"52a38010ec29cb7c28000003"}}
+{"action":"MOVE","waitAfter":"2.5","hero_id":"ext-record-44","order":0,"_id":{"$oid":"52a38018996fba2e1d000002"}}
+{"action":"MOVE","waitAfter":"2.5","hero_id":"ext-record-44","order":0,"_id":{"$oid":"52a38022ec29cb7c28000004"}}
+{"action":"MOVE","waitAfter":"2.5","hero_id":"ext-record-44","order":0,"_id":{"$oid":"52a3802aec29cb7c28000005"}}
+{"action":"FIRE MISSILE","waitAfter":"2.5","hero_id":"ext-record-44","order":0,"_id":{"$oid":"52a38037996fba2e1d000003"}}
+{"_id":{"$oid":"52ca0e80243ca92652000004"},"action":"MOVE","waitAfter":"1","hero_id":"510e13fa0d728d101a00002e","order":0}
+{"_id":{"$oid":"52ca0e8e5ea16c6b09000009"},"action":"MOVE","waitAfter":"2","hero_id":"510e13fa0d728d101a00002e","order":1}
+{"action":"MOVE","waitAfter":"1.3","hero_id":"510e13ef0d728d101a00002c","order":0,"_id":{"$oid":"52ca10e85ea16c6b09000012"}}
+{"action":"MOVE","waitAfter":"0.5","hero_id":"510e13fd0d728d101a00002f","order":0,"_id":{"$oid":"52ca1173243ca9265200000c"}}
+{"_id":{"$oid":"52ca119f243ca9265200000d"},"action":"MOVE","waitAfter":"0.6","hero_id":"510e13fd0d728d101a00002f","order":5}
+{"_id":{"$oid":"52ca11da243ca92652000011"},"action":"MOVE","waitAfter":"0.7","hero_id":"510e13fd0d728d101a00002f","order":2}
+{"_id":{"$oid":"52ca154a5ea16c6b09000019"},"action":"MOVE","waitAfter":"1","hero_id":"510e13f40d728d101a00002d","order":0}
+{"_id":{"$oid":"52ca158e243ca92652000014"},"action":"MOVE","waitAfter":"1.2","hero_id":"510e13f40d728d101a00002d","order":2}
+{"_id":{"$oid":"52d1dda4243ca92652000029"},"action":"MOVE","waitAfter":"0.8","hero_id":"510e14020d728d101a000030","order":4}
+{"_id":{"$oid":"52d1ddb05ea16c6b0900002f"},"action":"MOVE","waitAfter":"0.5","hero_id":"510e14020d728d101a000030","order":2}
+{"_id":{"$oid":"52d1de1a243ca9265200002b"},"action":"MOVE","waitAfter":"0.8","hero_id":"510e14020d728d101a000030","order":6}
+{"_id":{"$oid":"52d1de48243ca9265200002c"},"action":"MOVE","waitAfter":"0.6","hero_id":"510e14020d728d101a000030","order":9}
+{"_id":{"$oid":"52d1df17243ca9265200002f"},"action":"MOVE","waitAfter":"1.2","hero_id":"510e13ea0d728d101a00002b","order":12}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f0a3e510d0516663000009","order":6,"_id":{"$oid":"52f0a3e510d0516663000028"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f0a3e510d0516663000008","order":6,"_id":{"$oid":"52f0a3e510d0516663000013"}}
+{"action":"DEPLOY BLACKHOLE","waitAfter":"3","hero_id":"5123025d546876a63f000002","_id":{"$oid":"51231e0a3887c30000000002"}}
+{"action":"FIRE MISSILE","waitAfter":"2","hero_id":"511305843686b94134000002","_id":{"$oid":"51574e947dcb41b72d000025"}}
+{"action":"FIRE MISSILE","waitAfter":"2","hero_id":"511305843686b94134000002","_id":{"$oid":"51574e947dcb41b72d000026"}}
+{"action":"FIRE MISSILE","waitAfter":"2","hero_id":"511305843686b94134000002","_id":{"$oid":"51574e9f7dcb41b72d000027"}}
+{"action":"FIRE MISSILE","waitAfter":"2","hero_id":"511305843686b94134000002","_id":{"$oid":"51574e9f7dcb41b72d000028"}}
+{"action":"FIRE MISSILE","waitAfter":"1","hero_id":"ext-record-108","_id":{"$oid":"5175932aa2ba72141c00000b"}}
+{"action":"FIRE MISSILE","waitAfter":"1","hero_id":"ext-record-108","_id":{"$oid":"5175932ca2ba72141c00000c"}}
+{"action":"FIRE MISSILE","waitAfter":"1","hero_id":"ext-record-108","_id":{"$oid":"5175932ca2ba72141c00000d"}}
+{"action":"FIRE MISSILE","waitAfter":"1","hero_id":"ext-record-108","_id":{"$oid":"5175932ca2ba72141c00000e"}}
+{"action":"FIRE MISSILE","waitAfter":"1","hero_id":"ext-record-108","_id":{"$oid":"5175932da2ba72141c00000f"}}
+{"action":"DEPLOY SHIELD","waitAfter":"1","hero_id":"ext-record-108","_id":{"$oid":"51759334a2ba72141c000010"}}
+{"action":"DEPLOY SHIELD","waitAfter":"1","hero_id":"ext-record-108","_id":{"$oid":"51759334a2ba72141c000011"}}
+{"action":"DEPLOY MINE","waitAfter":"1","hero_id":"ext-record-108","_id":{"$oid":"51759339a2ba72141c000012"}}
+{"action":"DEPLOY MINE","waitAfter":"1","hero_id":"ext-record-108","_id":{"$oid":"51759339a2ba72141c000013"}}
+{"action":"DEPLOY MINE","waitAfter":"1","hero_id":"ext-record-108","_id":{"$oid":"5175933ba2ba72141c000014"}}
+{"_id":{"$oid":"518b270076d1b36a0a000001"},"action":"DEPLOY SHIELD","waitAfter":0.10000000000000000555,"hero_id":"51889b2b5532be9649000001","order":0}
+{"_id":{"$oid":"518b270176d1b36a0a000002"},"action":"DEPLOY SHIELD","waitAfter":0.10000000000000000555,"hero_id":"51889b2b5532be9649000001","order":1}
+{"_id":{"$oid":"518b270176d1b36a0a000003"},"action":"DEPLOY SHIELD","waitAfter":0.10000000000000000555,"hero_id":"51889b2b5532be9649000001","order":2}
+{"_id":{"$oid":"518b270376d1b36a0a000004"},"action":"DEPLOY SHIELD","waitAfter":0.10000000000000000555,"hero_id":"51889b2b5532be9649000001","order":3}
+{"_id":{"$oid":"5195c000bc4f995920000009"},"action":"FIRE CHARGELASER","waitAfter":1,"hero_id":"ext-record-9","order":0}
+{"_id":{"$oid":"51b6b2f6f70d71acbc000003"},"action":"MOVE","waitAfter":"1","hero_id":"510e0ba40d728d101a000002","order":null}
+{"action":"DEPLOY SHIELD","waitAfter":"2.7","hero_id":"51d9dcf76f11830000000004","order":0,"_id":{"$oid":"51de450666de99c133000002"}}
+{"action":"DEPLOY SHIELD","waitAfter":"2.7","hero_id":"51d9dcf76f11830000000004","order":0,"_id":{"$oid":"51de450666de99c133000003"}}
+{"action":"MOVE","waitAfter":"8.2","hero_id":"51d9dcf76f11830000000004","order":0,"_id":{"$oid":"51de462866de99c133000004"}}
+{"action":"MOVE","waitAfter":"8.2","hero_id":"51d9dcf76f11830000000004","order":0,"_id":{"$oid":"51de462a66de99c133000005"}}
+{"action":"DEPLOY MINE","waitAfter":"0.4","hero_id":"51d9dcf76f11830000000004","order":0,"_id":{"$oid":"51de469c66de99c133000007"}}
+{"action":"DEPLOY BLACKHOLE","waitAfter":"1","hero_id":"ext-record-29","order":0,"_id":{"$oid":"51fb34d3b8edacfc0a000001"}}
+{"action":"DEPLOY BLACKHOLE","waitAfter":"1","hero_id":"ext-record-10","order":0,"_id":{"$oid":"51fb4e0d572a26a207000001"}}
+{"_id":{"$oid":"51de464a66de99c133000006"},"action":"MOVE","waitAfter":"6.5","hero_id":"51d9dcf76f11830000000004","order":0}
+{"_id":{"$oid":"529d50d9e42fc8d749000002"},"action":"MOVE","waitAfter":"3","hero_id":"510e0ba10d728d101a000001","order":0}
+{"_id":{"$oid":"513bcd8a2d1973e22a000003"},"action":"MOVE","waitAfter":"0.5","hero_id":"510e0ba70d728d101a000003","order":null}
+{"_id":{"$oid":"52a2ae2ce42fc8d749000004"},"action":"MOVE","waitAfter":"1.5","hero_id":"510e0ba70d728d101a000003","order":0}
+{"_id":{"$oid":"52a2ae39e42fc8d749000005"},"action":"MOVE","waitAfter":"1","hero_id":"510e0ba70d728d101a000003","order":0}
+{"_id":{"$oid":"52a2ae4ae42fc8d749000006"},"action":"FIRE MISSILE","waitAfter":"2","hero_id":"510e0ba70d728d101a000003","order":0}
+{"_id":{"$oid":"52a2b990fc6816192e000002"},"action":"MOVE","waitAfter":"0.8","hero_id":"510e0ba90d728d101a000004","order":0}
+{"_id":{"$oid":"52a2b9a8fc6816192e000003"},"action":"MOVE","waitAfter":"1.4","hero_id":"510e0ba90d728d101a000004","order":0}
+{"_id":{"$oid":"52a2b9c12d5c329716000001"},"action":"FIRE MISSILE","waitAfter":"2","hero_id":"510e0ba90d728d101a000004","order":0}
+{"_id":{"$oid":"52a2b9ce2d5c329716000002"},"action":"MOVE","waitAfter":"1","hero_id":"510e0ba90d728d101a000004","order":0}
+{"_id":{"$oid":"52a2b9ed2d5c329716000004"},"action":"MOVE","waitAfter":"1.5","hero_id":"510e0ba90d728d101a000004","order":0}
+{"_id":{"$oid":"52a2b9f52d5c329716000005"},"action":"FIRE MISSILE","waitAfter":"0.1","hero_id":"510e0ba90d728d101a000004","order":0}
+{"_id":{"$oid":"52a2bedc2d5c329716000008"},"action":"DEPLOY SHIELD","waitAfter":"0.5","hero_id":"510e0bbe0d728d101a00000a","order":0}
+{"action":"FIRE MISSILE","waitAfter":0.10000000000000000555,"hero_id":"510e0bbe0d728d101a00000a","order":0,"_id":{"$oid":"52a2bf06fc6816192e000007"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"510e0bbe0d728d101a00000a","order":0,"_id":{"$oid":"52a2bf5afc6816192e000008"}}
+{"_id":{"$oid":"52a2bf62fc6816192e000009"},"action":"MOVE","waitAfter":"0.4","hero_id":"510e0bbe0d728d101a00000a","order":0}
+{"action":"FIRE MISSILE","waitAfter":0.10000000000000000555,"hero_id":"510e0bbe0d728d101a00000a","order":0,"_id":{"$oid":"52a2bf68fc6816192e00000a"}}
+{"_id":{"$oid":"52a2bf71fc6816192e00000b"},"action":"MOVE","waitAfter":"0.3","hero_id":"510e0bbe0d728d101a00000a","order":0}
+{"_id":{"$oid":"52a2bf78fc6816192e00000c"},"action":"DEPLOY MINE","waitAfter":"0.6","hero_id":"510e0bbe0d728d101a00000a","order":0}
+{"_id":{"$oid":"52a2bf7ffc6816192e00000d"},"action":"DEPLOY SHIELD","waitAfter":"0.5","hero_id":"510e0bbe0d728d101a00000a","order":0}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"510e0bbe0d728d101a00000a","order":0,"_id":{"$oid":"52a2bf86fc6816192e00000e"}}
+{"action":"FIRE MISSILE","waitAfter":0.10000000000000000555,"hero_id":"510e0bbe0d728d101a00000a","order":0,"_id":{"$oid":"52a2bf93fc6816192e00000f"}}
+{"_id":{"$oid":"52a2bf9a2d5c329716000009"},"action":"DEPLOY SHIELD","waitAfter":"0.4","hero_id":"510e0bbe0d728d101a00000a","order":0}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"510e0bbe0d728d101a00000a","order":0,"_id":{"$oid":"52a2bfa42d5c32971600000a"}}
+{"_id":{"$oid":"52a2bfaa2d5c32971600000b"},"action":"DEPLOY MINE","waitAfter":"0.3","hero_id":"510e0bbe0d728d101a00000a","order":0}
+{"action":"DEPLOY MINE","waitAfter":0.10000000000000000555,"hero_id":"510e0bbe0d728d101a00000a","order":0,"_id":{"$oid":"52a2bfb1fc6816192e000010"}}
+{"_id":{"$oid":"52a2bfb52d5c32971600000c"},"action":"FIRE MISSILE","waitAfter":"0.5","hero_id":"510e0bbe0d728d101a00000a","order":0}
+{"action":"DEPLOY SHIELD","waitAfter":0.10000000000000000555,"hero_id":"510e0bbe0d728d101a00000a","order":0,"_id":{"$oid":"52a2bfbafc6816192e000011"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"510e0bbe0d728d101a00000a","order":0,"_id":{"$oid":"52a2bfbe2d5c32971600000d"}}
+{"action":"DEPLOY MINE","waitAfter":0.10000000000000000555,"hero_id":"510e0bbe0d728d101a00000a","order":0,"_id":{"$oid":"52a2bfe3fc6816192e000012"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"510e0bbe0d728d101a00000a","order":0,"_id":{"$oid":"52a2bff62d5c32971600000e"}}
+{"_id":{"$oid":"52a2c09ffc6816192e000013"},"action":"MOVE","waitAfter":"1.3","hero_id":"510e0ba90d728d101a000004","order":0}
+{"action":"MOVE","waitAfter":"0.2","hero_id":"510e0ba90d728d101a000004","order":0,"_id":{"$oid":"52a2c0a4fc6816192e000014"}}
+{"action":"FIRE MISSILE","waitAfter":0.10000000000000000555,"hero_id":"510e0ba90d728d101a000004","order":0,"_id":{"$oid":"52a2c0aa2d5c32971600000f"}}
+{"action":"FIRE MISSILE","waitAfter":"1","hero_id":"510e0bad0d728d101a000005","order":0,"_id":{"$oid":"52a2c3f82d5c329716000010"}}
+{"action":"MOVE","waitAfter":"0.5","hero_id":"510e0bad0d728d101a000005","order":0,"_id":{"$oid":"52a2c402fc6816192e000015"}}
+{"_id":{"$oid":"52a2c4062d5c329716000011"},"action":"MOVE","waitAfter":"1.5","hero_id":"510e0bad0d728d101a000005","order":0}
+{"_id":{"$oid":"52a2c40bfc6816192e000016"},"action":"MOVE","waitAfter":"0.6","hero_id":"510e0bad0d728d101a000005","order":0}
+{"_id":{"$oid":"52a2c4142d5c329716000012"},"action":"FIRE MISSILE","waitAfter":"0.7","hero_id":"510e0bad0d728d101a000005","order":0}
+{"action":"MOVE","waitAfter":"0.1","hero_id":"510e0bad0d728d101a000005","order":0,"_id":{"$oid":"52a2c41d2d5c329716000013"}}
+{"_id":{"$oid":"52a2c426fc6816192e000017"},"action":"DEPLOY MINE","waitAfter":"2","hero_id":"510e0bad0d728d101a000005","order":0}
+{"_id":{"$oid":"52a2c448fc6816192e000018"},"action":"MOVE","waitAfter":"0.7","hero_id":"510e0bad0d728d101a000005","order":0}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"510e0baf0d728d101a000006","order":0,"_id":{"$oid":"52a2c4822d5c329716000014"}}
+{"action":"DEPLOY MINE","waitAfter":"1","hero_id":"510e0baf0d728d101a000006","order":0,"_id":{"$oid":"52a2c493fc6816192e000019"}}
+{"action":"MOVE","waitAfter":"0.5","hero_id":"510e0baf0d728d101a000006","order":0,"_id":{"$oid":"52a2c4a5fc6816192e00001a"}}
+{"_id":{"$oid":"52a2c4affc6816192e00001b"},"action":"MOVE","waitAfter":"0.9","hero_id":"510e0baf0d728d101a000006","order":0}
+{"action":"FIRE MISSILE","waitAfter":"0.2","hero_id":"510e0baf0d728d101a000006","order":0,"_id":{"$oid":"52a2c4d3fc6816192e00001c"}}
+{"_id":{"$oid":"52a2c4db2d5c329716000015"},"action":"DEPLOY MINE","waitAfter":0.10000000000000000555,"hero_id":"510e0baf0d728d101a000006","order":0}
+{"_id":{"$oid":"52a2c4e02d5c329716000016"},"action":"MOVE","waitAfter":"1","hero_id":"510e0baf0d728d101a000006","order":0}
+{"_id":{"$oid":"52a2c50e2d5c329716000017"},"action":"FIRE MISSILE","waitAfter":"1.5","hero_id":"510e0baf0d728d101a000006","order":0}
+{"action":"DEPLOY MINE","waitAfter":"1","hero_id":"510e0baf0d728d101a000006","order":0,"_id":{"$oid":"52a2c51b2d5c329716000018"}}
+{"action":"MOVE","waitAfter":"0.7","hero_id":"510e0bad0d728d101a000005","order":0,"_id":{"$oid":"52a2c6ff2d5c329716000019"}}
+{"action":"MOVE","waitAfter":"0.5","hero_id":"52a37ffaec29cb7c28000002","order":0,"_id":{"$oid":"52a38044ec29cb7c28000006"}}
+{"action":"MOVE","waitAfter":"0.5","hero_id":"52a37ffaec29cb7c28000002","order":0,"_id":{"$oid":"52a38048ec29cb7c28000007"}}
+{"action":"MOVE","waitAfter":"0.5","hero_id":"52a37ffaec29cb7c28000002","order":0,"_id":{"$oid":"52a38050996fba2e1d000004"}}
+{"action":"MOVE","waitAfter":"0.5","hero_id":"52a37ffaec29cb7c28000002","order":0,"_id":{"$oid":"52a38054996fba2e1d000005"}}
+{"_id":{"$oid":"52a3c08b0733d5a432000001"},"action":"FIRE MISSILE","waitAfter":"0.7","hero_id":"510e0bb30d728d101a000007","order":0}
+{"_id":{"$oid":"52a3c09f0733d5a432000002"},"action":"MOVE","waitAfter":"0.5","hero_id":"510e0bb30d728d101a000007","order":0}
+{"_id":{"$oid":"52a3c0b70733d5a432000003"},"action":"DEPLOY SHIELD","waitAfter":"3","hero_id":"510e0bb30d728d101a000007","order":0}
+{"action":"DEPLOY MINE","waitAfter":"1","hero_id":"510e0bb30d728d101a000007","order":0,"_id":{"$oid":"52a3c0cdf4b07c3d57000001"}}
+{"action":"MOVE","waitAfter":"1.4","hero_id":"510e0bb30d728d101a000007","order":0,"_id":{"$oid":"52a3c0d40733d5a432000004"}}
+{"action":"FIRE MISSILE","waitAfter":"0.5","hero_id":"510e0bb30d728d101a000007","order":0,"_id":{"$oid":"52a3c0de0733d5a432000005"}}
+{"action":"DEPLOY MINE","waitAfter":"0.8","hero_id":"510e0bb30d728d101a000007","order":0,"_id":{"$oid":"52a3c0e7f4b07c3d57000002"}}
+{"_id":{"$oid":"52a3c0f6f4b07c3d57000003"},"action":"MOVE","waitAfter":"1.6","hero_id":"510e0bb30d728d101a000007","order":0}
+{"action":"MOVE","waitAfter":"0.5","hero_id":"510e0bb30d728d101a000007","order":0,"_id":{"$oid":"52a3c0fbf4b07c3d57000004"}}
+{"action":"DEPLOY SHIELD","waitAfter":0.10000000000000000555,"hero_id":"510e0bb30d728d101a000007","order":0,"_id":{"$oid":"52a3c102f4b07c3d57000005"}}
+{"_id":{"$oid":"52a3c10ef4b07c3d57000006"},"action":"DEPLOY MINE","waitAfter":"0.3","hero_id":"510e0bb30d728d101a000007","order":0}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"510e0bb30d728d101a000007","order":0,"_id":{"$oid":"52a3c2bcf4b07c3d57000007"}}
+{"action":"FIRE MISSILE","waitAfter":"0.4","hero_id":"510e0bb30d728d101a000007","order":0,"_id":{"$oid":"52a3c2d70733d5a432000006"}}
+{"action":"MOVE","waitAfter":"0.6","hero_id":"510e0bb30d728d101a000007","order":0,"_id":{"$oid":"52a3c2e40733d5a432000007"}}
+{"action":"MOVE","waitAfter":"1.2","hero_id":"510e0baf0d728d101a000006","order":0,"_id":{"$oid":"52a3c35ff4b07c3d57000008"}}
+{"action":"MOVE","waitAfter":"1.5","hero_id":"510e0baf0d728d101a000006","order":0,"_id":{"$oid":"52a3c366f4b07c3d57000009"}}
+{"_id":{"$oid":"52a3c6050733d5a432000008"},"action":"DEPLOY SHIELD","waitAfter":"0.5","hero_id":"510e0bb70d728d101a000008","order":0}
+{"action":"DEPLOY MINE","waitAfter":"0.8","hero_id":"510e0bb70d728d101a000008","order":0,"_id":{"$oid":"52a3c668f4b07c3d5700000a"}}
+{"action":"MOVE","waitAfter":"0.8","hero_id":"510e0bb70d728d101a000008","order":0,"_id":{"$oid":"52a3c66ff4b07c3d5700000b"}}
+{"action":"MOVE","waitAfter":"1.5","hero_id":"510e0bb70d728d101a000008","order":0,"_id":{"$oid":"52a3c675f4b07c3d5700000c"}}
+{"action":"DEPLOY SHIELD","waitAfter":"0.4","hero_id":"510e0bb70d728d101a000008","order":0,"_id":{"$oid":"52a3c680f4b07c3d5700000d"}}
+{"action":"FIRE MISSILE","waitAfter":"1.5","hero_id":"510e0bb70d728d101a000008","order":0,"_id":{"$oid":"52a3c6890733d5a432000009"}}
+{"action":"MOVE","waitAfter":"1.2","hero_id":"510e0bb70d728d101a000008","order":0,"_id":{"$oid":"52a3c6970733d5a43200000a"}}
+{"action":"DEPLOY MINE","waitAfter":"0.5","hero_id":"510e0bb70d728d101a000008","order":0,"_id":{"$oid":"52a3c6a3f4b07c3d5700000e"}}
+{"action":"DEPLOY MINE","waitAfter":"0.5","hero_id":"510e0bb70d728d101a000008","order":0,"_id":{"$oid":"52a3c6abf4b07c3d5700000f"}}
+{"action":"MOVE","waitAfter":"1","hero_id":"510e0bb70d728d101a000008","order":0,"_id":{"$oid":"52a3c6b20733d5a43200000b"}}
+{"action":"FIRE MISSILE","waitAfter":"0.5","hero_id":"510e0bb70d728d101a000008","order":0,"_id":{"$oid":"52a3c6b90733d5a43200000c"}}
+{"action":"MOVE","waitAfter":"0.5","hero_id":"510e0bb70d728d101a000008","order":0,"_id":{"$oid":"52a3c6bf0733d5a43200000d"}}
+{"action":"FIRE MISSILE","waitAfter":"0.5","hero_id":"510e0bb70d728d101a000008","order":0,"_id":{"$oid":"52a3c6c50733d5a43200000e"}}
+{"_id":{"$oid":"52a3caed0733d5a43200000f"},"action":"MOVE","waitAfter":"0.5","hero_id":"510e0bba0d728d101a000009","order":0}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"510e0bba0d728d101a000009","order":0,"_id":{"$oid":"52a3caf80733d5a432000010"}}
+{"_id":{"$oid":"52a3cb06f4b07c3d57000010"},"action":"DEPLOY SHIELD","waitAfter":"0.7","hero_id":"510e0bba0d728d101a000009","order":0}
+{"_id":{"$oid":"52a3cb210733d5a432000011"},"action":"FIRE MISSILE","waitAfter":"1.5","hero_id":"510e0bba0d728d101a000009","order":0}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"510e0bba0d728d101a000009","order":0,"_id":{"$oid":"52a3cb25f4b07c3d57000012"}}
+{"_id":{"$oid":"52a3cb310733d5a432000012"},"action":"DEPLOY MINE","waitAfter":"1.2","hero_id":"510e0bba0d728d101a000009","order":0}
+{"action":"DEPLOY SHIELD","waitAfter":"0.4","hero_id":"51a427d199a2422d3c000006","order":0,"_id":{"$oid":"52a94d95c8e6501e04000004"}}
+{"action":"MOVE","waitAfter":"3","hero_id":"510e13e40d728d101a00002a","order":0,"_id":{"$oid":"52ca0dd75ea16c6b09000003"}}
+{"_id":{"$oid":"52ca0e005ea16c6b09000005"},"action":"MOVE","waitAfter":"3","hero_id":"510e13e40d728d101a00002a","order":3}
+{"_id":{"$oid":"52ca0e0e5ea16c6b09000006"},"action":"MOVE FORWARD","waitAfter":"3","hero_id":"510e13e40d728d101a00002a","order":2}
+{"_id":{"$oid":"52ca0e345ea16c6b09000007"},"action":"MOVE","waitAfter":"1","hero_id":"510e13d80d728d101a000029","order":1}
+{"action":"MOVE FORWARD","waitAfter":"1","hero_id":"510e13d80d728d101a000029","order":0,"_id":{"$oid":"52ca0e3e243ca92652000003"}}
+{"_id":{"$oid":"52ca0e755ea16c6b09000008"},"action":"MOVE","waitAfter":"1","hero_id":"510e13fa0d728d101a00002e","order":3}
+{"_id":{"$oid":"52ca0e9f243ca92652000005"},"action":"MOVE FORWARD","waitAfter":"1.5","hero_id":"510e13fa0d728d101a00002e","order":4}
+{"_id":{"$oid":"52ca103f243ca92652000006"},"action":"MOVE","waitAfter":"0.8","hero_id":"510e13ef0d728d101a00002c","order":1}
+{"_id":{"$oid":"52ca104b243ca92652000007"},"action":"MOVE","waitAfter":"1.4","hero_id":"510e13ef0d728d101a00002c","order":4}
+{"_id":{"$oid":"52ca10b45ea16c6b09000010"},"action":"MOVE FORWARD","waitAfter":"1.5","hero_id":"510e13ef0d728d101a00002c","order":2}
+{"_id":{"$oid":"52ca10f9243ca92652000009"},"action":"MOVE FORWARD","waitAfter":"0.3","hero_id":"510e13ef0d728d101a00002c","order":8}
+{"_id":{"$oid":"52ca1104243ca9265200000a"},"action":"MOVE","waitAfter":"0.1","hero_id":"510e13ef0d728d101a00002c","order":5}
+{"_id":{"$oid":"52ca11905ea16c6b09000013"},"action":"MOVE","waitAfter":"1.5","hero_id":"510e13fd0d728d101a00002f","order":7}
+{"_id":{"$oid":"52ca11be243ca9265200000f"},"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"510e13fd0d728d101a00002f","order":3}
+{"_id":{"$oid":"52ca11cb243ca92652000010"},"action":"DEPLOY TURRETMINE","waitAfter":"2","hero_id":"510e13fd0d728d101a00002f","order":1}
+{"_id":{"$oid":"52ca11e45ea16c6b09000014"},"action":"MOVE FORWARD","waitAfter":"0.7","hero_id":"510e13fd0d728d101a00002f","order":9}
+{"_id":{"$oid":"52ca14f2243ca92652000012"},"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"510e13f40d728d101a00002d","order":4}
+{"_id":{"$oid":"52ca14fe5ea16c6b09000015"},"action":"DEPLOY TURRETMINE","waitAfter":"1","hero_id":"510e13f40d728d101a00002d","order":3}
+{"_id":{"$oid":"52ca15105ea16c6b09000016"},"action":"MOVE","waitAfter":"0.5","hero_id":"510e13f40d728d101a00002d","order":7}
+{"_id":{"$oid":"52ca1520243ca92652000013"},"action":"MOVE FORWARD","waitAfter":"0.9","hero_id":"510e13f40d728d101a00002d","order":5}
+{"_id":{"$oid":"52d1dd655ea16c6b0900002c"},"action":"MOVE","waitAfter":"1.4","hero_id":"510e14020d728d101a000030","order":11}
+{"_id":{"$oid":"52d1ded75ea16c6b09000034"},"action":"MOVE","waitAfter":"0.8","hero_id":"510e13ea0d728d101a00002b","order":11}
+{"_id":{"$oid":"52d1df4a243ca92652000032"},"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"510e13ea0d728d101a00002b","order":8}
+{"_id":{"$oid":"52d1df6f243ca92652000035"},"action":"MOVE","waitAfter":"0.5","hero_id":"510e13ea0d728d101a00002b","order":3}
+{"_id":{"$oid":"52d1dfc95ea16c6b09000037"},"action":"MOVE","waitAfter":"0.2","hero_id":"510e14070d728d101a000031","order":4}
+{"_id":{"$oid":"52d1dffb5ea16c6b09000039"},"action":"MOVE","waitAfter":"0.3","hero_id":"510e14070d728d101a000031","order":1}
+{"_id":{"$oid":"52d1e31e5ea16c6b09000051"},"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"510e140b0d728d101a000032","order":5}
+{"_id":{"$oid":"52d1e3465ea16c6b09000055"},"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"510e140b0d728d101a000032","order":12}
+{"_id":{"$oid":"52ddfe013fa4b6c05800002c"},"action":"DEPLOY TURRETMINE","waitAfter":"1","hero_id":"510e13fa0d728d101a00002e","order":5}
+{"_id":{"$oid":"52ddff390d0a855437000031"},"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"510e13ef0d728d101a00002c","order":9}
+{"_id":{"$oid":"52ddffc13fa4b6c05800002e"},"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"510e13fd0d728d101a00002f","order":4}
+{"_id":{"$oid":"52ddffe63fa4b6c05800002f"},"action":"DEPLOY GRABBER","waitAfter":"3.5","hero_id":"510e13fd0d728d101a00002f","order":6}
+{"_id":{"$oid":"52ddfff90d0a855437000032"},"action":"DEPLOY TURRETMINE","waitAfter":"0.4","hero_id":"510e13fd0d728d101a00002f","order":8}
+{"_id":{"$oid":"52de01473fa4b6c058000030"},"action":"MOVE","waitAfter":"0.8","hero_id":"510e13f40d728d101a00002d","order":8}
+{"_id":{"$oid":"52de104583afb6442d000001"},"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"510e13ef0d728d101a00002c","order":7}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000008","order":12,"_id":{"$oid":"52f0a3e510d051666300000d"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000008","order":5,"_id":{"$oid":"52f0a3e510d051666300000c"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000008","order":3,"_id":{"$oid":"52f0a3e510d0516663000010"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000009","order":5,"_id":{"$oid":"52f0a3e510d0516663000021"}}
+{"_id":{"$oid":"5302d84cff9e7fdd44000005"},"action":"MOVE","waitAfter":"1.5","hero_id":"51aff14c610baa3b78000009","order":0}
+{"_id":{"$oid":"5302d879ff9e7fdd44000007"},"action":"MOVE FORWARD","waitAfter":"1.7","hero_id":"51aff14c610baa3b78000009","order":3}
+{"_id":{"$oid":"5302d8d458c598201f000002"},"action":"TELEPORT","waitAfter":"1","hero_id":"51aff14c610baa3b78000009","order":1}
+{"_id":{"$oid":"52ca153a5ea16c6b09000018"},"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"510e13f40d728d101a00002d","order":6}
+{"_id":{"$oid":"52ca156f5ea16c6b0900001b"},"action":"DEPLOY TURRETMINE","waitAfter":"1","hero_id":"510e13f40d728d101a00002d","order":10}
+{"_id":{"$oid":"52ca15955ea16c6b0900001c"},"action":"DEPLOY GRABBER","waitAfter":"2.5","hero_id":"510e13f40d728d101a00002d","order":1}
+{"_id":{"$oid":"52d1da63243ca92652000025"},"action":"FIRE CHARGELASER","waitAfter":"1.4","hero_id":"510e14020d728d101a000030","order":7}
+{"_id":{"$oid":"52d1dd09243ca92652000026"},"action":"MOVE FORWARD","waitAfter":"0.5","hero_id":"510e14020d728d101a000030","order":1}
+{"_id":{"$oid":"52d1dd16243ca92652000027"},"action":"DEPLOY GRABBER","waitAfter":"3","hero_id":"510e14020d728d101a000030","order":0}
+{"_id":{"$oid":"52d1dd2c5ea16c6b0900002b"},"action":"DEPLOY TURRETMINE","waitAfter":"1","hero_id":"510e14020d728d101a000030","order":3}
+{"_id":{"$oid":"52d1dd8e5ea16c6b0900002e"},"action":"DEPLOY TURRETMINE","waitAfter":"1.5","hero_id":"510e14020d728d101a000030","order":5}
+{"_id":{"$oid":"52d1dde0243ca9265200002a"},"action":"DEPLOY TURRETMINE","waitAfter":"0.8","hero_id":"510e14020d728d101a000030","order":10}
+{"_id":{"$oid":"52d1de045ea16c6b09000031"},"action":"MOVE FORWARD","waitAfter":"0.3","hero_id":"510e14020d728d101a000030","order":8}
+{"_id":{"$oid":"52d1dec05ea16c6b09000033"},"action":"DEPLOY GRABBER","waitAfter":"3","hero_id":"510e13ea0d728d101a00002b","order":1}
+{"_id":{"$oid":"52d1decb243ca9265200002d"},"action":"DEPLOY TURRETMINE","waitAfter":"0.8","hero_id":"510e13ea0d728d101a00002b","order":5}
+{"_id":{"$oid":"52d1dee65ea16c6b09000035"},"action":"MOVE FORWARD","waitAfter":"1.5","hero_id":"510e13ea0d728d101a00002b","order":4}
+{"_id":{"$oid":"52d1df02243ca9265200002e"},"action":"FIRE CHARGELASER","waitAfter":"1.5","hero_id":"510e13ea0d728d101a00002b","order":7}
+{"_id":{"$oid":"52d1df1d243ca92652000030"},"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"510e13ea0d728d101a00002b","order":9}
+{"_id":{"$oid":"52d1df23243ca92652000031"},"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"510e13ea0d728d101a00002b","order":6}
+{"_id":{"$oid":"52d1df5a243ca92652000033"},"action":"MOVE FORWARD","waitAfter":"1","hero_id":"510e13ea0d728d101a00002b","order":2}
+{"_id":{"$oid":"52d1df65243ca92652000034"},"action":"FIRE CHARGELASER","waitAfter":"1","hero_id":"510e13ea0d728d101a00002b","order":0}
+{"_id":{"$oid":"52d1df86243ca92652000036"},"action":"MOVE FORWARD","waitAfter":"0.5","hero_id":"510e13ea0d728d101a00002b","order":13}
+{"_id":{"$oid":"52d1dfd4243ca92652000037"},"action":"MOVE FORWARD","waitAfter":"0.3","hero_id":"510e14070d728d101a000031","order":3}
+{"_id":{"$oid":"52d1dfdb243ca92652000038"},"action":"DEPLOY GRABBER","waitAfter":"7","hero_id":"510e14070d728d101a000031","order":0}
+{"_id":{"$oid":"52d1dfef5ea16c6b09000038"},"action":"DEPLOY TURRETMINE","waitAfter":"0.3","hero_id":"510e14070d728d101a000031","order":2}
+{"_id":{"$oid":"52d1e006243ca92652000039"},"action":"FIRE CHARGELASER","waitAfter":"1","hero_id":"510e14070d728d101a000031","order":7}
+{"_id":{"$oid":"52d1e2b4243ca9265200004b"},"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"510e140b0d728d101a000032","order":1}
+{"_id":{"$oid":"52d1e2be243ca9265200004c"},"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"510e140b0d728d101a000032","order":7}
+{"_id":{"$oid":"52d1e2c7243ca9265200004d"},"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"510e140b0d728d101a000032","order":3}
+{"_id":{"$oid":"52d1e2cf243ca9265200004e"},"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"510e140b0d728d101a000032","order":19}
+{"_id":{"$oid":"52d1e2d45ea16c6b0900004d"},"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"510e140b0d728d101a000032","order":10}
+{"_id":{"$oid":"52d1e2df5ea16c6b0900004e"},"action":"MOVE","waitAfter":"0.3","hero_id":"510e140b0d728d101a000032","order":6}
+{"_id":{"$oid":"52d1e2e75ea16c6b0900004f"},"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"510e140b0d728d101a000032","order":4}
+{"_id":{"$oid":"52d1e2f4243ca9265200004f"},"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"510e140b0d728d101a000032","order":17}
+{"_id":{"$oid":"52d1e2fd243ca92652000050"},"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"510e140b0d728d101a000032","order":15}
+{"_id":{"$oid":"52d1e306243ca92652000051"},"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"510e140b0d728d101a000032","order":8}
+{"_id":{"$oid":"52d1e310243ca92652000052"},"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"510e140b0d728d101a000032","order":2}
+{"_id":{"$oid":"52d1e3155ea16c6b09000050"},"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"510e140b0d728d101a000032","order":13}
+{"_id":{"$oid":"52d1e3285ea16c6b09000052"},"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"510e140b0d728d101a000032","order":11}
+{"_id":{"$oid":"52d1e32c243ca92652000053"},"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"510e140b0d728d101a000032","order":14}
+{"_id":{"$oid":"52d1e3355ea16c6b09000053"},"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"510e140b0d728d101a000032","order":9}
+{"_id":{"$oid":"52d1e33d5ea16c6b09000054"},"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"510e140b0d728d101a000032","order":18}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"510e140b0d728d101a000032","order":0,"_id":{"$oid":"52d1e34b243ca92652000054"}}
+{"_id":{"$oid":"52d1e351243ca92652000055"},"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"510e140b0d728d101a000032","order":16}
+{"_id":{"$oid":"52ddfe140d0a85543700002e"},"action":"DEPLOY TURRETMINE","waitAfter":"1","hero_id":"510e13fa0d728d101a00002e","order":2}
+{"_id":{"$oid":"52ddfe9e0d0a85543700002f"},"action":"DEPLOY TURRETMINE","waitAfter":"2","hero_id":"510e13ef0d728d101a00002c","order":6}
+{"_id":{"$oid":"52ddff333fa4b6c05800002d"},"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"510e13ef0d728d101a00002c","order":3}
+{"_id":{"$oid":"52de00b30d0a855437000033"},"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"510e13f40d728d101a00002d","order":9}
+{"_id":{"$oid":"52de01583fa4b6c058000031"},"action":"MOVE FORWARD","waitAfter":"0.6","hero_id":"510e13f40d728d101a00002d","order":11}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"510e13f40d728d101a00002d","order":12,"_id":{"$oid":"52de018f3fa4b6c058000032"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"1.2","hero_id":"510e13fd0d728d101a00002f","order":10,"_id":{"$oid":"52de04120d0a855437000034"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.3","hero_id":"510e14020d728d101a000030","order":12,"_id":{"$oid":"52e080e73429ef9107000005"}}
+{"_id":{"$oid":"52e081883429ef9107000006"},"action":"DEPLOY GRABBER","waitAfter":"1.5","hero_id":"510e13ea0d728d101a00002b","order":10}
+{"_id":{"$oid":"52e081d63429ef9107000007"},"action":"DEPLOY TURRETMINE","waitAfter":"0.3","hero_id":"510e14070d728d101a000031","order":5}
+{"_id":{"$oid":"52e082103429ef9107000008"},"action":"DEPLOY GRABBER","waitAfter":"7","hero_id":"510e14070d728d101a000031","order":6}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"510e140b0d728d101a000032","order":20,"_id":{"$oid":"52e082f80d7ffdae71000004"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000008","order":10,"_id":{"$oid":"52f0a3e510d0516663000012"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000008","order":7,"_id":{"$oid":"52f0a3e510d051666300000f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f0a3e510d0516663000008","order":4,"_id":{"$oid":"52f0a3e510d0516663000014"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f0a3e510d0516663000008","order":19,"_id":{"$oid":"52f0a3e510d0516663000011"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000008","order":17,"_id":{"$oid":"52f0a3e510d0516663000015"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f0a3e510d0516663000008","order":13,"_id":{"$oid":"52f0a3e510d0516663000019"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000008","order":0,"_id":{"$oid":"52f0a3e510d051666300001e"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000008","order":8,"_id":{"$oid":"52f0a3e510d0516663000017"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f0a3e510d0516663000008","order":9,"_id":{"$oid":"52f0a3e510d051666300001c"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f0a3e510d0516663000009","order":19,"_id":{"$oid":"52f0a3e510d0516663000026"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f0a3e510d0516663000009","order":1,"_id":{"$oid":"52f0a3e510d0516663000023"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f0a3e510d0516663000008","order":1,"_id":{"$oid":"52f0a3e510d051666300000e"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000009","order":15,"_id":{"$oid":"52f0a3e510d051666300002b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000009","order":14,"_id":{"$oid":"52f0a3e510d0516663000030"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000009","order":2,"_id":{"$oid":"52f0a3e510d051666300002d"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000009","order":20,"_id":{"$oid":"52f0a3e510d0516663000035"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000009","order":18,"_id":{"$oid":"52f0a3e510d0516663000032"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000008","order":2,"_id":{"$oid":"52f0a3e510d0516663000018"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000008","order":18,"_id":{"$oid":"52f0a3e510d051666300001d"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000009","order":12,"_id":{"$oid":"52f0a3e510d0516663000022"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000009","order":10,"_id":{"$oid":"52f0a3e510d0516663000027"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000009","order":8,"_id":{"$oid":"52f0a3e510d051666300002c"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f0a3e510d0516663000009","order":9,"_id":{"$oid":"52f0a3e510d0516663000031"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000008","order":15,"_id":{"$oid":"52f0a3e510d0516663000016"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000008","order":14,"_id":{"$oid":"52f0a3e510d051666300001b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000008","order":20,"_id":{"$oid":"52f0a3e510d0516663000020"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000009","order":3,"_id":{"$oid":"52f0a3e510d0516663000025"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000009","order":17,"_id":{"$oid":"52f0a3e510d051666300002a"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000009","order":11,"_id":{"$oid":"52f0a3e510d051666300002f"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000009","order":16,"_id":{"$oid":"52f0a3e510d0516663000034"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000008","order":11,"_id":{"$oid":"52f0a3e510d051666300001a"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000008","order":16,"_id":{"$oid":"52f0a3e510d051666300001f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000009","order":7,"_id":{"$oid":"52f0a3e510d0516663000024"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f0a3e510d0516663000009","order":4,"_id":{"$oid":"52f0a3e510d0516663000029"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f0a3e510d0516663000009","order":13,"_id":{"$oid":"52f0a3e510d051666300002e"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000009","order":0,"_id":{"$oid":"52f0a3e510d0516663000033"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000005","order":12,"_id":{"$oid":"52f0a3e510d0516663000037"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000005","order":10,"_id":{"$oid":"52f0a3e510d051666300003c"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000005","order":8,"_id":{"$oid":"52f0a3e510d0516663000041"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000005","order":3,"_id":{"$oid":"52f0a3e510d051666300003a"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000005","order":17,"_id":{"$oid":"52f0a3e510d051666300003f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000005","order":11,"_id":{"$oid":"52f0a3e510d0516663000044"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000005","order":7,"_id":{"$oid":"52f0a3e510d0516663000039"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f0a3e510d0516663000005","order":4,"_id":{"$oid":"52f0a3e510d051666300003e"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f0a3e510d0516663000005","order":13,"_id":{"$oid":"52f0a3e510d0516663000043"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f0a3e510d0516663000005","order":1,"_id":{"$oid":"52f0a3e510d0516663000038"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f0a3e510d0516663000005","order":6,"_id":{"$oid":"52f0a3e510d051666300003d"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000005","order":2,"_id":{"$oid":"52f0a3e510d0516663000042"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000005","order":5,"_id":{"$oid":"52f0a3e510d0516663000036"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f0a3e510d0516663000005","order":19,"_id":{"$oid":"52f0a3e510d051666300003b"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000005","order":15,"_id":{"$oid":"52f0a3e510d0516663000040"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f0a3e510d0516663000005","order":9,"_id":{"$oid":"52f0a3e510d0516663000046"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000006","order":5,"_id":{"$oid":"52f0a3e510d051666300004b"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000005","order":16,"_id":{"$oid":"52f0a3e510d0516663000049"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000006","order":7,"_id":{"$oid":"52f0a3e510d051666300004e"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000005","order":0,"_id":{"$oid":"52f0a3e510d0516663000048"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f0a3e510d0516663000006","order":1,"_id":{"$oid":"52f0a3e510d051666300004d"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000005","order":18,"_id":{"$oid":"52f0a3e510d0516663000047"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000006","order":12,"_id":{"$oid":"52f0a3e510d051666300004c"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f0a3e510d0516663000006","order":19,"_id":{"$oid":"52f0a3e510d0516663000050"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000006","order":15,"_id":{"$oid":"52f0a3e510d0516663000055"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000005","order":14,"_id":{"$oid":"52f0a3e510d0516663000045"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000005","order":20,"_id":{"$oid":"52f0a3e510d051666300004a"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000006","order":14,"_id":{"$oid":"52f0a3e510d051666300005a"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f0a3e510d0516663000006","order":4,"_id":{"$oid":"52f0a3e510d0516663000053"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f0a3e510d0516663000006","order":13,"_id":{"$oid":"52f0a3e510d0516663000058"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000006","order":0,"_id":{"$oid":"52f0a3e510d051666300005d"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000006","order":20,"_id":{"$oid":"52f0a3e510d051666300005f"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f0a3e510d0516663000006","order":6,"_id":{"$oid":"52f0a3e510d0516663000052"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000006","order":2,"_id":{"$oid":"52f0a3e510d0516663000057"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000006","order":18,"_id":{"$oid":"52f0a3e510d051666300005c"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000006","order":10,"_id":{"$oid":"52f0a3e510d0516663000051"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000006","order":8,"_id":{"$oid":"52f0a3e510d0516663000056"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f0a3e510d0516663000006","order":9,"_id":{"$oid":"52f0a3e510d051666300005b"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000006","order":3,"_id":{"$oid":"52f0a3e510d051666300004f"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000006","order":17,"_id":{"$oid":"52f0a3e510d0516663000054"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000006","order":11,"_id":{"$oid":"52f0a3e510d0516663000059"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000006","order":16,"_id":{"$oid":"52f0a3e510d051666300005e"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000a","order":3,"_id":{"$oid":"52f0a3e510d0516663000064"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f0a3e510d051666300000a","order":17,"_id":{"$oid":"52f0a3e510d0516663000069"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f0a3e510d051666300000a","order":1,"_id":{"$oid":"52f0a3e510d0516663000062"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f0a3e510d051666300000a","order":6,"_id":{"$oid":"52f0a3e510d0516663000067"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000a","order":12,"_id":{"$oid":"52f0a3e510d0516663000061"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000a","order":10,"_id":{"$oid":"52f0a3e510d0516663000066"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000a","order":5,"_id":{"$oid":"52f0a3e510d0516663000060"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f0a3e510d051666300000a","order":19,"_id":{"$oid":"52f0a3e510d0516663000065"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000a","order":15,"_id":{"$oid":"52f0a3e510d051666300006a"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000a","order":7,"_id":{"$oid":"52f0a3e510d0516663000063"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f0a3e510d051666300000a","order":4,"_id":{"$oid":"52f0a3e510d0516663000068"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000a","order":2,"_id":{"$oid":"52f0a3e510d051666300006c"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f0a3e510d051666300000a","order":18,"_id":{"$oid":"52f0a3e510d0516663000071"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000004","order":12,"_id":{"$oid":"52f0a3e510d0516663000076"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000004","order":10,"_id":{"$oid":"52f0a3e510d051666300007b"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000004","order":8,"_id":{"$oid":"52f0a3e510d0516663000080"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f0a3e510d051666300000a","order":11,"_id":{"$oid":"52f0a3e510d051666300006e"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000a","order":16,"_id":{"$oid":"52f0a3e510d0516663000073"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f0a3e510d0516663000004","order":9,"_id":{"$oid":"52f0a3e510d0516663000085"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000004","order":7,"_id":{"$oid":"52f0a3e510d0516663000078"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f0a3e510d0516663000004","order":4,"_id":{"$oid":"52f0a3e510d051666300007d"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f0a3e510d0516663000004","order":13,"_id":{"$oid":"52f0a3e510d0516663000082"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000004","order":0,"_id":{"$oid":"52f0a3e510d0516663000087"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000a","order":8,"_id":{"$oid":"52f0a3e510d051666300006b"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f0a3e510d051666300000a","order":9,"_id":{"$oid":"52f0a3e510d0516663000070"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000a","order":14,"_id":{"$oid":"52f0a3e510d051666300006f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000a","order":20,"_id":{"$oid":"52f0a3e510d0516663000074"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000004","order":5,"_id":{"$oid":"52f0a3e510d0516663000075"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f0a3e510d0516663000004","order":19,"_id":{"$oid":"52f0a3e510d051666300007a"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000004","order":15,"_id":{"$oid":"52f0a3e510d051666300007f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000004","order":14,"_id":{"$oid":"52f0a3e510d0516663000084"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000004","order":20,"_id":{"$oid":"52f0a3e510d0516663000089"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000003","order":3,"_id":{"$oid":"52f0a3e510d051666300008e"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f0a3e510d0516663000003","order":1,"_id":{"$oid":"52f0a3e510d051666300008c"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f0a3e510d0516663000003","order":6,"_id":{"$oid":"52f0a3e510d0516663000091"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000003","order":5,"_id":{"$oid":"52f0a3e510d051666300008a"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f0a3e510d0516663000003","order":19,"_id":{"$oid":"52f0a3e510d051666300008f"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000003","order":15,"_id":{"$oid":"52f0a3e510d0516663000094"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000003","order":17,"_id":{"$oid":"52f0a3e510d0516663000093"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000004","order":3,"_id":{"$oid":"52f0a3e510d0516663000079"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000004","order":17,"_id":{"$oid":"52f0a3e510d051666300007e"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000004","order":11,"_id":{"$oid":"52f0a3e510d0516663000083"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000004","order":16,"_id":{"$oid":"52f0a3e510d0516663000088"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000003","order":7,"_id":{"$oid":"52f0a3e510d051666300008d"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f0a3e510d0516663000003","order":4,"_id":{"$oid":"52f0a3e510d0516663000092"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f0a3e510d051666300000a","order":13,"_id":{"$oid":"52f0a3e510d051666300006d"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000a","order":0,"_id":{"$oid":"52f0a3e510d0516663000072"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f0a3e510d0516663000004","order":1,"_id":{"$oid":"52f0a3e510d0516663000077"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f0a3e510d0516663000004","order":6,"_id":{"$oid":"52f0a3e510d051666300007c"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000004","order":2,"_id":{"$oid":"52f0a3e510d0516663000081"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000004","order":18,"_id":{"$oid":"52f0a3e510d0516663000086"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000003","order":12,"_id":{"$oid":"52f0a3e510d051666300008b"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000003","order":10,"_id":{"$oid":"52f0a3e510d0516663000090"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000003","order":2,"_id":{"$oid":"52f0a3e510d0516663000096"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000003","order":18,"_id":{"$oid":"52f0a3e510d051666300009b"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000007","order":12,"_id":{"$oid":"52f0a3e510d05166630000a0"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000007","order":10,"_id":{"$oid":"52f0a3e510d05166630000a5"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000007","order":8,"_id":{"$oid":"52f0a3e510d05166630000aa"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f0a3e510d0516663000007","order":9,"_id":{"$oid":"52f0a3e510d05166630000af"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000003","order":14,"_id":{"$oid":"52f0a3e510d0516663000099"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000003","order":11,"_id":{"$oid":"52f0a3e510d0516663000098"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000003","order":16,"_id":{"$oid":"52f0a3e510d051666300009d"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000007","order":7,"_id":{"$oid":"52f0a3e510d05166630000a2"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f0a3e510d0516663000007","order":4,"_id":{"$oid":"52f0a3e510d05166630000a7"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f0a3e510d0516663000007","order":13,"_id":{"$oid":"52f0a3e510d05166630000ac"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000007","order":0,"_id":{"$oid":"52f0a3e510d05166630000b1"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000002","order":5,"_id":{"$oid":"52f0a3e510d05166630000b4"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f0a3e510d0516663000002","order":19,"_id":{"$oid":"52f0a3e510d05166630000b9"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000002","order":15,"_id":{"$oid":"52f0a3e510d05166630000be"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f0a3e510d0516663000003","order":13,"_id":{"$oid":"52f0a3e510d0516663000097"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000003","order":0,"_id":{"$oid":"52f0a3e510d051666300009c"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f0a3e510d0516663000007","order":1,"_id":{"$oid":"52f0a3e510d05166630000a1"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f0a3e510d0516663000007","order":6,"_id":{"$oid":"52f0a3e510d05166630000a6"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000007","order":2,"_id":{"$oid":"52f0a3e510d05166630000ab"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000007","order":18,"_id":{"$oid":"52f0a3e510d05166630000b0"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000003","order":20,"_id":{"$oid":"52f0a3e510d051666300009e"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000007","order":3,"_id":{"$oid":"52f0a3e510d05166630000a3"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000007","order":17,"_id":{"$oid":"52f0a3e510d05166630000a8"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000007","order":11,"_id":{"$oid":"52f0a3e510d05166630000ad"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000007","order":16,"_id":{"$oid":"52f0a3e510d05166630000b2"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000002","order":7,"_id":{"$oid":"52f0a3e510d05166630000b7"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f0a3e510d0516663000002","order":1,"_id":{"$oid":"52f0a3e510d05166630000b6"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f0a3e510d0516663000002","order":6,"_id":{"$oid":"52f0a3e510d05166630000bb"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000002","order":2,"_id":{"$oid":"52f0a3e510d05166630000c0"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000002","order":14,"_id":{"$oid":"52f0a3e510d05166630000c3"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000002","order":20,"_id":{"$oid":"52f0a3e510d05166630000c8"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000b","order":3,"_id":{"$oid":"52f0a3e510d05166630000cd"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f0a3e510d051666300000b","order":17,"_id":{"$oid":"52f0a3e510d05166630000d2"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f0a3e510d051666300000b","order":11,"_id":{"$oid":"52f0a3e510d05166630000d7"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000b","order":16,"_id":{"$oid":"52f0a3e510d05166630000dc"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f0a3e510d0516663000002","order":4,"_id":{"$oid":"52f0a3e510d05166630000bc"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f0a3e510d0516663000002","order":13,"_id":{"$oid":"52f0a3e510d05166630000c1"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000002","order":0,"_id":{"$oid":"52f0a3e510d05166630000c6"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f0a3e510d051666300000b","order":1,"_id":{"$oid":"52f0a3e510d05166630000cb"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f0a3e510d051666300000b","order":6,"_id":{"$oid":"52f0a3e510d05166630000d0"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000b","order":2,"_id":{"$oid":"52f0a3e510d05166630000d5"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f0a3e510d051666300000b","order":18,"_id":{"$oid":"52f0a3e510d05166630000da"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000003","order":8,"_id":{"$oid":"52f0a3e510d0516663000095"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f0a3e510d0516663000003","order":9,"_id":{"$oid":"52f0a3e510d051666300009a"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000007","order":5,"_id":{"$oid":"52f0a3e510d051666300009f"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f0a3e510d0516663000007","order":19,"_id":{"$oid":"52f0a3e510d05166630000a4"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000007","order":15,"_id":{"$oid":"52f0a3e510d05166630000a9"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000007","order":14,"_id":{"$oid":"52f0a3e510d05166630000ae"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000007","order":20,"_id":{"$oid":"52f0a3e510d05166630000b3"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000002","order":3,"_id":{"$oid":"52f0a3e510d05166630000b8"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000002","order":18,"_id":{"$oid":"52f0a3e510d05166630000c5"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000b","order":12,"_id":{"$oid":"52f0a3e510d05166630000ca"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000b","order":10,"_id":{"$oid":"52f0a3e510d05166630000cf"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000b","order":8,"_id":{"$oid":"52f0a3e510d05166630000d4"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f0a3e510d051666300000b","order":9,"_id":{"$oid":"52f0a3e510d05166630000d9"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000002","order":12,"_id":{"$oid":"52f0a3e510d05166630000b5"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000002","order":10,"_id":{"$oid":"52f0a3e510d05166630000ba"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000002","order":8,"_id":{"$oid":"52f0a3e510d05166630000bf"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f0a3e510d0516663000002","order":9,"_id":{"$oid":"52f0a3e510d05166630000c4"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000b","order":5,"_id":{"$oid":"52f0a3e510d05166630000c9"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f0a3e510d051666300000b","order":19,"_id":{"$oid":"52f0a3e510d05166630000ce"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000b","order":15,"_id":{"$oid":"52f0a3e510d05166630000d3"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000b","order":14,"_id":{"$oid":"52f0a3e510d05166630000d8"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000b","order":20,"_id":{"$oid":"52f0a3e510d05166630000dd"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000002","order":17,"_id":{"$oid":"52f0a3e510d05166630000bd"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f0a3e510d0516663000002","order":11,"_id":{"$oid":"52f0a3e510d05166630000c2"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d0516663000002","order":16,"_id":{"$oid":"52f0a3e510d05166630000c7"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000b","order":7,"_id":{"$oid":"52f0a3e510d05166630000cc"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f0a3e510d051666300000b","order":4,"_id":{"$oid":"52f0a3e510d05166630000d1"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f0a3e510d051666300000b","order":13,"_id":{"$oid":"52f0a3e510d05166630000d6"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f0a3e510d051666300000b","order":0,"_id":{"$oid":"52f0a3e510d05166630000db"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000003","order":5,"_id":{"$oid":"52f189ebadc085e76400000c"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f189eaadc085e764000003","order":19,"_id":{"$oid":"52f189ebadc085e764000011"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f189eaadc085e764000003","order":1,"_id":{"$oid":"52f189ebadc085e76400000e"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f189eaadc085e764000003","order":6,"_id":{"$oid":"52f189ebadc085e764000013"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000003","order":3,"_id":{"$oid":"52f189ebadc085e764000010"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000003","order":17,"_id":{"$oid":"52f189ebadc085e764000015"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000003","order":12,"_id":{"$oid":"52f189ebadc085e76400000d"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000003","order":10,"_id":{"$oid":"52f189ebadc085e764000012"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000003","order":15,"_id":{"$oid":"52f189ebadc085e764000016"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000003","order":14,"_id":{"$oid":"52f189ebadc085e76400001b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000003","order":20,"_id":{"$oid":"52f189ebadc085e764000020"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000003","order":7,"_id":{"$oid":"52f189ebadc085e76400000f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f189eaadc085e764000003","order":11,"_id":{"$oid":"52f189ebadc085e76400001a"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000003","order":16,"_id":{"$oid":"52f189ebadc085e76400001f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000007","order":7,"_id":{"$oid":"52f189ebadc085e764000024"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f189eaadc085e764000007","order":4,"_id":{"$oid":"52f189ebadc085e764000029"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000007","order":3,"_id":{"$oid":"52f189ebadc085e764000025"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f189eaadc085e764000003","order":4,"_id":{"$oid":"52f189ebadc085e764000014"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000003","order":2,"_id":{"$oid":"52f189ebadc085e764000018"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000003","order":18,"_id":{"$oid":"52f189ebadc085e76400001d"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000007","order":12,"_id":{"$oid":"52f189ebadc085e764000022"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000007","order":10,"_id":{"$oid":"52f189ebadc085e764000027"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f189eaadc085e764000003","order":13,"_id":{"$oid":"52f189ebadc085e764000019"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000003","order":0,"_id":{"$oid":"52f189ebadc085e76400001e"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f189eaadc085e764000007","order":1,"_id":{"$oid":"52f189ebadc085e764000023"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f189eaadc085e764000007","order":6,"_id":{"$oid":"52f189ebadc085e764000028"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000003","order":8,"_id":{"$oid":"52f189ebadc085e764000017"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f189eaadc085e764000003","order":9,"_id":{"$oid":"52f189ebadc085e76400001c"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000007","order":5,"_id":{"$oid":"52f189ebadc085e764000021"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f189eaadc085e764000007","order":19,"_id":{"$oid":"52f189ebadc085e764000026"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000007","order":17,"_id":{"$oid":"52f189ebadc085e76400002a"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f189eaadc085e764000007","order":11,"_id":{"$oid":"52f189ebadc085e76400002f"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000007","order":16,"_id":{"$oid":"52f189ebadc085e764000034"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000002","order":7,"_id":{"$oid":"52f189ebadc085e764000039"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f189eaadc085e764000002","order":4,"_id":{"$oid":"52f189ebadc085e76400003e"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000007","order":8,"_id":{"$oid":"52f189ebadc085e76400002c"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f189eaadc085e764000007","order":9,"_id":{"$oid":"52f189ebadc085e764000031"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000002","order":5,"_id":{"$oid":"52f189ebadc085e764000036"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f189eaadc085e764000002","order":19,"_id":{"$oid":"52f189ebadc085e76400003b"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000002","order":15,"_id":{"$oid":"52f189ebadc085e764000040"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f189eaadc085e764000007","order":13,"_id":{"$oid":"52f189ebadc085e76400002e"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000007","order":0,"_id":{"$oid":"52f189ebadc085e764000033"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000007","order":15,"_id":{"$oid":"52f189ebadc085e76400002b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000007","order":14,"_id":{"$oid":"52f189ebadc085e764000030"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000007","order":20,"_id":{"$oid":"52f189ebadc085e764000035"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000002","order":3,"_id":{"$oid":"52f189ebadc085e76400003a"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000002","order":17,"_id":{"$oid":"52f189ebadc085e76400003f"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000007","order":2,"_id":{"$oid":"52f189ebadc085e76400002d"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000007","order":18,"_id":{"$oid":"52f189ebadc085e764000032"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000002","order":12,"_id":{"$oid":"52f189ebadc085e764000037"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000002","order":10,"_id":{"$oid":"52f189ebadc085e76400003c"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f189eaadc085e764000002","order":1,"_id":{"$oid":"52f189ebadc085e764000038"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f189eaadc085e764000002","order":6,"_id":{"$oid":"52f189ebadc085e76400003d"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f189eaadc085e764000002","order":13,"_id":{"$oid":"52f189ebadc085e764000043"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000002","order":0,"_id":{"$oid":"52f189ebadc085e764000048"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000002","order":14,"_id":{"$oid":"52f189ebadc085e764000045"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000002","order":2,"_id":{"$oid":"52f189ebadc085e764000042"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000002","order":18,"_id":{"$oid":"52f189ebadc085e764000047"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f189eaadc085e764000002","order":11,"_id":{"$oid":"52f189ebadc085e764000044"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000002","order":16,"_id":{"$oid":"52f189ebadc085e764000049"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000002","order":8,"_id":{"$oid":"52f189ebadc085e764000041"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f189eaadc085e764000002","order":9,"_id":{"$oid":"52f189ebadc085e764000046"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f189eaadc085e764000008","order":1,"_id":{"$oid":"52f189ebadc085e76400004d"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f189eaadc085e764000008","order":6,"_id":{"$oid":"52f189ebadc085e764000052"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000002","order":20,"_id":{"$oid":"52f189ebadc085e76400004a"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000008","order":2,"_id":{"$oid":"52f189ebadc085e764000057"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000008","order":3,"_id":{"$oid":"52f189ebadc085e76400004f"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000008","order":18,"_id":{"$oid":"52f189ebadc085e76400005c"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000008","order":17,"_id":{"$oid":"52f189ebadc085e764000054"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f189eaadc085e764000008","order":11,"_id":{"$oid":"52f189ebadc085e764000059"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000008","order":16,"_id":{"$oid":"52f189ebadc085e76400005e"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000008","order":12,"_id":{"$oid":"52f189ebadc085e76400004c"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000008","order":10,"_id":{"$oid":"52f189ebadc085e764000051"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000008","order":8,"_id":{"$oid":"52f189ebadc085e764000056"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f189eaadc085e764000008","order":9,"_id":{"$oid":"52f189ebadc085e76400005b"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000006","order":5,"_id":{"$oid":"52f189ebadc085e764000060"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000008","order":7,"_id":{"$oid":"52f189ebadc085e76400004e"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f189eaadc085e764000008","order":4,"_id":{"$oid":"52f189ebadc085e764000053"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f189eaadc085e764000008","order":13,"_id":{"$oid":"52f189ebadc085e764000058"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000008","order":0,"_id":{"$oid":"52f189ebadc085e76400005d"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f189eaadc085e764000006","order":1,"_id":{"$oid":"52f189ebadc085e764000062"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f189eaadc085e764000006","order":6,"_id":{"$oid":"52f189ebadc085e764000067"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000006","order":2,"_id":{"$oid":"52f189ebadc085e76400006c"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000008","order":5,"_id":{"$oid":"52f189ebadc085e76400004b"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f189eaadc085e764000008","order":19,"_id":{"$oid":"52f189ebadc085e764000050"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000008","order":15,"_id":{"$oid":"52f189ebadc085e764000055"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000008","order":14,"_id":{"$oid":"52f189ebadc085e76400005a"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000008","order":20,"_id":{"$oid":"52f189ebadc085e76400005f"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000006","order":3,"_id":{"$oid":"52f189ebadc085e764000064"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000006","order":17,"_id":{"$oid":"52f189ebadc085e764000069"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000006","order":7,"_id":{"$oid":"52f189ebadc085e764000063"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f189eaadc085e764000006","order":4,"_id":{"$oid":"52f189ebadc085e764000068"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f189eaadc085e764000006","order":13,"_id":{"$oid":"52f189ebadc085e76400006d"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000006","order":12,"_id":{"$oid":"52f189ebadc085e764000061"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000006","order":10,"_id":{"$oid":"52f189ebadc085e764000066"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000006","order":8,"_id":{"$oid":"52f189ebadc085e76400006b"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f189eaadc085e764000006","order":19,"_id":{"$oid":"52f189ebadc085e764000065"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000006","order":15,"_id":{"$oid":"52f189ebadc085e76400006a"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000006","order":14,"_id":{"$oid":"52f189ebadc085e76400006f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000006","order":20,"_id":{"$oid":"52f189ebadc085e764000074"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000b","order":3,"_id":{"$oid":"52f189ebadc085e764000079"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000006","order":18,"_id":{"$oid":"52f189ebadc085e764000071"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000b","order":12,"_id":{"$oid":"52f189ebadc085e764000076"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f189eaadc085e764000006","order":9,"_id":{"$oid":"52f189ebadc085e764000070"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000b","order":5,"_id":{"$oid":"52f189ebadc085e764000075"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f189eaadc085e76400000b","order":19,"_id":{"$oid":"52f189ebadc085e76400007a"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000b","order":15,"_id":{"$oid":"52f189ebadc085e76400007f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000b","order":14,"_id":{"$oid":"52f189ebadc085e764000084"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000006","order":0,"_id":{"$oid":"52f189ebadc085e764000072"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f189eaadc085e76400000b","order":1,"_id":{"$oid":"52f189ebadc085e764000077"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f189eaadc085e76400000b","order":6,"_id":{"$oid":"52f189ebadc085e76400007c"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000b","order":2,"_id":{"$oid":"52f189ebadc085e764000081"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000b","order":10,"_id":{"$oid":"52f189ebadc085e76400007b"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000b","order":8,"_id":{"$oid":"52f189ebadc085e764000080"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f189eaadc085e76400000b","order":9,"_id":{"$oid":"52f189ebadc085e764000085"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000009","order":5,"_id":{"$oid":"52f189ebadc085e76400008a"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000b","order":20,"_id":{"$oid":"52f189ebadc085e764000089"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f189eaadc085e76400000b","order":18,"_id":{"$oid":"52f189ebadc085e764000086"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000009","order":12,"_id":{"$oid":"52f189ebadc085e76400008b"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f189eaadc085e76400000b","order":17,"_id":{"$oid":"52f189ebadc085e76400007e"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f189eaadc085e76400000b","order":11,"_id":{"$oid":"52f189ebadc085e764000083"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000b","order":16,"_id":{"$oid":"52f189ebadc085e764000088"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000009","order":7,"_id":{"$oid":"52f189ebadc085e76400008d"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f189eaadc085e764000009","order":4,"_id":{"$oid":"52f189ebadc085e764000092"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f189eaadc085e764000006","order":11,"_id":{"$oid":"52f189ebadc085e76400006e"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000006","order":16,"_id":{"$oid":"52f189ebadc085e764000073"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000b","order":7,"_id":{"$oid":"52f189ebadc085e764000078"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f189eaadc085e76400000b","order":4,"_id":{"$oid":"52f189ebadc085e76400007d"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f189eaadc085e76400000b","order":13,"_id":{"$oid":"52f189ebadc085e764000082"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000b","order":0,"_id":{"$oid":"52f189ebadc085e764000087"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f189eaadc085e764000009","order":1,"_id":{"$oid":"52f189ebadc085e76400008c"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f189eaadc085e764000009","order":6,"_id":{"$oid":"52f189ebadc085e764000091"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000009","order":3,"_id":{"$oid":"52f189ebadc085e76400008e"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000009","order":17,"_id":{"$oid":"52f189ebadc085e764000093"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f189eaadc085e764000009","order":11,"_id":{"$oid":"52f189ebadc085e764000098"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000009","order":16,"_id":{"$oid":"52f189ebadc085e76400009d"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000009","order":10,"_id":{"$oid":"52f189ebadc085e764000090"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000009","order":8,"_id":{"$oid":"52f189ebadc085e764000095"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f189eaadc085e764000009","order":9,"_id":{"$oid":"52f189ebadc085e76400009a"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000a","order":5,"_id":{"$oid":"52f189ebadc085e76400009f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000a","order":7,"_id":{"$oid":"52f189ebadc085e7640000a2"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f189eaadc085e76400000a","order":4,"_id":{"$oid":"52f189ebadc085e7640000a7"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f189eaadc085e76400000a","order":13,"_id":{"$oid":"52f189ebadc085e7640000ac"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000a","order":0,"_id":{"$oid":"52f189ebadc085e7640000b1"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f189eaadc085e764000004","order":1,"_id":{"$oid":"52f189ebadc085e7640000b6"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f189eaadc085e764000009","order":19,"_id":{"$oid":"52f189ebadc085e76400008f"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000009","order":15,"_id":{"$oid":"52f189ebadc085e764000094"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000009","order":14,"_id":{"$oid":"52f189ebadc085e764000099"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000009","order":20,"_id":{"$oid":"52f189ebadc085e76400009e"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f189eaadc085e76400000a","order":19,"_id":{"$oid":"52f189ebadc085e7640000a4"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000a","order":15,"_id":{"$oid":"52f189ebadc085e7640000a9"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000a","order":14,"_id":{"$oid":"52f189ebadc085e7640000ae"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f189eaadc085e764000009","order":13,"_id":{"$oid":"52f189ebadc085e764000097"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000009","order":0,"_id":{"$oid":"52f189ebadc085e76400009c"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f189eaadc085e76400000a","order":1,"_id":{"$oid":"52f189ebadc085e7640000a1"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f189eaadc085e76400000a","order":6,"_id":{"$oid":"52f189ebadc085e7640000a6"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000a","order":2,"_id":{"$oid":"52f189ebadc085e7640000ab"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f189eaadc085e76400000a","order":18,"_id":{"$oid":"52f189ebadc085e7640000b0"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000004","order":12,"_id":{"$oid":"52f189ebadc085e7640000b5"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000004","order":10,"_id":{"$oid":"52f189ebadc085e7640000ba"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000004","order":8,"_id":{"$oid":"52f189ebadc085e7640000bf"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f189eaadc085e764000004","order":9,"_id":{"$oid":"52f189ebadc085e7640000c4"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000005","order":5,"_id":{"$oid":"52f189ebadc085e7640000c9"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000a","order":20,"_id":{"$oid":"52f189ebadc085e7640000b3"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000004","order":3,"_id":{"$oid":"52f189ebadc085e7640000b8"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000004","order":17,"_id":{"$oid":"52f189ebadc085e7640000bd"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f189eaadc085e764000004","order":11,"_id":{"$oid":"52f189ebadc085e7640000c2"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000004","order":16,"_id":{"$oid":"52f189ebadc085e7640000c7"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f189eaadc085e764000004","order":6,"_id":{"$oid":"52f189ebadc085e7640000bb"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000004","order":2,"_id":{"$oid":"52f189ebadc085e7640000c0"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000004","order":18,"_id":{"$oid":"52f189ebadc085e7640000c5"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000009","order":2,"_id":{"$oid":"52f189ebadc085e764000096"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000009","order":18,"_id":{"$oid":"52f189ebadc085e76400009b"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000a","order":12,"_id":{"$oid":"52f189ebadc085e7640000a0"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000005","order":7,"_id":{"$oid":"52f189ebadc085e7640000cc"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f189eaadc085e764000005","order":4,"_id":{"$oid":"52f189ebadc085e7640000d1"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f189eaadc085e764000005","order":13,"_id":{"$oid":"52f189ebadc085e7640000d6"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000005","order":0,"_id":{"$oid":"52f189ebadc085e7640000db"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000005","order":12,"_id":{"$oid":"52f189ebadc085e7640000ca"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000005","order":10,"_id":{"$oid":"52f189ebadc085e7640000cf"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000005","order":8,"_id":{"$oid":"52f189ebadc085e7640000d4"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f189eaadc085e764000005","order":9,"_id":{"$oid":"52f189ebadc085e7640000d9"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000a","order":3,"_id":{"$oid":"52f189ebadc085e7640000a3"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f189eaadc085e76400000a","order":17,"_id":{"$oid":"52f189ebadc085e7640000a8"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f189eaadc085e76400000a","order":11,"_id":{"$oid":"52f189ebadc085e7640000ad"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000a","order":16,"_id":{"$oid":"52f189ebadc085e7640000b2"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000004","order":7,"_id":{"$oid":"52f189ebadc085e7640000b7"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f189eaadc085e764000004","order":4,"_id":{"$oid":"52f189ebadc085e7640000bc"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f189eaadc085e764000004","order":13,"_id":{"$oid":"52f189ebadc085e7640000c1"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000004","order":0,"_id":{"$oid":"52f189ebadc085e7640000c6"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f189eaadc085e764000005","order":1,"_id":{"$oid":"52f189ebadc085e7640000cb"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f189eaadc085e764000005","order":6,"_id":{"$oid":"52f189ebadc085e7640000d0"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000005","order":2,"_id":{"$oid":"52f189ebadc085e7640000d5"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000005","order":18,"_id":{"$oid":"52f189ebadc085e7640000da"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000a","order":10,"_id":{"$oid":"52f189ebadc085e7640000a5"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e76400000a","order":8,"_id":{"$oid":"52f189ebadc085e7640000aa"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f189eaadc085e76400000a","order":9,"_id":{"$oid":"52f189ebadc085e7640000af"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000004","order":5,"_id":{"$oid":"52f189ebadc085e7640000b4"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f189eaadc085e764000004","order":19,"_id":{"$oid":"52f189ebadc085e7640000b9"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000004","order":15,"_id":{"$oid":"52f189ebadc085e7640000be"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000004","order":14,"_id":{"$oid":"52f189ebadc085e7640000c3"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000004","order":20,"_id":{"$oid":"52f189ebadc085e7640000c8"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000005","order":3,"_id":{"$oid":"52f189ebadc085e7640000cd"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f189eaadc085e764000005","order":17,"_id":{"$oid":"52f189ebadc085e7640000d2"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f189eaadc085e764000005","order":11,"_id":{"$oid":"52f189ebadc085e7640000d7"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000005","order":16,"_id":{"$oid":"52f189ebadc085e7640000dc"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f189eaadc085e764000005","order":19,"_id":{"$oid":"52f189ebadc085e7640000ce"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000005","order":15,"_id":{"$oid":"52f189ebadc085e7640000d3"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000005","order":14,"_id":{"$oid":"52f189ebadc085e7640000d8"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f189eaadc085e764000005","order":20,"_id":{"$oid":"52f189ebadc085e7640000dd"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f18a38adc085e7640000e1","order":1,"_id":{"$oid":"52f18a38adc085e7640000eb"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f18a38adc085e7640000e1","order":6,"_id":{"$oid":"52f18a38adc085e7640000f0"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e1","order":2,"_id":{"$oid":"52f18a38adc085e7640000f5"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e1","order":18,"_id":{"$oid":"52f18a38adc085e7640000fa"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e5","order":12,"_id":{"$oid":"52f18a38adc085e7640000ff"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e5","order":10,"_id":{"$oid":"52f18a38adc085e764000104"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e5","order":8,"_id":{"$oid":"52f18a38adc085e764000109"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f18a38adc085e7640000e5","order":9,"_id":{"$oid":"52f18a38adc085e76400010e"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e0","order":5,"_id":{"$oid":"52f18a38adc085e764000113"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f18a38adc085e7640000e0","order":19,"_id":{"$oid":"52f18a38adc085e764000118"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e1","order":5,"_id":{"$oid":"52f18a38adc085e7640000e9"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f18a38adc085e7640000e1","order":19,"_id":{"$oid":"52f18a38adc085e7640000ee"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e1","order":15,"_id":{"$oid":"52f18a38adc085e7640000f3"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e1","order":14,"_id":{"$oid":"52f18a38adc085e7640000f8"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e1","order":20,"_id":{"$oid":"52f18a38adc085e7640000fd"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e5","order":3,"_id":{"$oid":"52f18a38adc085e764000102"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e5","order":17,"_id":{"$oid":"52f18a38adc085e764000107"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e5","order":11,"_id":{"$oid":"52f18a38adc085e76400010c"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e5","order":16,"_id":{"$oid":"52f18a38adc085e764000111"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e0","order":7,"_id":{"$oid":"52f18a38adc085e764000116"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f18a38adc085e7640000e0","order":4,"_id":{"$oid":"52f18a38adc085e76400011b"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e1","order":12,"_id":{"$oid":"52f18a38adc085e7640000ea"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e1","order":10,"_id":{"$oid":"52f18a38adc085e7640000ef"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e1","order":8,"_id":{"$oid":"52f18a38adc085e7640000f4"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f18a38adc085e7640000e1","order":9,"_id":{"$oid":"52f18a38adc085e7640000f9"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e5","order":5,"_id":{"$oid":"52f18a38adc085e7640000fe"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f18a38adc085e7640000e5","order":19,"_id":{"$oid":"52f18a38adc085e764000103"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e5","order":15,"_id":{"$oid":"52f18a38adc085e764000108"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e5","order":14,"_id":{"$oid":"52f18a38adc085e76400010d"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e5","order":20,"_id":{"$oid":"52f18a38adc085e764000112"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e0","order":3,"_id":{"$oid":"52f18a38adc085e764000117"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e1","order":3,"_id":{"$oid":"52f18a38adc085e7640000ed"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e1","order":17,"_id":{"$oid":"52f18a38adc085e7640000f2"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e1","order":11,"_id":{"$oid":"52f18a38adc085e7640000f7"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e1","order":16,"_id":{"$oid":"52f18a38adc085e7640000fc"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e5","order":7,"_id":{"$oid":"52f18a38adc085e764000101"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f18a38adc085e7640000e5","order":4,"_id":{"$oid":"52f18a38adc085e764000106"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f18a38adc085e7640000e5","order":13,"_id":{"$oid":"52f18a38adc085e76400010b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e5","order":0,"_id":{"$oid":"52f18a38adc085e764000110"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f18a38adc085e7640000e0","order":1,"_id":{"$oid":"52f18a38adc085e764000115"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e1","order":7,"_id":{"$oid":"52f18a38adc085e7640000ec"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f18a38adc085e7640000e1","order":4,"_id":{"$oid":"52f18a38adc085e7640000f1"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f18a38adc085e7640000e1","order":13,"_id":{"$oid":"52f18a38adc085e7640000f6"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e1","order":0,"_id":{"$oid":"52f18a38adc085e7640000fb"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f18a38adc085e7640000e5","order":1,"_id":{"$oid":"52f18a38adc085e764000100"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f18a38adc085e7640000e5","order":6,"_id":{"$oid":"52f18a38adc085e764000105"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e5","order":2,"_id":{"$oid":"52f18a38adc085e76400010a"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e5","order":18,"_id":{"$oid":"52f18a38adc085e76400010f"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e0","order":12,"_id":{"$oid":"52f18a38adc085e764000114"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e0","order":10,"_id":{"$oid":"52f18a38adc085e764000119"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e0","order":8,"_id":{"$oid":"52f18a38adc085e76400011e"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f18a38adc085e7640000e0","order":9,"_id":{"$oid":"52f18a38adc085e764000123"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f18a38adc085e7640000e0","order":13,"_id":{"$oid":"52f18a38adc085e764000120"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e0","order":0,"_id":{"$oid":"52f18a38adc085e764000125"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f18a38adc085e7640000e6","order":1,"_id":{"$oid":"52f18a38adc085e76400012a"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f18a38adc085e7640000e6","order":6,"_id":{"$oid":"52f18a38adc085e76400012f"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e6","order":2,"_id":{"$oid":"52f18a38adc085e764000134"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e6","order":18,"_id":{"$oid":"52f18a38adc085e764000139"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e3","order":12,"_id":{"$oid":"52f18a38adc085e76400013e"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e3","order":10,"_id":{"$oid":"52f18a38adc085e764000143"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e3","order":8,"_id":{"$oid":"52f18a38adc085e764000148"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f18a38adc085e7640000e3","order":9,"_id":{"$oid":"52f18a38adc085e76400014d"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e4","order":5,"_id":{"$oid":"52f18a38adc085e764000152"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f18a38adc085e7640000e4","order":19,"_id":{"$oid":"52f18a38adc085e764000157"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e4","order":15,"_id":{"$oid":"52f18a38adc085e76400015c"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e4","order":14,"_id":{"$oid":"52f18a38adc085e764000161"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e4","order":20,"_id":{"$oid":"52f18a38adc085e764000166"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e0","order":17,"_id":{"$oid":"52f18a38adc085e76400011c"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e0","order":11,"_id":{"$oid":"52f18a38adc085e764000121"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e0","order":16,"_id":{"$oid":"52f18a38adc085e764000126"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e6","order":7,"_id":{"$oid":"52f18a38adc085e76400012b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f18a38adc085e7640000e6","order":4,"_id":{"$oid":"52f18a38adc085e764000130"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f18a38adc085e7640000e6","order":13,"_id":{"$oid":"52f18a38adc085e764000135"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e6","order":0,"_id":{"$oid":"52f18a38adc085e76400013a"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f18a38adc085e7640000e3","order":1,"_id":{"$oid":"52f18a38adc085e76400013f"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f18a38adc085e7640000e3","order":6,"_id":{"$oid":"52f18a38adc085e764000144"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e3","order":2,"_id":{"$oid":"52f18a38adc085e764000149"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e3","order":18,"_id":{"$oid":"52f18a38adc085e76400014e"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e4","order":12,"_id":{"$oid":"52f18a38adc085e764000153"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e4","order":10,"_id":{"$oid":"52f18a38adc085e764000158"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e4","order":8,"_id":{"$oid":"52f18a38adc085e76400015d"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f18a38adc085e7640000e4","order":9,"_id":{"$oid":"52f18a38adc085e764000162"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e8","order":5,"_id":{"$oid":"52f18a38adc085e764000167"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f18a38adc085e7640000e0","order":6,"_id":{"$oid":"52f18a38adc085e76400011a"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e0","order":2,"_id":{"$oid":"52f18a38adc085e76400011f"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e0","order":18,"_id":{"$oid":"52f18a38adc085e764000124"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e6","order":12,"_id":{"$oid":"52f18a38adc085e764000129"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e6","order":10,"_id":{"$oid":"52f18a38adc085e76400012e"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e6","order":8,"_id":{"$oid":"52f18a38adc085e764000133"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f18a38adc085e7640000e6","order":9,"_id":{"$oid":"52f18a38adc085e764000138"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e3","order":5,"_id":{"$oid":"52f18a38adc085e76400013d"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f18a38adc085e7640000e3","order":19,"_id":{"$oid":"52f18a38adc085e764000142"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e3","order":15,"_id":{"$oid":"52f18a38adc085e764000147"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e3","order":14,"_id":{"$oid":"52f18a38adc085e76400014c"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e3","order":20,"_id":{"$oid":"52f18a38adc085e764000151"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e4","order":3,"_id":{"$oid":"52f18a38adc085e764000156"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e4","order":17,"_id":{"$oid":"52f18a38adc085e76400015b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e4","order":11,"_id":{"$oid":"52f18a38adc085e764000160"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e4","order":16,"_id":{"$oid":"52f18a38adc085e764000165"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e8","order":7,"_id":{"$oid":"52f18a38adc085e76400016a"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f18a38adc085e7640000e8","order":4,"_id":{"$oid":"52f18a38adc085e76400016f"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e0","order":15,"_id":{"$oid":"52f18a38adc085e76400011d"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e0","order":14,"_id":{"$oid":"52f18a38adc085e764000122"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e0","order":20,"_id":{"$oid":"52f18a38adc085e764000127"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e6","order":3,"_id":{"$oid":"52f18a38adc085e76400012c"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e6","order":17,"_id":{"$oid":"52f18a38adc085e764000131"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e6","order":11,"_id":{"$oid":"52f18a38adc085e764000136"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e6","order":16,"_id":{"$oid":"52f18a38adc085e76400013b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e3","order":7,"_id":{"$oid":"52f18a38adc085e764000140"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f18a38adc085e7640000e3","order":4,"_id":{"$oid":"52f18a38adc085e764000145"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f18a38adc085e7640000e3","order":13,"_id":{"$oid":"52f18a38adc085e76400014a"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e3","order":0,"_id":{"$oid":"52f18a38adc085e76400014f"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f18a38adc085e7640000e4","order":1,"_id":{"$oid":"52f18a38adc085e764000154"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f18a38adc085e7640000e4","order":6,"_id":{"$oid":"52f18a38adc085e764000159"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e4","order":2,"_id":{"$oid":"52f18a38adc085e76400015e"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e4","order":18,"_id":{"$oid":"52f18a38adc085e764000163"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e8","order":12,"_id":{"$oid":"52f18a38adc085e764000168"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e8","order":10,"_id":{"$oid":"52f18a38adc085e76400016d"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e8","order":8,"_id":{"$oid":"52f18a38adc085e764000172"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f18a38adc085e7640000e8","order":9,"_id":{"$oid":"52f18a38adc085e764000177"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000df","order":5,"_id":{"$oid":"52f18a38adc085e76400017c"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f18a38adc085e7640000df","order":19,"_id":{"$oid":"52f18a38adc085e764000181"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000df","order":15,"_id":{"$oid":"52f18a38adc085e764000186"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000df","order":14,"_id":{"$oid":"52f18a38adc085e76400018b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000df","order":20,"_id":{"$oid":"52f18a38adc085e764000190"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e7","order":3,"_id":{"$oid":"52f18a38adc085e764000195"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e7","order":17,"_id":{"$oid":"52f18a38adc085e76400019a"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e7","order":11,"_id":{"$oid":"52f18a38adc085e76400019f"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e7","order":16,"_id":{"$oid":"52f18a38adc085e7640001a4"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e2","order":7,"_id":{"$oid":"52f18a38adc085e7640001a9"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f18a38adc085e7640000e2","order":4,"_id":{"$oid":"52f18a38adc085e7640001ae"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f18a38adc085e7640000e2","order":13,"_id":{"$oid":"52f18a38adc085e7640001b3"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e2","order":0,"_id":{"$oid":"52f18a38adc085e7640001b8"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e8","order":3,"_id":{"$oid":"52f18a38adc085e76400016b"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e8","order":17,"_id":{"$oid":"52f18a38adc085e764000170"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e8","order":11,"_id":{"$oid":"52f18a38adc085e764000175"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e8","order":16,"_id":{"$oid":"52f18a38adc085e76400017a"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000df","order":7,"_id":{"$oid":"52f18a38adc085e76400017f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f18a38adc085e7640000df","order":4,"_id":{"$oid":"52f18a38adc085e764000184"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f18a38adc085e7640000df","order":13,"_id":{"$oid":"52f18a38adc085e764000189"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000df","order":0,"_id":{"$oid":"52f18a38adc085e76400018e"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f18a38adc085e7640000e7","order":1,"_id":{"$oid":"52f18a38adc085e764000193"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f18a38adc085e7640000e7","order":6,"_id":{"$oid":"52f18a38adc085e764000198"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e7","order":2,"_id":{"$oid":"52f18a38adc085e76400019d"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f18a38adc085e7640000e8","order":19,"_id":{"$oid":"52f18a38adc085e76400016c"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e8","order":15,"_id":{"$oid":"52f18a38adc085e764000171"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e8","order":14,"_id":{"$oid":"52f18a38adc085e764000176"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e8","order":20,"_id":{"$oid":"52f18a38adc085e76400017b"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000df","order":3,"_id":{"$oid":"52f18a38adc085e764000180"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000df","order":17,"_id":{"$oid":"52f18a38adc085e764000185"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000df","order":11,"_id":{"$oid":"52f18a38adc085e76400018a"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000df","order":16,"_id":{"$oid":"52f18a38adc085e76400018f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e7","order":7,"_id":{"$oid":"52f18a38adc085e764000194"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f18a38adc085e7640000e7","order":4,"_id":{"$oid":"52f18a38adc085e764000199"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f18a38adc085e7640000e7","order":13,"_id":{"$oid":"52f18a38adc085e76400019e"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e7","order":0,"_id":{"$oid":"52f18a38adc085e7640001a3"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f18a38adc085e7640000e2","order":1,"_id":{"$oid":"52f18a38adc085e7640001a8"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f18a38adc085e7640000e2","order":6,"_id":{"$oid":"52f18a38adc085e7640001ad"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e2","order":2,"_id":{"$oid":"52f18a38adc085e7640001b2"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e2","order":18,"_id":{"$oid":"52f18a38adc085e7640001b7"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f18a38adc085e7640000e8","order":13,"_id":{"$oid":"52f18a38adc085e764000174"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e8","order":0,"_id":{"$oid":"52f18a38adc085e764000179"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f18a38adc085e7640000df","order":1,"_id":{"$oid":"52f18a38adc085e76400017e"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f18a38adc085e7640000df","order":6,"_id":{"$oid":"52f18a38adc085e764000183"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000df","order":2,"_id":{"$oid":"52f18a38adc085e764000188"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e6","order":5,"_id":{"$oid":"52f18a38adc085e764000128"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f18a38adc085e7640000e6","order":19,"_id":{"$oid":"52f18a38adc085e76400012d"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e6","order":15,"_id":{"$oid":"52f18a38adc085e764000132"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e6","order":14,"_id":{"$oid":"52f18a38adc085e764000137"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e6","order":20,"_id":{"$oid":"52f18a38adc085e76400013c"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e3","order":3,"_id":{"$oid":"52f18a38adc085e764000141"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e3","order":17,"_id":{"$oid":"52f18a38adc085e764000146"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000df","order":18,"_id":{"$oid":"52f18a38adc085e76400018d"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e7","order":12,"_id":{"$oid":"52f18a38adc085e764000192"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e7","order":10,"_id":{"$oid":"52f18a38adc085e764000197"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e7","order":8,"_id":{"$oid":"52f18a38adc085e76400019c"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f18a38adc085e7640000e7","order":9,"_id":{"$oid":"52f18a38adc085e7640001a1"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e2","order":5,"_id":{"$oid":"52f18a38adc085e7640001a6"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f18a38adc085e7640000e2","order":19,"_id":{"$oid":"52f18a38adc085e7640001ab"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e2","order":15,"_id":{"$oid":"52f18a38adc085e7640001b0"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e2","order":14,"_id":{"$oid":"52f18a38adc085e7640001b5"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e2","order":20,"_id":{"$oid":"52f18a38adc085e7640001ba"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e3","order":11,"_id":{"$oid":"52f18a38adc085e76400014b"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e3","order":16,"_id":{"$oid":"52f18a38adc085e764000150"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e4","order":7,"_id":{"$oid":"52f18a38adc085e764000155"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52f18a38adc085e7640000e4","order":4,"_id":{"$oid":"52f18a38adc085e76400015a"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52f18a38adc085e7640000e4","order":13,"_id":{"$oid":"52f18a38adc085e76400015f"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e7","order":18,"_id":{"$oid":"52f18a38adc085e7640001a2"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e2","order":12,"_id":{"$oid":"52f18a38adc085e7640001a7"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e2","order":10,"_id":{"$oid":"52f18a38adc085e7640001ac"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e2","order":8,"_id":{"$oid":"52f18a38adc085e7640001b1"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f18a38adc085e7640000e2","order":9,"_id":{"$oid":"52f18a38adc085e7640001b6"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e4","order":0,"_id":{"$oid":"52f18a38adc085e764000164"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52f18a38adc085e7640000e8","order":1,"_id":{"$oid":"52f18a38adc085e764000169"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52f18a38adc085e7640000e8","order":6,"_id":{"$oid":"52f18a38adc085e76400016e"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e8","order":2,"_id":{"$oid":"52f18a38adc085e764000173"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e8","order":18,"_id":{"$oid":"52f18a38adc085e764000178"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000df","order":12,"_id":{"$oid":"52f18a38adc085e76400017d"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000df","order":10,"_id":{"$oid":"52f18a38adc085e764000182"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000df","order":8,"_id":{"$oid":"52f18a38adc085e764000187"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52f18a38adc085e7640000df","order":9,"_id":{"$oid":"52f18a38adc085e76400018c"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e7","order":5,"_id":{"$oid":"52f18a38adc085e764000191"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52f18a38adc085e7640000e7","order":19,"_id":{"$oid":"52f18a38adc085e764000196"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e7","order":15,"_id":{"$oid":"52f18a38adc085e76400019b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e7","order":14,"_id":{"$oid":"52f18a38adc085e7640001a0"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e7","order":20,"_id":{"$oid":"52f18a38adc085e7640001a5"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e2","order":3,"_id":{"$oid":"52f18a38adc085e7640001aa"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e2","order":17,"_id":{"$oid":"52f18a38adc085e7640001af"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52f18a38adc085e7640000e2","order":11,"_id":{"$oid":"52f18a38adc085e7640001b4"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52f18a38adc085e7640000e2","order":16,"_id":{"$oid":"52f18a38adc085e7640001b9"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000008","order":5,"_id":{"$oid":"52fd930e04e4bb582400000c"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000008","order":12,"_id":{"$oid":"52fd930e04e4bb582400000d"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52fd930d04e4bb5824000008","order":1,"_id":{"$oid":"52fd930e04e4bb582400000e"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000008","order":3,"_id":{"$oid":"52fd930e04e4bb5824000010"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000008","order":7,"_id":{"$oid":"52fd930e04e4bb582400000f"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52fd930d04e4bb5824000008","order":19,"_id":{"$oid":"52fd930e04e4bb5824000011"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000008","order":10,"_id":{"$oid":"52fd930e04e4bb5824000012"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52fd930d04e4bb5824000008","order":6,"_id":{"$oid":"52fd930e04e4bb5824000013"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52fd930d04e4bb5824000008","order":4,"_id":{"$oid":"52fd930e04e4bb5824000014"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000008","order":17,"_id":{"$oid":"52fd930e04e4bb5824000015"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000008","order":15,"_id":{"$oid":"52fd930e04e4bb5824000016"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000008","order":8,"_id":{"$oid":"52fd930e04e4bb5824000017"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000008","order":2,"_id":{"$oid":"52fd930e04e4bb5824000018"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52fd930d04e4bb5824000008","order":13,"_id":{"$oid":"52fd930e04e4bb5824000019"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000008","order":14,"_id":{"$oid":"52fd930e04e4bb582400001b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000008","order":11,"_id":{"$oid":"52fd930e04e4bb582400001a"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52fd930d04e4bb5824000008","order":9,"_id":{"$oid":"52fd930e04e4bb582400001c"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000008","order":18,"_id":{"$oid":"52fd930e04e4bb582400001d"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000008","order":0,"_id":{"$oid":"52fd930e04e4bb582400001e"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000008","order":16,"_id":{"$oid":"52fd930e04e4bb582400001f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000008","order":20,"_id":{"$oid":"52fd930e04e4bb5824000020"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000002","order":5,"_id":{"$oid":"52fd930e04e4bb5824000021"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000002","order":12,"_id":{"$oid":"52fd930e04e4bb5824000022"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52fd930d04e4bb5824000002","order":1,"_id":{"$oid":"52fd930e04e4bb5824000023"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000002","order":7,"_id":{"$oid":"52fd930e04e4bb5824000024"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000002","order":3,"_id":{"$oid":"52fd930e04e4bb5824000025"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52fd930d04e4bb5824000002","order":19,"_id":{"$oid":"52fd930e04e4bb5824000026"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000002","order":10,"_id":{"$oid":"52fd930e04e4bb5824000027"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52fd930d04e4bb5824000002","order":6,"_id":{"$oid":"52fd930e04e4bb5824000028"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52fd930d04e4bb5824000002","order":4,"_id":{"$oid":"52fd930e04e4bb5824000029"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000002","order":17,"_id":{"$oid":"52fd930e04e4bb582400002a"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000002","order":15,"_id":{"$oid":"52fd930e04e4bb582400002b"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000002","order":8,"_id":{"$oid":"52fd930e04e4bb582400002c"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52fd930d04e4bb5824000002","order":13,"_id":{"$oid":"52fd930e04e4bb582400002e"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000002","order":2,"_id":{"$oid":"52fd930e04e4bb582400002d"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000002","order":11,"_id":{"$oid":"52fd930e04e4bb582400002f"}}
+{"action":"FIRE CHARGELASER","waitAfter":"1","hero_id":"52a2e6cad51102bc57000001","order":0,"_id":{"$oid":"5302f93258c598201f000016"}}
+{"action":"MOVE","waitAfter":"1","hero_id":"51889cf75532be9649000007","order":2,"_id":{"$oid":"530c0f9158c598201f000031"}}
+{"action":"MOVE","waitAfter":"0.5","hero_id":"51889cf75532be9649000007","order":3,"_id":{"$oid":"530c0f9c58c598201f000032"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000002","order":14,"_id":{"$oid":"52fd930e04e4bb5824000030"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000002","order":18,"_id":{"$oid":"52fd930e04e4bb5824000032"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000009","order":12,"_id":{"$oid":"52fd930e04e4bb5824000037"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000009","order":10,"_id":{"$oid":"52fd930e04e4bb582400003c"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000002","order":20,"_id":{"$oid":"52fd930e04e4bb5824000035"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000009","order":3,"_id":{"$oid":"52fd930e04e4bb582400003a"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52fd930d04e4bb5824000002","order":9,"_id":{"$oid":"52fd930e04e4bb5824000031"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000009","order":5,"_id":{"$oid":"52fd930e04e4bb5824000036"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52fd930d04e4bb5824000009","order":19,"_id":{"$oid":"52fd930e04e4bb582400003b"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000002","order":16,"_id":{"$oid":"52fd930e04e4bb5824000034"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000009","order":7,"_id":{"$oid":"52fd930e04e4bb5824000039"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52fd930d04e4bb5824000009","order":4,"_id":{"$oid":"52fd930e04e4bb582400003e"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000002","order":0,"_id":{"$oid":"52fd930e04e4bb5824000033"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52fd930d04e4bb5824000009","order":1,"_id":{"$oid":"52fd930e04e4bb5824000038"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52fd930d04e4bb5824000009","order":6,"_id":{"$oid":"52fd930e04e4bb582400003d"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000009","order":17,"_id":{"$oid":"52fd930e04e4bb582400003f"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000009","order":15,"_id":{"$oid":"52fd930e04e4bb5824000040"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000009","order":8,"_id":{"$oid":"52fd930e04e4bb5824000041"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52fd930d04e4bb5824000009","order":13,"_id":{"$oid":"52fd930e04e4bb5824000043"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000009","order":2,"_id":{"$oid":"52fd930e04e4bb5824000042"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000009","order":11,"_id":{"$oid":"52fd930e04e4bb5824000044"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000009","order":14,"_id":{"$oid":"52fd930e04e4bb5824000045"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52fd930d04e4bb5824000009","order":9,"_id":{"$oid":"52fd930e04e4bb5824000046"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000009","order":18,"_id":{"$oid":"52fd930e04e4bb5824000047"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000009","order":0,"_id":{"$oid":"52fd930e04e4bb5824000048"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000009","order":16,"_id":{"$oid":"52fd930e04e4bb5824000049"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000009","order":20,"_id":{"$oid":"52fd930e04e4bb582400004a"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000005","order":5,"_id":{"$oid":"52fd930e04e4bb582400004b"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000005","order":12,"_id":{"$oid":"52fd930e04e4bb582400004c"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52fd930d04e4bb5824000005","order":1,"_id":{"$oid":"52fd930e04e4bb582400004d"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000005","order":3,"_id":{"$oid":"52fd930e04e4bb582400004f"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000005","order":7,"_id":{"$oid":"52fd930e04e4bb582400004e"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52fd930d04e4bb5824000005","order":19,"_id":{"$oid":"52fd930e04e4bb5824000050"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000005","order":10,"_id":{"$oid":"52fd930e04e4bb5824000051"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52fd930d04e4bb5824000005","order":6,"_id":{"$oid":"52fd930e04e4bb5824000052"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52fd930d04e4bb5824000005","order":4,"_id":{"$oid":"52fd930e04e4bb5824000053"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000005","order":17,"_id":{"$oid":"52fd930e04e4bb5824000054"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000005","order":15,"_id":{"$oid":"52fd930e04e4bb5824000055"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000005","order":8,"_id":{"$oid":"52fd930e04e4bb5824000056"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000005","order":2,"_id":{"$oid":"52fd930e04e4bb5824000057"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52fd930d04e4bb5824000005","order":13,"_id":{"$oid":"52fd930e04e4bb5824000058"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000005","order":11,"_id":{"$oid":"52fd930e04e4bb5824000059"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52fd930d04e4bb5824000005","order":9,"_id":{"$oid":"52fd930e04e4bb582400005b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000005","order":14,"_id":{"$oid":"52fd930e04e4bb582400005a"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000005","order":0,"_id":{"$oid":"52fd930e04e4bb582400005d"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000005","order":18,"_id":{"$oid":"52fd930e04e4bb582400005c"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000005","order":16,"_id":{"$oid":"52fd930e04e4bb582400005e"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000005","order":20,"_id":{"$oid":"52fd930e04e4bb582400005f"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000007","order":5,"_id":{"$oid":"52fd930e04e4bb5824000060"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000007","order":12,"_id":{"$oid":"52fd930e04e4bb5824000061"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52fd930d04e4bb5824000007","order":1,"_id":{"$oid":"52fd930e04e4bb5824000062"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000007","order":3,"_id":{"$oid":"52fd930e04e4bb5824000064"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000007","order":7,"_id":{"$oid":"52fd930e04e4bb5824000063"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000007","order":10,"_id":{"$oid":"52fd930e04e4bb5824000066"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52fd930d04e4bb5824000007","order":19,"_id":{"$oid":"52fd930e04e4bb5824000065"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52fd930d04e4bb5824000007","order":6,"_id":{"$oid":"52fd930e04e4bb5824000067"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52fd930d04e4bb5824000007","order":4,"_id":{"$oid":"52fd930e04e4bb5824000068"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000007","order":17,"_id":{"$oid":"52fd930e04e4bb5824000069"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000007","order":15,"_id":{"$oid":"52fd930e04e4bb582400006a"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000007","order":8,"_id":{"$oid":"52fd930e04e4bb582400006b"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000007","order":2,"_id":{"$oid":"52fd930e04e4bb582400006c"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000007","order":11,"_id":{"$oid":"52fd930e04e4bb582400006e"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52fd930d04e4bb5824000007","order":13,"_id":{"$oid":"52fd930e04e4bb582400006d"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000007","order":14,"_id":{"$oid":"52fd930e04e4bb582400006f"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52fd930d04e4bb5824000007","order":9,"_id":{"$oid":"52fd930e04e4bb5824000070"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000007","order":18,"_id":{"$oid":"52fd930e04e4bb5824000071"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000007","order":0,"_id":{"$oid":"52fd930e04e4bb5824000072"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000007","order":16,"_id":{"$oid":"52fd930e04e4bb5824000073"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000007","order":20,"_id":{"$oid":"52fd930e04e4bb5824000074"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000003","order":5,"_id":{"$oid":"52fd930e04e4bb5824000075"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000003","order":12,"_id":{"$oid":"52fd930e04e4bb5824000076"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52fd930d04e4bb5824000003","order":1,"_id":{"$oid":"52fd930e04e4bb5824000077"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000003","order":7,"_id":{"$oid":"52fd930e04e4bb5824000078"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000003","order":3,"_id":{"$oid":"52fd930e04e4bb5824000079"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52fd930d04e4bb5824000003","order":19,"_id":{"$oid":"52fd930e04e4bb582400007a"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000003","order":10,"_id":{"$oid":"52fd930e04e4bb582400007b"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52fd930d04e4bb5824000003","order":6,"_id":{"$oid":"52fd930e04e4bb582400007c"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52fd930d04e4bb5824000003","order":4,"_id":{"$oid":"52fd930e04e4bb582400007d"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000003","order":17,"_id":{"$oid":"52fd930e04e4bb582400007e"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000003","order":15,"_id":{"$oid":"52fd930e04e4bb582400007f"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000003","order":8,"_id":{"$oid":"52fd930e04e4bb5824000080"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000003","order":2,"_id":{"$oid":"52fd930e04e4bb5824000081"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52fd930d04e4bb5824000003","order":9,"_id":{"$oid":"52fd930e04e4bb5824000085"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000003","order":14,"_id":{"$oid":"52fd930e04e4bb5824000084"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52fd930d04e4bb5824000003","order":13,"_id":{"$oid":"52fd930e04e4bb5824000082"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000003","order":18,"_id":{"$oid":"52fd930e04e4bb5824000086"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000003","order":0,"_id":{"$oid":"52fd930e04e4bb5824000087"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000003","order":20,"_id":{"$oid":"52fd930e04e4bb5824000089"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000003","order":11,"_id":{"$oid":"52fd930e04e4bb5824000083"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000b","order":5,"_id":{"$oid":"52fd930e04e4bb582400008a"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000003","order":16,"_id":{"$oid":"52fd930e04e4bb5824000088"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52fd930d04e4bb582400000b","order":1,"_id":{"$oid":"52fd930e04e4bb582400008c"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000b","order":12,"_id":{"$oid":"52fd930e04e4bb582400008b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000b","order":7,"_id":{"$oid":"52fd930e04e4bb582400008d"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000b","order":3,"_id":{"$oid":"52fd930e04e4bb582400008e"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52fd930d04e4bb582400000b","order":19,"_id":{"$oid":"52fd930e04e4bb582400008f"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000b","order":10,"_id":{"$oid":"52fd930e04e4bb5824000090"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52fd930d04e4bb582400000b","order":6,"_id":{"$oid":"52fd930e04e4bb5824000091"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52fd930d04e4bb582400000b","order":4,"_id":{"$oid":"52fd930e04e4bb5824000092"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52fd930d04e4bb582400000b","order":17,"_id":{"$oid":"52fd930e04e4bb5824000093"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000b","order":15,"_id":{"$oid":"52fd930e04e4bb5824000094"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000b","order":8,"_id":{"$oid":"52fd930e04e4bb5824000095"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000b","order":2,"_id":{"$oid":"52fd930e04e4bb5824000096"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52fd930d04e4bb582400000b","order":13,"_id":{"$oid":"52fd930e04e4bb5824000097"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52fd930d04e4bb582400000b","order":11,"_id":{"$oid":"52fd930e04e4bb5824000098"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000b","order":14,"_id":{"$oid":"52fd930e04e4bb5824000099"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52fd930d04e4bb582400000b","order":9,"_id":{"$oid":"52fd930e04e4bb582400009a"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52fd930d04e4bb582400000b","order":18,"_id":{"$oid":"52fd930e04e4bb582400009b"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000b","order":0,"_id":{"$oid":"52fd930e04e4bb582400009c"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000b","order":16,"_id":{"$oid":"52fd930e04e4bb582400009d"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000b","order":20,"_id":{"$oid":"52fd930e04e4bb582400009e"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000004","order":5,"_id":{"$oid":"52fd930e04e4bb582400009f"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000004","order":12,"_id":{"$oid":"52fd930e04e4bb58240000a0"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52fd930d04e4bb5824000004","order":1,"_id":{"$oid":"52fd930e04e4bb58240000a1"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000004","order":7,"_id":{"$oid":"52fd930e04e4bb58240000a2"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52fd930d04e4bb5824000004","order":19,"_id":{"$oid":"52fd930e04e4bb58240000a4"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000004","order":10,"_id":{"$oid":"52fd930e04e4bb58240000a5"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000004","order":3,"_id":{"$oid":"52fd930e04e4bb58240000a3"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52fd930d04e4bb5824000004","order":6,"_id":{"$oid":"52fd930e04e4bb58240000a6"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52fd930d04e4bb5824000004","order":4,"_id":{"$oid":"52fd930e04e4bb58240000a7"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000004","order":17,"_id":{"$oid":"52fd930e04e4bb58240000a8"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000004","order":15,"_id":{"$oid":"52fd930e04e4bb58240000a9"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000004","order":8,"_id":{"$oid":"52fd930e04e4bb58240000aa"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000004","order":2,"_id":{"$oid":"52fd930e04e4bb58240000ab"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52fd930d04e4bb5824000004","order":13,"_id":{"$oid":"52fd930e04e4bb58240000ac"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000004","order":11,"_id":{"$oid":"52fd930e04e4bb58240000ad"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000004","order":14,"_id":{"$oid":"52fd930e04e4bb58240000ae"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52fd930d04e4bb5824000004","order":9,"_id":{"$oid":"52fd930e04e4bb58240000af"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000004","order":18,"_id":{"$oid":"52fd930e04e4bb58240000b0"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000004","order":0,"_id":{"$oid":"52fd930e04e4bb58240000b1"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000004","order":16,"_id":{"$oid":"52fd930e04e4bb58240000b2"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000004","order":20,"_id":{"$oid":"52fd930e04e4bb58240000b3"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000006","order":5,"_id":{"$oid":"52fd930e04e4bb58240000b4"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52fd930d04e4bb5824000006","order":1,"_id":{"$oid":"52fd930e04e4bb58240000b6"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000006","order":12,"_id":{"$oid":"52fd930e04e4bb58240000b5"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000006","order":7,"_id":{"$oid":"52fd930e04e4bb58240000b7"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000006","order":3,"_id":{"$oid":"52fd930e04e4bb58240000b8"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52fd930d04e4bb5824000006","order":19,"_id":{"$oid":"52fd930e04e4bb58240000b9"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000006","order":10,"_id":{"$oid":"52fd930e04e4bb58240000ba"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52fd930d04e4bb5824000006","order":6,"_id":{"$oid":"52fd930e04e4bb58240000bb"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52fd930d04e4bb5824000006","order":4,"_id":{"$oid":"52fd930e04e4bb58240000bc"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000006","order":17,"_id":{"$oid":"52fd930e04e4bb58240000bd"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000006","order":15,"_id":{"$oid":"52fd930e04e4bb58240000be"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000006","order":8,"_id":{"$oid":"52fd930e04e4bb58240000bf"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000006","order":2,"_id":{"$oid":"52fd930e04e4bb58240000c0"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52fd930d04e4bb5824000006","order":13,"_id":{"$oid":"52fd930e04e4bb58240000c1"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000006","order":11,"_id":{"$oid":"52fd930e04e4bb58240000c2"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000006","order":14,"_id":{"$oid":"52fd930e04e4bb58240000c3"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52fd930d04e4bb5824000006","order":18,"_id":{"$oid":"52fd930e04e4bb58240000c5"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52fd930d04e4bb5824000006","order":9,"_id":{"$oid":"52fd930e04e4bb58240000c4"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000006","order":16,"_id":{"$oid":"52fd930e04e4bb58240000c7"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000006","order":0,"_id":{"$oid":"52fd930e04e4bb58240000c6"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb5824000006","order":20,"_id":{"$oid":"52fd930e04e4bb58240000c8"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000a","order":5,"_id":{"$oid":"52fd930e04e4bb58240000c9"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000a","order":12,"_id":{"$oid":"52fd930e04e4bb58240000ca"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.8","hero_id":"52fd930d04e4bb582400000a","order":1,"_id":{"$oid":"52fd930e04e4bb58240000cb"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000a","order":3,"_id":{"$oid":"52fd930e04e4bb58240000cd"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000a","order":7,"_id":{"$oid":"52fd930e04e4bb58240000cc"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000a","order":10,"_id":{"$oid":"52fd930e04e4bb58240000cf"}}
+{"action":"MOVE FORWARD","waitAfter":"0.4","hero_id":"52fd930d04e4bb582400000a","order":19,"_id":{"$oid":"52fd930e04e4bb58240000ce"}}
+{"action":"MOVE","waitAfter":"0.3","hero_id":"52fd930d04e4bb582400000a","order":6,"_id":{"$oid":"52fd930e04e4bb58240000d0"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.6","hero_id":"52fd930d04e4bb582400000a","order":4,"_id":{"$oid":"52fd930e04e4bb58240000d1"}}
+{"action":"DEPLOY GRABBER","waitAfter":"0.5","hero_id":"52fd930d04e4bb582400000a","order":17,"_id":{"$oid":"52fd930e04e4bb58240000d2"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000a","order":15,"_id":{"$oid":"52fd930e04e4bb58240000d3"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000a","order":8,"_id":{"$oid":"52fd930e04e4bb58240000d4"}}
+{"action":"FIRE CHARGELASER","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000a","order":2,"_id":{"$oid":"52fd930e04e4bb58240000d5"}}
+{"action":"DEPLOY GRABBER","waitAfter":"4","hero_id":"52fd930d04e4bb582400000a","order":13,"_id":{"$oid":"52fd930e04e4bb58240000d6"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":"0.5","hero_id":"52fd930d04e4bb582400000a","order":11,"_id":{"$oid":"52fd930e04e4bb58240000d7"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000a","order":14,"_id":{"$oid":"52fd930e04e4bb58240000d8"}}
+{"action":"DEPLOY GRABBER","waitAfter":"5.6","hero_id":"52fd930d04e4bb582400000a","order":9,"_id":{"$oid":"52fd930e04e4bb58240000d9"}}
+{"action":"FIRE CHARGELASER","waitAfter":"0.5","hero_id":"52fd930d04e4bb582400000a","order":18,"_id":{"$oid":"52fd930e04e4bb58240000da"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000a","order":0,"_id":{"$oid":"52fd930e04e4bb58240000db"}}
+{"action":"MOVE FORWARD","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000a","order":16,"_id":{"$oid":"52fd930e04e4bb58240000dc"}}
+{"action":"DEPLOY TURRETMINE","waitAfter":0.10000000000000000555,"hero_id":"52fd930d04e4bb582400000a","order":20,"_id":{"$oid":"52fd930e04e4bb58240000dd"}}
+{"_id":{"$oid":"5302d8c058c598201f000001"},"action":"MOVE","waitAfter":"1.3","hero_id":"51aff14c610baa3b78000009","order":2}
+{"_id":{"$oid":"5302d8edaacb3f807a000001"},"action":"MOVE","waitAfter":"0.7","hero_id":"51aff14c610baa3b78000009","order":4}
+{"_id":{"$oid":"5302d92658c598201f000003"},"action":"TELEPORT","waitAfter":"0.8","hero_id":"51889cd65532be9649000006","order":0}
+{"_id":{"$oid":"5302d94658c598201f000004"},"action":"TELEPORT","waitAfter":"1.2","hero_id":"51889cd65532be9649000006","order":3}
+{"_id":{"$oid":"5302d95558c598201f000005"},"action":"MOVE FORWARD","waitAfter":"0.6","hero_id":"51889cd65532be9649000006","order":1}
+{"_id":{"$oid":"5302d95d58c598201f000006"},"action":"MOVE","waitAfter":"1.3","hero_id":"51889cd65532be9649000006","order":2}
+{"action":"MOVE","waitAfter":"1.3","hero_id":"51889cd65532be9649000006","order":4,"_id":{"$oid":"5302d96e58c598201f000007"}}
+{"action":"MOVE","waitAfter":"1","hero_id":"52a2e6cad51102bc57000001","order":1,"_id":{"$oid":"53094f4858c598201f00002a"}}
+{"action":"MOVE FORWARD","waitAfter":"0.9","hero_id":"51889cf75532be9649000007","order":0,"_id":{"$oid":"530c0f79aacb3f807a000034"}}
+{"action":"TELEPORT","waitAfter":"0.6","hero_id":"51889cf75532be9649000007","order":1,"_id":{"$oid":"530c0f8758c598201f000030"}}
+{"_id":{"$oid":"530c0fa658c598201f000033"},"action":"TELEPORT","waitAfter":"1.1","hero_id":"51889cf75532be9649000007","order":4}
+{"action":"MOVE FORWARD","waitAfter":"1.2","hero_id":"51889cf75532be9649000007","order":5,"_id":{"$oid":"530c0fb358c598201f000034"}}
+{"action":"MOVE","waitAfter":"0.9","hero_id":"51889cf75532be9649000007","order":6,"_id":{"$oid":"530c0fbcaacb3f807a000035"}}
+{"action":"DEPLOY EMPMISSILE","waitAfter":"1.8","hero_id":"51889cf75532be9649000007","order":7,"_id":{"$oid":"530c0fceaacb3f807a000036"}}
+{"_id":{"$oid":"530c130eaacb3f807a000037"},"action":"DEPLOY EMPMISSILE","waitAfter":"0.8","hero_id":"51889cd25532be9649000005","order":0}
+{"_id":{"$oid":"530c131758c598201f000035"},"action":"MOVE","waitAfter":"1.3","hero_id":"51889cd25532be9649000005","order":1}
+{"action":"MOVE FORWARD","waitAfter":"0.5","hero_id":"51889cd25532be9649000005","order":2,"_id":{"$oid":"530c132158c598201f000036"}}
+{"action":"TELEPORT","waitAfter":"0.8","hero_id":"51889cd25532be9649000005","order":3,"_id":{"$oid":"530c1328aacb3f807a000038"}}
+{"_id":{"$oid":"530c13b1aacb3f807a000039"},"action":"DEPLOY EMPMISSILE","waitAfter":"1.5","hero_id":"51889cd25532be9649000005","order":4}
+{"_id":{"$oid":"530c13eeaacb3f807a00003b"},"action":"MOVE","waitAfter":"0.6","hero_id":"51889cd25532be9649000005","order":6}
+{"_id":{"$oid":"530c13f6aacb3f807a00003c"},"action":"MOVE FORWARD","waitAfter":"0.6","hero_id":"51889cd25532be9649000005","order":7}
+{"_id":{"$oid":"530c13b7aacb3f807a00003a"},"action":"MOVE FORWARD","waitAfter":"0.9","hero_id":"51889cd25532be9649000005","order":5}
+{"_id":{"$oid":"530c1826aacb3f807a00003e"},"action":"DEPLOY EMPMISSILE","waitAfter":"0.6","hero_id":"51889c725532be9649000004","order":0}
+{"_id":{"$oid":"530c17d658c598201f000037"},"action":"DEPLOY EMPMISSILE","waitAfter":"0.6","hero_id":"51889c725532be9649000004","order":2}
+{"action":"MOVE","waitAfter":"1","hero_id":"51889c725532be9649000004","order":3,"_id":{"$oid":"530c185158c598201f000038"}}
+{"action":"MOVE FORWARD","waitAfter":"0.8","hero_id":"51889c725532be9649000004","order":4,"_id":{"$oid":"530c1857aacb3f807a00003f"}}
+{"_id":{"$oid":"530c180baacb3f807a00003d"},"action":"DEPLOY BLACKHOLE","waitAfter":"1.6","hero_id":"51889c725532be9649000004","order":1}
+{"action":"DEPLOY EMPMISSILE","waitAfter":"1.2","hero_id":"51889c725532be9649000004","order":5,"_id":{"$oid":"530c18baaacb3f807a000040"}}
+{"action":"TELEPORT","waitAfter":"1.2","hero_id":"51889c725532be9649000004","order":6,"_id":{"$oid":"530c18c658c598201f000039"}}
+{"action":"MOVE","waitAfter":"0.9","hero_id":"51889c725532be9649000004","order":7,"_id":{"$oid":"530c18ceaacb3f807a000041"}}
+{"action":"DEPLOY BLACKHOLE","waitAfter":"1.6","hero_id":"51889c725532be9649000004","order":8,"_id":{"$oid":"530c18daaacb3f807a000042"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"5302d52a64c36a372c000004","order":0,"_id":{"$oid":"531569a51b1d4a8416000004"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"531569b0c597fda41f000010","order":0,"_id":{"$oid":"531569b0c597fda41f000018"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"531569b0c597fda41f000015","order":0,"_id":{"$oid":"531569b0c597fda41f000019"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"531569b0c597fda41f00000f","order":0,"_id":{"$oid":"531569b0c597fda41f00001c"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"531569b0c597fda41f000011","order":0,"_id":{"$oid":"531569b0c597fda41f00001a"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"531569b0c597fda41f00000e","order":0,"_id":{"$oid":"531569b0c597fda41f00001b"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"531569b0c597fda41f000017","order":0,"_id":{"$oid":"531569b0c597fda41f000020"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"531569b0c597fda41f000014","order":0,"_id":{"$oid":"531569b0c597fda41f00001e"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"531569b0c597fda41f000013","order":0,"_id":{"$oid":"531569b0c597fda41f00001f"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"531569b0c597fda41f000012","order":0,"_id":{"$oid":"531569b0c597fda41f00001d"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"531569b0c597fda41f000016","order":0,"_id":{"$oid":"531569b0c597fda41f000021"}}
+{"action":"MOVE FORWARD","waitAfter":"1.5","hero_id":"51889cd65532be9649000006","order":5,"_id":{"$oid":"531e72c5c597fda41f00003e"}}
+{"action":"DEPLOY BLACKHOLE","waitAfter":"0.8","hero_id":"5302d4ffff9e7fdd44000002","order":0,"_id":{"$oid":"531e84001b1d4a8416000033"}}
+{"action":"MOVE","waitAfter":"0.7","hero_id":"5302d4ffff9e7fdd44000002","order":1,"_id":{"$oid":"531e842b1b1d4a8416000034"}}
+{"_id":{"$oid":"531e843b1b1d4a8416000035"},"action":"DEPLOY EMPMISSILE","waitAfter":"0.9","hero_id":"5302d4ffff9e7fdd44000002","order":2}
+{"action":"TELEPORT","waitAfter":"0.7","hero_id":"5302d4ffff9e7fdd44000002","order":3,"_id":{"$oid":"531e84581b1d4a8416000036"}}
+{"_id":{"$oid":"531e84751b1d4a8416000037"},"action":"DEPLOY EMPMISSILE","waitAfter":"0.8","hero_id":"5302d4ffff9e7fdd44000002","order":4}
+{"action":"MOVE FORWARD","waitAfter":"1.1","hero_id":"5302d4ffff9e7fdd44000002","order":5,"_id":{"$oid":"531e84991b1d4a8416000038"}}
+{"_id":{"$oid":"531e84ac1b1d4a8416000039"},"action":"TELEPORT","waitAfter":"0.9","hero_id":"5302d4ffff9e7fdd44000002","order":6}
+{"_id":{"$oid":"531e84d6c597fda41f000044"},"action":"MOVE","waitAfter":"1.1","hero_id":"5302d4ffff9e7fdd44000002","order":7}
+{"_id":{"$oid":"531e84e71b1d4a841600003a"},"action":"MOVE","waitAfter":"0.7","hero_id":"5302d4ffff9e7fdd44000002","order":8}
+{"action":"DEPLOY BLACKHOLE","waitAfter":"0.7","hero_id":"5302d509ff9e7fdd44000003","order":0,"_id":{"$oid":"531e856bc597fda41f000045"}}
+{"action":"TELEPORT","waitAfter":"0.8","hero_id":"5302d509ff9e7fdd44000003","order":1,"_id":{"$oid":"531e85791b1d4a841600003b"}}
+{"action":"DEPLOY BLACKHOLE","waitAfter":"0.9","hero_id":"5302d509ff9e7fdd44000003","order":2,"_id":{"$oid":"531e85831b1d4a841600003c"}}
+{"action":"MOVE","waitAfter":"0.5","hero_id":"5302d509ff9e7fdd44000003","order":3,"_id":{"$oid":"531e859b1b1d4a841600003d"}}
+{"action":"DEPLOY EMPMISSILE","waitAfter":"0.6","hero_id":"5302d509ff9e7fdd44000003","order":4,"_id":{"$oid":"531e85aec597fda41f000046"}}
+{"action":"MOVE FORWARD","waitAfter":"1","hero_id":"5302d509ff9e7fdd44000003","order":5,"_id":{"$oid":"531e85b8c597fda41f000047"}}
+{"action":"DEPLOY REFLECTSHIELD","waitAfter":"1.5","hero_id":"5302d509ff9e7fdd44000003","order":6,"_id":{"$oid":"531e85c5c597fda41f000048"}}
+{"action":"TELEPORT","waitAfter":"0.8","hero_id":"5302d509ff9e7fdd44000003","order":7,"_id":{"$oid":"531e85d0c597fda41f000049"}}
+{"action":"MOVE","waitAfter":"1.1","hero_id":"5302d509ff9e7fdd44000003","order":8,"_id":{"$oid":"531e85d81b1d4a841600003e"}}
+{"action":"DEPLOY REFLECTSHIELD","waitAfter":"1.6","hero_id":"5302d509ff9e7fdd44000003","order":9,"_id":{"$oid":"531e85f61b1d4a841600003f"}}
+{"action":"MOVE","waitAfter":"0.8","hero_id":"5302d509ff9e7fdd44000003","order":10,"_id":{"$oid":"531e85ffc597fda41f00004a"}}
+{"action":"DEPLOY BLACKHOLE","waitAfter":"0.9","hero_id":"5302d509ff9e7fdd44000003","order":11,"_id":{"$oid":"531e864bc597fda41f00004b"}}
+{"action":"DEPLOY REFLECTSHIELD","waitAfter":"0.5","hero_id":"5302d51064c36a372c000003","order":0,"_id":{"$oid":"531e86691b1d4a8416000040"}}
+{"action":"MOVE","waitAfter":"0.8","hero_id":"5302d51064c36a372c000003","order":1,"_id":{"$oid":"531e867a1b1d4a8416000041"}}
+{"_id":{"$oid":"531e86b61b1d4a8416000042"},"action":"MOVE","waitAfter":"0.3","hero_id":"5302d51064c36a372c000003","order":2}
+{"_id":{"$oid":"531e86c5c597fda41f00004c"},"action":"DEPLOY BLACKHOLE","waitAfter":"0.3","hero_id":"5302d51064c36a372c000003","order":4}
+{"_id":{"$oid":"531e86cf1b1d4a8416000043"},"action":"MOVE","waitAfter":"0.5","hero_id":"5302d51064c36a372c000003","order":5}
+{"_id":{"$oid":"531e87be1b1d4a8416000044"},"action":"DEPLOY BLACKHOLE","waitAfter":"0.7","hero_id":"5302d51064c36a372c000003","order":6}
+{"_id":{"$oid":"531e87cac597fda41f00004d"},"action":"MOVE FORWARD","waitAfter":"1.2","hero_id":"5302d51064c36a372c000003","order":7}
+{"_id":{"$oid":"531e87e11b1d4a8416000045"},"action":"DEPLOY EMPMISSILE","waitAfter":"0.8","hero_id":"5302d51064c36a372c000003","order":8}
+{"_id":{"$oid":"531e8803c597fda41f00004e"},"action":"TELEPORT","waitAfter":"1.1","hero_id":"5302d51064c36a372c000003","order":9}
+{"_id":{"$oid":"531e8811c597fda41f00004f"},"action":"TELEPORT","waitAfter":"0.9","hero_id":"5302d51064c36a372c000003","order":3}
+{"action":"DEPLOY EMPMISSILE","waitAfter":"0.8","hero_id":"5302d51064c36a372c000003","order":10,"_id":{"$oid":"531e882a1b1d4a8416000046"}}
+{"action":"DEPLOY BLACKHOLE","waitAfter":"0.4","hero_id":"5302d51064c36a372c000003","order":11,"_id":{"$oid":"531e88451b1d4a8416000047"}}
+{"action":"MOVE","waitAfter":"1.2","hero_id":"5302d51064c36a372c000003","order":12,"_id":{"$oid":"531e884b1b1d4a8416000048"}}
+{"action":"DEPLOY BLACKHOLE","waitAfter":"0.6","hero_id":"5302d51064c36a372c000003","order":13,"_id":{"$oid":"531e88521b1d4a8416000049"}}
+{"action":"DEPLOY REFLECTSHIELD","waitAfter":"0.3","hero_id":"5302d519ff9e7fdd44000004","order":0,"_id":{"$oid":"531e88661b1d4a841600004a"}}
+{"action":"TELEPORT","waitAfter":"0.2","hero_id":"5302d519ff9e7fdd44000004","order":1,"_id":{"$oid":"531e8873c597fda41f000050"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"5302d519ff9e7fdd44000004","order":2,"_id":{"$oid":"531e88781b1d4a841600004b"}}
+{"action":"DEPLOY EMPMISSILE","waitAfter":"0.2","hero_id":"5302d519ff9e7fdd44000004","order":3,"_id":{"$oid":"531e88831b1d4a841600004c"}}
+{"action":"MOVE FORWARD","waitAfter":"0.1","hero_id":"5302d519ff9e7fdd44000004","order":4,"_id":{"$oid":"531e88921b1d4a841600004d"}}
+{"action":"DEPLOY BLACKHOLE","waitAfter":"0.3","hero_id":"5302d519ff9e7fdd44000004","order":5,"_id":{"$oid":"531e889c1b1d4a841600004e"}}
+{"action":"MOVE","waitAfter":0.10000000000000000555,"hero_id":"5302d519ff9e7fdd44000004","order":6,"_id":{"$oid":"531e889e1b1d4a841600004f"}}
+{"action":"FIRE MISSILE","waitAfter":0.10000000000000000555,"hero_id":"51a427d199a2422d3c000006","order":1,"_id":{"$oid":"5331f6d72c9cf9b36b00003e"}}
+{"_id":{"$oid":"535f17e12a0e659d2b000206"},"action":"DEPLOY BLACKHOLE","waitAfter":"1","hero_id":"51fb4df2c41460fd5f000001","order":0}
+{"action":"DEPLOY BLACKHOLE","waitAfter":"1","hero_id":"53836fd12dd0101235000030","order":0,"_id":{"$oid":"53836fd12dd0101235000031"}}
+{"_id":{"$oid":"52ca5a8a243ca9265200001b"},"id":"52ca5a8a243ca9265200001b","action":"DEPLOY GRABBER","waitAfter":"10","hero_id":"52893b3c384628634f000002","order":0}
+{"id":"ext-record-46","action":"DEPLOY MINE","waitAfter":"2","hero_id":"5320fb432c9cf9b36b000003","order":0,"_id":{"$oid":"5500c461e7f32df842000031"}}
+{"id":"ext-record-77","action":"FIRE MISSILE","waitAfter":"1","hero_id":"5320fb432c9cf9b36b000003","order":1,"_id":{"$oid":"5507b05de7f32df842000037"}}
+{"id":"ext-record-17","action":"DEPLOY SHIELD","waitAfter":"1.5","hero_id":"5320fb432c9cf9b36b000003","order":2,"_id":{"$oid":"551ce60bbfcbcbf73d00003b"}}

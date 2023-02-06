@@ -1,0 +1,58 @@
+using UnityEngine;
+using System.Collections;
+
+public class UpgraderDetails : MonoBehaviour
+{
+	UILabel _description;
+	UILabel _cost;
+	UILabel _title;
+	UILabel _upgradeAction;
+	UILabel _damageAmount;
+
+	// Use this for initialization
+	void Awake ()
+	{
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		for (int i = 0 ; i < labels.Length; i++) {
+			UILabel label = labels[i];
+			if (label.name == "Title") {
+				_title = label;
+			}
+			else if (label.name == "Description") {
+				_description = label;
+			}
+			else if (label.name == "Cost") {
+				_cost = label;
+			}
+			else if (label.name == "UpgradeAction") {
+				_upgradeAction = label;
+			}
+			else if (label.name == "DamageAmount") {
+				_damageAmount = label;
+			}
+		}
+	}
+
+	public void SetDetails(Port.MinionTypeDetails details) {
+		_description.text = details.description;
+		_title.text = details.title;
+		if (details.state + 1 < details.levels.Length) {
+			_cost.text = "Upgrade to Lvl" + (details.state + 2) + " = " + details.levels[details.state + 1].cost.ToString();
+			_upgradeAction.text = "Upgrade";
+			float from = details.state < 0 ? 0 : details.levels[details.state].damage;
+			_damageAmount.text = from.ToString() + "x -> " + details.levels[details.state + 1].damage + "x";
+		}
+		else {
+			_cost.text = "MAX LEVEL";
+			_upgradeAction.text = "MAX";
+			_damageAmount.text = details.levels[details.state].damage + "x";
+		}
+	}
+
+	// Update is called once per frame
+	void Update ()
+	{
+
+	}
+}
+

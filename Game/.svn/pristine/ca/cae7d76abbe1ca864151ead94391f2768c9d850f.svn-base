@@ -1,0 +1,163 @@
+using UnityEngine;
+using System.Collections;
+using System.Text;
+using System.Net;
+using System.IO;
+using System;
+
+namespace CI
+{
+	public class RequestState
+	{
+		// This class stores the State of the request.
+		const int BUFFER_SIZE = 1024;
+		public byte[] BufferRead;
+		public HttpWebRequest request;
+		public HttpWebResponse response;
+		public Stream streamResponse;
+		public bool isDone = false;
+		
+		public string requestData;
+		public byte[] requestDataBytes;
+		public StringBuilder responseData;
+		
+		public RequestState()
+		{
+			BufferRead = new byte[BUFFER_SIZE];
+			responseData = new StringBuilder("");
+			request = null;
+			streamResponse = null;
+		}
+	}
+	
+	public class Request
+	{
+		const int BUFFER_SIZE = 1024;
+		public RequestState requestState;
+		
+		public string ResponseText {
+			get { return requestState.responseData.ToString(); }
+		}
+		
+		public void GET(string url) {
+			HttpWebRequest request = (HttpWebRequest) HttpWebRequest.Create(new Uri(url));
+			
+			// Create an instance of the RequestState and assign the previous myHttpWebRequest1
+			// object to it's request field.  
+			requestState = new RequestState();  
+			requestState.request = request;
+			
+			// Start the asynchronous request.
+			IAsyncResult result=
+			(IAsyncResult) request.BeginGetResponse(new AsyncCallback(RespCallback),requestState);
+		}
+		
+		public void PUT(String url, Hashtable body) {
+			HttpWebRequest request = (HttpWebRequest) HttpWebRequest.Create(new Uri(url));
+			string requestBodyString = JSON.JsonEncode(body);
+			byte[] requestBytes = System.Text.Encoding.ASCII.GetBytes(requestBodyString);
+			request.Method = WebRequestMethods.Http.Put;
+			request.ContentType = "application/json";
+     		request.ContentLength = requestBytes.Length;
+			
+			// Create an instance of the RequestState and assign the previous myHttpWebRequest1
+			// object to it's request field.  
+			requestState = new RequestState();  
+			requestState.request = request;
+			requestState.requestData = requestBodyString;
+			requestState.requestDataBytes = Encoding.UTF8.GetBytes(requestBodyString);
+			
+			IAsyncResult result = (IAsyncResult) request.BeginGetRequestStream(new AsyncCallback(WriteBodyCallback), requestState);
+		}
+		
+		public void POST(String url, Hashtable body) {
+			HttpWebRequest request = (HttpWebRequest) HttpWebRequest.Create(new Uri(url));
+			string requestBodyString = JSON.JsonEncode(body);
+			byte[] requestBytes = System.Text.Encoding.ASCII.GetBytes(requestBodyString);
+			request.Method = WebRequestMethods.Http.Post;
+			request.ContentType = "application/json";
+     		request.ContentLength = requestBytes.Length;
+			
+			// Create an instance of the RequestState and assign the previous myHttpWebRequest1
+			// object to it's request field.  
+			requestState = new RequestState();  
+			requestState.request = request;
+			requestState.requestData = requestBodyString;
+			requestState.requestDataBytes = Encoding.UTF8.GetBytes(requestBodyString);
+			
+			IAsyncResult result = (IAsyncResult) request.BeginGetRequestStream(new AsyncCallback(WriteBodyCallback), requestState);
+		}
+		
+		private static void WriteBodyCallback (IAsyncResult asynchronousRequest) {
+			RequestState myRequestState	= (RequestState) asynchronousRequest.AsyncState;
+			HttpWebRequest request		= myRequestState.request;
+
+			// End the operation
+			Stream postStream = request.EndGetRequestStream(asynchronousRequest);
+			
+			// Write to the request stream.
+			postStream.Write(myRequestState.requestDataBytes, 0, myRequestState.requestData.Length);
+			postStream.Close();
+			
+			// Start the asynchronous operation to get the response
+			request.BeginGetResponse(new AsyncCallback(RespCallback), myRequestState);
+		}
+		
+		private static void RespCallback(IAsyncResult asynchronousResult)
+		{  
+			try
+			{
+				// State of request is asynchronous.
+				RequestState myRequestState	= (RequestState) asynchronousResult.AsyncState;
+				HttpWebRequest request		= myRequestState.request;
+				myRequestState.response 	= (HttpWebResponse) request.EndGetResponse(asynchronousResult);
+				
+				// Read the response into a Stream object.
+				Stream responseStream = myRequestState.response.GetResponseStream();
+				myRequestState.streamResponse=responseStream;
+				
+				// Begin the Reading of the contents of the HTML page and print it to the console.
+				
+				
+				IAsyncResult asynchronousInputRead = responseStream.BeginRead(myRequestState.BufferRead, 0, BUFFER_SIZE, new AsyncCallback(ReadCallBack), myRequestState);
+			}
+			catch(WebException e)
+			{
+			  Debug.Log(e.Message);
+			}
+		}
+		
+		private static  void ReadCallBack(IAsyncResult asyncResult)
+		{
+			try
+			{
+				RequestState myRequestState = (RequestState)asyncResult.AsyncState;
+				Stream responseStream = myRequestState.streamResponse;
+				int read = responseStream.EndRead( asyncResult );
+				
+				// Read the HTML page and then do something with it
+				if (read > 0)
+				{
+					myRequestState.responseData.Append(Encoding.UTF8.GetString(myRequestState.BufferRead, 0, read));
+					IAsyncResult asynchronousResult = responseStream.BeginRead( myRequestState.BufferRead, 0, BUFFER_SIZE, new AsyncCallback(ReadCallBack), myRequestState);
+				}
+				else
+				{
+					if(myRequestState.responseData.Length>1)
+					{
+						string stringContent = myRequestState.responseData.ToString();
+						myRequestState.response.Close();
+						myRequestState.isDone = true;
+					}
+				
+				  responseStream.Close();
+				}
+			}
+			catch(WebException e)
+			{
+				Debug.Log(e.Message);
+			}
+		}
+	}
+}
+

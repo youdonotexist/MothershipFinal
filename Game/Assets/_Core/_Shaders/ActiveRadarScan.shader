@@ -1,0 +1,71 @@
+Shader "Transparent/2D_UV_Cutoff" {
+Properties {
+	_Color ("Main Color", Color) = (1,1,1,1)
+	_MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
+	_ScanAmt ("Cutoff Amount", float) = 0.0
+	
+	_XDirection ("X Direction", float) = 1.0
+	_CutoffDirection ("Cutoff Direction", float) = 1.0
+}
+
+SubShader {
+	Tags {"Queue"="AlphaTest" "IgnoreProjector"="True" "RenderType"="Transparent"}
+	LOD 200
+
+CGPROGRAM
+#pragma surface surf Lambert alpha
+
+sampler2D _MainTex;
+fixed4 _Color;
+float _ScanAmt;
+float _XDirection;
+float _CutoffDirection;
+
+struct Input {
+	float2 uv_MainTex;
+};
+
+void surf (Input IN, inout SurfaceOutput o) {
+	fixed4 c;
+	float uvAmt;
+	
+	if (_XDirection > 0.0) {
+		uvAmt = IN.uv_MainTex.x;
+	}
+	else {
+		uvAmt = IN.uv_MainTex.y;
+	}
+	
+	bool left = true;
+	
+	if (_CutoffDirection > 0.0) {
+		left = uvAmt < _ScanAmt;
+	}
+	else {
+		left = uvAmt >_ScanAmt;
+	}
+	
+	if (left) {
+		c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+	}
+	else {
+		c.r = 0.0f;
+		c.g = 0.0f;
+		c.b = 0.0f;
+		c.a = 0.0f;
+	}
+	
+	if (abs(uvAmt - _ScanAmt) < 0.01) {
+		c.r = 0.0f;
+		c.g = 0.0f;
+		c.b = 0.0f;
+	}
+	
+	o.Albedo = c.rgb;
+	o.Alpha = c.a;
+}
+ENDCG
+}
+
+Fallback "Transparent/Cutout/Diffuse"
+}

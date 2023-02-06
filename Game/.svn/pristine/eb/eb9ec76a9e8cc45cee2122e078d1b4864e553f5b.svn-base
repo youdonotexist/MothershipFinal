@@ -1,0 +1,30 @@
+using UnityEngine;
+using System.Collections;
+
+public class HeroMovementNode : MonoBehaviour
+{
+	int[] mineslots;
+	int[] shieldslots;
+	
+	public int slot;
+	
+	void Start ()
+	{
+		mineslots = new int[3];
+		mineslots[0] = slot * 2;
+		mineslots[1] = (slot * 2) + 1;
+		mineslots[2] = (slot * 2) + 2;
+		
+		shieldslots = new int[1];
+		shieldslots[0] = slot + 1;
+	}
+	
+	public int[] MineSlots() {
+		return mineslots;
+	}
+	
+	public int[] ShieldSLots() {
+		return shieldslots;
+	}
+}
+

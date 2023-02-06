@@ -1,0 +1,10 @@
+using UnityEngine;
+using System.Collections;
+
+public class MainMenu : MonoBehaviour
+{
+	void OnClick() {
+		Application.LoadLevel("Scene01-4_3");	
+	}
+}
+

@@ -1,0 +1,166 @@
+using UnityEngine;
+using System.Collections;
+using System.Text;
+
+public class HeroVehicle : Vehicle {
+	
+	public GameObject missileProjectile = null;
+	public GameObject muzzlePoint = null;
+	public GameObject explosionPrefab;
+	
+	public AudioClip _spawnClip;
+	
+	exSpriteAnimation _anim;
+	
+	GamePlayHUD _gameplayHUD;
+	
+	HeroAIManager _aiManager;
+	MissionManager _missionManager;
+	
+	public HeroConfig _config;
+	public DirectivePack[] _directivePacks;
+	
+	public SpatialNode _currentNode;
+	
+	protected Damagable _damagable = null;
+	
+	public float moveDirection = 0;
+	public string animationPrefix = "";
+	public bool preventMovementAnimations = false;
+	public bool bulletHellHero = false;
+
+	void Awake() {
+		GameObject hud = GameObject.Find("GameplayHUD");
+		GameObject aiMan = GameObject.Find("_MinesAndShields");
+		GameObject missionMan = GameObject.Find("_MissionManager");
+		
+		if (hud)
+			_gameplayHUD = hud.GetComponent<GamePlayHUD>();
+		
+		_aiManager = aiMan != null ? aiMan.GetComponent<HeroAIManager>() : null;
+		_missionManager = missionMan != null ? missionMan.GetComponent<MissionManager>() : null;
+		
+		_damagable = GetComponent<Damagable>();
+		_anim = GetComponentInChildren<exSpriteAnimation>();
+		
+		if (_aiManager != null)
+			_currentNode = _aiManager.MiddleHeroNode();
+		
+		Vector3 pos = transform.position;
+		pos.z = LayerManager._3;
+		transform.position = pos;
+	}
+	
+	void Start() {
+		if (_gameplayHUD != null) {
+			if (_config != null)
+				_damagable.SetMaxHealth(_config.getFloat("health"));
+			_gameplayHUD.SetHeroHealthCount(_damagable.Health/500.0f, 10.0f);
+			_gameplayHUD.SetNewHero(gameObject.name,  _missionManager.HeroesLeft());
+		}
+		
+		_directivePacks = GetComponentsInChildren<DirectivePack>();
+		foreach (DirectivePack pack in _directivePacks) {
+			pack.SetHero(this);	
+		}
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+		//Health
+		if (_gameplayHUD != null) {
+			_gameplayHUD.SetHeroHealthCount(_damagable.Health/500.0f, 10.0f);
+		}
+
+		StringBuilder sb = new StringBuilder(animationPrefix);
+
+		if (bulletHellHero) 
+			sb.Append("Bullethell");
+
+		if (_anim != null && preventMovementAnimations == false) {
+			if (moveDirection < 0.0f) {
+				sb.Append("MoveUp");
+				//if (!_anim.IsPlaying(animationPrefix + (bulletHellHero ? "Bullethell" : "") + "MoveUp"))
+				//	_anim.Play(animationPrefix + (bulletHellHero ? "Bullethell" : "") + "MoveUp");	
+			}
+			else if (moveDirection > 0.0f) {
+				//if (!_anim.IsPlaying(animationPrefix + (bulletHellHero ? "Bullethell" : "") + "MoveDown"))
+				//	_anim.Play (animationPrefix + (bulletHellHero ? "Bullethell" : "") + "MoveDown");	
+				sb.Append("MoveDown");
+			}
+			else {
+				//if (!_anim.IsPlaying(animationPrefix + (bulletHellHero ? "Bullethell" : "") + "Stop"))
+				//	_anim.Play(animationPrefix + (bulletHellHero ? "Bullethell" : "") + "Stop");	
+				sb.Append("Stop");
+			}
+
+			string animName = sb.ToString();
+			if (!_anim.IsPlaying(animName)) {
+			    _anim.Play(animName);	
+			}
+		}
+		
+		if (_damagable.Health <= 0.0f) {
+			if (_aiManager != null)
+				_aiManager.SetVehicle(null);
+		
+			if (GameState.Instance.DidQuitApplication() == false) {
+				GameObject go = GameObject.Find("_MissionManager");
+				if (go != null) {
+					MissionManager mm = go.GetComponent<MissionManager>();
+					mm.OnHeroDie(transform.position);
+				}
+			}
+			
+			if (explosionPrefab != null) {
+				Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
+			}
+			Destroy (gameObject);	
+		}
+	}
+	
+	public void OnHeroReady() {
+		foreach (DirectivePack pack in _directivePacks) {
+			pack.OnHeroReady();
+		}
+		
+		_aiManager.PushAIDirective();
+	}
+	public void OnHeroWin() {
+		foreach (DirectivePack pack in _directivePacks) {
+			pack.OnHeroWin();
+		}	
+	}
+	
+	public void ClearDirectives() {
+		_config.directives = new string[] {};
+	}
+	
+	public HeroAIManager.DirectiveState HandleDirective(AIDirective directive) {
+		foreach (DirectivePack pack in _directivePacks) {
+			HeroAIManager.DirectiveState state = pack.handleDirective(directive);
+			if (state != HeroAIManager.DirectiveState.UNHANDLED) {
+				return state;		
+			}
+		}
+		
+		return HeroAIManager.DirectiveState.UNHANDLED;
+	}
+	
+	public exSpriteAnimation GetAnimation() {
+		return _anim;
+	}
+
+	public Damagable GetDamagable() {
+		return _damagable;
+	}
+
+	public void UpdateCurrentNode(SpatialNode newNode) {
+		if (_currentNode != null) {
+			_currentNode._object = null;
+		}
+
+		_currentNode = newNode;
+	}
+}

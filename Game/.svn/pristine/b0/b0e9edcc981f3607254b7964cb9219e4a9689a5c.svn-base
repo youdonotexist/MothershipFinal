@@ -1,0 +1,53 @@
+using UnityEngine;
+using System.Collections;
+
+public class Damagable : MonoBehaviour
+{
+	public float currentHealth = 200.0f;
+	public float maxHealth;
+	
+	public LayerMask damageLayers;
+	
+	public AudioClip _destroySound;
+	
+	void Awake() {
+		currentHealth = maxHealth;	
+	}
+	
+	public void OnDamage(float amount, int layer) {
+		if (LayerMaskHelper.IsInLayerMask(layer, damageLayers)) {
+			currentHealth -= amount;
+			if (currentHealth <= 0.0f) {
+				GameState.Instance.audioSource.PlayOneShot(_destroySound);	
+			}
+			
+			int myLayer = gameObject.layer;
+			int calcLayer = LayerMask.NameToLayer("MothershipLayer");
+			
+			if (gameObject.layer == LayerMask.NameToLayer("Mothership")) {
+				GamePlayHUD.Instance().AddToScore(amount * 100.0f);
+			}
+		}
+	}
+	
+	public void OnHeal(float amount) {
+		currentHealth += amount;
+		currentHealth = Mathf.Min(currentHealth, maxHealth);
+	}
+	
+	public void SetMaxHealth(float max) {
+		maxHealth = max;
+		currentHealth = maxHealth;
+	}
+	
+	public float Health {
+		set{ currentHealth = value;}
+		get{ return currentHealth; }
+	}
+	
+	public float MaxHealth {
+		set { maxHealth = value; }
+		get { return maxHealth; } 
+	}
+}
+

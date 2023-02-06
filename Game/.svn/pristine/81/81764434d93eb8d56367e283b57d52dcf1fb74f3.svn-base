@@ -1,0 +1,19 @@
+using UnityEngine;
+using System.Collections;
+
+public class DebrisParticleEffect : MonoBehaviour
+{
+	public Color debrisColor;
+	public float debrisRadius;
+
+	ParticleSystem _system;
+
+	// Use this for initialization
+	void Start ()
+	{
+		_system = GetComponent<ParticleSystem>();
+		_system.startColor = debrisColor;
+		_system.Play();
+	}
+}
+

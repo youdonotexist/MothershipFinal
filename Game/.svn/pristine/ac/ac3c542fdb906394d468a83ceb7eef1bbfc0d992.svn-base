@@ -1,0 +1,1648 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1155214310, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: NESAtlas
+  m_EditorClassIdentifier: 
+  elements:
+  - name: nes-asteroid
+    originalWidth: 60
+    originalHeight: 60
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 6
+      width: 60
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .970703125
+      y: .205078125
+      width: .029296875
+      height: .0478515625
+    rotated: 0
+  - name: nes-bullethell-1
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 24
+      y: 20
+      width: 147
+      height: 119
+    coords:
+      serializedVersion: 2
+      x: .291992188
+      y: .383789062
+      width: .0717773438
+      height: .116210938
+    rotated: 0
+  - name: nes-bullethell-2
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 24
+      y: 20
+      width: 147
+      height: 119
+    coords:
+      serializedVersion: 2
+      x: .364257812
+      y: .383789062
+      width: .0717773438
+      height: .116210938
+    rotated: 0
+  - name: nes-bullethell-3
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 24
+      y: 20
+      width: 147
+      height: 119
+    coords:
+      serializedVersion: 2
+      x: .567382812
+      y: .383789062
+      width: .0717773438
+      height: .116210938
+    rotated: 0
+  - name: nes-bullethell-dn-f1
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 24
+      y: 20
+      width: 147
+      height: 112
+    coords:
+      serializedVersion: 2
+      x: .856445312
+      y: .390625
+      width: .0717773438
+      height: .109375
+    rotated: 0
+  - name: nes-bullethell-dn-f2
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 24
+      y: 20
+      width: 147
+      height: 112
+    coords:
+      serializedVersion: 2
+      x: .436523438
+      y: .2734375
+      width: .0717773438
+      height: .109375
+    rotated: 0
+  - name: nes-bullethell-dn-f3
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 24
+      y: 20
+      width: 147
+      height: 112
+    coords:
+      serializedVersion: 2
+      x: .639648438
+      y: .390625
+      width: .0717773438
+      height: .109375
+    rotated: 0
+  - name: nes-bullethell-up-f1
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 24
+      y: 28
+      width: 147
+      height: 112
+    coords:
+      serializedVersion: 2
+      x: .784179688
+      y: .390625
+      width: .0717773438
+      height: .109375
+    rotated: 0
+  - name: nes-bullethell-up-f2
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 24
+      y: 28
+      width: 147
+      height: 112
+    coords:
+      serializedVersion: 2
+      x: .508789062
+      y: .2734375
+      width: .0717773438
+      height: .109375
+    rotated: 0
+  - name: nes-bullethell-up-f3
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 24
+      y: 28
+      width: 147
+      height: 112
+    coords:
+      serializedVersion: 2
+      x: .908203125
+      y: .732421875
+      width: .0717773438
+      height: .109375
+    rotated: 0
+  - name: nes-damage1
+    originalWidth: 651
+    originalHeight: 658
+    trimRect:
+      serializedVersion: 2
+      x: 112
+      y: 350
+      width: 175
+      height: 161
+    coords:
+      serializedVersion: 2
+      x: .908203125
+      y: .842773438
+      width: .0854492188
+      height: .157226562
+    rotated: 0
+  - name: nes-damage2
+    originalWidth: 651
+    originalHeight: 658
+    trimRect:
+      serializedVersion: 2
+      x: 112
+      y: 140
+      width: 175
+      height: 161
+    coords:
+      serializedVersion: 2
+      x: .453613281
+      y: .520507812
+      width: .0854492188
+      height: .157226562
+    rotated: 0
+  - name: nes-damage3
+    originalWidth: 651
+    originalHeight: 658
+    trimRect:
+      serializedVersion: 2
+      x: 322
+      y: 413
+      width: 273
+      height: 154
+    coords:
+      serializedVersion: 2
+      x: .539550781
+      y: .52734375
+      width: .133300781
+      height: .150390625
+    rotated: 0
+  - name: nes-damage4
+    originalWidth: 651
+    originalHeight: 658
+    trimRect:
+      serializedVersion: 2
+      x: 322
+      y: 84
+      width: 273
+      height: 154
+    coords:
+      serializedVersion: 2
+      x: .673339844
+      y: .52734375
+      width: .133300781
+      height: .150390625
+    rotated: 0
+  - name: nes-dock-bottom-0
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .895019531
+      y: .293945312
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-dock-bottom-1
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .283203125
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-dock-bottom-2
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .331542969
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-dock-bottom-3
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .846679688
+      y: .293945312
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-dock-bottom-4
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .653320312
+      y: .293945312
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-dock-bottom-disable
+    originalWidth: 204
+    originalHeight: 170
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 204
+      height: 164
+    coords:
+      serializedVersion: 2
+      x: .253417969
+      y: .517578125
+      width: .099609375
+      height: .16015625
+    rotated: 0
+  - name: nes-dock-bottom-ready1
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .428222656
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-dock-bottom-ready2
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .186523438
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-dock-mid-0
+    originalWidth: 112
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 112
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .756835938
+      y: .115234375
+      width: .0546875
+      height: .0478515625
+    rotated: 0
+  - name: nes-dock-mid-1
+    originalWidth: 112
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 112
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .365234375
+      y: .0390625
+      width: .0546875
+      height: .0478515625
+    rotated: 0
+  - name: nes-dock-mid-2
+    originalWidth: 112
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 112
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .812011719
+      y: .115234375
+      width: .0546875
+      height: .0478515625
+    rotated: 0
+  - name: nes-dock-mid-3
+    originalWidth: 112
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 112
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .275390625
+      y: .0390625
+      width: .0546875
+      height: .0478515625
+    rotated: 0
+  - name: nes-dock-mid-4
+    originalWidth: 112
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 112
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .137695312
+      y: .0390625
+      width: .0546875
+      height: .0478515625
+    rotated: 0
+  - name: nes-dock-mid-disable
+    originalWidth: 147
+    originalHeight: 133
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 147
+      height: 133
+    coords:
+      serializedVersion: 2
+      x: .897460938
+      y: .547851562
+      width: .0717773438
+      height: .129882812
+    rotated: 0
+  - name: nes-dock-mid-ready1
+    originalWidth: 112
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 112
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .8671875
+      y: .115234375
+      width: .0546875
+      height: .0478515625
+    rotated: 0
+  - name: nes-dock-mid-ready2
+    originalWidth: 112
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 112
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .0825195312
+      y: .0390625
+      width: .0546875
+      height: .0478515625
+    rotated: 0
+  - name: nes-dock-top-0
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .234863281
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-dock-top-1
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .573242188
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-dock-top-2
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .701660156
+      y: .293945312
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-dock-top-3
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .943359375
+      y: .293945312
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-dock-top-4
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .379882812
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-dock-top-disable
+    originalWidth: 204
+    originalHeight: 170
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 6
+      width: 204
+      height: 164
+    coords:
+      serializedVersion: 2
+      x: .353515625
+      y: .517578125
+      width: .099609375
+      height: .16015625
+    rotated: 0
+  - name: nes-dock-top-ready1
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .0415039062
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-dock-top-ready2
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .75
+      y: .293945312
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-energy-f1
+    originalWidth: 49
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 49
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .969726562
+      y: .581054688
+      width: .0239257812
+      height: .0478515625
+    rotated: 0
+  - name: nes-energy-f2
+    originalWidth: 49
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 0
+      width: 42
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .977050781
+      y: .452148438
+      width: .0205078125
+      height: .0478515625
+    rotated: 0
+  - name: nes-energy-f3
+    originalWidth: 49
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 14
+      y: 0
+      width: 21
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .98046875
+      y: .793945312
+      width: .0102539062
+      height: .0478515625
+    rotated: 0
+  - name: nes-energy-f4
+    originalWidth: 49
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 14
+      y: 0
+      width: 35
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .967285156
+      y: .115234375
+      width: .0170898438
+      height: .0478515625
+    rotated: 0
+  - name: nes-energy-f5
+    originalWidth: 49
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 35
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .98046875
+      y: .745117188
+      width: .0170898438
+      height: .0478515625
+    rotated: 0
+  - name: nes-energy-f6
+    originalWidth: 49
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 42
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .969726562
+      y: .629882812
+      width: .0205078125
+      height: .0478515625
+    rotated: 0
+  - name: nes-explode-f1
+    originalWidth: 119
+    originalHeight: 119
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 119
+      height: 119
+    coords:
+      serializedVersion: 2
+      x: .436523438
+      y: .383789062
+      width: .0581054688
+      height: .116210938
+    rotated: 0
+  - name: nes-explode-f2
+    originalWidth: 119
+    originalHeight: 119
+    trimRect:
+      serializedVersion: 2
+      x: 14
+      y: 7
+      width: 98
+      height: 98
+    coords:
+      serializedVersion: 2
+      x: .928710938
+      y: .404296875
+      width: .0478515625
+      height: .095703125
+    rotated: 0
+  - name: nes-hero-dn-f1
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 22
+      y: 23
+      width: 147
+      height: 112
+    coords:
+      serializedVersion: 2
+      x: .147460938
+      y: .2734375
+      width: .0717773438
+      height: .109375
+    rotated: 0
+  - name: nes-hero-dn-f2
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 22
+      y: 23
+      width: 147
+      height: 112
+    coords:
+      serializedVersion: 2
+      x: .291992188
+      y: .2734375
+      width: .0717773438
+      height: .109375
+    rotated: 0
+  - name: nes-hero-dn-f3
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 22
+      y: 23
+      width: 147
+      height: 112
+    coords:
+      serializedVersion: 2
+      x: .219726562
+      y: .2734375
+      width: .0717773438
+      height: .109375
+    rotated: 0
+  - name: nes-hero-explode-f1
+    originalWidth: 182
+    originalHeight: 182
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 63
+      width: 168
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .0390625
+      width: .08203125
+      height: .0478515625
+    rotated: 0
+  - name: nes-hero-explode-f2
+    originalWidth: 182
+    originalHeight: 182
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 49
+      width: 168
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .207519531
+      y: .087890625
+      width: .08203125
+      height: .0751953125
+    rotated: 0
+  - name: nes-hero-explode-f3
+    originalWidth: 182
+    originalHeight: 182
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 63
+      width: 168
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .192871094
+      y: .0390625
+      width: .08203125
+      height: .0478515625
+    rotated: 0
+  - name: nes-hero-explode-f4
+    originalWidth: 182
+    originalHeight: 182
+    trimRect:
+      serializedVersion: 2
+      x: 49
+      y: 63
+      width: 91
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .922363281
+      y: .115234375
+      width: .0444335938
+      height: .0478515625
+    rotated: 0
+  - name: nes-hero-f1
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 22
+      y: 23
+      width: 147
+      height: 119
+    coords:
+      serializedVersion: 2
+      x: .219726562
+      y: .383789062
+      width: .0717773438
+      height: .116210938
+    rotated: 0
+  - name: nes-hero-f2
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 22
+      y: 23
+      width: 147
+      height: 119
+    coords:
+      serializedVersion: 2
+      x: .147460938
+      y: .383789062
+      width: .0717773438
+      height: .116210938
+    rotated: 0
+  - name: nes-hero-f3
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 22
+      y: 23
+      width: 147
+      height: 119
+    coords:
+      serializedVersion: 2
+      x: .495117188
+      y: .383789062
+      width: .0717773438
+      height: .116210938
+    rotated: 0
+  - name: nes-hero-up-f1
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 22
+      y: 30
+      width: 147
+      height: 112
+    coords:
+      serializedVersion: 2
+      x: .711914062
+      y: .390625
+      width: .0717773438
+      height: .109375
+    rotated: 0
+  - name: nes-hero-up-f2
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 22
+      y: 30
+      width: 147
+      height: 112
+    coords:
+      serializedVersion: 2
+      x: .364257812
+      y: .2734375
+      width: .0717773438
+      height: .109375
+    rotated: 0
+  - name: nes-hero-up-f3
+    originalWidth: 195
+    originalHeight: 160
+    trimRect:
+      serializedVersion: 2
+      x: 22
+      y: 30
+      width: 147
+      height: 112
+    coords:
+      serializedVersion: 2
+      x: .581054688
+      y: .2734375
+      width: .0717773438
+      height: .109375
+    rotated: 0
+  - name: nes-laser
+    originalWidth: 49
+    originalHeight: 35
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 7
+      width: 35
+      height: 21
+    coords:
+      serializedVersion: 2
+      x: .788085938
+      y: .705078125
+      width: .0170898438
+      height: .0205078125
+    rotated: 0
+  - name: nes-mine-f1
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .645996094
+      y: .0947265625
+      width: .0341796875
+      height: .068359375
+    rotated: 0
+  - name: nes-mine-f2
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .611328125
+      y: .0947265625
+      width: .0341796875
+      height: .068359375
+    rotated: 0
+  - name: nes-minion-2hit-lvl1-1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .331542969
+      y: .087890625
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-2hit-lvl1-2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .766601562
+      y: .177734375
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-2hit-lvl2-1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .808105469
+      y: .177734375
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-2hit-lvl2-2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .087890625
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-2hit-lvl3-1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 8
+      width: 77
+      height: 63
+    coords:
+      serializedVersion: 2
+      x: .680664062
+      y: .1015625
+      width: .0375976562
+      height: .0615234375
+    rotated: 0
+  - name: nes-minion-2hit-lvl3-2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .0415039062
+      y: .087890625
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-normal-lvl1
+    originalWidth: 84
+    originalHeight: 77
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .414550781
+      y: .087890625
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-shield-lvl1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .456054688
+      y: .087890625
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-shield-lvl2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .290039062
+      y: .087890625
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-shield-lvl3
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .124511719
+      y: .087890625
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-speed-lvl1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 1
+      width: 77
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .497558594
+      y: .087890625
+      width: .0375976562
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-speed-lvl2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .166015625
+      y: .087890625
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-speed-lvl3
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .0830078125
+      y: .087890625
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-split-lvl1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .373046875
+      y: .087890625
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-split-lvl2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .849609375
+      y: .177734375
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-split-lvl3
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .929199219
+      y: .177734375
+      width: .041015625
+      height: .0751953125
+    rotated: 0
+  - name: nes-minion-splitmini
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 4
+      y: 12
+      width: 77
+      height: 56
+    coords:
+      serializedVersion: 2
+      x: .71875
+      y: .108398438
+      width: .0375976562
+      height: .0546875
+    rotated: 0
+  - name: nes-missile
+    originalWidth: 70
+    originalHeight: 49
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 7
+      width: 70
+      height: 35
+    coords:
+      serializedVersion: 2
+      x: .420410156
+      y: .052734375
+      width: .0341796875
+      height: .0341796875
+    rotated: 0
+  - name: nes-mothership
+    originalWidth: 651
+    originalHeight: 658
+    trimRect:
+      serializedVersion: 2
+      x: 77
+      y: 70
+      width: 518
+      height: 511
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .500976562
+      width: .252929688
+      height: .499023438
+    rotated: 0
+  - name: nes-mothership-core-caution1
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .4765625
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-mothership-core-caution2
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .08984375
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-mothership-core-critical1
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .524902344
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-mothership-core-critical2
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .669921875
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-mothership-core-danger1
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .718261719
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-mothership-core-danger2
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .621582031
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-mothership-core-fine1
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .798339844
+      y: .293945312
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-mothership-core-fine2
+    originalWidth: 98
+    originalHeight: 91
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 98
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: .138183594
+      y: .1640625
+      width: .0478515625
+      height: .0888671875
+    rotated: 0
+  - name: nes-shield
+    originalWidth: 189
+    originalHeight: 133
+    trimRect:
+      serializedVersion: 2
+      x: 147
+      y: 0
+      width: 28
+      height: 133
+    coords:
+      serializedVersion: 2
+      x: .883300781
+      y: .547851562
+      width: .013671875
+      height: .129882812
+    rotated: 0
+  - name: nes-shieldgenerate-f1
+    originalWidth: 189
+    originalHeight: 133
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 0
+      width: 154
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .535644531
+      y: .0947265625
+      width: .0751953125
+      height: .068359375
+    rotated: 0
+  - name: nes-shieldgenerate-f2
+    originalWidth: 189
+    originalHeight: 133
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 49
+      width: 42
+      height: 35
+    coords:
+      serializedVersion: 2
+      x: .977050781
+      y: .416992188
+      width: .0205078125
+      height: .0341796875
+    rotated: 0
+  - name: nes-shieldgenerate-f3
+    originalWidth: 189
+    originalHeight: 133
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 42
+      width: 70
+      height: 49
+    coords:
+      serializedVersion: 2
+      x: .330566406
+      y: .0390625
+      width: .0341796875
+      height: .0478515625
+    rotated: 0
+  - name: nes-shieldgenerate-f4
+    originalWidth: 189
+    originalHeight: 133
+    trimRect:
+      serializedVersion: 2
+      x: 28
+      y: 28
+      width: 77
+      height: 77
+    coords:
+      serializedVersion: 2
+      x: .891113281
+      y: .177734375
+      width: .0375976562
+      height: .0751953125
+    rotated: 0
+  - name: nes-shieldgenerate-f5
+    originalWidth: 189
+    originalHeight: 133
+    trimRect:
+      serializedVersion: 2
+      x: 56
+      y: 21
+      width: 84
+      height: 91
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .1640625
+      width: .041015625
+      height: .0888671875
+    rotated: 0
+  - name: nes-shieldgenerate-f6
+    originalWidth: 189
+    originalHeight: 133
+    trimRect:
+      serializedVersion: 2
+      x: 84
+      y: 0
+      width: 91
+      height: 133
+    coords:
+      serializedVersion: 2
+      x: .838378906
+      y: .547851562
+      width: .0444335938
+      height: .129882812
+    rotated: 0
+  - name: nes-shieldgenerate-f7
+    originalWidth: 189
+    originalHeight: 133
+    trimRect:
+      serializedVersion: 2
+      x: 112
+      y: 0
+      width: 63
+      height: 133
+    coords:
+      serializedVersion: 2
+      x: .807128906
+      y: .547851562
+      width: .0307617188
+      height: .129882812
+    rotated: 0
+  - name: nes-wreckage1
+    originalWidth: 313
+    originalHeight: 346
+    trimRect:
+      serializedVersion: 2
+      x: 51
+      y: 50
+      width: 245
+      height: 280
+    coords:
+      serializedVersion: 2
+      x: .788085938
+      y: .7265625
+      width: .119628906
+      height: .2734375
+    rotated: 0
+  - name: nes-wreckage2
+    originalWidth: 449
+    originalHeight: 375
+    trimRect:
+      serializedVersion: 2
+      x: 3
+      y: 42
+      width: 434
+      height: 329
+    coords:
+      serializedVersion: 2
+      x: .253417969
+      y: .678710938
+      width: .211914062
+      height: .321289062
+    rotated: 0
+  - name: nes-wreckage3
+    originalWidth: 244
+    originalHeight: 340
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 12
+      width: 217
+      height: 322
+    coords:
+      serializedVersion: 2
+      x: .465820312
+      y: .685546875
+      width: .105957031
+      height: .314453125
+    rotated: 0
+  - name: nes-wreckage4
+    originalWidth: 322
+    originalHeight: 261
+    trimRect:
+      serializedVersion: 2
+      x: 6
+      y: 9
+      width: 301
+      height: 252
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .25390625
+      width: .146972656
+      height: .24609375
+    rotated: 0
+  - name: nes-wreckage5
+    originalWidth: 456
+    originalHeight: 323
+    trimRect:
+      serializedVersion: 2
+      x: 9
+      y: 11
+      width: 441
+      height: 308
+    coords:
+      serializedVersion: 2
+      x: .572265625
+      y: .69921875
+      width: .215332031
+      height: .30078125
+    rotated: 0
+  material: {fileID: 2100000, guid: feb48b7ff3f6d4b85949e5a13308815a, type: 2}
+  texture: {fileID: 2800000, guid: 0eb5622081eb1497d8583a844d4eb9fb, type: 3}

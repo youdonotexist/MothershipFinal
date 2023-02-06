@@ -1,0 +1,81 @@
+using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+[RequireComponent(typeof(AudioSource))]
+public class MusicDucker : MonoBehaviour {
+	public float duckedVolumeMultiplier = .5f;
+	public int duckedTimePercentage = 50;
+	
+	private static PlaylistController.AudioDuckingMode duckingMode;
+	private static float timeToStartUnducking;
+	private static float timeToFinishUnducking;
+	private static float statDuckedTimePercentage;
+
+	public static float statDuckedVolumeMultiplier;
+
+	private static float originalMusicVolume;
+	private static float initialDuckVolume;
+	private static float duckRange;
+	private static AudioSource statAudio;
+	
+	void Awake() {
+		this.useGUILayout = false;
+
+		duckingMode = PlaylistController.AudioDuckingMode.NotDucking;
+		statDuckedTimePercentage = duckedTimePercentage * .01f;
+		statDuckedVolumeMultiplier = duckedVolumeMultiplier;
+		statAudio = this.audio;
+	}
+	
+	void Start() {
+		SetDuckProperties();
+	}
+	
+	void FixedUpdate() {
+		this.AudioDucking();
+	}	
+	
+	private void AudioDucking() {
+		switch (duckingMode) {
+			case PlaylistController.AudioDuckingMode.NotDucking:
+				break;
+			case PlaylistController.AudioDuckingMode.SetToDuck:
+				ActiveAudio.volume = initialDuckVolume;
+				//Debug.Log(ActiveAudio.volume + " initial duck");
+				duckingMode = PlaylistController.AudioDuckingMode.Ducked;
+				break;
+			case PlaylistController.AudioDuckingMode.Ducked:
+				if (Time.time >= timeToFinishUnducking) {
+					ActiveAudio.volume = originalMusicVolume;
+					//Debug.Log(ActiveAudio.volume + " final");
+					duckingMode = PlaylistController.AudioDuckingMode.NotDucking;
+				} else if (Time.time >= timeToStartUnducking) { 
+					ActiveAudio.volume = initialDuckVolume + (Time.time - timeToStartUnducking) / (timeToFinishUnducking - timeToStartUnducking) * duckRange;
+					//Debug.Log("duck: " + ActiveAudio.volume); 
+				}
+				break;
+		} 
+	}
+	
+	public static void DuckMusicForTime(float duckLength, float pitch) {
+		var rangedDuck = duckLength / pitch;
+		
+		duckingMode = PlaylistController.AudioDuckingMode.SetToDuck;
+		timeToFinishUnducking = Time.time + rangedDuck;
+		timeToStartUnducking = Time.time + (rangedDuck * statDuckedTimePercentage);
+	}
+	
+	public static AudioSource ActiveAudio {
+		get {
+			return statAudio;
+		}
+	}
+	
+	private static void SetDuckProperties() {
+		originalMusicVolume = ActiveAudio.volume;
+		initialDuckVolume = statDuckedVolumeMultiplier * originalMusicVolume;
+		duckRange = originalMusicVolume - statDuckedVolumeMultiplier;
+	}
+}

@@ -1,0 +1,65 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using MiniJSON;
+public class MainMenuEncounterSelect : MonoBehaviour
+{
+	UIPopupList _list;
+	string[] names;
+	IList encounters;
+	
+	MainMenu _mainMenu;
+	
+	void Start ()
+	{
+		_list = GetComponent<UIPopupList>();
+		_mainMenu = GameObject.Find("UI Root (2D)").GetComponent<MainMenu>();
+		StartCoroutine(Download ());
+	}
+	
+	public void DownloadEncounters() {
+		StartCoroutine(Download ());
+	}
+	
+	IEnumerator Download() {
+		_mainMenu.SetLoading();
+		
+		var thing = new WWW("http://mothership.mike-daly.com/encounter");
+		yield return thing;
+		
+		encounters = (IList) Json.Deserialize(thing.text);  
+		names = new string[encounters.Count];
+		
+		for (int i = 0; i < encounters.Count; i++) {
+			IDictionary dict = (IDictionary) encounters[i];
+			names[i] = (string) dict["name"];
+		}
+   		
+		_list.items = new System.Collections.Generic.List<string>(names);
+		_list.selection = _list.items[0];
+		
+		_mainMenu.FinishLoading();
+	}
+	
+	void onChangeValue(string test) {
+		IDictionary enc = GetEncounterByName(test);
+		if (enc != null) {
+			GameObject go = GameObject.Find("MissionDetails");	
+			MissionDetails md = go.GetComponent<MissionDetails>();
+			md.SetEncounterId((string)enc["_id"]);
+		}
+		
+	}
+	
+	IDictionary GetEncounterByName(string name) {
+		foreach (IDictionary enc in encounters) {
+			string n = (string) enc["name"];
+			if (n == name) {
+				return enc;	
+			}
+		}
+		
+		return null;
+	}
+}
+

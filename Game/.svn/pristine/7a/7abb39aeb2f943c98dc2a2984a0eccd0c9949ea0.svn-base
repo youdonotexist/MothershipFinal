@@ -1,0 +1,150 @@
+using UnityEngine;
+using System.Collections;
+
+public class GamePlayHUD : MonoBehaviour
+{
+	public GameObject _heroHealthContainer;
+	public Renderer _heroHealthBar;
+	public Renderer _heroPortrait;
+	public UILabel _heroNameLabel;
+	public UILabel _heroLivesLabel;
+	public UISprite _heroLifeSprite;
+	public UISprite _curtain;
+	float heroLastHealth = 0.0f;
+	float heroColorRevertTime = 1.0f;
+	float heroColorRevertElapsed = 0.0f;
+	Color heroHealthStartColor;
+	Color heroHealthEffectColor;
+	
+	public UILabel _newLowScoreMessage;
+	
+	public Renderer _mothershipHealthBar;
+	float mothershipLastHealth = 0.0f;
+	float mothershipColorRevertTime = 1.0f;
+	float mothershipColorRevertElapsed = 0.0f;
+	Color mothershipHealthStartColor;
+	Color mothershipHealthEffectColor;
+	
+	public UILabel _heroScoreLabel;
+	private CurtainHelper _curtainHelper;
+	
+	float score = 0.0f;
+	
+	static GamePlayHUD _Instance;
+	public static GamePlayHUD Instance() {
+		if (_Instance == null) {
+			_Instance = GameObject.Find("GameplayHUD").GetComponent<GamePlayHUD>();	
+		}
+		
+		return _Instance;
+	}
+	
+	
+	public void SetNewHero(string name, int heroesLeft) {
+		_heroNameLabel.text = name;
+		_heroLivesLabel.text = "x" + heroesLeft.ToString();
+	}
+	
+	public void SetHeroHealthCount(float val, float maxHealth) {
+		float health = maxHealth - (maxHealth * val);
+		if (val < heroLastHealth) {
+			_heroHealthBar.material.SetColor("_Color", Color.red);
+			heroHealthEffectColor = Color.red;
+			heroColorRevertElapsed = 0.0f;
+		}
+		heroLastHealth = val;
+		_heroHealthBar.material.SetFloat("_ScanAmt", health);
+	}
+	
+	public void SetMothershipHealth(float val) {
+		if (val > mothershipLastHealth) {
+			_mothershipHealthBar.material.SetColor("_Color", Color.blue);
+			mothershipHealthEffectColor = Color.blue;
+			mothershipColorRevertElapsed = 0.0f;
+		}
+		else if (val < mothershipLastHealth) {
+			_mothershipHealthBar.material.SetColor("_Color", Color.red);
+			mothershipHealthEffectColor = Color.red;
+			mothershipColorRevertElapsed = 0.0f;
+		}
+		mothershipLastHealth = val;
+		_mothershipHealthBar.material.SetFloat("_ScanAmt", 30.0f * val);
+		
+	}
+	
+	void Awake() {
+		mothershipHealthStartColor = _mothershipHealthBar.material.GetColor("_Color");
+		heroHealthStartColor = _heroHealthBar.material.GetColor("_Color");
+		
+		_curtainHelper = GameObject.Find("UI Root").GetComponent<CurtainHelper>();
+	}
+	
+	void Start() {
+		_curtainHelper.AnimateCurtain(true, Color.black, Color.clear, 0.5f, null);
+	}
+	
+	void Update() {
+		_mothershipHealthBar.material.SetColor("_Color", Color.Lerp(mothershipHealthEffectColor, mothershipHealthStartColor, mothershipColorRevertElapsed/mothershipColorRevertTime));
+		_heroHealthBar.material.SetColor("_Color", Color.Lerp(heroHealthEffectColor, heroHealthStartColor, heroColorRevertElapsed/heroColorRevertTime));
+		
+		mothershipColorRevertElapsed += Time.deltaTime;
+		heroColorRevertElapsed += Time.deltaTime;
+	}
+	
+	public void UpdateSprite(string type) {
+		if (type == "BASIC") {
+			_heroLifeSprite.spriteName = "symbol-hero2";
+		}
+		else if (type == "JUGGERNAUT") {
+			_heroLifeSprite.spriteName = "symbol-jugg2";
+		}
+		else if (type == "SCIENTIST") {
+			_heroLifeSprite.spriteName = "symbol-sci2";	
+		}
+		
+	}
+	
+	public void AddToScore(float s) {
+		score += s;
+		_heroScoreLabel.text = score.ToString("00000000");//string.Format("{0:000000}", ((int)score).ToString());
+	}
+	
+	public void ShowNewLowScoreMessage() {
+		_newLowScoreMessage.gameObject.SetActive(true);
+		_newLowScoreMessage.text = "New Low Score:\n" + score.ToString("00000000");
+	}
+
+	public void SetPortraitTexture(Texture2D texture) {
+		if (texture == null) {
+			//Hide the Hero portrait
+			_heroPortrait.gameObject.SetActive(false);
+
+			//Move the HeroHealth and HeroName back
+			Vector3 namePos = _heroNameLabel.transform.localPosition;
+			Vector3 healthPos = _heroHealthContainer.transform.localPosition;
+
+			namePos.x = 2.0f;
+			healthPos.x = 0.0f;
+
+			_heroNameLabel.transform.localPosition = namePos;
+			_heroHealthContainer.transform.localPosition = healthPos;
+
+		}
+		else {
+			_heroPortrait.gameObject.SetActive(true);
+			_heroPortrait.material.mainTexture = texture;
+
+			//Move the HeroHealth and HeroName back
+			Vector3 namePos = _heroNameLabel.transform.localPosition;
+			Vector3 healthPos = _heroHealthContainer.transform.localPosition;
+			
+			namePos.x = 5.0f + (_heroPortrait.renderer.bounds.size.x * 0.5f);
+			healthPos.x = (_heroPortrait.renderer.bounds.size.x * 0.5f);
+			
+			_heroNameLabel.transform.localPosition = namePos;
+			_heroHealthContainer.transform.localPosition = healthPos;
+		}
+	}
+	
+}
+

@@ -1,0 +1,15 @@
+{"_id":{"$oid":"510e0d437a65d0e912bb34a8"},"action":"MOVE","hero_type_id":"BASIC"}
+{"_id":{"$oid":"510e0d4d7a65d0e912bb34a9"},"action":"FIRE MISSILE","hero_type_id":"BASIC"}
+{"_id":{"$oid":"510e0d6f7a65d0e912bb34ab"},"action":"DEPLOY SHIELD","hero_type_id":"BASIC"}
+{"_id":{"$oid":"510e0d7a7a65d0e912bb34ac"},"action":"DEPLOY MINE","hero_type_id":"BASIC"}
+{"_id":{"$oid":"510e14457a65d0e912bb34ad"},"action":"DEPLOY GRABBER","hero_type_id":"JUGGERNAUT"}
+{"_id":{"$oid":"510e14507a65d0e912bb34ae"},"action":"DEPLOY TURRETMINE","hero_type_id":"JUGGERNAUT"}
+{"_id":{"$oid":"510e145d7a65d0e912bb34af"},"action":"FIRE CHARGELASER","hero_type_id":"JUGGERNAUT"}
+{"_id":{"$oid":"510e14697a65d0e912bb34b0"},"action":"MOVE FORWARD","hero_type_id":"JUGGERNAUT"}
+{"_id":{"$oid":"510e14807a65d0e912bb34b1"},"action":"MOVE","hero_type_id":"JUGGERNAUT"}
+{"_id":{"$oid":"5122f56315c8c8ed02129934"},"action":"MOVE","hero_type_id":"SCIENTIST"}
+{"_id":{"$oid":"5122ff5415c8c8ed02129935"},"action":"MOVE FORWARD","hero_type_id":"SCIENTIST"}
+{"_id":{"$oid":"5122ff5f15c8c8ed02129936"},"action":"TELEPORT","hero_type_id":"SCIENTIST"}
+{"_id":{"$oid":"5122ff7515c8c8ed02129937"},"action":"DEPLOY BLACKHOLE","hero_type_id":"SCIENTIST"}
+{"_id":{"$oid":"5122ff8715c8c8ed02129938"},"action":"DEPLOY REFLECTSHIELD","hero_type_id":"SCIENTIST"}
+{"_id":{"$oid":"51761b6d6b96a14e94a9995b"},"action":"DEPLOY EMPMISSILE","hero_type_id":"SCIENTIST"}

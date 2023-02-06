@@ -1,0 +1,50 @@
+using UnityEngine;
+using System.Collections;
+
+/**
+ * A UpgraderCircle need to show three things: icon, selected state, equipped state
+ * More so, icon needs to be grey to show that it can't be downgraded to (old)
+ */ 
+
+public class UpgraderCircle : MonoBehaviour
+{
+	public UIButton _button;
+	public UISprite _background;
+	public UISprite _ring;
+	public UISprite _minionType;
+
+	PortState.MinionTypeDetails cachedDetails;
+
+	public int typeContext;
+	public int levelContext;
+
+	void Awake() {
+		UISprite[] sprites = GetComponentsInChildren<UISprite>();
+		for (int i = 0; i < sprites.Length; i++) {
+			UISprite sprite = sprites[i];
+			if (sprite.name == name) {
+				_background = sprite;
+			}
+			else if (sprite.name == "Ring") {
+				_ring = sprite;
+			}
+			else if (sprite.name == "Icon") {
+				_minionType = sprite;
+			}
+		}
+
+		_button = GetComponent<UIButton>();
+	}
+
+	public void SetDetails(bool equipped, bool old, string spriteName) {
+		_ring.color = equipped ? Color.green : Color.black;
+		_minionType.color = old ? Color.white : Color.white;
+		_minionType.spriteName = spriteName;
+	}
+
+	public void SetSelected(bool selected) {
+		_background.color = selected ? Color.white : Color.grey;
+		_button.defaultColor = selected ? Color.white : Color.grey;
+	}
+}
+

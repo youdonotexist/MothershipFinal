@@ -1,0 +1,65 @@
+using UnityEngine;
+using System.Collections;
+
+public class Mine : MonoBehaviour
+{
+	public MineNode _node;
+	
+	AudioSource _source;
+	public AudioClip _deployClip;
+	public AudioClip _DestroyClip;
+	public AudioClip _grabClip;
+	
+	public bool animating = true;
+	
+	void Start() {
+		if (_source == null) {
+			_source = gameObject.AddComponent<AudioSource>();
+		}
+		
+		_source.PlayOneShot(_deployClip);
+	}
+	
+	void OnCollisionEnter(Collision c) {
+		
+		Damagable d = c.gameObject.GetComponent<Damagable>();
+		if (d != null)
+			d.OnDamage(100.0f, gameObject.layer);
+		
+		GameState.Instance.audioSource.PlayOneShot(_DestroyClip);
+		
+		Destroy (gameObject);
+	}
+	
+	void OnDestroy() {
+		if (_node != null) {
+			_node._object = null;
+		}
+	}
+	
+	public void AnimateMine(Vector3 start, Vector3 end) {
+		collider.enabled = false;
+		rigidbody.MovePosition(start);
+		StartCoroutine(AnimateMineRoutine(start, end));	
+	}
+	
+	IEnumerator AnimateMineRoutine(Vector3 start, Vector3 end) {
+		float duration = 2.0f;
+		float elapsed = 0.0f;
+		
+		while (elapsed < duration) {
+			rigidbody.MovePosition(Vector3.Lerp(start, end, elapsed/duration));
+			
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+		
+		collider.enabled = true;
+		animating = false;
+	}
+	
+	public void OnBecameInvisible() {
+		Destroy (gameObject);	
+	}
+}
+

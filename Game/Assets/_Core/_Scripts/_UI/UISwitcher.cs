@@ -1,0 +1,165 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class UISwitcher : MonoBehaviour {
+	
+	public UIFont nesFont;
+	public UIFont msFont;
+	public UIFont latestFont;
+
+	UIAtlas _nesAtlas;
+	UIAtlas _msAtlas;
+	UIAtlas _snesAtlas;
+	UIAtlas _psAtlas;
+
+	public bool switchSprites = true;
+	
+	void Awake	() {
+		SetUp(null);
+	}
+
+	public void SetUp(string type) {
+		UILabel[] labels = GetComponentsInChildren<UILabel>();
+		UIFont currentFont = GetCurrentFont(type);
+		UIAtlas currentAtlas = AtlasForType(type);
+		for (int i = 0; i < labels.Length; i++) {
+			labels[i].bitmapFont = currentFont;
+		}
+
+		if (switchSprites) {
+			UISprite[] widgets = GetComponentsInChildren<UISprite>();
+			for (int i = 0; i < widgets.Length; i++) {
+				widgets[i].atlas = currentAtlas;
+
+				///TODO - Remove this debug
+				///
+				if (currentAtlas != null) {
+					UISpriteData sprite = currentAtlas.GetSprite(widgets[i].spriteName);
+					if (sprite == null) {
+						Debug.LogError("Missing UISprite: " + widgets[i].spriteName + " for atlas " + currentAtlas.name + " for GameObject " + widgets[i].name);
+					}
+				}
+				//////////////////
+			}
+		}
+
+		UIColorSwitcher[] colorSwitchers = GetComponentsInChildren<UIColorSwitcher>();
+		for (int i = 0; i < colorSwitchers.Length; i++) {
+			colorSwitchers[i].SwitchColor(type == null ? ExtractType() : type);
+		}
+
+		Messenger.AddListener("InitUiLabel", new Callback<UILabel>(UpdateUiLabel));
+	}
+
+	string ExtractType() {
+		string qualityType = MissionDetails.Instance.encounterType;
+		if ("BASIC".Equals(qualityType)) {
+			return "nes";
+		}
+		else if ("JUGGERNAUT".Equals(qualityType)) {
+			return "ms";
+		}
+		else if ("SCIENTIST".Equals(qualityType)) {
+			return "snes";
+		}
+		else {
+			return "snes";
+		}
+	}
+
+	
+	UIFont GetCurrentFont(string type) {
+		string qualityType = type;
+		if (type == null)
+			qualityType = ExtractType();
+
+		if ("nes".Equals(qualityType)) {
+			return nesFont;
+		}
+		else if ("ms".Equals(qualityType)) {
+			return msFont;
+		}
+		else if ("snes".Equals(qualityType)) {
+			return latestFont;
+		}
+		else {
+			return latestFont;
+		}
+	}
+
+	public UIAtlas AtlasForType(string type) {
+		string qualityType = type;
+		if (type == null)
+			qualityType = ExtractType();
+
+		if ("nes".Equals(qualityType)) {
+			return loadNesAtlas();
+		}
+		else if ("ms".Equals(qualityType)) {
+			return loadMsAtlas();
+		}
+		else if ("snes".Equals(qualityType)) {
+			return loadSnesAtlas();
+		}
+		else {
+			return loadSnesAtlas();
+		}
+	}
+	
+	public UIAtlas loadNesAtlas() {
+		if (_nesAtlas == null) {
+			this._nesAtlas = (UIAtlas) Resources.Load("Atlases/_UIAtlases/NesUiAtlas", typeof(UIAtlas));	
+			
+			Resources.UnloadAsset(this._snesAtlas);
+			Resources.UnloadAsset(this._msAtlas);
+			Resources.UnloadAsset(this._psAtlas);
+			
+			this._snesAtlas = null;
+			this._msAtlas = null;
+			this._psAtlas = null;
+		}
+		
+		return _nesAtlas;
+	}
+	
+	public UIAtlas loadMsAtlas() {
+		if (_msAtlas == null) {
+			this._msAtlas = (UIAtlas) Resources.Load("Atlases/_UIAtlases/MsUiAtlas", typeof(UIAtlas));
+			
+			Resources.UnloadAsset(this._snesAtlas);
+			Resources.UnloadAsset(this._nesAtlas);
+			Resources.UnloadAsset(this._psAtlas);
+			
+			this._snesAtlas = null;
+			this._nesAtlas = null;
+			this._psAtlas = null;
+		}
+		
+		return _msAtlas;
+	}
+	
+	public UIAtlas loadSnesAtlas() {
+		if (_snesAtlas == null) {
+			this._snesAtlas = (UIAtlas) Resources.Load("Atlases/_UIAtlases/SnesUiAtlas", typeof(UIAtlas));
+			
+			Resources.UnloadAsset(this._msAtlas);
+			Resources.UnloadAsset(this._nesAtlas);
+			Resources.UnloadAsset(this._psAtlas);
+			
+			this._msAtlas = null;
+			this._nesAtlas = null;
+			this._psAtlas = null;
+		}
+		
+		return _snesAtlas;
+	}
+
+	public void UpdateUiLabel(UILabel label) {
+		Debug.Log ("ladjf;kajsfkljaslkdjfaklsd");
+		label.bitmapFont = GetCurrentFont(null);
+	}
+
+	void OnDestroy() {
+		Messenger.RemoveListener("InitUiLabel", new Callback<UILabel>(UpdateUiLabel));
+	}
+}

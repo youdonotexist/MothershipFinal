@@ -1,0 +1,2336 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1155214310, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: MSAtlas
+  m_EditorClassIdentifier: 
+  elements:
+  - name: asteroid-6-1
+    originalWidth: 128
+    originalHeight: 128
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 13
+      width: 114
+      height: 102
+    coords:
+      serializedVersion: 2
+      x: .9140625
+      y: .453613281
+      width: .0556640625
+      height: .0498046875
+    rotated: 0
+  - name: asteroid-6-1-v2
+    originalWidth: 64
+    originalHeight: 64
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 5
+      width: 64
+      height: 54
+    coords:
+      serializedVersion: 2
+      x: .66796875
+      y: .828613281
+      width: .03125
+      height: .0263671875
+    rotated: 0
+  - name: ms-arm
+    originalWidth: 100
+    originalHeight: 40
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 100
+      height: 40
+    coords:
+      serializedVersion: 2
+      x: .900878906
+      y: .835449219
+      width: .048828125
+      height: .01953125
+    rotated: 0
+  - name: ms-bullethell-dn-f1
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 13
+      width: 186
+      height: 138
+    coords:
+      serializedVersion: 2
+      x: .366210938
+      y: .436035156
+      width: .0908203125
+      height: .0673828125
+    rotated: 0
+  - name: ms-bullethell-dn-f2
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 13
+      width: 186
+      height: 138
+    coords:
+      serializedVersion: 2
+      x: .518554688
+      y: .516601562
+      width: .0908203125
+      height: .0673828125
+    rotated: 0
+  - name: ms-bullethell-dn-f3
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 19
+      y: 13
+      width: 180
+      height: 138
+    coords:
+      serializedVersion: 2
+      x: .700195312
+      y: .516601562
+      width: .087890625
+      height: .0673828125
+    rotated: 0
+  - name: ms-bullethell-f1
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 1
+      width: 186
+      height: 162
+    coords:
+      serializedVersion: 2
+      x: .5625
+      y: .646972656
+      width: .0908203125
+      height: .0791015625
+    rotated: 0
+  - name: ms-bullethell-f2
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 1
+      width: 186
+      height: 162
+    coords:
+      serializedVersion: 2
+      x: .747070312
+      y: .646972656
+      width: .0908203125
+      height: .0791015625
+    rotated: 0
+  - name: ms-bullethell-f3
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 19
+      y: 1
+      width: 180
+      height: 162
+    coords:
+      serializedVersion: 2
+      x: .473144531
+      y: .646972656
+      width: .087890625
+      height: .0791015625
+    rotated: 0
+  - name: ms-bullethell-up-f1
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 13
+      width: 186
+      height: 138
+    coords:
+      serializedVersion: 2
+      x: .55078125
+      y: .436035156
+      width: .0908203125
+      height: .0673828125
+    rotated: 0
+  - name: ms-bullethell-up-f2
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 13
+      width: 186
+      height: 138
+    coords:
+      serializedVersion: 2
+      x: .458496094
+      y: .436035156
+      width: .0908203125
+      height: .0673828125
+    rotated: 0
+  - name: ms-bullethell-up-f3
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 19
+      y: 13
+      width: 180
+      height: 138
+    coords:
+      serializedVersion: 2
+      x: .429199219
+      y: .516601562
+      width: .087890625
+      height: .0673828125
+    rotated: 0
+  - name: ms-damage-1
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 83
+      y: 132
+      width: 156
+      height: 144
+    coords:
+      serializedVersion: 2
+      x: .273925781
+      y: .513671875
+      width: .076171875
+      height: .0703125
+    rotated: 0
+  - name: ms-damage-2
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 293
+      y: 54
+      width: 192
+      height: 102
+    coords:
+      serializedVersion: 2
+      x: .0541992188
+      y: .384765625
+      width: .09375
+      height: .0498046875
+    rotated: 0
+  - name: ms-damage-3
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 503
+      y: 84
+      width: 138
+      height: 204
+    coords:
+      serializedVersion: 2
+      x: .153808594
+      y: .626464844
+      width: .0673828125
+      height: .099609375
+    rotated: 0
+  - name: ms-damage-4
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 503
+      y: 378
+      width: 138
+      height: 204
+    coords:
+      serializedVersion: 2
+      x: .915527344
+      y: .900390625
+      width: .0673828125
+      height: .099609375
+    rotated: 0
+  - name: ms-damage-5
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 245
+      y: 546
+      width: 180
+      height: 66
+    coords:
+      serializedVersion: 2
+      x: .570800781
+      y: .351074219
+      width: .087890625
+      height: .0322265625
+    rotated: 0
+  - name: ms-damage-6
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 83
+      y: 396
+      width: 156
+      height: 138
+    coords:
+      serializedVersion: 2
+      x: .789550781
+      y: .516601562
+      width: .076171875
+      height: .0673828125
+    rotated: 0
+  - name: ms-dock-bottom-f0
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .448242188
+      y: .734863281
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-bottom-f1
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .643066406
+      y: .447753906
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-bottom-f2
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .394042969
+      y: .734863281
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-bottom-f3
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .665039062
+      y: .734863281
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-bottom-f4
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .805664062
+      y: .447753906
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-bottom-ready1
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .719238281
+      y: .734863281
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-bottom-ready2
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .697265625
+      y: .447753906
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-bottom-ready3
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .936035156
+      y: .734863281
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-mid-f0
+    originalWidth: 114
+    originalHeight: 78
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 114
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .377929688
+      y: .345214844
+      width: .0556640625
+      height: .0380859375
+    rotated: 0
+  - name: ms-dock-mid-f1
+    originalWidth: 114
+    originalHeight: 78
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 114
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .320800781
+      y: .345214844
+      width: .0556640625
+      height: .0380859375
+    rotated: 0
+  - name: ms-dock-mid-f2
+    originalWidth: 114
+    originalHeight: 78
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 114
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .6796875
+      y: .586914062
+      width: .0556640625
+      height: .0380859375
+    rotated: 0
+  - name: ms-dock-mid-f3
+    originalWidth: 114
+    originalHeight: 78
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 114
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .580078125
+      y: .586914062
+      width: .0556640625
+      height: .0380859375
+    rotated: 0
+  - name: ms-dock-mid-f4
+    originalWidth: 114
+    originalHeight: 78
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 114
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .395507812
+      y: .586914062
+      width: .0556640625
+      height: .0380859375
+    rotated: 0
+  - name: ms-dock-mid-ready1
+    originalWidth: 114
+    originalHeight: 78
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 114
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .253417969
+      y: .586914062
+      width: .0556640625
+      height: .0380859375
+    rotated: 0
+  - name: ms-dock-mid-ready2
+    originalWidth: 114
+    originalHeight: 78
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 114
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .779296875
+      y: .586914062
+      width: .0556640625
+      height: .0380859375
+    rotated: 0
+  - name: ms-dock-mid-ready3
+    originalWidth: 114
+    originalHeight: 78
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 114
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .196289062
+      y: .586914062
+      width: .0556640625
+      height: .0380859375
+    rotated: 0
+  - name: ms-dock-top-0
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .502441406
+      y: .734863281
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-top-1
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .751464844
+      y: .447753906
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-top-2
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .859863281
+      y: .447753906
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-top-3
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .7734375
+      y: .734863281
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-top-4
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .556640625
+      y: .734863281
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-top-readyf1
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .881835938
+      y: .734863281
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-top-readyf2
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .827636719
+      y: .734863281
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-dock-top-readyf3
+    originalWidth: 108
+    originalHeight: 114
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 108
+      height: 114
+    coords:
+      serializedVersion: 2
+      x: .610839844
+      y: .734863281
+      width: .052734375
+      height: .0556640625
+    rotated: 0
+  - name: ms-energy-f1
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 1
+      y: 1
+      width: 48
+      height: 48
+    coords:
+      serializedVersion: 2
+      x: .750488281
+      y: .831542969
+      width: .0234375
+      height: .0234375
+    rotated: 0
+  - name: ms-energy-f2
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 1
+      width: 36
+      height: 48
+    coords:
+      serializedVersion: 2
+      x: .819335938
+      y: .831542969
+      width: .017578125
+      height: .0234375
+    rotated: 0
+  - name: ms-energy-f3
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 1
+      width: 24
+      height: 48
+    coords:
+      serializedVersion: 2
+      x: .984375
+      y: .926757812
+      width: .01171875
+      height: .0234375
+    rotated: 0
+  - name: ms-energy-f4
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 1
+      width: 24
+      height: 48
+    coords:
+      serializedVersion: 2
+      x: .984375
+      y: .951660156
+      width: .01171875
+      height: .0234375
+    rotated: 0
+  - name: ms-energy-f5
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 1
+      width: 24
+      height: 48
+    coords:
+      serializedVersion: 2
+      x: .984375
+      y: .9765625
+      width: .01171875
+      height: .0234375
+    rotated: 0
+  - name: ms-energy-f6
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 1
+      width: 24
+      height: 48
+    coords:
+      serializedVersion: 2
+      x: .984375
+      y: .901855469
+      width: .01171875
+      height: .0234375
+    rotated: 0
+  - name: ms-energy-f7
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 1
+      width: 36
+      height: 48
+    coords:
+      serializedVersion: 2
+      x: .775390625
+      y: .831542969
+      width: .017578125
+      height: .0234375
+    rotated: 0
+  - name: ms-energy-f8
+    originalWidth: 50
+    originalHeight: 50
+    trimRect:
+      serializedVersion: 2
+      x: 1
+      y: 1
+      width: 48
+      height: 48
+    coords:
+      serializedVersion: 2
+      x: .794433594
+      y: .831542969
+      width: .0234375
+      height: .0234375
+    rotated: 0
+  - name: ms-explode-f1
+    originalWidth: 120
+    originalHeight: 120
+    trimRect:
+      serializedVersion: 2
+      x: 12
+      y: 18
+      width: 90
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .339355469
+      width: .0439453125
+      height: .0439453125
+    rotated: 0
+  - name: ms-explode-f2
+    originalWidth: 120
+    originalHeight: 120
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 12
+      width: 108
+      height: 102
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .384765625
+      width: .052734375
+      height: .0498046875
+    rotated: 0
+  - name: ms-explode-f3
+    originalWidth: 120
+    originalHeight: 120
+    trimRect:
+      serializedVersion: 2
+      x: 6
+      y: 0
+      width: 114
+      height: 120
+    coords:
+      serializedVersion: 2
+      x: .276855469
+      y: .731933594
+      width: .0556640625
+      height: .05859375
+    rotated: 0
+  - name: ms-explode-f4
+    originalWidth: 120
+    originalHeight: 120
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 120
+      height: 120
+    coords:
+      serializedVersion: 2
+      x: .333984375
+      y: .731933594
+      width: .05859375
+      height: .05859375
+    rotated: 0
+  - name: ms-grappler-f1
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 65
+    coords:
+      serializedVersion: 2
+      x: .959472656
+      y: .516601562
+      width: .0341796875
+      height: .0317382812
+    rotated: 0
+  - name: ms-grappler-f2
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 5
+      y: 0
+      width: 60
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .470703125
+      y: .349121094
+      width: .029296875
+      height: .0341796875
+    rotated: 0
+  - name: ms-grappler-f3
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 11
+      y: 0
+      width: 48
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .959472656
+      y: .549804688
+      width: .0234375
+      height: .0341796875
+    rotated: 0
+  - name: ms-joint
+    originalWidth: 25
+    originalHeight: 25
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 24
+      height: 24
+    coords:
+      serializedVersion: 2
+      x: .513671875
+      y: .811035156
+      width: .01171875
+      height: .01171875
+    rotated: 0
+  - name: ms-jugg2-f1
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 1
+      width: 186
+      height: 162
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .504882812
+      width: .0908203125
+      height: .0791015625
+    rotated: 0
+  - name: ms-jugg2-f2
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 1
+      width: 186
+      height: 162
+    coords:
+      serializedVersion: 2
+      x: .306152344
+      y: .646972656
+      width: .0908203125
+      height: .0791015625
+    rotated: 0
+  - name: ms-jugg2-f3
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 19
+      y: 1
+      width: 180
+      height: 162
+    coords:
+      serializedVersion: 2
+      x: .184570312
+      y: .504882812
+      width: .087890625
+      height: .0791015625
+    rotated: 0
+  - name: ms-jugg-dn-f1
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 13
+      width: 186
+      height: 138
+    coords:
+      serializedVersion: 2
+      x: .273925781
+      y: .436035156
+      width: .0908203125
+      height: .0673828125
+    rotated: 0
+  - name: ms-jugg-dn-f2
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 13
+      width: 186
+      height: 138
+    coords:
+      serializedVersion: 2
+      x: .8671875
+      y: .516601562
+      width: .0908203125
+      height: .0673828125
+    rotated: 0
+  - name: ms-jugg-dn-f3
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 19
+      y: 13
+      width: 180
+      height: 138
+    coords:
+      serializedVersion: 2
+      x: .610839844
+      y: .516601562
+      width: .087890625
+      height: .0673828125
+    rotated: 0
+  - name: ms-jugg-f1
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 1
+      width: 186
+      height: 162
+    coords:
+      serializedVersion: 2
+      x: .0922851562
+      y: .504882812
+      width: .0908203125
+      height: .0791015625
+    rotated: 0
+  - name: ms-jugg-f2
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 1
+      width: 186
+      height: 162
+    coords:
+      serializedVersion: 2
+      x: .654785156
+      y: .646972656
+      width: .0908203125
+      height: .0791015625
+    rotated: 0
+  - name: ms-jugg-f3
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 19
+      y: 1
+      width: 180
+      height: 162
+    coords:
+      serializedVersion: 2
+      x: .839355469
+      y: .646972656
+      width: .087890625
+      height: .0791015625
+    rotated: 0
+  - name: ms-jugg-up-f1
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 13
+      width: 186
+      height: 138
+    coords:
+      serializedVersion: 2
+      x: .0922851562
+      y: .436035156
+      width: .0908203125
+      height: .0673828125
+    rotated: 0
+  - name: ms-jugg-up-f2
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 13
+      y: 13
+      width: 186
+      height: 138
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .436035156
+      width: .0908203125
+      height: .0673828125
+    rotated: 0
+  - name: ms-jugg-up-f3
+    originalWidth: 200
+    originalHeight: 165
+    trimRect:
+      serializedVersion: 2
+      x: 19
+      y: 13
+      width: 180
+      height: 138
+    coords:
+      serializedVersion: 2
+      x: .184570312
+      y: .436035156
+      width: .087890625
+      height: .0673828125
+    rotated: 0
+  - name: ms-lasercannon1-charge-f1
+    originalWidth: 75
+    originalHeight: 75
+    trimRect:
+      serializedVersion: 2
+      x: 1
+      y: 7
+      width: 66
+      height: 60
+    coords:
+      serializedVersion: 2
+      x: .563964844
+      y: .825683594
+      width: .0322265625
+      height: .029296875
+    rotated: 0
+  - name: ms-lasercannon1-charge-f2
+    originalWidth: 75
+    originalHeight: 75
+    trimRect:
+      serializedVersion: 2
+      x: 1
+      y: 7
+      width: 66
+      height: 66
+    coords:
+      serializedVersion: 2
+      x: .537109375
+      y: .351074219
+      width: .0322265625
+      height: .0322265625
+    rotated: 0
+  - name: ms-lasercannon1-charge-f3
+    originalWidth: 75
+    originalHeight: 75
+    trimRect:
+      serializedVersion: 2
+      x: 1
+      y: 13
+      width: 66
+      height: 54
+    coords:
+      serializedVersion: 2
+      x: .59765625
+      y: .828613281
+      width: .0322265625
+      height: .0263671875
+    rotated: 0
+  - name: ms-lasercannon2-fire1
+    originalWidth: 32
+    originalHeight: 32
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 13
+      width: 32
+      height: 5
+    coords:
+      serializedVersion: 2
+      x: .716308594
+      y: .8203125
+      width: .015625
+      height: .00244140625
+    rotated: 0
+  - name: ms-lasercannon2-fire2
+    originalWidth: 32
+    originalHeight: 32
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 13
+      width: 32
+      height: 5
+    coords:
+      serializedVersion: 2
+      x: .69921875
+      y: .8203125
+      width: .015625
+      height: .00244140625
+    rotated: 0
+  - name: ms-lasercannon2-fire3
+    originalWidth: 32
+    originalHeight: 32
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 11
+      width: 32
+      height: 9
+    coords:
+      serializedVersion: 2
+      x: .630371094
+      y: .818359375
+      width: .015625
+      height: .00439453125
+    rotated: 0
+  - name: ms-lasercannon2-fire4
+    originalWidth: 32
+    originalHeight: 32
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 7
+      width: 32
+      height: 17
+    coords:
+      serializedVersion: 2
+      x: .569824219
+      y: .814453125
+      width: .015625
+      height: .00830078125
+    rotated: 0
+  - name: ms-lasercannon2-fire5
+    originalWidth: 32
+    originalHeight: 32
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 5
+      width: 32
+      height: 22
+    coords:
+      serializedVersion: 2
+      x: .526855469
+      y: .812011719
+      width: .015625
+      height: .0107421875
+    rotated: 0
+  - name: ms-lasercannon2-fire6
+    originalWidth: 32
+    originalHeight: 32
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 32
+      height: 29
+    coords:
+      serializedVersion: 2
+      x: .470703125
+      y: .80859375
+      width: .015625
+      height: .0141601562
+    rotated: 0
+  - name: ms-lasercannon2-fire7
+    originalWidth: 32
+    originalHeight: 32
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 32
+      height: 32
+    coords:
+      serializedVersion: 2
+      x: .976074219
+      y: .839355469
+      width: .015625
+      height: .015625
+    rotated: 0
+  - name: ms-lasercannon2-fire-startpoint1
+    originalWidth: 50
+    originalHeight: 6
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 6
+    coords:
+      serializedVersion: 2
+      x: .647460938
+      y: .819824219
+      width: .0244140625
+      height: .0029296875
+    rotated: 0
+  - name: ms-lasercannon2-fire-startpoint2
+    originalWidth: 50
+    originalHeight: 6
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 6
+    coords:
+      serializedVersion: 2
+      x: .673339844
+      y: .819824219
+      width: .0244140625
+      height: .0029296875
+    rotated: 0
+  - name: ms-lasercannon2-fire-startpoint3
+    originalWidth: 50
+    originalHeight: 10
+    trimRect:
+      serializedVersion: 2
+      x: 3
+      y: 0
+      width: 47
+      height: 10
+    coords:
+      serializedVersion: 2
+      x: .605957031
+      y: .817871094
+      width: .0229492188
+      height: .0048828125
+    rotated: 0
+  - name: ms-lasercannon2-fire-startpoint4
+    originalWidth: 50
+    originalHeight: 20
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 50
+      height: 18
+    coords:
+      serializedVersion: 2
+      x: .543945312
+      y: .813964844
+      width: .0244140625
+      height: .0087890625
+    rotated: 0
+  - name: ms-lasercannon2-fire-startpoint5
+    originalWidth: 50
+    originalHeight: 25
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 24
+    coords:
+      serializedVersion: 2
+      x: .487792969
+      y: .811035156
+      width: .0244140625
+      height: .01171875
+    rotated: 0
+  - name: ms-lasercannon2-fire-startpoint6
+    originalWidth: 50
+    originalHeight: 30
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 30
+    coords:
+      serializedVersion: 2
+      x: .444824219
+      y: .808105469
+      width: .0244140625
+      height: .0146484375
+    rotated: 0
+  - name: ms-lasercannon2-fire-startpoint7
+    originalWidth: 50
+    originalHeight: 35
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 35
+    coords:
+      serializedVersion: 2
+      x: .418945312
+      y: .805664062
+      width: .0244140625
+      height: .0170898438
+    rotated: 0
+  - name: ms-lasercannon2-startpoint
+    originalWidth: 50
+    originalHeight: 40
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 50
+      height: 40
+    coords:
+      serializedVersion: 2
+      x: .875
+      y: .835449219
+      width: .0244140625
+      height: .01953125
+    rotated: 0
+  - name: ms-lasercannon-hit-f1
+    originalWidth: 175
+    originalHeight: 175
+    trimRect:
+      serializedVersion: 2
+      x: 6
+      y: 12
+      width: 156
+      height: 144
+    coords:
+      serializedVersion: 2
+      x: .3515625
+      y: .513671875
+      width: .076171875
+      height: .0703125
+    rotated: 0
+  - name: ms-lasercannon-hit-f2
+    originalWidth: 175
+    originalHeight: 175
+    trimRect:
+      serializedVersion: 2
+      x: 18
+      y: 0
+      width: 150
+      height: 162
+    coords:
+      serializedVersion: 2
+      x: .3984375
+      y: .646972656
+      width: .0732421875
+      height: .0791015625
+    rotated: 0
+  - name: ms-lasercannon-hit-f3
+    originalWidth: 175
+    originalHeight: 175
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 6
+      width: 168
+      height: 168
+    coords:
+      serializedVersion: 2
+      x: .22265625
+      y: .644042969
+      width: .08203125
+      height: .08203125
+    rotated: 0
+  - name: ms-lasercannon-hit-sm-f1
+    originalWidth: 90
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 90
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .391113281
+      y: .390625
+      width: .0439453125
+      height: .0439453125
+    rotated: 0
+  - name: ms-lasercannon-hit-sm-f2
+    originalWidth: 90
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 90
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .871582031
+      y: .390625
+      width: .0439453125
+      height: .0439453125
+    rotated: 0
+  - name: ms-lasercannon-hit-sm-f3
+    originalWidth: 90
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 6
+      width: 90
+      height: 84
+    coords:
+      serializedVersion: 2
+      x: .190429688
+      y: .342285156
+      width: .0439453125
+      height: .041015625
+    rotated: 0
+  - name: ms-laserhitjugg-f1
+    originalWidth: 48
+    originalHeight: 48
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 48
+      height: 48
+    coords:
+      serializedVersion: 2
+      x: .700683594
+      y: .831542969
+      width: .0234375
+      height: .0234375
+    rotated: 0
+  - name: ms-laserhitjugg-f2
+    originalWidth: 48
+    originalHeight: 48
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 48
+      height: 48
+    coords:
+      serializedVersion: 2
+      x: .725585938
+      y: .831542969
+      width: .0234375
+      height: .0234375
+    rotated: 0
+  - name: ms-laserhitjugg-f3
+    originalWidth: 48
+    originalHeight: 48
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 48
+      height: 36
+    coords:
+      serializedVersion: 2
+      x: .951171875
+      y: .837402344
+      width: .0234375
+      height: .017578125
+    rotated: 0
+  - name: ms-laserjugg
+    originalWidth: 75
+    originalHeight: 45
+    trimRect:
+      serializedVersion: 2
+      x: 1
+      y: 1
+      width: 72
+      height: 42
+    coords:
+      serializedVersion: 2
+      x: .838378906
+      y: .834472656
+      width: .03515625
+      height: .0205078125
+    rotated: 0
+  - name: ms-laserturret
+    originalWidth: 50
+    originalHeight: 25
+    trimRect:
+      serializedVersion: 2
+      x: 7
+      y: 6
+      width: 36
+      height: 12
+    coords:
+      serializedVersion: 2
+      x: .586914062
+      y: .816894531
+      width: .017578125
+      height: .005859375
+    rotated: 0
+  - name: ms-mineturret-f1
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .435058594
+      y: .349121094
+      width: .0341796875
+      height: .0341796875
+    rotated: 0
+  - name: ms-mineturret-f2
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .501464844
+      y: .349121094
+      width: .0341796875
+      height: .0341796875
+    rotated: 0
+  - name: ms-mineturret-f3
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .965332031
+      y: .400390625
+      width: .0341796875
+      height: .0341796875
+    rotated: 0
+  - name: ms-mineturret-f4
+    originalWidth: 70
+    originalHeight: 70
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 70
+      height: 70
+    coords:
+      serializedVersion: 2
+      x: .963867188
+      y: .590820312
+      width: .0341796875
+      height: .0341796875
+    rotated: 0
+  - name: ms-minion-2hit-lvl1-1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .235839844
+      y: .345214844
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-2hit-lvl1-2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .278320312
+      y: .345214844
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-2hit-lvl2-1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .87890625
+      y: .586914062
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-2hit-lvl2-2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .153808594
+      y: .586914062
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-2hit-lvl3-1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 7
+      width: 84
+      height: 66
+    coords:
+      serializedVersion: 2
+      x: .66015625
+      y: .351074219
+      width: .041015625
+      height: .0322265625
+    rotated: 0
+  - name: ms-minion-2hit-lvl3-2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .353027344
+      y: .586914062
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-normal-lvl1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .637207031
+      y: .586914062
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-shield-lvl1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .958007812
+      y: .860839844
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-shield-lvl2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .836425781
+      y: .586914062
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-shield-lvl3
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .495117188
+      y: .586914062
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-speed-lvl1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .452636719
+      y: .586914062
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-speed-lvl2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .736816406
+      y: .586914062
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-speed-lvl3
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .921386719
+      y: .586914062
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-split-lvl1
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .915527344
+      y: .860839844
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-split-lvl2
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .537597656
+      y: .586914062
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-split-lvl3
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 1
+      width: 84
+      height: 78
+    coords:
+      serializedVersion: 2
+      x: .310546875
+      y: .586914062
+      width: .041015625
+      height: .0380859375
+    rotated: 0
+  - name: ms-minion-splitmini
+    originalWidth: 85
+    originalHeight: 80
+    trimRect:
+      serializedVersion: 2
+      x: 6
+      y: 13
+      width: 72
+      height: 54
+    coords:
+      serializedVersion: 2
+      x: .631347656
+      y: .828613281
+      width: .03515625
+      height: .0263671875
+    rotated: 0
+  - name: ms-mothership
+    originalWidth: 700
+    originalHeight: 655
+    trimRect:
+      serializedVersion: 2
+      x: 77
+      y: 54
+      width: 564
+      height: 558
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .727539062
+      width: .275390625
+      height: .272460938
+    rotated: 0
+  - name: ms-mothership-core-caution-f1
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .0454101562
+      y: .339355469
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-caution-f2
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .149414062
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-caution-f2
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 296
+      y: 258
+      width: 134
+      height: 149
+    coords:
+      serializedVersion: 2
+      x: .928710938
+      y: .653320312
+      width: .0654296875
+      height: .0727539062
+    rotated: 0
+  - name: ms-mothership-core-caution-f3
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .629882812
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-caution-f4
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .823242188
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-critical-f1
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .436523438
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-critical-f2
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .142089844
+      y: .339355469
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-critical-f3
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .294433594
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-critical-f3
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .342773438
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-critical-f4
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .484863281
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-danger-f1
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .533203125
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-danger-f2
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .581542969
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-danger-f3
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .774902344
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-danger-f4
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .7265625
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-fine-f1
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .678222656
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-fine-f2
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .916992188
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-fine-f3
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .197753906
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-fine-f3
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .24609375
+      y: .390625
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-mothership-core-fine-f4
+    originalWidth: 96
+    originalHeight: 90
+    trimRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 90
+    coords:
+      serializedVersion: 2
+      x: .09375
+      y: .339355469
+      width: .046875
+      height: .0439453125
+    rotated: 0
+  - name: ms-wreckage-1
+    originalWidth: 405
+    originalHeight: 295
+    trimRect:
+      serializedVersion: 2
+      x: 34
+      y: 1
+      width: 312
+      height: 294
+    coords:
+      serializedVersion: 2
+      x: .563964844
+      y: .856445312
+      width: .15234375
+      height: .143554688
+    rotated: 0
+  - name: ms-wreckage-2
+    originalWidth: 409
+    originalHeight: 298
+    trimRect:
+      serializedVersion: 2
+      x: 2
+      y: 3
+      width: 402
+      height: 288
+    coords:
+      serializedVersion: 2
+      x: .717773438
+      y: .859375
+      width: .196289062
+      height: .140625
+    rotated: 0
+  - name: ms-wreckage-3
+    originalWidth: 300
+    originalHeight: 379
+    trimRect:
+      serializedVersion: 2
+      x: 1
+      y: 10
+      width: 294
+      height: 360
+    coords:
+      serializedVersion: 2
+      x: .418945312
+      y: .82421875
+      width: .143554688
+      height: .17578125
+    rotated: 0
+  - name: ms-wreckage-4
+    originalWidth: 330
+    originalHeight: 303
+    trimRect:
+      serializedVersion: 2
+      x: 15
+      y: 5
+      width: 312
+      height: 288
+    coords:
+      serializedVersion: 2
+      x: 0
+      y: .585449219
+      width: .15234375
+      height: .140625
+    rotated: 0
+  - name: ms-wreckage-5
+    originalWidth: 305
+    originalHeight: 443
+    trimRect:
+      serializedVersion: 2
+      x: 11
+      y: 9
+      width: 288
+      height: 426
+    coords:
+      serializedVersion: 2
+      x: .276855469
+      y: .791992188
+      width: .140625
+      height: .208007812
+    rotated: 0
+  material: {fileID: 2100000, guid: 36d4f24c49ce2450dbbb5f1b28a10883, type: 2}
+  texture: {fileID: 2800000, guid: a42b8b3478c0a4ff4a6fd6e34ff60fc5, type: 3}

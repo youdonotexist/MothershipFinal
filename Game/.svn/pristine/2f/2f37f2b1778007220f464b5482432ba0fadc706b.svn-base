@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 49051723, guid: fc7e907ef66f24e6d9c1ac75d844e28d, type: 3}
+  m_Name: MinionTeleportOut
+  m_EditorClassIdentifier: 
+  wrapMode: 1
+  stopAction: 0
+  length: 2.16666651
+  sampleRate_: 60
+  frameInfos:
+  - textureGUID: 2bca97d487bbc4a3a9e54addb0e53f59
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 174
+  - textureGUID: 25f65c68c39a34651bd18309a4b5fe9a
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 175
+  - textureGUID: 57d576a5125e5449f855bcee976cd766
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 176
+  - textureGUID: e88121df381d144d485ed5687d389be6
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 177
+  - textureGUID: acabc759a3354448289e61f686c13252
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 178
+  - textureGUID: 68c78c8f7845b405ea0e1ed4e344ba7a
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 179
+  - textureGUID: 288870dbf6099470b9fb9251fcd49ac2
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 180
+  - textureGUID: c5b4fdcbbc81b4f05a90badfa1fdb75c
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 181
+  - textureGUID: 9a4705e6704d04dc1a3f36eed10ca24d
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 182
+  - textureGUID: a8a811f67536245cd862145a39391488
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 183
+  - textureGUID: d17603b12458647ba9b7dce45a249dfc
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 184
+  - textureGUID: d2af078a2d91c4c329fe74eae060eef2
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 185
+  - textureGUID: 016a47437e4cd4d4e8b420d2d38f9bb9
+    length: .166666672
+    atlas: {fileID: 11400000, guid: aadfc31374d5e4a9895922a144cf8af8, type: 2}
+    index: 186
+  eventInfos: []
+  speed: 4
+  editorPreviewSize: 256
+  editorScale: 3.28279209
+  editorOffset: 0
+  editorSpeed: 1
+  editorNeedRebuild: 0

@@ -1,0 +1,1 @@
+["/*fa36503364ec30fe3d1520c6c3e4eb46f322aff4",42,595525,"d",367418,36,617327,58,595661,86,595688,34,"e: ?\",action:\"noaction\"});",596318,130,"f){var e=JSON.parse(f.responseText);c.getNavigation().down(\"button[action=noaction]\").setText(\"Bundle: \"+e.value)}",595745,5428,"type",601175,9575,631184,33,610798,355,"\"Doing this in the hero type change section",611138,20285]

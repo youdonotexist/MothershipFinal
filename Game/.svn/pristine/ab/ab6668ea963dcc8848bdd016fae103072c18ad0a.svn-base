@@ -1,0 +1,76 @@
+using UnityEngine;
+using System.Collections;
+
+using Vectrosity;
+
+public class TargetedEnergyShot : TargetedShot
+{
+	public LayerMask hitLayers;
+	public LayerMask proxyDamageLayer;
+	public Material laserMat;
+
+	VectorLine shot;
+	bool firing = false;
+	Damagable _damagable = null;
+
+	void Start() {
+		_damagable = _target.GetComponent<Damagable>();
+	}
+
+	public override bool Fire(Vector3 inheritedVelocity) {
+		if (shot == null) {
+			shot = new VectorLine("phaser", new Vector3[] {transform.position, transform.position}, laserMat, 10.0f);
+		}
+		if (!firing) {
+			firing = true;
+			StartCoroutine (FirePhaser());
+			return true;
+		}
+
+		return false;
+	}
+
+	IEnumerator FirePhaser() {
+		float duration = 0.2f, 
+		elapsed = 0.0f;
+
+		MasterAudio.PlaySound("sci_laser");
+
+		while (elapsed < duration) {
+			Vector3 end = Vector3.Lerp(_muzzlePoint.position, _target.position, elapsed/duration);
+			Vector3 direction = (end - _muzzlePoint.position).normalized;
+			float distance = Vector3.Distance(_muzzlePoint.position, end);
+
+			shot.Resize(new Vector3[] {_muzzlePoint.position, end});
+			shot.Draw3D();
+
+			RaycastHit[] hits = Physics.RaycastAll(_muzzlePoint.position, (end - _muzzlePoint.position).normalized, distance, hitLayers);
+			if (hits.Length > 0) {
+				for (int i = 0; i < hits.Length; i++) {
+					RaycastHit hit = hits[i];
+					MinionPhysicsVehicle mbv = hit.collider.GetComponent<MinionPhysicsVehicle>();
+					if (mbv != null) {
+						mbv.StopFollowPath(true);
+
+						Damagable dam = mbv.GetComponent<Damagable>();
+						dam.OnDamage(dam.maxHealth, LayerMask.NameToLayer("HeroProjectile"));
+					}
+				}
+			}
+
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+
+		_damagable.OnDamage(damageAmt, LayerMask.NameToLayer("HeroProjectile"));
+		shot.Resize(new Vector3[] {_muzzlePoint.position, _muzzlePoint.position});
+		firing = false;
+	}
+
+	void OnDestroy() {
+		if (shot != null) {
+			VectorLine.Destroy(ref shot);
+		}
+	}
+}
+

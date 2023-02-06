@@ -1,0 +1,22 @@
+using UnityEngine;
+using System.Collections;
+
+public class MissionDetails : MonoBehaviour
+{
+	
+	public string encounterId;
+	// Use this for initialization
+	void Start ()
+	{	
+		GameObject.DontDestroyOnLoad(gameObject);
+	}
+	
+	public void SetEncounterId(string id) {
+		encounterId = id;
+	}
+	
+	public string GetEncounterId() {
+		return encounterId;	
+	}
+}
+

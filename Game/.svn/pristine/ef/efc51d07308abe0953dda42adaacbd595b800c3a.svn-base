@@ -1,0 +1,350 @@
+using UnityEngine;
+using UnityEditor;
+using System.Collections;
+using System.Collections.Generic;
+
+[CustomEditor(typeof(MasterAudioGroup))]
+public class MasterAudioGroupInspector : Editor {
+	private bool isValid = true;
+	
+	public override void OnInspectorGUI() {
+        EditorGUIUtility.LookLikeControls();
+		
+		EditorGUI.indentLevel = 1;
+		var isDirty = false;
+		
+		MasterAudio ma = null;
+		ma = GUIHelper.GetSingleMasterAudio();
+		if (ma == null) {
+			isValid = false;
+		} 
+		
+		MasterAudioGroup _group = (MasterAudioGroup)target;
+		_group = RescanChildren(_group);
+		
+		if (!isValid) {
+			return;
+		}
+
+		if (_group.logoTexture != null) {
+			GUIHelper.DrawTexture(_group.logoTexture);
+		}
+		
+		_group.groupMasterVolume = EditorGUILayout.Slider("Group Master Volume", _group.groupMasterVolume, 0f, 1f);
+		
+		_group.retriggerPercentage = EditorGUILayout.IntSlider("Retrigger Percentage", _group.retriggerPercentage, 0, 100);
+		
+		_group.curVariationMode = (MasterAudioGroup.VariationMode) EditorGUILayout.EnumPopup("Variation Mode", _group.curVariationMode);
+		
+		if (_group.curVariationMode == MasterAudioGroup.VariationMode.Normal) {
+			_group.limitPolyphony = EditorGUILayout.Toggle("Limit Polyphony", _group.limitPolyphony);
+			if (_group.limitPolyphony) {
+				int maxVoices = 0;
+				for (var i = 0; i < _group.groupVariations.Count; i++) {
+					var variation = _group.groupVariations[i];
+					maxVoices += variation.weight;
+				}
+				
+				_group.voiceLimitCount = EditorGUILayout.IntSlider("Polyphony Voice Limit", _group.voiceLimitCount, 1, maxVoices);
+			}
+			
+			_group.limitMode = (MasterAudioGroup.LimitMode) EditorGUILayout.EnumPopup("Replay Limit Mode", _group.limitMode);
+			switch (_group.limitMode) {
+				case MasterAudioGroup.LimitMode.FrameBased:
+					_group.limitPerXFrames = EditorGUILayout.IntSlider("Min Frames Between", _group.limitPerXFrames, 1, 120);
+					break;
+				case MasterAudioGroup.LimitMode.TimeBased:
+					_group.minimumTimeBetween = EditorGUILayout.Slider("Min Seconds Between", _group.minimumTimeBetween, 0.1f, 10f);
+					break;
+			}
+		} else {
+			GUIHelper.ShowColorWarning("*In this mode, only one variation can be played at a time.");
+			GUIHelper.ShowColorWarning(" They will chain together randomly until you stop the Group.");
+		}
+
+		_group.bulkVariationMode = (SoundGroupVariation.AudioLocation) EditorGUILayout.EnumPopup("Bulk Variation Mode", _group.bulkVariationMode);
+		if (_group.bulkVariationMode == SoundGroupVariation.AudioLocation.ResourceFile) {
+			GUIHelper.ShowColorWarning("*Resource mode: make sure to drag from Resource folders only.");
+		}
+
+		int? deadChildIndex = null;
+		
+		if (!Application.isPlaying) {
+			EditorGUILayout.BeginHorizontal();
+			GUILayout.Space(13);
+			GUILayout.Label("Actions", EditorStyles.wordWrappedLabel, GUILayout.Width(50f));
+			GUILayout.Space(87);
+			GUI.contentColor = Color.green;
+			if (GUILayout.Button(new GUIContent("Equalize Weights", "Reset Weights to zero"), EditorStyles.toolbarButton, GUILayout.Width(120))) {
+				isDirty = true;
+				EqualizeWeights(_group);
+			}	
+			GUI.contentColor = Color.white;
+			EditorGUILayout.EndHorizontal();
+			EditorGUILayout.Separator();
+		}
+		
+		if (!Application.isPlaying) {
+			// new variation settings
+			EditorGUILayout.BeginVertical();
+			var anEvent = Event.current;
+	
+			GUI.color = Color.yellow;
+			
+			var dragArea = GUILayoutUtility.GetRect(0f,35f,GUILayout.ExpandWidth(true));
+			GUI.Box (dragArea, "Drag Audio clips here to create variations!");
+	
+			GUI.color = Color.white;
+			
+			switch (anEvent.type) {
+				case EventType.DragUpdated:
+				case EventType.DragPerform:
+					if(!dragArea.Contains(anEvent.mousePosition)) {
+						break;
+					}
+					
+					DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+					
+					if(anEvent.type == EventType.DragPerform) {
+						DragAndDrop.AcceptDrag();
+						
+						foreach (var dragged in DragAndDrop.objectReferences) {
+							var aClip = dragged as AudioClip;
+							if(aClip == null) {
+								continue;
+							}
+							
+							CreateVariation(_group, ma, aClip);
+						}
+					}
+					Event.current.Use();
+					break;
+			}
+			EditorGUILayout.EndVertical();
+			// end new variation settings
+		}
+
+		if (_group.groupVariations.Count == 0) {
+			GUIHelper.ShowColorWarning("You currently have no variations.");
+		} else {
+			for (var i = 0; i < _group.groupVariations.Count; i++) {
+				var variation = _group.groupVariations[i];
+	        	EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
+				EditorGUILayout.LabelField(variation.name, EditorStyles.boldLabel);
+	
+				EditorGUILayout.EndHorizontal();
+				
+				if (variation.audio == null) {
+					GUIHelper.ShowColorWarning(string.Format("The variation: '{0}' has no Audio Source.", variation.name));
+					break;
+				}
+				
+				var oldLocation = variation.audLocation;
+				
+				variation.audLocation = (SoundGroupVariation.AudioLocation) EditorGUILayout.EnumPopup("Audio Origin", variation.audLocation);
+				
+				switch (variation.audLocation) {
+					case SoundGroupVariation.AudioLocation.Clip:
+						variation.audio.clip = (AudioClip) EditorGUILayout.ObjectField("Audio Clip", variation.audio.clip, typeof(AudioClip), false);
+						break;
+					case SoundGroupVariation.AudioLocation.ResourceFile:
+						if (oldLocation != variation.audLocation) {
+							if (variation.audio.clip != null) {
+								Debug.Log("Audio clip removed to prevent unnecessary memory usage on Resource file variation.");
+							}
+							variation.audio.clip = null;
+						}
+					
+						EditorGUILayout.BeginVertical();
+						var anEvent = Event.current;
+					
+						GUI.color = Color.yellow;
+						var dragArea = GUILayoutUtility.GetRect(0f, 20f,GUILayout.ExpandWidth(true));
+						GUI.Box (dragArea, "Drag Resource Audio clip here to use its name!");
+						GUI.color = Color.white;
+						
+						switch (anEvent.type) {
+							case EventType.DragUpdated:
+							case EventType.DragPerform:
+								if(!dragArea.Contains(anEvent.mousePosition)) {
+									break;
+								}
+								
+								DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+								
+								if(anEvent.type == EventType.DragPerform) {
+									DragAndDrop.AcceptDrag();
+									
+									foreach (var dragged in DragAndDrop.objectReferences) {
+										var aClip = dragged as AudioClip;
+										if(aClip == null) {
+											continue;
+										}
+										
+										variation.resourceFileName = aClip.name;
+									}
+								}
+								Event.current.Use();
+								break;
+						}
+						EditorGUILayout.EndVertical();
+
+					
+						variation.resourceFileName = EditorGUILayout.TextField("Resource Filename", variation.resourceFileName);
+						break;
+				}
+				
+				variation.audio.volume = EditorGUILayout.Slider("Volume", variation.audio.volume, 0f, 1f);
+				variation.audio.pitch = EditorGUILayout.Slider("Pitch", variation.audio.pitch, -3f, 3f);
+				variation.audio.loop = EditorGUILayout.Toggle("Loop Clip", variation.audio.loop);
+				
+				EditorUtility.SetDirty(variation.audio);
+
+				variation.randomPitch = EditorGUILayout.Slider("Random Pitch", variation.randomPitch, 0f, 3f);
+				variation.randomVolume = EditorGUILayout.Slider("Random Volume", variation.randomVolume, 0f, 1f);
+				variation.weight = EditorGUILayout.IntSlider("Weight (Instances)", variation.weight, 0, 100);
+				
+				variation.useFades = EditorGUILayout.BeginToggleGroup("Use Custom Fading", variation.useFades);
+				variation.fadeInTime = EditorGUILayout.Slider("Fade In Time (sec)", variation.fadeInTime, 0f, 10f);
+				variation.fadeOutTime = EditorGUILayout.Slider("Fade Out time (sec)", variation.fadeOutTime, 0f, 10f);
+				EditorGUILayout.EndToggleGroup();
+				
+		        EditorGUILayout.BeginHorizontal();
+		
+		        EditorGUILayout.BeginHorizontal(GUILayout.MaxWidth(50));
+		        // A little space between button groups
+		        GUILayout.Space(6);
+				
+				EditorGUILayout.BeginHorizontal();
+				GUILayout.Space(6);
+
+				if (!Application.isPlaying) {
+					variation.possibleName = EditorGUILayout.TextField(variation.possibleName, GUILayout.MinWidth(80));
+					GUI.contentColor = Color.green;
+					if (GUILayout.Button(new GUIContent("Rename", "Click to rename this variation"), EditorStyles.toolbarButton, GUILayout.Width(60))) {
+						variation.name = variation.possibleName;
+						variation.name = variation.possibleName;
+					}
+					GUI.contentColor = Color.white;
+					
+					GUILayout.Space(6);
+				}
+				
+				if (GUILayout.Button(new GUIContent(_group.settingsTexture, "Click to goto variation"), EditorStyles.toolbarButton, GUILayout.Width(40))) {
+					Selection.activeObject = variation; 
+				}
+
+				GUILayout.Space(6);
+				
+				if (!Application.isPlaying) {
+					if (GUILayout.Button(new GUIContent(_group.deleteTexture, "Click to delete this variation"), EditorStyles.toolbarButton, GUILayout.Width(40))) {
+						deadChildIndex = i;
+						isDirty = true;
+					}
+				}
+
+				GUILayout.Space(6);
+				
+				var buttonPressed = GUIHelper.AddVariationButtons(ma, "Click to preview Variation");
+				switch (buttonPressed) {
+					case GUIHelper.DTFunctionButtons.Play:
+						if (Application.isPlaying) {
+						 	MasterAudio.PlaySound(_group.name, 1f, null, 0f, variation.name);
+						} else {
+							variation.audio.Stop();
+							variation.audio.Play();
+						}
+						break;
+				}
+				
+				EditorGUILayout.EndHorizontal();
+				
+				GUILayout.FlexibleSpace();
+		
+		        EditorGUILayout.EndHorizontal();
+		        EditorGUILayout.EndHorizontal();
+				if (!Application.isPlaying) {
+					GUIHelper.ShowColorWarning("*Fading & random settings are ignored by preview in edit mode.");
+				}
+				
+				EditorGUILayout.Separator();
+			}
+		}
+		
+		if (deadChildIndex.HasValue) {
+			var deadVar = _group.groupVariations[deadChildIndex.Value];
+			
+			if (deadVar != null) {
+				// delete variation from Hierarchy
+				GameObject.DestroyImmediate(deadVar.gameObject);
+			}
+			
+			// delete group.
+			_group.groupVariations.RemoveAt(deadChildIndex.Value);
+		}
+		
+		if (GUI.changed || isDirty) {
+			EditorUtility.SetDirty(target);
+		}
+		
+		//DrawDefaultInspector();
+    }
+	
+	private MasterAudioGroup RescanChildren(MasterAudioGroup group) {
+		var newChildren = new List<SoundGroupVariation>();
+		
+		var childNames = new List<string>();
+		
+		SoundGroupVariation variation = null;
+		
+		for (var i = 0; i < group.transform.childCount; i++) {
+			var child = group.transform.GetChild(i);
+			
+			if (!Application.isPlaying) {
+				if (childNames.Contains(child.name)) {
+					GUIHelper.ShowColorWarning("You have more than one variation named: " + child.name + ".");
+					GUIHelper.ShowColorWarning("Please ensure each variation of this Group has a unique name.");
+					isValid = false;
+					return null;
+				}
+			}
+			
+			childNames.Add(child.name);
+			
+			variation = child.GetComponent<SoundGroupVariation>();
+			
+			newChildren.Add(variation);
+		}
+		
+		group.groupVariations = newChildren;
+		return group;
+	}
+	
+	public void EqualizeWeights(MasterAudioGroup _group) {
+		foreach (var variation in _group.groupVariations) {
+			variation.weight = 1;
+		}
+	}
+	
+	public void CreateVariation(MasterAudioGroup group, MasterAudio ma, AudioClip clip) {
+		var clipName = clip.name;
+		
+		if (group.transform.FindChild(clipName) != null) {
+			GUIHelper.ShowAlert("You already have a variation for this Group named '" + clipName + "'. \n\nPlease rename these variations when finished to be unique, or you may not be able to play them by name if you have a need to.");
+		}
+		
+		var newVar = (GameObject) GameObject.Instantiate(ma.soundGroupVariationTemplate.gameObject, group.transform.position, Quaternion.identity);
+		
+		newVar.transform.name = clipName;
+		newVar.transform.parent = group.transform;
+		var variation = newVar.GetComponent<SoundGroupVariation>();
+		variation.possibleName = clipName;
+		
+		if (group.bulkVariationMode == SoundGroupVariation.AudioLocation.ResourceFile) {
+			variation.audLocation = SoundGroupVariation.AudioLocation.ResourceFile;
+			variation.resourceFileName = clipName;
+		} else {
+			newVar.audio.clip = clip;
+		}
+	}
+}

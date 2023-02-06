@@ -1,0 +1,32 @@
+/*
+ * Copyright 2013 SirsiDynix.  All rights reserved.
+ */
+Ext.require('MothershipEditor.model.Hero');
+Ext.define('MothershipEditor.model.HeroList', {
+	extend: 'Ext.data.Model',
+	config: {
+		fields:[
+			{name: 'id', mapping: '_id', persist: false},
+			'name',
+			'hero_type_id',
+			'backstory',
+			'story',
+            'storyLine',
+            'storyTeller',
+            'storyTellerId',
+			'index'
+		],
+		associations: [
+			{
+				type: 'hasMany',
+				name: 'hero',
+				model: 'MothershipEditor.model.Hero',
+				associationKey : 'heroes'
+			}
+		],
+		proxy: {
+			type: 'rest',
+			url : '/herolist'
+		}
+	}
+});
